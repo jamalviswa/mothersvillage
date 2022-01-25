@@ -48,11 +48,11 @@
                                     <img src="<?php echo $profile; ?>" class="m--img-rounded m--marginless m--img-centered" alt="" height="60px"  style="margin-top:5px !important">
                                 </span>
                             </li>
-                            <!-- <li id="m_quick_sidebar_toggle" class="m-nav__item">
+                            <li id="m_quick_sidebar_toggle" class="m-nav__item">
                                 <a href="<?php //echo url('/adminusers/profile'); ?>" class="m-nav__link m-dropdown__toggle">
 <?php //echo $sessionadmin->first_name; ?>
                                 </a>
-                            </li> -->
+                            </li>
                             <li id="m_quick_sidebar_toggle" class="m-nav__item">
                                 <a href="<?php echo url('/adminusers/logout'); ?>" class="m-nav__link m-dropdown__toggle">
                                     Logout
