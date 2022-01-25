@@ -6,8 +6,8 @@
                 <div class="m-stack m-stack--ver m-stack--general">
                     <div class="m-stack__item m-stack__item--middle m-brand__logo">
                         <a href="<?php echo url('/customers/index'); ?>" class="m-brand__logo-wrapper">
-                            <!--<img src="<?php echo asset("admin/img/logos/logo-1.png") ?>"/>-->
-                            MOTHERS VILLAGE
+                          
+                            MOTHER'S VILLAGE
                         </a>
                     </div>
                     <div class="m-stack__item m-stack__item--middle m-brand__tools">
@@ -43,11 +43,11 @@
                 <div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general">
                     <div class="m-stack__item m-topbar__nav-wrapper">
                         <ul class="m-topbar__nav m-nav m-nav--inline">
-                            <li id="m_quick_sidebar_toggle" class="m-nav__item"><span class="m-topbar__userpic">
+                            <!-- <li id="m_quick_sidebar_toggle" class="m-nav__item"><span class="m-topbar__userpic">
 <?php $profile = (!empty($sessionadmin->profile)) ? asset('files/admin/' . $sessionadmin->profile) : asset('admin/img/users/100_11.jpg') ?>
                                     <img src="<?php echo $profile; ?>" class="m--img-rounded m--marginless m--img-centered" alt="" height="60px"  style="margin-top:5px !important">
                                 </span>
-                            </li>
+                            </li> -->
                            
                             <li id="m_quick_sidebar_toggle" class="m-nav__item">
                                 <a href="<?php echo url('/adminusers/logout'); ?>" class="m-nav__link m-dropdown__toggle">
