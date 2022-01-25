@@ -95,7 +95,7 @@ td a.btn.btn-secondary {
     width: auto;
 }
 .card-header {
-    background: #384AD7;
+    background: #122ae4;
     color: #fff;
 }
 .m-table.activity-table td {
@@ -913,12 +913,12 @@ select.form-control:not([size]):not([multiple]) {
 }
 /*my style */
 .btn-focus , .btn-primary , .btn-accent{
-    background-color: #0063BE;
-    border-color: #0061BA;
+    background-color: #329F5B;
+    border-color: #329F5B;
 }
 .btn-focus:hover , .btn-primary:hover , .btn-accent:hover{
-    background-color:  #02467d;
-    border-color:  #02467d;
+    background-color:  #0C8346;
+    border-color:  #0C8346;
 }
 .btn.m-btn--air.btn-default.focus, .btn.m-btn--air.btn-default:focus, .btn.m-btn--air.btn-default:hover:not(:disabled):not(.active), .btn.m-btn--air.btn-secondary.focus, .btn.m-btn--air.btn-secondary:focus, .btn.m-btn--air.btn-secondary:hover:not(:disabled):not(.active){
 background: #e2026a !important;
@@ -937,6 +937,9 @@ background: #e2026a !important;
 }
 .m-table.m-table--head-bg-brand thead th {
     background: #0054AC;
+}
+.title.login{
+    color: #0D5D56 !important;
 }
 .back-img {
     margin: 14px 0px;

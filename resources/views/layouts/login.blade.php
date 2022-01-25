@@ -24,7 +24,7 @@ WebFont.load({
         <script src="{{ URL::asset('/admin/js/sweetalert.min.js') }}"></script>
         <script src="{{ URL::asset('/admin/js/jquery.validationEngine.js') }}"></script>
         <script src="{{ URL::asset('/admin/js/jquery.validationEngine-en.js') }}"></script>
-        <title>Mothers Village</title>
+        <title>Mother's Village</title>
     </head>
     <body class="m--skin- m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default"  >
         <!-- begin:: Page -->
