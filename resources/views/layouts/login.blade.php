@@ -2,7 +2,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
-        <!--<link rel="icon" href="{{ URL::asset('/admin/img/fav.png') }}" type="image/png" sizes="16x16">-->
+        <link rel="icon" href="{{ URL::asset('/admin/img/load.png') }}" type="image/png" sizes="16x16">
         <link href="{{ URL::asset('/admin/css/style.bundle.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ URL::asset('/admin/css/vendors.bundle.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ URL::asset('/admin/css/validationEngine.jquery.css') }}" rel="stylesheet" type="text/css">
