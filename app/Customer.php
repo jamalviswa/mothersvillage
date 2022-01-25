@@ -6,11 +6,11 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Category extends Authenticatable
+class Customer extends Authenticatable
 {
     use Notifiable;
 
     public $timestamps = false;
-    protected $primaryKey = 'category_id';
+    protected $primaryKey = 'customer_id';
 }
 

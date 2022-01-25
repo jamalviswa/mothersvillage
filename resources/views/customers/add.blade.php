@@ -7,12 +7,12 @@
         <div class="d-flex align-items-center">
             <div class="mr-auto">
                 <h3 class="m-subheader__title m-subheader__title--separator">
-                    Add Category
+                    Personal Details
                 </h3>
             </div>
             <div>
-                <a href="{{route('categories.index')}}" rel="tooltip" title="" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle" data-original-title="Back to Category List">
-                <i class="fa fa-long-arrow-left"></i>
+                <a href="{{route('customers.index')}}" rel="tooltip" title="" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle" data-original-title="Back to List">
+                    <i class="fa fa-long-arrow-left"></i>
                 </a>
             </div>
         </div>
@@ -25,14 +25,16 @@
                     <div class="m-portlet__body">
                         <!--begin::Section-->
                         <div class="m-section">
-                            <form method="post" action="{{ route('categories.store') }}" id="upload" class="validation_form" enctype="multipart/form-data">
+                            <form method="post" action="{{ route('customers.store') }}" id="upload" class="validation_form" enctype="multipart/form-data">
                             @csrf
-                            <div class="col-md-6 offset-md-3">
+                            <div class="col-md-6">
                                 <div class="m-section__content">
                                     <!--<div id="err"></div>-->
+
+
                                     <div class="form-group row">
                                         <label class="col-md-4">
-                                            Category Name <span class="red">*</span>
+                                           Name <span class="red">*</span>
                                         </label>
                                         <div class="col-md-8">
                                             <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
@@ -43,7 +45,51 @@
                                              @enderror
                                         </div>
                                     </div>
-                                    <div class="form-group" id="sub_div"></div>   
+
+                                    <div class="form-group row">
+                                        <label class="col-md-4">
+                                          Father / Spouse Name <span class="red">*</span>
+                                        </label>
+                                        <div class="col-md-8">
+                                            <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
+                                            @error('name')
+                                              <span class="invalid-feedback" role="alert">
+                                                 {{ $message }}
+                                              </span>
+                                             @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-md-4">
+                                         Age <span class="red">*</span>
+                                        </label>
+                                        <div class="col-md-8">
+                                            <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
+                                            @error('name')
+                                              <span class="invalid-feedback" role="alert">
+                                                 {{ $message }}
+                                              </span>
+                                             @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-md-4">
+                                          Gender <span class="red">*</span>
+                                        </label>
+                                        <div class="col-md-8">
+                                            <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
+                                            @error('name')
+                                              <span class="invalid-feedback" role="alert">
+                                                 {{ $message }}
+                                              </span>
+                                             @enderror
+                                        </div>
+                                    </div>
+
+
+                                    <!-- <div class="form-group" id="sub_div"></div>   
                                     <div class="form-group row">
                                         <label class="col-md-4">
                                             Description <span class="red">*</span>
@@ -56,7 +102,11 @@
                                               </span>
                                              @enderror
                                         </div>
-                                    </div>
+                                    </div> -->
+
+
+
+                                    
                                     <div class="form-group row">
                                             <label class="col-md-4">
                                                 Status <span class="red">*</span>

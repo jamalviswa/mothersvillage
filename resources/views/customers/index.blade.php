@@ -10,7 +10,7 @@
                 </h3>
             </div>
             <div>
-                <a href="{{route('categories.add')}}" rel="tooltip" title="" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle" data-original-title="Add Category">
+                <a href="{{route('customers.add')}}" rel="tooltip" title="" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle" data-original-title="Add Category">
                 <i class="la la-plus"></i>
                 </a>
             </div>
@@ -29,7 +29,7 @@
                                 <div class="form-group">
                                     <button class="btn btn-primary m-btn m-btn--air m-btn--custom" type="submit" name="search"><i class="fa fa-search"></i></button>
                                     <?php if (isset($_REQUEST['search'])) { ?>
-                                        <a class="btn btn-danger m-btn m-btn--air m-btn--custom" href="{{route('categories.index')}}"><i class="fa fa-times"></i></a>
+                                        <a class="btn btn-danger m-btn m-btn--air m-btn--custom" href="{{route('customers.index')}}"><i class="fa fa-times"></i></a>
                                     <?php } ?>
                                 </div>
                             </form>
@@ -64,19 +64,17 @@
                                                 <td>{{ $result->name }}</td>
                                                 <td>{{ $result->description }}</td>
                                                 <td class="text-center">
-                                                     <a rel="tooltip" title='Update Status' href="javascript:;" data-status="<?php echo ($result['status'] )?>" data-id="<?php echo $result['category_id']; ?>" data-toggle="modal" data-target="#update-status" class="btn btn-secondary m-btn m-btn--air m-btn--custom btn-sm btn-<?php echo $result['status'] ?>">
+                                                     <a rel="tooltip" title='Update Status' href="javascript:;" data-status="<?php echo ($result['status'] )?>" data-id="<?php echo $result['customer_id']; ?>" data-toggle="modal" data-target="#update-status" class="btn btn-secondary m-btn m-btn--air m-btn--custom btn-sm btn-<?php echo $result['status'] ?>">
                                                     {{ $result['status'] }}
                                                       </a>   
                                                 </td>
                                                 <td class="text-center">
                                                     <div class="btn-group">
-                                                        <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="Edit" href="{{ route("categories.edit", $result->category_id) }}">
+                                                        <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="Edit" href="{{ route("customers.edit", $result->customer_id) }}">
                                                         <i class="fa fa-pencil"></i>
                                                         </a>
-                                                        <!--<a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="View Details" href="{{ route("categories.view", $result->category_id) }}">-->
-                                                        <!--<i class="fa fa-eye"></i>-->
-                                                        <!--</a>-->
-                                                        <a rel="tooltip" class="delete btn btn-secondary m-btn m-btn--air m-btn--custom" title="Delete" data-value="{{$result['category_id']}}" href="{{ route('categories.delete',$result['category_id']) }}">
+                                                       
+                                                        <a rel="tooltip" class="delete btn btn-secondary m-btn m-btn--air m-btn--custom" title="Delete" data-value="{{$result['customer_id']}}" href="{{ route('customers.delete',$result['customer_id']) }}">
                                                         <i class="fa fa-trash"></i>
                                                         </a>
                                                     </div>
@@ -108,7 +106,7 @@
                     <h4 class="modal-title" id="myModalLabel">Update Category Status</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
-                <form method="post" class="validation_form" action="{{ route('categories.updateStatus') }}">
+                <form method="post" class="validation_form" action="{{ route('customers.updateStatus') }}">
                     <div class="modal-body">
                         <div class="form-group">
                             <select class="form-control validate[required]" id="status" name="status">

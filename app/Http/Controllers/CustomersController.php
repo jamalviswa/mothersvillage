@@ -10,14 +10,14 @@ use App\Rules\Email;
 use Session;
 use DB;
 use Redirect;
-use App\Category;
-class CategoriesController extends Controller {
+use App\Customer;
+class CustomersController extends Controller {
     
     public function index() {
        
         $sessionadmin = Parent::checkadmin();
-        $result = Category::where('status', '<>', 'Trash')
-                        ->orderBy('category_id', 'desc');
+        $result = Customer::where('status', '<>', 'Trash')
+                        ->orderBy('customer_id', 'desc');
         if (!empty($_REQUEST['s'])) {
             $s = $_REQUEST['s'];    
             $result->where(function ($query) use ($s) {
@@ -33,7 +33,7 @@ class CategoriesController extends Controller {
         
         $result = $result->paginate(10);
         
-        return view('/categories/index', [
+        return view('/customers/index', [
             'results' => $result
         ]);
         
@@ -41,7 +41,7 @@ class CategoriesController extends Controller {
     }
     public function add() {
         $sessionadmin = Parent::checkadmin();
-        return view('categories/add', []);
+        return view('customers/add', []);
     }
     public function store(Request $request)
     {

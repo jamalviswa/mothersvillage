@@ -5,9 +5,9 @@
             <div class="m-stack__item m-brand  m-brand--skin-dark ">
                 <div class="m-stack m-stack--ver m-stack--general">
                     <div class="m-stack__item m-stack__item--middle m-brand__logo">
-                        <a href="<?php echo url('/admin/adminusers/dashboard'); ?>" class="m-brand__logo-wrapper">
+                        <a href="<?php echo url('/customers/index'); ?>" class="m-brand__logo-wrapper">
                             <!--<img src="<?php echo asset("admin/img/logos/logo-1.png") ?>"/>-->
-                            MOVE MO
+                            MOTHERS VILLAGE
                         </a>
                     </div>
                     <div class="m-stack__item m-stack__item--middle m-brand__tools">
@@ -48,11 +48,7 @@
                                     <img src="<?php echo $profile; ?>" class="m--img-rounded m--marginless m--img-centered" alt="" height="60px"  style="margin-top:5px !important">
                                 </span>
                             </li>
-                            <li id="m_quick_sidebar_toggle" class="m-nav__item">
-                                <a href="<?php //echo url('/adminusers/profile'); ?>" class="m-nav__link m-dropdown__toggle">
-<?php //echo $sessionadmin->first_name; ?>
-                                </a>
-                            </li>
+                           
                             <li id="m_quick_sidebar_toggle" class="m-nav__item">
                                 <a href="<?php echo url('/adminusers/logout'); ?>" class="m-nav__link m-dropdown__toggle">
                                     Logout

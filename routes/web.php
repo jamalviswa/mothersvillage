@@ -16,36 +16,37 @@ use Illuminate\Http\Request;
 Route::resource('my', 'MyController');
 Route::any('/', 'AdminusersController@login');
 Route::any('/admin', 'AdminusersController@login');
- Route::any('adminusers/logout', 'AdminusersController@logout');
-Route::any('categories/index', 'CategoriesController@index')->name('categories.index');
-Route::get('categories/add', 'CategoriesController@add')->name('categories.add');
-    Route::get('categories/edit/{id}', 'CategoriesController@edit')->name('categories.edit');
-    Route::get('categories/view/{id}', 'CategoriesController@view')->name('categories.view');
-    Route::post('categories/store', 'CategoriesController@store')->name('categories.store');
-    Route::post('categories/update/{id}', 'CategoriesController@update')->name('categories.update');
-    Route::get('categories/delete/{id}', 'CategoriesController@delete')->name('categories.delete');
-     Route::post('categories/updateStatus', 'CategoriesController@updateStatus')->name('categories.updateStatus');
+Route::any('adminusers/logout', 'AdminusersController@logout');
+
+Route::any('customers/index', 'CustomersController@index')->name('customers.index');
+Route::get('customers/add', 'CustomersController@add')->name('customers.add');
+    Route::get('customers/edit/{id}', 'CustomersController@edit')->name('customers.edit');
+    Route::get('customers/view/{id}', 'CustomersController@view')->name('customers.view');
+    Route::post('customers/store', 'CustomersController@store')->name('customers.store');
+    Route::post('customers/update/{id}', 'CustomersController@update')->name('customers.update');
+    Route::get('customers/delete/{id}', 'CustomersController@delete')->name('customers.delete');
+    Route::post('customers/updateStatus', 'CustomersController@updateStatus')->name('customers.updateStatus');
 
 
-Route::any('users/index', 'UsersController@index')->name('users.index');
-  Route::post('users/updateStatus', 'UsersController@updateStatus')->name('users.updateStatus');
+// Route::any('users/index', 'UsersController@index')->name('users.index');
+//   Route::post('users/updateStatus', 'UsersController@updateStatus')->name('users.updateStatus');
 
-Route::any('packages/index', 'PackagesController@index')->name('packages.index');
-Route::get('packages/add', 'PackagesController@add')->name('packages.add');
- Route::post('packages/store', 'PackagesController@store')->name('packages.store');
-   Route::get('packages/edit/{id}', 'PackagesController@edit')->name('packages.edit');
-  Route::post('packages/update/{id}', 'PackagesController@update')->name('packages.update');
- Route::get('packages/delete/{id}', 'PackagesController@delete')->name('packages.delete');
-  Route::get('packages/delete/{id}', 'PackagesController@delete')->name('packages.delete');
-    Route::post('packages/updateStatus', 'PackagesController@updateStatus')->name('packages.updateStatus');
+// Route::any('packages/index', 'PackagesController@index')->name('packages.index');
+// Route::get('packages/add', 'PackagesController@add')->name('packages.add');
+//  Route::post('packages/store', 'PackagesController@store')->name('packages.store');
+//    Route::get('packages/edit/{id}', 'PackagesController@edit')->name('packages.edit');
+//   Route::post('packages/update/{id}', 'PackagesController@update')->name('packages.update');
+//  Route::get('packages/delete/{id}', 'PackagesController@delete')->name('packages.delete');
+//   Route::get('packages/delete/{id}', 'PackagesController@delete')->name('packages.delete');
+//     Route::post('packages/updateStatus', 'PackagesController@updateStatus')->name('packages.updateStatus');
  
-  Route::any('discounts/index', 'DiscountsController@index')->name('discounts.index');
-Route::get('discounts/add', 'DiscountsController@add')->name('discounts.add');
- Route::post('discounts/store', 'DiscountsController@store')->name('discounts.store');
-  Route::get('discounts/edit/{id}', 'DiscountsController@edit')->name('discounts.edit');
-  Route::post('discounts/update/{id}', 'DiscountsController@update')->name('discounts.update');
- Route::get('discounts/delete/{id}', 'DiscountsController@delete')->name('discounts.delete');
-   Route::post('discounts/updateStatus', 'DiscountsController@updateStatus')->name('discounts.updateStatus');
+//   Route::any('discounts/index', 'DiscountsController@index')->name('discounts.index');
+// Route::get('discounts/add', 'DiscountsController@add')->name('discounts.add');
+//  Route::post('discounts/store', 'DiscountsController@store')->name('discounts.store');
+//   Route::get('discounts/edit/{id}', 'DiscountsController@edit')->name('discounts.edit');
+//   Route::post('discounts/update/{id}', 'DiscountsController@update')->name('discounts.update');
+//  Route::get('discounts/delete/{id}', 'DiscountsController@delete')->name('discounts.delete');
+//    Route::post('discounts/updateStatus', 'DiscountsController@updateStatus')->name('discounts.updateStatus');
  
 //  Route::any('templates/index', 'TemplatesController@index')->name('templates.index');
 // Route::get('templates/add', 'TemplatesController@add')->name('templates.add');
