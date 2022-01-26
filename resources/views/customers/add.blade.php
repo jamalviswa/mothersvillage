@@ -74,7 +74,7 @@
                                             </div>
                                         </div>
 
-                                      
+
 
 
                                         <!-- <div class="form-group" id="sub_div"></div>   
@@ -164,8 +164,8 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        
-                                        
+
+
                                         <span>Family Members</span>
                                         <div class="form-group row">
                                             <label class="col-md-4">
@@ -528,7 +528,8 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div><div class="form-group row">
+                                        </div>
+                                        <div class="form-group row">
                                             <label class="col-md-4">
                                                 Facing <span class="red">*</span>
                                             </label>
@@ -540,7 +541,8 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div><div class="form-group row">
+                                        </div>
+                                        <div class="form-group row">
                                             <label class="col-md-4">
                                                 Floor <span class="red">*</span>
                                             </label>
@@ -552,9 +554,10 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div><div class="form-group row">
+                                        </div>
+                                        <div class="form-group row">
                                             <label class="col-md-4">
-                                               Saleable Area <span class="red">*</span>
+                                                Saleable Area <span class="red">*</span>
                                             </label>
                                             <div class="col-md-8">
                                                 <input value="{{ old('name') }}" type="tel" autocomplete="off" class="form-control" name="name" />
@@ -564,7 +567,8 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div><div class="form-group row">
+                                        </div>
+                                        <div class="form-group row">
                                             <label class="col-md-4">
                                                 Plinth Area <span class="red">*</span>
                                             </label>
@@ -576,7 +580,8 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div><div class="form-group row">
+                                        </div>
+                                        <div class="form-group row">
                                             <label class="col-md-4">
                                                 Comn Area <span class="red">*</span>
                                             </label>
@@ -588,7 +593,8 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div><div class="form-group row">
+                                        </div>
+                                        <div class="form-group row">
                                             <label class="col-md-4">
                                                 UDS Area <span class="red">*</span>
                                             </label>
@@ -600,9 +606,10 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div><div class="form-group row">
+                                        </div>
+                                        <div class="form-group row">
                                             <label class="col-md-4">
-                                               Mail Id <span class="red">*</span>
+                                                Mail Id <span class="red">*</span>
                                             </label>
                                             <div class="col-md-8">
                                                 <input value="{{ old('name') }}" type="tel" autocomplete="off" class="form-control" name="name" />
@@ -612,7 +619,8 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div><div class="form-group row">
+                                        </div>
+                                        <div class="form-group row">
                                             <label class="col-md-4">
                                                 Own Fund / Bank<span class="red">*</span>
                                             </label>
@@ -624,7 +632,8 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div><div class="form-group row">
+                                        </div>
+                                        <div class="form-group row">
                                             <label class="col-md-4">
                                                 Loan Sanction Amount <span class="red">*</span>
                                             </label>
@@ -636,7 +645,8 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div><div class="form-group row">
+                                        </div>
+                                        <div class="form-group row">
                                             <label class="col-md-4">
                                                 Sale Value <span class="red">*</span>
                                             </label>
@@ -648,9 +658,10 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div><div class="form-group row">
+                                        </div>
+                                        <div class="form-group row">
                                             <label class="col-md-4">
-                                                Co App Phone No <span class="red">*</span>
+                                                15% Advance <span class="red">*</span>
                                             </label>
                                             <div class="col-md-8">
                                                 <input value="{{ old('name') }}" type="tel" autocomplete="off" class="form-control" name="name" />
@@ -660,9 +671,10 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div><div class="form-group row">
+                                        </div>
+                                        <div class="form-group row">
                                             <label class="col-md-4">
-                                                Co App Phone No <span class="red">*</span>
+                                                85% <span class="red">*</span>
                                             </label>
                                             <div class="col-md-8">
                                                 <input value="{{ old('name') }}" type="tel" autocomplete="off" class="form-control" name="name" />
@@ -672,9 +684,10 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div><div class="form-group row">
+                                        </div>
+                                        <div class="form-group row">
                                             <label class="col-md-4">
-                                                Co App Phone No <span class="red">*</span>
+                                                40% <span class="red">*</span>
                                             </label>
                                             <div class="col-md-8">
                                                 <input value="{{ old('name') }}" type="tel" autocomplete="off" class="form-control" name="name" />
@@ -684,9 +697,10 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div><div class="form-group row">
+                                        </div>
+                                        <div class="form-group row">
                                             <label class="col-md-4">
-                                                Co App Phone No <span class="red">*</span>
+                                                Guideline Value <span class="red">*</span>
                                             </label>
                                             <div class="col-md-8">
                                                 <input value="{{ old('name') }}" type="tel" autocomplete="off" class="form-control" name="name" />
@@ -696,9 +710,10 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div><div class="form-group row">
+                                        </div>
+                                        <div class="form-group row">
                                             <label class="col-md-4">
-                                                Co App Phone No <span class="red">*</span>
+                                                Land Cost(UDS) <span class="red">*</span>
                                             </label>
                                             <div class="col-md-8">
                                                 <input value="{{ old('name') }}" type="tel" autocomplete="off" class="form-control" name="name" />
@@ -708,9 +723,10 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div><div class="form-group row">
+                                        </div>
+                                        <div class="form-group row">
                                             <label class="col-md-4">
-                                                Co App Phone No <span class="red">*</span>
+                                                Construction Cost <span class="red">*</span>
                                             </label>
                                             <div class="col-md-8">
                                                 <input value="{{ old('name') }}" type="tel" autocomplete="off" class="form-control" name="name" />
@@ -720,9 +736,10 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div><div class="form-group row">
+                                        </div>
+                                        <div class="form-group row">
                                             <label class="col-md-4">
-                                                Co App Phone No <span class="red">*</span>
+                                                PDC <span class="red">*</span>
                                             </label>
                                             <div class="col-md-8">
                                                 <input value="{{ old('name') }}" type="tel" autocomplete="off" class="form-control" name="name" />
@@ -732,9 +749,10 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div><div class="form-group row">
+                                        </div>
+                                        <div class="form-group row">
                                             <label class="col-md-4">
-                                                Co App Phone No <span class="red">*</span>
+                                                Stamp Duty(7%) <span class="red">*</span>
                                             </label>
                                             <div class="col-md-8">
                                                 <input value="{{ old('name') }}" type="tel" autocomplete="off" class="form-control" name="name" />
@@ -744,9 +762,10 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div><div class="form-group row">
+                                        </div>
+                                        <div class="form-group row">
                                             <label class="col-md-4">
-                                                Co App Phone No <span class="red">*</span>
+                                                Registration Charges(4%) <span class="red">*</span>
                                             </label>
                                             <div class="col-md-8">
                                                 <input value="{{ old('name') }}" type="tel" autocomplete="off" class="form-control" name="name" />
@@ -756,9 +775,10 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div><div class="form-group row">
+                                        </div>
+                                        <div class="form-group row">
                                             <label class="col-md-4">
-                                                Co App Phone No <span class="red">*</span>
+                                                Constructon Agrmt(2%)<span class="red">*</span>
                                             </label>
                                             <div class="col-md-8">
                                                 <input value="{{ old('name') }}" type="tel" autocomplete="off" class="form-control" name="name" />
@@ -768,9 +788,10 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div><div class="form-group row">
+                                        </div>
+                                        <div class="form-group row">
                                             <label class="col-md-4">
-                                                Co App Phone No <span class="red">*</span>
+                                                GST 1% <span class="red">*</span>
                                             </label>
                                             <div class="col-md-8">
                                                 <input value="{{ old('name') }}" type="tel" autocomplete="off" class="form-control" name="name" />
