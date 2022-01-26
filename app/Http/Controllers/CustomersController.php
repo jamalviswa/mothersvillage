@@ -52,6 +52,8 @@ class CustomersController extends Controller {
             'phone' => ['required'],
             'email' => ['required'],
             'occupation' => ['required'],
+            'address' => ['required'],
+            'income' => ['required'],
             'experience' => ['required'],
             'name' => ['required',Rule::unique('customers')->where(function ($query) use($request) {
                 return $query->where('name', $request->name)->where('status','<>', 'Trash');
@@ -63,6 +65,8 @@ class CustomersController extends Controller {
         $data->age = $request->age;
         $data->gender = $request->gender;
         $data->phone = $request->phone;
+        $data->address = $request->address;
+        $data->income = $request->income;
         $data->email = $request->email;
         $data->occupation = $request->occupation;
         $data->experience = $request->experience;
