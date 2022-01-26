@@ -479,7 +479,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-md-4">
-                                                Aadhar No <span class="red">*</span>
+                                                App Aadhar No <span class="red">*</span>
                                             </label>
                                             <div class="col-md-8">
                                                 <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
@@ -515,10 +515,9 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
+                                        </div><div class="form-group row">
                                             <label class="col-md-4">
-                                                Co App Aadhar No <span class="red">*</span>
+                                               Co App Aadhar No <span class="red">*</span>
                                             </label>
                                             <div class="col-md-8">
                                                 <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
@@ -528,13 +527,13 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div><span>Family Income</span>
+                                        </div>
                                         <div class="form-group row">
                                             <label class="col-md-4">
-                                                Applicant <span class="red">*</span>
+                                               Co App Pan No <span class="red">*</span>
                                             </label>
                                             <div class="col-md-8">
-                                                <input value="{{ old('name') }}" type="text" autocomplete="off" placeholder="₹" class="form-control" name="name" />
+                                                <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
                                                 @error('name')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
@@ -542,6 +541,21 @@
                                                 @enderror
                                             </div>
                                         </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                               Co App Phone No <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input value="{{ old('name') }}" type="tel" autocomplete="off" class="form-control" name="name" />
+                                                @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        
+                                       
                                         <div class="form-group row">
                                             <label class="col-md-4">
                                                 Spouse <span class="red">*</span>
@@ -665,7 +679,7 @@
 
                                             <div class="form-group text-right">
                                                 <button type="submit" name="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
-                                                    Next
+                                                    Submit
                                                 </button>
                                             </div>
                                         </div>
