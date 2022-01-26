@@ -18,7 +18,7 @@
         </div>
     </div>
     <!-- END: Subheader -->
-    <div class="m-content"> 
+    <div class="m-content">
         <div class="row">
             <div class="col-md-12">
                 <div class="m-portlet">
@@ -26,55 +26,55 @@
                         <!--begin::Section-->
                         <div class="m-section">
                             <form method="post" action="{{ route('customers.store') }}" id="upload" class="validation_form" enctype="multipart/form-data">
-                            @csrf
-                            <div class="col-md-6">
-                                <div class="m-section__content">
-                                    <!--<div id="err"></div>-->
+                                @csrf
+                                <div class="col-md-6">
+                                    <div class="m-section__content">
+                                        <!--<div id="err"></div>-->
 
 
-                                    <div class="form-group row">
-                                        <label class="col-md-4">
-                                           Name <span class="red">*</span>
-                                        </label>
-                                        <div class="col-md-8">
-                                            <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
-                                            @error('name')
-                                              <span class="invalid-feedback" role="alert">
-                                                 {{ $message }}
-                                              </span>
-                                             @enderror
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                                Name <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
+                                                @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="form-group row">
-                                        <label class="col-md-4">
-                                          Father / Spouse Name <span class="red">*</span>
-                                        </label>
-                                        <div class="col-md-8">
-                                            <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
-                                            @error('name')
-                                              <span class="invalid-feedback" role="alert">
-                                                 {{ $message }}
-                                              </span>
-                                             @enderror
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                                Father / Spouse Name <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
+                                                @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="form-group row">
-                                        <label class="col-md-4">
-                                         Age <span class="red">*</span>
-                                        </label>
-                                        <div class="col-md-8">
-                                            <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
-                                            @error('name')
-                                              <span class="invalid-feedback" role="alert">
-                                                 {{ $message }}
-                                              </span>
-                                             @enderror
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                                Age <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
+                                                @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <!-- <div class="form-group row">
+                                        <!-- <div class="form-group row">
                                         <label class="col-md-4">
                                           Gender <span class="red">*</span>
                                         </label>
@@ -89,7 +89,7 @@
                                     </div> -->
 
 
-                                    <!-- <div class="form-group" id="sub_div"></div>   
+                                        <!-- <div class="form-group" id="sub_div"></div>   
                                     <div class="form-group row">
                                         <label class="col-md-4">
                                             Description <span class="red">*</span>
@@ -107,177 +107,228 @@
 
 
 
-                                    <div class="form-group row">
+                                        <div class="form-group row">
                                             <label class="col-md-4">
                                                 Gender <span class="red">*</span>
                                             </label>
                                             <div class="col-md-8 radio-sec">
                                                 <label><input type="radio" class="" name="status" value="Active"> <span> Male</span></label><br>
                                                 <label><input type="radio" class="" name="status" value="Inactive"> <span> Female</span></label><br>
-                                                 </div>
-                                                 <div class="col-md-8 offset-md-4">
+                                            </div>
+                                            <div class="col-md-8 offset-md-4">
                                                 @error('status')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
                                                 @enderror
-                                           </div>
+                                            </div>
                                         </div>
 
                                         <div class="form-group row">
-                                        <label class="col-md-4">
-                                           Cell No<span class="red">*</span>
-                                        </label>
-                                        <div class="col-md-8">
-                                            <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
-                                            @error('name')
-                                              <span class="invalid-feedback" role="alert">
-                                                 {{ $message }}
-                                              </span>
-                                             @enderror
+                                            <label class="col-md-4">
+                                                Cell No<span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input value="{{ old('name') }}" type="tel" autocomplete="off" class="form-control" name="name" />
+                                                @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-md-4">
-                                           Email <span class="red">*</span>
-                                        </label>
-                                        <div class="col-md-8">
-                                            <input value="{{ old('name') }}" type="email" autocomplete="off" class="form-control" name="name" />
-                                            @error('name')
-                                              <span class="invalid-feedback" role="alert">
-                                                 {{ $message }}
-                                              </span>
-                                             @enderror
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                                Email <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input value="{{ old('name') }}" type="email" autocomplete="off" class="form-control" name="name" />
+                                                @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
                                         </div>
-                                    </div><div class="form-group row">
-                                        <label class="col-md-4">
-                                           Occupation <span class="red">*</span>
-                                        </label>
-                                        <div class="col-md-8">
-                                            <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
-                                            @error('name')
-                                              <span class="invalid-feedback" role="alert">
-                                                 {{ $message }}
-                                              </span>
-                                             @enderror
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                                Occupation <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
+                                                @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
                                         </div>
-                                    </div><div class="form-group row">
-                                        <label class="col-md-4">
-                                           Total Years of Experience <span class="red">*</span>
-                                        </label>
-                                        <div class="col-md-8">
-                                            <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
-                                            @error('name')
-                                              <span class="invalid-feedback" role="alert">
-                                                 {{ $message }}
-                                              </span>
-                                             @enderror
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                                Total Years of Experience <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
+                                                @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
                                         </div>
-                                    </div><div class="form-group row">
-                                        <label class="col-md-4">
-                                           Family Members-Son <span class="red">*</span>
-                                        </label>
-                                        <div class="col-md-8">
-                                            <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
-                                            @error('name')
-                                              <span class="invalid-feedback" role="alert">
-                                                 {{ $message }}
-                                              </span>
-                                             @enderror
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                                Family Members-Son <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
+                                                @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
                                         </div>
-                                    </div><div class="form-group row">
-                                        <label class="col-md-4">
-                                           Daughter <span class="red">*</span>
-                                        </label>
-                                        <div class="col-md-8">
-                                            <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
-                                            @error('name')
-                                              <span class="invalid-feedback" role="alert">
-                                                 {{ $message }}
-                                              </span>
-                                             @enderror
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                                Daughter <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
+                                                @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
                                         </div>
-                                    </div><div class="form-group row">
-                                        <label class="col-md-4">
-                                           Family Income-Applicant: <span class="red">*</span>
-                                        </label>
-                                        <div class="col-md-8">
-                                            <input value="{{ old('name') }}" type="text" autocomplete="off" placeholder="₹"  class="form-control" name="name" />
-                                            @error('name')
-                                              <span class="invalid-feedback" role="alert">
-                                                 {{ $message }}
-                                              </span>
-                                             @enderror
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                                Family Income-Applicant: <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input value="{{ old('name') }}" type="text" autocomplete="off" placeholder="₹" class="form-control" name="name" />
+                                                @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
                                         </div>
-                                    </div><div class="form-group row">
-                                        <label class="col-md-4">
-                                           Spouse <span class="red">*</span>
-                                        </label>
-                                        <div class="col-md-8">
-                                            <input value="{{ old('name') }}" type="text" autocomplete="off" placeholder="₹" class="form-control" name="name" />
-                                            @error('name')
-                                              <span class="invalid-feedback" role="alert">
-                                                 {{ $message }}
-                                              </span>
-                                             @enderror
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                                Spouse <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input value="{{ old('name') }}" type="text" autocomplete="off" placeholder="₹" class="form-control" name="name" />
+                                                @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
                                         </div>
-                                    </div><div class="form-group row">
-                                        <label class="col-md-4">
-                                           Father <span class="red">*</span>
-                                        </label>
-                                        <div class="col-md-8">
-                                            <input value="{{ old('name') }}" type="text" autocomplete="off"  placeholder="₹" class="form-control" name="name" />
-                                            @error('name')
-                                              <span class="invalid-feedback" role="alert">
-                                                 {{ $message }}
-                                              </span>
-                                             @enderror
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                                Father <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input value="{{ old('name') }}" type="text" autocomplete="off" placeholder="₹" class="form-control" name="name" />
+                                                @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
                                         </div>
-                                    </div><div class="form-group row">
-                                        <label class="col-md-4">
-                                           Mother <span class="red">*</span>
-                                        </label>
-                                        <div class="col-md-8">
-                                            <input value="{{ old('name') }}" type="text" autocomplete="off" placeholder="₹"  class="form-control" name="name" />
-                                            @error('name')
-                                              <span class="invalid-feedback" role="alert">
-                                                 {{ $message }}
-                                              </span>
-                                             @enderror
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                                Mother <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input value="{{ old('name') }}" type="text" autocomplete="off" placeholder="₹" class="form-control" name="name" />
+                                                @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
                                         </div>
-                                    </div><div class="form-group row">
-                                        <label class="col-md-4">
-                                           Son <span class="red">*</span>
-                                        </label>
-                                        <div class="col-md-8">
-                                            <input value="{{ old('name') }}" type="text" autocomplete="off"  placeholder="₹" class="form-control" name="name" />
-                                            @error('name')
-                                              <span class="invalid-feedback" role="alert">
-                                                 {{ $message }}
-                                              </span>
-                                             @enderror
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                                Son <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input value="{{ old('name') }}" type="text" autocomplete="off" placeholder="₹" class="form-control" name="name" />
+                                                @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
                                         </div>
-                                    </div><div class="form-group row">
-                                        <label class="col-md-4">
-                                           Daughter <span class="red">*</span>
-                                        </label>
-                                        <div class="col-md-8">
-                                            <input value="{{ old('name') }}" type="text" autocomplete="off"  placeholder="₹" class="form-control" name="name" />
-                                            @error('name')
-                                              <span class="invalid-feedback" role="alert">
-                                                 {{ $message }}
-                                              </span>
-                                             @enderror
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                                Daughter <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input value="{{ old('name') }}" type="text" autocomplete="off" placeholder="₹" class="form-control" name="name" />
+                                                @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
                                         </div>
-                                    </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                                Residential Address <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <textarea value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" maxlength="100"></textarea>
+                                                @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
 
-                                    <div class="form-group text-right">
-                                        <button type="submit" name="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
-                                            Submit
-                                        </button>
+                                        </div><div class="form-group row">
+                                            <label class="col-md-4">
+                                                School Going Children <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-8 radio-sec">
+                                                <label><input type="radio" class="" name="status" value="Active"> <span> Son</span></label><br>
+                                                <label><input type="radio" class="" name="status" value="Inactive"> <span> Daughter</span></label><br>
+                                            </div>
+                                            <div class="col-md-8 offset-md-4">
+                                                @error('status')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                                Name <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
+                                                @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group text-right">
+                                            <button type="submit" name="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
+                                                Submit
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             </form>
                         </div>
                     </div>
@@ -287,11 +338,11 @@
     </div>
 </div>
 <style>
-     .radio-sec input {
-position: relative;
-top: 0px;
-margin-right: 5px;
-margin-left: 0px;
-}
+    .radio-sec input {
+        position: relative;
+        top: 0px;
+        margin-right: 5px;
+        margin-left: 0px;
+    }
 </style>
 @endsection
