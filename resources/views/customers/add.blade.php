@@ -175,10 +175,10 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div>
+                                        </div><span>Family Members</span>
                                         <div class="form-group row">
                                             <label class="col-md-4">
-                                                Family Members-Son <span class="red">*</span>
+                                                Son <span class="red">*</span>
                                             </label>
                                             <div class="col-md-8">
                                                 <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
@@ -201,10 +201,10 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div>
+                                        </div><span>Family Income</span>
                                         <div class="form-group row">
                                             <label class="col-md-4">
-                                                Family Income-Applicant: <span class="red">*</span>
+                                                Applicant <span class="red">*</span>
                                             </label>
                                             <div class="col-md-8">
                                                 <input value="{{ old('name') }}" type="text" autocomplete="off" placeholder="₹" class="form-control" name="name" />
@@ -270,6 +270,18 @@
                                         <div class="form-group row">
                                             <label class="col-md-4">
                                                 Daughter <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input value="{{ old('name') }}" type="text" autocomplete="off" placeholder="₹" class="form-control" name="name" />
+                                                @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div><div class="form-group row">
+                                            <label class="col-md-4">
+                                            Total Family Annual Income <span class="red">*</span>
                                             </label>
                                             <div class="col-md-8">
                                                 <input value="{{ old('name') }}" type="text" autocomplete="off" placeholder="₹" class="form-control" name="name" />
