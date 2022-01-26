@@ -345,8 +345,7 @@
 
 
 
-<<<<<<< Updated upstream
-                                        </div>
+                                        </div><span> Official Details </span>
                                         <div class="form-group row">
                                             <label class="col-md-4">
                                                 Age <span class="red">*</span>
@@ -535,16 +534,6 @@
                                                 @enderror
                                             </div>
                                         </div>
-=======
-
-
-
-
-
-
-
-                                       
->>>>>>> Stashed changes
 
 
                                         <div class="form-group text-right">
