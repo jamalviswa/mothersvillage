@@ -358,7 +358,6 @@
 
 
 
-<<<<<<< Updated upstream
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-md-4">
@@ -971,16 +970,6 @@
                                                 @enderror
                                             </div>
                                         </div>
-=======
-
-
-
-
-
-
-
-                                       
->>>>>>> Stashed changes
 
 
                                         <div class="form-group text-right">
