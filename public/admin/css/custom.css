@@ -6,9 +6,10 @@
 #service input.individual {
     margin-right: 5px;
 }
-.btnright{
+.btnright {
     text-align: center;
-    margin-left: 800px;}
+    margin-left: calc(50% - (-10px));
+}
 .ins_detail h5 {
     color: black;
     padding: 25px 0px 9px;
