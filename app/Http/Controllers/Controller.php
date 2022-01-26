@@ -24,6 +24,7 @@ abstract class Controller extends BaseController {
                     });
             return $mail;
     }
+
     public function checkadmin() {
         $session_admin = Session::get('Adminuser');
         if (!empty($session_admin)) {
@@ -32,11 +33,11 @@ abstract class Controller extends BaseController {
                 View::share('sessionadmin', $admin);
                 return $admin;
             } else {
-                header('location:http://stagingfeathers.com/move_mo/');
+                header('location:http://localhost/mothersvillage/');
                 exit;
             }
         } else {
-            header('location:http://stagingfeathers.com/move_mo/');
+            header('location:http://localhost/mothersvillage/');
             exit;
             // return Redirect::to('admin/adminusers/login');
             // exit;
