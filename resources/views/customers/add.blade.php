@@ -74,7 +74,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group row">
+                                    <!-- <div class="form-group row">
                                         <label class="col-md-4">
                                           Gender <span class="red">*</span>
                                         </label>
@@ -86,7 +86,7 @@
                                               </span>
                                              @enderror
                                         </div>
-                                    </div>
+                                    </div> -->
 
 
                                     <!-- <div class="form-group" id="sub_div"></div>   
@@ -109,11 +109,11 @@
                                     
                                     <div class="form-group row">
                                             <label class="col-md-4">
-                                                Status <span class="red">*</span>
+                                                Gender <span class="red">*</span>
                                             </label>
                                             <div class="col-md-8 radio-sec">
-                                                <label><input type="radio" class="" name="status" value="Active"> <span> Active</span></label><br>
-                                                <label><input type="radio" class="" name="status" value="Inactive"> <span> Inactive</span></label><br>
+                                                <label><input type="radio" class="" name="status" value="Active"> <span> Male</span></label><br>
+                                                <label><input type="radio" class="" name="status" value="Inactive"> <span> Female</span></label><br>
                                                  </div>
                                                  <div class="col-md-8 offset-md-4">
                                                 @error('status')
