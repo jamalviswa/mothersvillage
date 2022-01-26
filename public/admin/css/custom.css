@@ -1635,6 +1635,9 @@ span.msg_count {
     padding: 2px 5px;
     border-radius: 13px;
 }
+.chkbx{
+    width: 200px;
+}
 .videocall {
     padding: 5px 21px;
     background-color: #01b9ff;

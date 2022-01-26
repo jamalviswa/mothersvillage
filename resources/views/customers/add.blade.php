@@ -554,9 +554,77 @@
                                                 </span>
                                                 @enderror
                                             </div>
+                                        </div><div class="form-group row">
+                                            <label class="col-md-4">
+                                                Reffered by<span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
+                                                @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div><div class="form-group row">
+                                            <label class="col-md-4">
+                                                Code No <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
+                                                @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div><div class="form-group row">
+                                            <label class="col-md-4">
+                                                Cell No <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
+                                                @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
                                         </div>
-
-
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                                Are you eligible for PMAY Scheme subsidy? <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-8 radio-sec">
+                                                <label><input type="radio" class="" name="status" value="Active"> <span> Yes</span></label><br>
+                                                <label><input type="radio" class="" name="status" value="Inactive"> <span> No </span></label><br>
+                                            </div>
+                                            <div class="col-md-8 offset-md-4">
+                                                @error('status')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                                Particular of Properties owned if any: <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-8 radio-sec">
+                                                <label ><input type="checkbox"  name="status" value="Active"> <span> Own land</span></label><br>
+                                                <label ><input type="checkbox"  name="status" value="Active"> <span> Own House</span></label><br>
+                                                <label ><input type="checkbox"  name="status" value="Active"> <span> Others</span></label><br>
+                                                <label  ><input type="checkbox"  name="status" value="Active"> <span> None</span></label><br>
+                                            </div>
+                                            <div class="col-md-8 offset-md-4">
+                                                @error('status')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div>
 
 
                                         <div class="form-group text-right">
