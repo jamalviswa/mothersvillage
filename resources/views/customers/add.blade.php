@@ -166,6 +166,12 @@
                                         </div>
 
 
+                                        <div class="form-group text-right">
+                                            <button type="submit" name="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
+                                                Submit
+                                            </button>
+                                        </div>
+                                        
                                         <span>Family Members</span>
                                         <div class="form-group row">
                                             <label class="col-md-4">
@@ -993,11 +999,7 @@
                                         </div>
 
 
-                                        <div class="form-group text-right">
-                                            <button type="submit" name="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
-                                                Submit
-                                            </button>
-                                        </div>
+                                       
                                     </div>
                                 </div>
                             </form>
