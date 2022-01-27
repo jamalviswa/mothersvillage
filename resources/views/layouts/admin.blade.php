@@ -35,7 +35,7 @@ WebFont.load({
         <script src="{{ URL::asset('admin/js/jquery.emojis.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.min.js"></script>
-        <title>Mothers Village</title>
+        <title>Mother's Village</title>
     </head>
     <body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default "  >
         <!-- begin:: Page -->
