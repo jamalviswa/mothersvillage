@@ -11,7 +11,7 @@
                 </h3>
             </div>
             <div>
-                <a href="{{route('packages.index')}}" rel="tooltip" title="" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle" data-original-title="Back to Pack List">
+                <a href="{{route('payments.index')}}" rel="tooltip" title="" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle" data-original-title="Back to Pack List">
                 <i class="fa fa-long-arrow-left"></i>
                 </a>
             </div>
@@ -25,7 +25,7 @@
                     <div class="m-portlet__body">
                         <!--begin::Section-->
                         <div class="m-section">
-                            <form method="post" action="{{ route('packages.store') }}" id="upload" class="validation_form" enctype="multipart/form-data">
+                            <form method="post" action="{{ route('payments.store') }}" id="upload" class="validation_form" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                             <div class="col-md-6">
@@ -109,27 +109,7 @@
                                              @enderror
                                         </div>
                                     </div>
-                                 <div class="form-group row">
-                                        <label class="col-md-4">
-                                            Select Category
-                                        </label>
-                                        <div class="col-md-8">
-                                            <select class="form-control" name="category">
-                                                  @php
-                                            $categories = App\Category::where('status','Active')->get();
-                                            @endphp
-                                                <option value=""> Select Category</option>
-                                                @foreach($categories as $category)
-                                            <option {{ old('category') == $category['category_id'] ? "selected" : "" }} value="{{ $category['category_id'] }}">{{ $category['name'] }}</option>
-                                              @endforeach
-                                            </select>
-                                            @error('category')
-                                              <span class="invalid-feedback" role="alert">
-                                                 {{ $message }}
-                                              </span>
-                                             @enderror
-                                        </div>
-                                    </div>
+                                
                                        <div class="form-group row">
                                             <label class="col-md-4">
                                                 Status <span class="red">*</span>

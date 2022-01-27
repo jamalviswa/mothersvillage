@@ -31,14 +31,14 @@ Route::get('customers/add', 'CustomersController@add')->name('customers.add');
 // Route::any('users/index', 'UsersController@index')->name('users.index');
 //   Route::post('users/updateStatus', 'UsersController@updateStatus')->name('users.updateStatus');
 
-// Route::any('packages/index', 'PackagesController@index')->name('packages.index');
-// Route::get('packages/add', 'PackagesController@add')->name('packages.add');
-//  Route::post('packages/store', 'PackagesController@store')->name('packages.store');
-//    Route::get('packages/edit/{id}', 'PackagesController@edit')->name('packages.edit');
-//   Route::post('packages/update/{id}', 'PackagesController@update')->name('packages.update');
-//  Route::get('packages/delete/{id}', 'PackagesController@delete')->name('packages.delete');
-//   Route::get('packages/delete/{id}', 'PackagesController@delete')->name('packages.delete');
-//     Route::post('packages/updateStatus', 'PackagesController@updateStatus')->name('packages.updateStatus');
+Route::any('payments/index', 'PaymentsController@index')->name('payments.index');
+Route::get('payments/add', 'PaymentsController@add')->name('payments.add');
+ Route::post('payments/store', 'PaymentsController@store')->name('payments.store');
+   Route::get('payments/edit/{id}', 'PaymentsController@edit')->name('payments.edit');
+  Route::post('payments/update/{id}', 'PaymentsController@update')->name('payments.update');
+ Route::get('payments/delete/{id}', 'PaymentsController@delete')->name('payments.delete');
+  Route::get('payments/delete/{id}', 'PaymentsController@delete')->name('payments.delete');
+    Route::post('payments/updateStatus', 'PaymentsController@updateStatus')->name('payments.updateStatus');
  
 //   Route::any('discounts/index', 'DiscountsController@index')->name('discounts.index');
 // Route::get('discounts/add', 'DiscountsController@add')->name('discounts.add');

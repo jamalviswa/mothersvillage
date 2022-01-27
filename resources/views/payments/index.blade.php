@@ -6,11 +6,13 @@
         <div class="d-flex align-items-center">
             <div class="mr-auto">
                 <h3 class="m-subheader__title m-subheader__title--separator">
-                    Payment Report
+                    Customer List
                 </h3>
             </div>
             <div>
-
+                <a href="{{route('payments.add')}}" rel="tooltip" title="" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle" data-original-title="Add Category">
+                    <i class="la la-plus"></i>
+                </a>
             </div>
         </div>
     </div>
@@ -19,16 +21,21 @@
         <div class="m-portlet">
             <div class="m-portlet__body">
                 <!--begin::Section-->
-                <div class="m-section__content">
-                    <form method="GET" class="search-form form-inline" action="#">
+                <div class="m-section__content    ">
+                    <form method="GET" class="search-form form-inline " action="#">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="s" placeholder="Search"  @if(isset($_REQUEST['s'])) value="{{ $_REQUEST['s'] }}" @else value="" @endif/>
+                            <input type="text" class="form-control" name="s" placeholder="Search" @if(isset($_REQUEST['s'])) value="{{ $_REQUEST['s'] }}" @else value="" @endif />
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary m-btn m-btn--air m-btn--custom" type="submit" name="search"><i class="fa fa-search"></i></button>
                             <?php if (isset($_REQUEST['search'])) { ?>
                                 <a class="btn btn-danger m-btn m-btn--air m-btn--custom" href="{{route('payments.index')}}"><i class="fa fa-times"></i></a>
                             <?php } ?>
+                        </div>
+                        <div class="btnright">
+                       
+                            <button type="button" class="btn m-1 btn-warning endbtn ">CSV</button>
+                            <button type="button" class="btn  m-1 btn-success    endbtn">Print</button>
                         </div>
                     </form>
                 </div>
@@ -39,82 +46,105 @@
                 <!--begin::Section-->
                 <div class="m-section">
                     <div class="m-section__content">
+                        <?php if ($results->count() > '0') {
+                        ?>
+                            <div class="table-responsive">
+                                <table class="table m-table m-table--head-bg-brand">
+                                    <thead>
+                                        <tr>
+                                            <th> # </th>
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th class="text-center">Status</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $i = ($results->currentPage() > 1) ? $results->currentPage() * $results->perpage() : $results->currentPage();
+                                        foreach ($results as $result) {
+                                        ?>
+                                            <tr>
+                                                <td width="5%">{{ $i }}</td>
+                                                <td>{{ $result->name }}</td>
+                                                <td>{{ $result->description }}</td>
+                                                <td class="text-center">
+                                                    <a rel="tooltip" title='Update Status' href="javascript:;" data-status="<?php echo ($result['status']) ?>" data-id="<?php echo $result['customer_id']; ?>" data-toggle="modal" data-target="#update-status" class="btn btn-secondary m-btn m-btn--air m-btn--custom btn-sm btn-<?php echo $result['status'] ?>">
+                                                        {{ $result['status'] }}
+                                                    </a>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="btn-group">
+                                                        <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="Edit" href="{{ route("payments.edit", $result->payment_id) }}">
+                                                            <i class="fa fa-pencil"></i>
+                                                        </a>
 
-                        <div class="table-responsive">
-                            <table class="table m-table m-table--head-bg-brand">
-                                <thead>
-                                    <tr>
-                                        <th> S.No </th>
-                                        <th>Name</th>
-                                        <th>Mobile No</th>
-                                        <th>Package</th>
-
-                                        <th>Payment Date</th>
-                                        <th>User Type</th>
-                                        <th>Amount</th>
-
-                                        <th class="text-center">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody> 
-
-                                    <tr>
-                                        <td>1 </td>
-                                        <td>John </td>
-                                        <td>87452136</td>
-                                        <td>Monthly Subscription</td>
-
-                                        <td>26/06/2021</td>
-                                        <td>Premium User</td>
-                                        <td> 250 </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2 </td>
-                                        <td>Joseph </td>
-                                        <td>89745621</td>
-                                        <td>Package 1 </td>
-
-                                        <td>27/06/2021</td>
-                                        <td>Free User</td>
-                                        <td>700</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>3 </td>
-                                        <td>Francis </td>
-                                        <td>98745622</td>
-                                        <td>Package 2 </td>
-
-                                        <td>28/06/2021</td>
-                                        <td>Premium User</td>
-                                        <td>600</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>4 </td>
-                                        <td>Keith </td>
-                                        <td>97854611</td>
-                                        <td>Package 3 </td>
-
-                                        <td>29/06/2021</td>
-                                        <td>Premium User</td>
-                                        <td>800</td>
-
-                                    </tr>
-
-
-                                </tbody>
-                            </table>
-                        </div>
-
+                                                        <a rel="tooltip" class="delete btn btn-secondary m-btn m-btn--air m-btn--custom" title="Delete" data-value="{{$result['payment_id']}}" href="{{ route('payments.delete',$result['payment_id']) }}">
+                                                            <i class="fa fa-trash"></i>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                            $i++;
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            {!! $results->appends(\Request::except('page'))->render() !!}
+                            <!--@include('pagination.default', ['paginator' => $results])-->
+                        <?php } else { ?>
+                            <div class="text-center">
+                                <img src="{{ asset('admin/img/no-record.png') }}">
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="modal fade" id="update-status" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Update Category Status</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <form method="post" class="validation_form" action="{{ route('customers.updateStatus') }}">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <select class="form-control validate[required]" id="status" name="status">
+                                <option value="">--Select--</option>
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+
+                            </select>
+                            <input type="hidden" id="category_id" name="category_id" />
+
+                            <?php echo csrf_field(); ?>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
+<script>
+    $('#update-status').on('shown.bs.modal', function(event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var modal = $(this)
+        modal.find('#category_id').val(button.attr('data-id'));
+        modal.find('#status').val(button.attr('data-status'));
+    });
+</script>
 <style>
-    .form-control:disabled, .form-control[readonly] {
+    .form-control:disabled,
+    .form-control[readonly] {
         background-color: #F26C4F;
         opacity: 1;
         color: #fff;

@@ -43,10 +43,10 @@
                 </a>
             </li>
             <li class="m-menu__item " aria-haspopup="true" >
-                <a  href="{{route('customers.index')}}" class="m-menu__link @if(($controller=='CustomersController' && $action=='index') || 
-                ($controller=='CustomersController' &&$action=='view') || 
-                ($controller=='CustomersController' &&$action=='edit') || 
-                ($controller=='CustomersController' && $action=='add') )  active @endif">
+                <a  href="{{route('payments.index')}}" class="m-menu__link @if(($controller=='PaymentsController' && $action=='index') || 
+                ($controller=='PaymentsController' &&$action=='view') || 
+                ($controller=='PaymentsController' &&$action=='edit') || 
+                ($controller=='PaymentsController' && $action=='add') )  active @endif">
                     <i class="m-menu__link-icon flaticon-settings"></i>
                     <span class="m-menu__link-title">
                         <span class="m-menu__link-wrap">
