@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 @section('content')
+<?php if ($results->count() > '0') {
+                        ?>
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
     <!-- BEGIN: Subheader -->
     <div class="m-subheader ">
@@ -46,7 +48,7 @@
                 <!--begin::Section-->
                 <div class="m-section">
                     <div class="m-section__content">
-                        <?php if ($results->count() > '0') {
+                        <?php //if ($results->count() > '0') {
                         ?>
                             <div class="table-responsive">
                                 <table class="table m-table m-table--head-bg-brand">
