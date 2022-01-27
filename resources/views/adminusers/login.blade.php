@@ -5,7 +5,7 @@
 
  <div class="m-grid m-grid--hor m-grid--root m-page">
     <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-grid--tablet-and-mobile m-grid--hor-tablet-and-mobile m-login m-login--1 m-login--singin" id="m_login">
-        <div class="m-grid__item m-grid__item--fluid m-grid m-grid--center m-grid--hor m-grid__item--order-tablet-and-mobile-1 imgbg	m-login__content" style="background-image: url(<?php echo asset("/admin/img/villa.jpg") ?>)">
+        <div class="m-grid__item m-grid__item--fluid m-grid m-grid--center m-grid--hor m-grid__item--order-tablet-and-mobile-1 imgbg	m-login__content" style="background-image: url(<?php echo asset("/admin/img/villa.png") ?>)">
             <div class="m-grid__item m-grid__item--middle">   
             </div>
         </div>
