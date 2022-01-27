@@ -23,7 +23,7 @@
                                     <div class="d-sm-flex justify-content-between">
                                         <div class="field-wrapper toggle-pass d-flex align-items-center">
                                             <p class="d-inline-block">Show Password</p>
-                                            <div class="switch s-primary custom-control custom-switch"><input type="checkbox" class="custom-control-input" value="true" id="__BVID__13"><label class="custom-control-label" for="__BVID__13"></label></div>
+                                            <div class="switch s-primary custom-control custom-switch"><input type="checkbox" class="custom-control-input" type="password" placeholder="Password" name="password"><label class="custom-control-label" for="__BVID__13"></label></div>
                                         </div>
                                         <div class="field-wrapper"><button type="submit" class="btn btn-primary">Log In</button></div>
                                     </div>
