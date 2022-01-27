@@ -6,7 +6,8 @@
 #service input.individual {
     margin-right: 5px;
 }
-.btnright {
+
+    .btnright {
     text-align: center;
     margin-left: calc(60% - (-100px));
 }
@@ -1635,7 +1636,7 @@ span.msg_count {
     padding: 2px 5px;
     border-radius: 13px;
 }
-.chkbx{
+.chkbx {
     width: 200px;
 }
 .videocall {
