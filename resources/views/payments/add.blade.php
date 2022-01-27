@@ -93,7 +93,7 @@
                                                 Land Cost
                                             </label>
                                             <div class="col-md-8">
-                                                <input value="{{ old('num_cards') }}" type="text" autocomplete="off" class="form-control" name="num_cards" />
+                                                <input value="{{ old('num_cards') }}" type="text" disabled autocomplete="off" class="form-control" name="num_cards" />
                                                 @error('num_cards')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
@@ -106,7 +106,7 @@
                                                 Construction Cost
                                             </label>
                                             <div class="col-md-8">
-                                                <input value="{{ old('num_cards') }}" type="text" autocomplete="off" class="form-control" name="num_cards" />
+                                                <input value="{{ old('num_cards') }}" type="text" disabled autocomplete="off" class="form-control" name="num_cards" />
                                                 @error('num_cards')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
@@ -184,7 +184,7 @@
                                                 Gross Amount=[A]+[B]+[C]
                                             </label>
                                             <div class="col-md-8">
-                                                <input value="{{ old('num_cards') }}" type="text" autocomplete="off" class="form-control" name="num_cards" />
+                                                <input value="{{ old('num_cards') }}" disabled type="text" autocomplete="off" class="form-control" name="num_cards" />
                                                 @error('num_cards')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
@@ -207,7 +207,7 @@
                                                 Stamp Duty charges @7% on [A]
                                             </label>
                                             <div class="col-md-8">
-                                                <input value="{{ old('num_cards') }}" type="text" autocomplete="off" class="form-control" name="num_cards" />
+                                                <input value="{{ old('num_cards') }}" type="text" disabled autocomplete="off" class="form-control" name="num_cards" />
                                                 @error('num_cards')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
@@ -220,7 +220,7 @@
                                                 Registration charges  @4% on [A](demand draft)
                                             </label>
                                             <div class="col-md-8">
-                                                <input value="{{ old('num_cards') }}" type="text" autocomplete="off" class="form-control" name="num_cards" />
+                                                <input value="{{ old('num_cards') }}" type="text" disabled autocomplete="off" class="form-control" name="num_cards" />
                                                 @error('num_cards')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
@@ -233,7 +233,7 @@
                                                Construction Agreement  @2% on [B]+[C]
                                             </label>
                                             <div class="col-md-8">
-                                                <input value="{{ old('num_cards') }}" type="text" autocomplete="off" class="form-control" name="num_cards" />
+                                                <input value="{{ old('num_cards') }}" type="text" disabled autocomplete="off" class="form-control" name="num_cards" />
                                                 @error('num_cards')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
@@ -259,7 +259,7 @@
                                                GST @1%
                                             </label>
                                             <div class="col-md-8">
-                                                <input value="{{ old('num_cards') }}" type="text" autocomplete="off" class="form-control" name="num_cards" />
+                                                <input value="{{ old('num_cards') }}" type="text" disabled autocomplete="off" class="form-control" name="num_cards" />
                                                 @error('num_cards')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
