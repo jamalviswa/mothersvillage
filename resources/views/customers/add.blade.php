@@ -166,6 +166,96 @@
                                         </div>
 <!-- Completed 26/01/2022 -->
 
+<h4 class="col-md-12" style="margin: 23px 0;">Family  Details</h4>
+                                    <br/>
+                                    <div class="col-md-12">
+                                        <div class="table-responsive">
+                                            <table class="table m-table m-table--head-bg-brand service-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Name</th>
+                                                        <th>Age</th>
+                                                        <th>Relationship</th>
+                                                        <th>Gender</th>
+                                                        <th>Profession</th>
+                                                        <th>Income/Class</th>
+                                                        <th></th>
+</tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <input type="text" class="form-control" value="{{ old('fam_name') }}" autocomplete="off" name="fam_name[]"/>
+                                                            @error('fam_name')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                {{ $message }}
+                                                            </span>
+                                                            @enderror
+                                                        </td>
+                                                        <td>
+                                                        <input type="text" class="form-control" value="{{ old('fam_age') }}" autocomplete="off" name="fam_age[]"/>
+                                                            @error('fam_age')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                {{ $message }}
+                                                            </span>
+                                                            @enderror
+                                                        </td> 
+                                                        <td>
+                                                            <select class="form-control" name="fam_relation" style="width: 150px !important;height: 40px !important;">
+                                                                <option value="Son">Son</option>
+                                                                <option value="Daughter">Daughter</option>
+                                                            </select>
+                                                            @error('fam_relation')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                {{ $message }}
+                                                            </span>
+                                                            @enderror
+                                                        </td>
+                                                        <td>
+                                                            <select class="form-control" name="fam_gender" style="width: 150px !important;height: 40px !important;">
+                                                                <option value="Male">Male</option>
+                                                                <option value="Female">Female</option>
+                                                            </select>
+                                                            @error('fam_gender')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                {{ $message }}
+                                                            </span>
+                                                            @enderror
+                                                        </td>
+                                                        <td>
+                                                            <select class="form-control" name="fam_profession" style="width: 150px !important;height: 40px !important;">
+                                                                <option value="Student">Student</option>
+                                                                <option value="Employee">Employee</option>
+                                                            </select>
+                                                            @error('fam_profession')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                {{ $message }}
+                                                            </span>
+                                                            @enderror
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="form-control" value="{{ old('fam_income') }}" autocomplete="off" name="fam_income[]"/>
+                                                            @error('fam_income')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                {{ $message }}
+                                                            </span>
+                                                            @enderror
+                                                        </td>
+                                                        <td>
+                                                            <a href="javascript:;" class="btn btn-success btn-green add-more"><i class="fa fa-plus"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+
+
+
+
+
+
+
 
 
                                         <div class="boxsh row" style="width: 100%;  display: flow-root;">
@@ -311,4 +401,39 @@ ul{
     color: #fff  !important;
 }
 </style>
+<script>
+      $(document).on('click', '.add-more', function () {
+        var html = '<tr>';
+        html += '<td>';
+        html += '<input type="text" class="form-control validate[required]" name="data[Servicedetail][workers_category][]"/>';
+        html += '</td>';
+        html += '<td>';
+        html += '<input type="text" class="form-control validate[required]" name="data[Servicedetail][no_of_workers][]"/>';
+        html += '</td>';
+        html += '<td>';
+        html += '<input type="text" class="form-control validate[required]" name="data[Servicedetail][minimum_working_hrs][]"/>';
+        html += '</td>';
+        html += '<td>';
+        html += '<input type="text" class="form-control validate[required]" name="data[Servicedetail][salary_rate][]"/>';
+        html += '</td>';
+        html += '<td>';
+        html += '<input type="text" class="form-control validate[required]" name="data[Servicedetail][bill_rate][]"/>';
+        html += '</td>';
+        html += '<td>';
+        html += '<select class="form-control validate[required]" name="data[Servicedetail][type][]" style="width: 150px !important;height: 40px !important;">';
+        html += '<option value="Full Time">Full Time</option>';
+        html += '<option value="Part Time">Part Time</option>';
+        html += '</select>';
+        html += '</td>';
+        html += '<td>';
+        html += '<a href="javascript:;" class="btn btn-danger m-btn m-btn--air m-btn--custom remove"><i class="la la-minus"></i></a>';
+        html += '</td>';
+        html += '</tr>';
+        $('.service-table tbody').append(html);
+    });
+
+    $(document).on('click', '.remove', function () {
+        $(this).parents('tr').remove();
+    });
+    </script>
 @endsection
