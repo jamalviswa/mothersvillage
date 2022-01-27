@@ -635,7 +635,7 @@ label {
     position: relative;
 }
 .m-login__logo img {
-    max-width: 100%;
+    max-width: 300px;
 }
 #data-table_paginate .pagination li {
     padding: 0.5rem 0;
