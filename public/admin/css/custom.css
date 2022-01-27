@@ -6,7 +6,11 @@
 #service input.individual {
     margin-right: 5px;
 }
-
+.stronglabel{
+    font-weight: medium;
+font-size: larger;
+color: #0054ac;
+}
 
 .btnright {
     text-align: center;
