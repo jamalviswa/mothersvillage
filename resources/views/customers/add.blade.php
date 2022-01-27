@@ -31,10 +31,10 @@
                                 <div class="col-md-8 offset-md-2">
                                     <div class="m-section__content">
                                         <div class="form-group row">
-                                            <label class="col-md-3">
+                                            <label class="col-md-5">
                                                 Name <span class="red">*</span>
                                             </label>
-                                            <div class="col-md-9">
+                                            <div class="col-md-7">
                                                 <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
                                                 @error('name')
                                                 <span class="invalid-feedback" role="alert">
@@ -44,10 +44,10 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-md-3">
+                                            <label class="col-md-5">
                                                 Father / Spouse Name <span class="red">*</span>
                                             </label>
-                                            <div class="col-md-9">
+                                            <div class="col-md-7">
                                                 <input value="{{ old('fathers_name') }}" type="text" autocomplete="off" class="form-control" name="fathers_name" />
                                                 @error('fathers_name')
                                                 <span class="invalid-feedback" role="alert">
@@ -57,10 +57,10 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-md-3">
+                                            <label class="col-md-5">
                                                 Age <span class="red">*</span>
                                             </label>
-                                            <div class="col-md-9">
+                                            <div class="col-md-7">
                                                 <input value="{{ old('age') }}" type="text" autocomplete="off" class="form-control" name="age" />
                                                 @error('age')
                                                 <span class="invalid-feedback" role="alert">
@@ -70,10 +70,10 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-md-3">
+                                            <label class="col-md-5">
                                                 Gender <span class="red">*</span>
                                             </label>
-                                            <div class="col-md-9 radio-sec">
+                                            <div class="col-md-7 radio-sec">
                                                 <label><input type="radio" class="" name="gender" value="Male"> <span> Male</span></label><br>
                                                 <label><input type="radio" class="" name="gender" value="Female"> <span> Female</span></label><br>
                                             </div>
@@ -86,10 +86,10 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-md-3">
+                                            <label class="col-md-5">
                                                 Mobile Number<span class="red">*</span>
                                             </label>
-                                            <div class="col-md-9">
+                                            <div class="col-md-7">
                                                 <input value="{{ old('phone') }}" type="tel" autocomplete="off" class="form-control" name="phone" />
                                                 @error('phone')
                                                 <span class="invalid-feedback" role="alert">
@@ -99,10 +99,10 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-md-3">
+                                            <label class="col-md-5">
                                                 Email <span class="red">*</span>
                                             </label>
-                                            <div class="col-md-9">
+                                            <div class="col-md-7">
                                                 <input value="{{ old('email') }}" type="email" autocomplete="off" class="form-control" name="email" />
                                                 @error('email')
                                                 <span class="invalid-feedback" role="alert">
@@ -112,10 +112,10 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-md-3">
+                                            <label class="col-md-5">
                                                 Occupation <span class="red">*</span>
                                             </label>
-                                            <div class="col-md-9">
+                                            <div class="col-md-7">
                                                 <input value="{{ old('occupation') }}" type="text" autocomplete="off" class="form-control" name="occupation" />
                                                 @error('occupation')
                                                 <span class="invalid-feedback" role="alert">
@@ -125,10 +125,10 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-md-3">
+                                            <label class="col-md-5">
                                                 Total Years of Experience <span class="red">*</span>
                                             </label>
-                                            <div class="col-md-9">
+                                            <div class="col-md-7">
                                                 <input value="{{ old('experience') }}" type="text" autocomplete="off" class="form-control" name="experience" />
                                                 @error('experience')
                                                 <span class="invalid-feedback" role="alert">
@@ -138,10 +138,10 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-md-3">
+                                            <label class="col-md-5">
                                                Residential Address <span class="red">*</span>
                                             </label>
-                                            <div class="col-md-9">
+                                            <div class="col-md-7">
                                             <textarea rows="4" class="form-control" name="address"> {{ old('address')}}</textarea>
                                                 
                                                 @error('address')
@@ -152,10 +152,10 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-md-3">
+                                            <label class="col-md-5">
                                                 Annual Income<span class="red">*</span>
                                             </label>
-                                            <div class="col-md-9">
+                                            <div class="col-md-7">
                                                 <input value="{{ old('income') }}" type="text" autocomplete="off" class="form-control" name="income" />
                                                 @error('income')
                                                 <span class="invalid-feedback" role="alert">
@@ -171,22 +171,21 @@
 
 
                              <div class="form-group row">
-                                        <label class="col-md-4">
+                                        <label class="col-md-5">
                                          Son<span class="red">*</span>
                                         </label>
-                                        <div class="col-md-8"> 
+                                        <div class="col-md-7"> 
                                           <div class="marketing_range">
                                         <ul class="marketing_range_list" style="padding:0px">
                                             <li>
                                                <div class="row" style="margin-bottom: 12px;">
-                                                  <div class="col-md-5">
-                                                    <input class="form-control " required="" name="marketing_from_range[]" type="text" autocomplete="off" placeholder="Name" style="width:112%;">
+                                                  <div class="col-md-6">
+                                                    <input class="form-control " required="" name="marketing_from_range[]" type="text" autocomplete="off" placeholder="Name" style="width:100%;">
                                                   </div>
-                                                  <div class="col-md-5">
-                                                      <input class="form-control " required="" name="marketing_to_range[]" type="text" autocomplete="off" placeholder="Age" style="width:112%;">
+                                                  <div class="col-md-6">
+                                                      <input class="form-control " required="" name="marketing_to_range[]" type="text" autocomplete="off" placeholder="Age" style="width:100%;">
                                                   </div> 
-                                                  <div class="col-md-2">
-                                                  </div>
+                                                 
                                                    
                                             </div>  
                                             </li>
@@ -199,26 +198,21 @@
                                 </div>
 
                                 <div class="form-group row">
-                                        <label class="col-md-3">
+                                        <label class="col-md-5">
                                          Daughter<span class="red">*</span>
                                         </label>
-                                        <div class="col-md-9"> 
+                                        <div class="col-md-7"> 
                                           <div class="marketing_range">
                                         <ul class="marketing_range_lis" style="padding:0px">
                                             <li>
                                                <div class="row" style="margin-bottom: 12px;">
-                                                  <div class="col-md-4">
-                                                    <input class="form-control " required="" name="marketing_from_range[]" type="text" autocomplete="off" placeholder="Name" style="width: 112%;">
+                                                  <div class="col-md-6">
+                                                    <input class="form-control " required="" name="marketing_from_range[]" type="text" autocomplete="off" placeholder="Name" style="width: 100%;">
                                                   </div>
-                                                  <div class="col-md-3">
-                                                      <input class="form-control " required="" name="marketing_to_range[]" type="text" autocomplete="off" placeholder="Age" style="width: 112%;">
+                                                  <div class="col-md-6">
+                                                      <input class="form-control " required="" name="marketing_to_range[]" type="text" autocomplete="off" placeholder="Age" style="width: 100%;">
                                                   </div> 
-                                                  <div class="col-md-3">
-                                                      <input class="form-control " required="" name="marketing_to_range[]" type="text" autocomplete="off" placeholder="Profession" style="width: 112%;">
-                                                  </div> 
-                                                  <div class="col-md-2">
-                                                      <input class="form-control " required="" name="marketing_to_range[]" type="text" autocomplete="off" placeholder="Class" style="width: 112%;">
-                                                  </div> 
+                                                  
                                                    
                                             </div>  
                                             </li>
@@ -283,14 +277,18 @@ a.btn.btn-danger.removebtn {
 }
 </style>
 <script>
-
 $("#marketing_range-add-more").click(function(){
-      $(".marketing_range_list").append('<li class="added-li"><div class="row" style="margin-bottom:12px;"><div class="col-md-4"><input required=""  class="form-control " name="marketing_from_range[]" type="text" style="width: 112%;" autocomplete="off" placeholder="Name"></div> <div class="col-md-3"><input required=""  class="form-control " name="marketing_from_range[]" type="text" autocomplete="off" placeholder="Age" style="width: 112%;"></div><div class="col-md-3"><input class="form-control " required="" style="width: 112%;" name="marketing_to_range[]" type="text" autocomplete="off" placeholder="Profession"></div><div class="col-md-2"><input class="form-control " required="" name="marketing_to_range[]" type="text" autocomplete="off" placeholder="Class" style="width: 112%;"></div></div><a class="btn btn-danger removebtn" style="margin: 0px;margin-bottom: 3px;" href="#" onclick="parentNode.parentNode.removeChild(parentNode)">-</a></li>');
+      $(".marketing_range_list").append('<li class="added-li"><div class="row" style="margin-bottom: 12px;"><div class="col-md-6"><input required="" style="width: 100%;" class="form-control " name="from_range[]" type="text" autocomplete="off" placeholder="Name"></div> <div class="col-md-6"><input class="form-control " required=""  name="to_range[]" type="text" autocomplete="off" placeholder="Age" style="width: 100%;"></div></div><a class="btn btn-danger removebtn" style="margin: 0px;margin-bottom: 5px;" href="#" onclick="parentNode.parentNode.removeChild(parentNode)">-</a></li>');
+});
+$("#marketing_range-add-mor").click(function(){
+      $(".marketing_range_lis").append('<li class="added-li"><div class="row" style="margin-bottom: 12px;"><div class="col-md-6"><input required="" style="width: 100%;" class="form-control " name="from_range[]" type="text" autocomplete="off" placeholder="Name"></div> <div class="col-md-6"><input class="form-control " required=""  name="to_range[]" type="text" autocomplete="off" placeholder="Age" style="width: 100%;"></div></div><a class="btn btn-danger removebtn" style="margin: 0px;margin-bottom: 5px;" href="#" onclick="parentNode.parentNode.removeChild(parentNode)">-</a></li>');
 });
 
-$("#marketing_range-add-mor").click(function(){
-      $(".marketing_range_lis").append('<li class="added-li"><div class="row" style="margin-bottom:12px;"><div class="col-md-4"><input required=""  class="form-control " name="marketing_from_range[]" type="text" style="width: 112%;" autocomplete="off" placeholder="Name"></div> <div class="col-md-3"><input required=""  class="form-control " name="marketing_from_range[]" type="text" autocomplete="off" placeholder="Age" style="width: 112%;"></div><div class="col-md-3"><input class="form-control " required="" style="width: 112%;" name="marketing_to_range[]" type="text" autocomplete="off" placeholder="Profession"></div><div class="col-md-2"><input class="form-control " required="" name="marketing_to_range[]" type="text" autocomplete="off" placeholder="Class" style="width: 112%;"></div></div><a class="btn btn-danger removebtn" style="margin: 0px;margin-bottom: 3px;" href="#" onclick="parentNode.parentNode.removeChild(parentNode)">-</a></li>');
-});
+
+
+// $("#marketing_range-add-mor").click(function(){
+//       $(".marketing_range_lis").append('<li class="added-li"><div class="row" style="margin-bottom:12px;"><div class="col-md-4"><input required=""  class="form-control " name="marketing_from_range[]" type="text" style="width: 112%;" autocomplete="off" placeholder="Name"></div> <div class="col-md-3"><input required=""  class="form-control " name="marketing_from_range[]" type="text" autocomplete="off" placeholder="Age" style="width: 112%;"></div><div class="col-md-3"><input class="form-control " required="" style="width: 112%;" name="marketing_to_range[]" type="text" autocomplete="off" placeholder="Profession"></div><div class="col-md-2"><input class="form-control " required="" name="marketing_to_range[]" type="text" autocomplete="off" placeholder="Class" style="width: 112%;"></div></div><a class="btn btn-danger removebtn" style="margin: 0px;margin-bottom: 3px;" href="#" onclick="parentNode.parentNode.removeChild(parentNode)">-</a></li>');
+// });
 
      
     </script>
