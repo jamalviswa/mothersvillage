@@ -280,7 +280,56 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div> -->
+                                        </div> --><span>Flat Owner Details</span>
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                               Applicant name
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input value="{{ old('num_cards') }}" type="text"  autocomplete="off" class="form-control" name="num_cards" />
+                                                @error('num_cards')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div> <div class="form-group row">
+                                            <label class="col-md-4">
+                                               Customer Id
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input value="{{ old('num_cards') }}" type="text" autocomplete="off" class="form-control" name="num_cards" />
+                                                @error('num_cards')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div> <div class="form-group row">
+                                            <label class="col-md-4">
+                                               Contact No
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input value="{{ old('num_cards') }}" type="text"  autocomplete="off" class="form-control" name="num_cards" />
+                                                @error('num_cards')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div> <div class="form-group row">
+                                            <label class="col-md-4">
+                                               Flat No
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input value="{{ old('num_cards') }}" type="text"  autocomplete="off" class="form-control" name="num_cards" />
+                                                @error('num_cards')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div>
                                         <div class="form-group text-left">
                                             <button type="submit" name="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
                                                 Submit
