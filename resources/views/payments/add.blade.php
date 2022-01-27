@@ -93,7 +93,7 @@
                                                 Land Cost
                                             </label>
                                             <div class="col-md-8">
-                                                <input value="{{ old('num_cards') }}" type="text" autocomplete="off" class="form-control" name="num_cards" />
+                                                <input value="{{ old('num_cards') }}" disabled type="text" autocomplete="off" class="form-control" name="num_cards" />
                                                 @error('num_cards')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
