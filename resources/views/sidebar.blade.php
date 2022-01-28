@@ -12,7 +12,7 @@
         data-menu-scrollable="false" data-menu-dropdown-timeout="500"  
     >
         <ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow " data-controller="">
-        <li class="m-menu__item " aria-haspopup="true" >
+        <!-- <li class="m-menu__item " aria-haspopup="true" >
                 <a  href="{{route('customers.index')}}" class="m-menu__link @if(($controller=='CustomersController' && $action=='index') || 
                 ($controller=='CustomersController' &&$action=='view') || 
                 ($controller=='CustomersController' &&$action=='edit') || 
@@ -26,13 +26,13 @@
                         </span>
                     </span>
                 </a>
-            </li>
+            </li> -->
             <li class="m-menu__item " aria-haspopup="true" >
                 <a  href="{{route('customers.index')}}" class="m-menu__link @if(($controller=='CustomersController' && $action=='index') || 
                 ($controller=='CustomersController' &&$action=='view') || 
                 ($controller=='CustomersController' &&$action=='edit') || 
                 ($controller=='CustomersController' && $action=='add') )  active @endif">
-                    <i class="m-menu__link-icon flaticon-settings"></i>
+                    <i class="m-menu__link-icon flaticon-users"></i>
                     <span class="m-menu__link-title">
                         <span class="m-menu__link-wrap">
                             <span class="m-menu__link-text">
@@ -47,7 +47,7 @@
                 ($controller=='PaymentsController' &&$action=='view') || 
                 ($controller=='PaymentsController' &&$action=='edit') || 
                 ($controller=='PaymentsController' && $action=='add') )  active @endif">
-                    <i class="m-menu__link-icon flaticon-settings"></i>
+                    <i class="m-menu__link-icon flaticon-file"></i>
                     <span class="m-menu__link-title">
                         <span class="m-menu__link-wrap">
                             <span class="m-menu__link-text">
