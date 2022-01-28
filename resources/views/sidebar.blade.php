@@ -36,7 +36,7 @@
                     <span class="m-menu__link-title">
                         <span class="m-menu__link-wrap">
                             <span class="m-menu__link-text">
-                                Customer Details
+                               CUSTOMER DETAILS
                             </span>
                         </span>
                     </span>
@@ -51,7 +51,7 @@
                     <span class="m-menu__link-title">
                         <span class="m-menu__link-wrap">
                             <span class="m-menu__link-text">
-                                Payment Details
+                                PAYMENT DETAILS
                             </span>
                         </span>
                     </span>
@@ -62,11 +62,24 @@
                 ($controller=='CustomersController' &&$action=='view') || 
                 ($controller=='CustomersController' &&$action=='edit') || 
                 ($controller=='CustomersController' && $action=='add') )  active @endif">
-                    <i class="m-menu__link-icon flaticon-settings"></i>
+                    <i class="m-menu__link-icon flaticon-interface"></i>
                     <span class="m-menu__link-title">
                         <span class="m-menu__link-wrap">
                             <span class="m-menu__link-text">
-                                Block Details
+                                BLOCK DETAILS
+                            </span>
+                        </span>
+                    </span>
+                </a>
+            </li>
+            <li class="m-menu__item " aria-haspopup="true" >
+            <a href="<?php echo url('/adminusers/logout'); ?>" class="m-menu__link">
+              
+                    <i class="m-menu__link-icon flaticon-logout"></i>
+                    <span class="m-menu__link-title">
+                        <span class="m-menu__link-wrap">
+                            <span class="m-menu__link-text">
+                                LOGOUT
                             </span>
                         </span>
                     </span>
