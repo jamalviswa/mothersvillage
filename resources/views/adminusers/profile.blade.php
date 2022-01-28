@@ -27,7 +27,7 @@
                                     if (!empty($sessionadmin->profile)) { ?>
                                         <img src="<?php echo asset('files/admin/' . $sessionadmin->profile) ?>" alt="" width="100px"/>
                                     <?php } else { ?>
-                                        <img src="<?php echo asset('admin/img/users/100_11.jpg') ?>" alt=""/>
+                                        <img src="<?php echo asset('admin/img/users/100_11.png') ?>" alt=""/>
                                     <?php } ?>
                                 </div>
                             </div>
@@ -72,21 +72,14 @@
                                     </div>
                                     <div class="form-group m-form__group row">
                                         <label class="col-3 col-form-label">
-                                            First Name
+                                            User Name
                                         </label>
                                         <div class="col-7">
-                                            <input class="form-control m-input validate[required]" name="first_name" type="text" value="<?php echo $sessionadmin->first_name; ?>">
+                                            <input class="form-control m-input validate[required]" name="username" type="text" value="<?php echo $sessionadmin->username; ?>">
                                             <?php echo csrf_field(); ?>
                                         </div>
                                     </div>
-                                    <div class="form-group m-form__group row">
-                                        <label class="col-3 col-form-label">
-                                            Last Name
-                                        </label>
-                                        <div class="col-7">
-                                            <input class="form-control m-input validate[required]" name="last_name" type="text" value="<?php echo $sessionadmin->last_name; ?>" readonly="">
-                                        </div>
-                                    </div>
+                                   
                                     <div class="form-group m-form__group row">
                                         <label class="col-3 col-form-label">
                                             Email Address
@@ -113,7 +106,7 @@
                                                     Save changes
                                                 </button>
                                                 <button type="reset" class="btn btn-secondary m-btn m-btn--air m-btn--custom">
-                                                    Cancel
+                                                    Reset
                                                 </button>
                                             </div>
                                         </div>
@@ -122,7 +115,7 @@
                             </form>
                         </div>
                         <div class="tab-pane clearfix" id="m_user_profile_tab_2">
-                            <form class="m-form m-form--fit m-form--label-align-right validation-form" method="post" action="<?php echo url('/admin/adminusers/changepassword/'); ?>">
+                            <form class="m-form m-form--fit m-form--label-align-right validation-form" method="post" action="<?php echo url('/adminusers/changepassword/'); ?>">
                                 <div class="m-portlet__body">
                                     <div class="form-group m-form__group row">
                                         <label class="col-3 col-form-label">
@@ -151,7 +144,7 @@
                                                     Save changes
                                                 </button>
                                                 <button type="reset" class="btn btn-secondary m-btn m-btn--air m-btn--custom">
-                                                    Cancel
+                                                    Reset
                                                 </button>
                                             </div>
                                         </div>

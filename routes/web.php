@@ -17,7 +17,8 @@ Route::resource('my', 'MyController');
 Route::any('/', 'AdminusersController@login');
 Route::any('/admin', 'AdminusersController@login');
 Route::any('adminusers/logout', 'AdminusersController@logout');
-
+Route::any('adminusers/profile', 'AdminusersController@profile');
+    Route::any('adminusers/changepassword', 'AdminusersController@changepassword');
 Route::any('customers/index', 'CustomersController@index')->name('customers.index');
 Route::get('customers/add', 'CustomersController@add')->name('customers.add');
     Route::get('customers/edit/{id}', 'CustomersController@edit')->name('customers.edit');

@@ -164,7 +164,7 @@ div::-webkit-scrollbar-thumb {
     background: orange;
 }
 .m-brand__logo img {
-    width: 84px;
+    width: 140px;
 }
 div.datepicker {
     z-index: 1000000 !important;

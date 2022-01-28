@@ -28,7 +28,7 @@ abstract class Controller extends BaseController {
     public function checkadmin() {
         $session_admin = Session::get('Adminuser');
         if (!empty($session_admin)) {
-            $admin = Adminuser::where('admin_id', '1')->first();
+            $admin = Adminuser::where('admin_id', $session_admin->admin_id)->first();
             if (!empty($admin)) {
                 View::share('sessionadmin', $admin);
                 return $admin;
@@ -43,6 +43,7 @@ abstract class Controller extends BaseController {
             // exit;
         }
     }
+   
     
     public function str_rand($length = 8, $output = 'alphanum') {
         // Possible seeds
