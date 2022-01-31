@@ -27,7 +27,7 @@
                     </span>
                 </a>
             </li> -->
-            <li class="m-menu__item " aria-haspopup="true" >
+            <!-- <li class="m-menu__item " aria-haspopup="true" >
                 <a  href="{{route('customers.index')}}" class="m-menu__link @if(($controller=='CustomersController' && $action=='index') || 
                 ($controller=='CustomersController' &&$action=='view') || 
                 ($controller=='CustomersController' &&$action=='edit') || 
@@ -41,7 +41,74 @@
                         </span>
                     </span>
                 </a>
+            </li> -->
+
+            <li class="m-menu__item  m-menu__item--submenu m-menu__item--rel"  data-menu-submenu-toggle="click" aria-haspopup="true">
+                <a href="" class="m-menu__link @if(($controller=='CustomersController' && $action=='index') || 
+                ($controller=='CustomersController' && $action=='view') || 
+                ($controller=='CustomersController' && $action=='edit') || 
+                ($controller=='CustomersController' && $action=='add') || 
+                ($controller=='CustomersController' && $action=='addofficial') || 
+                ($controller=='CustomersController' && $action=='editofficial') || 
+                ($controller=='CustomersController' && $action=='viewofficial') || 
+                ($controller=='CustomersController' && $action=='indexofficial') )   active @endif m-menu__link m-menu__toggle">
+                    <i class="m-menu__link-icon flaticon-users"></i>
+                    <span class="m-menu__link-title">
+                        <span class="m-menu__link-wrap">
+                            <span class="m-menu__link-text">
+                                Customer Details
+                            </span>
+                        </span>
+                    </span>
+                </a>
+                <div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--left m-menu__submenu--pull">
+                                <span class="m-menu__arrow m-menu__arrow--adjust"></span>
+                                <ul class="m-menu__subnav">
+                                          <li class="m-menu__item " aria-haspopup="true" >
+                <a  href="{{route('customers.index')}}" class="m-menu__link @if(($controller=='CustomersController' && $action=='index') || 
+                ($controller=='CustomersController' && $action=='view') || 
+                ($controller=='CustomersController' && $action=='edit') || 
+                ($controller=='CustomersController' && $action=='add') )  active @endif">
+                    <i class="m-menu__link-icon flaticon-users"></i>
+                    <span class="m-menu__link-title">
+                        <span class="m-menu__link-wrap">
+                            <span class="m-menu__link-text">
+                        Personal Details
+                            </span>
+                        </span>
+                    </span>
+                </a>
             </li>
+            <li class="m-menu__item " aria-haspopup="true" >
+                <a  href="{{route('customers.index')}}" class="m-menu__link @if(($controller=='CustomersController' && $action=='index') || 
+                ($controller=='CustomersController' && $action=='add') || 
+                ($controller=='CustomersController' && $action=='edit') || 
+                ($controller=='CustomersController' && $action=='view'))  active @endif">
+                    <i class="m-menu__link-icon flaticon-users"></i>
+                    <span class="m-menu__link-title">
+                        <span class="m-menu__link-wrap">
+                            <span class="m-menu__link-text">
+                        Official Details
+                            </span>
+                        </span>
+                    </span>
+                </a>
+            </li>
+                                            
+                                </ul>
+                    </div>
+            </li>
+
+
+
+
+
+
+
+
+
+
+
             <li class="m-menu__item " aria-haspopup="true" >
                 <a  href="{{route('payments.index')}}" class="m-menu__link @if(($controller=='PaymentsController' && $action=='index') || 
                 ($controller=='PaymentsController' &&$action=='view') || 

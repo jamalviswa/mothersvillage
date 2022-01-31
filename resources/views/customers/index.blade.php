@@ -32,11 +32,11 @@
                                 <a class="btn btn-danger m-btn m-btn--air m-btn--custom" href="{{route('customers.index')}}"><i class="fa fa-times"></i></a>
                             <?php } ?>
                         </div>
-                        <div class="btnright">
+                        <!-- <div class="btnright">
                        
                             <button type="button" class="btn m-1 btn-warning ">CSV</button>
                             <button type="button" class="btn  m-1  btn-info  ">Print</button>
-                        </div>
+                        </div> -->
                     </form>
                 </div>
             </div>
