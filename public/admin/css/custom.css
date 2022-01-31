@@ -1104,7 +1104,7 @@ span.badge.badge-Shortlisted {
 .btn.m-btn--air.btn-secondary.focus,
 .btn.m-btn--air.btn-secondary:focus,
 .btn.m-btn--air.btn-secondary:hover:not(:disabled):not(.active) {
-    background: #e2026a !important;
+    background: #ff0000 !important;
 }
 .m-link {
     color: #0061ba;
