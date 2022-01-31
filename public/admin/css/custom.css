@@ -319,7 +319,7 @@ td select {
 }
 .m-aside-menu .m-menu__nav > .m-menu__item > .m-menu__link.active {
     padding: 9px 27px;
-    border-left: 5px solid #1981ef;
+    border-left: 5px solid #B74139;
 }
 .m-aside-menu .m-menu__nav > .m-menu__item > .m-menu__link.active:hover {
     border-left: 0px;
@@ -1131,7 +1131,7 @@ span.badge.badge-Shortlisted {
     background: #0054ac;
 }
 .m-table.m-table--head-bg-brand thead th {
-    background: #00ac1d;
+    background: #B74139;
 }
 .title_login {
     color: #0d5d56 !important;
