@@ -18,12 +18,12 @@
                                 </h3>
                             </div>
                             <form class="m-login__form m-form validation-form" action="" method="post">
-                            <?php echo csrf_field(); ?>
+                                <?php echo csrf_field(); ?>
                                 <div class="form-group m-form__group ">
-                                    <input class="form-control m-input  validate[required]" type="text" placeholder="Email" autocomplete="off" name="email"/>
+                                    <input class="form-control m-input  validate[required]" type="text" placeholder="Email" autocomplete="off" name="email" />
                                 </div>
                                 <div class="form-group m-form__group ">
-                                    <input class="form-control m-input  m-login__form-input--last validate[required]" type="password" placeholder="Password" name="password"/>
+                                    <input class="form-control m-input  m-login__form-input--last validate[required]" type="password" placeholder="Password" name="password" />
                                 </div>
                                 <div class="m-login__form-action" style="margin-top: 33px;">
                                     <button class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">
@@ -35,11 +35,11 @@
                     </div>
                 </div>
             </div>
-        </div>   
+        </div>
         <div class="m-grid__item m-grid__item--fluid m-grid m-grid--center m-grid--hor m-grid__item--order-tablet-and-mobile-1 m-login__content" style="background-image: url(<?php echo asset("/admin/img/villa2.png") ?>)">
-            <div class="m-grid__item m-grid__item--middle">   
+            <div class="m-grid__item m-grid__item--middle">
             </div>
-        </div> 
+        </div>
     </div>
-</div> 
+</div>
 @endsection

@@ -62,7 +62,7 @@
 
                                             <label class="col-md-5">
 
-                                                Category 
+                                                Category
 
                                             </label>
                                             <label class="col-md-1">:</label>
@@ -129,7 +129,7 @@
 
                                             <label class="col-md-5">
 
-                                                Image 
+                                                Image
 
                                             </label>
                                             <label class="col-md-1">:</label>
@@ -137,7 +137,7 @@
 
                                                 @if(!empty($detail['image']))
 
-                                                <a href="{{URL::to('public/files/services/'.$detail['image'].'')}}" download target="_blank" ><img src="{{URL::to('public/files/services/'.$detail['image'].'')}}" style="margin-top: 5px;" class="img-sm"/>
+                                                <a href="{{URL::to('public/files/services/'.$detail['image'].'')}}" download target="_blank"><img src="{{URL::to('public/files/services/'.$detail['image'].'')}}" style="margin-top: 5px;" class="img-sm" />
 
                                                 </a>
 
@@ -174,6 +174,3 @@
     </div>
 
 </div>@endsection
-
-
-

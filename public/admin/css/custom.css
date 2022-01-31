@@ -325,7 +325,7 @@ td select {
     border-left: 0px;
 }
 .m-aside-left.m-aside-left--skin-dark {
-    background-color: #0054ac !important;
+    background-color: #2c3742 !important;
 }
 .m-brand.m-brand--skin-dark {
     background: #fff !important;
@@ -1131,7 +1131,7 @@ span.badge.badge-Shortlisted {
     background: #0054ac;
 }
 .m-table.m-table--head-bg-brand thead th {
-    background: #0054ac;
+    background: #454d55;
 }
 .title_login {
     color: #0d5d56 !important;
