@@ -18,15 +18,18 @@ Route::any('/', 'AdminusersController@login');
 Route::any('/admin', 'AdminusersController@login');
 Route::any('adminusers/logout', 'AdminusersController@logout');
 Route::any('adminusers/profile', 'AdminusersController@profile');
-    Route::any('adminusers/changepassword', 'AdminusersController@changepassword');
+Route::any('adminusers/changepassword', 'AdminusersController@changepassword');
+
+//Customer Details
+
 Route::any('customers/index', 'CustomersController@index')->name('customers.index');
 Route::get('customers/add', 'CustomersController@add')->name('customers.add');
-    Route::get('customers/edit/{id}', 'CustomersController@edit')->name('customers.edit');
-    Route::get('customers/view/{id}', 'CustomersController@view')->name('customers.view');
-    Route::post('customers/store', 'CustomersController@store')->name('customers.store');
-    Route::post('customers/update/{id}', 'CustomersController@update')->name('customers.update');
-    Route::get('customers/delete/{id}', 'CustomersController@delete')->name('customers.delete');
-    Route::post('customers/updateStatus', 'CustomersController@updateStatus')->name('customers.updateStatus');
+Route::get('customers/edit/{id}', 'CustomersController@edit')->name('customers.edit');
+Route::get('customers/view/{id}', 'CustomersController@view')->name('customers.view');
+Route::post('customers/store', 'CustomersController@store')->name('customers.store');
+Route::post('customers/update/{id}', 'CustomersController@update')->name('customers.update');
+Route::get('customers/delete/{id}', 'CustomersController@delete')->name('customers.delete');
+Route::post('customers/updateStatus', 'CustomersController@updateStatus')->name('customers.updateStatus');
 
 
 // Route::any('users/index', 'UsersController@index')->name('users.index');
