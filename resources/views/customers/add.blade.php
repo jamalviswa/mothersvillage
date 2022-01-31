@@ -23,10 +23,14 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="m-portlet">
+                    
                     <div class="m-portlet__body">
                         <!--begin::Section-->
+                     
                         <div class="m-section">
+                       
                             <form method="post" action="{{ route('customers.store') }}" id="upload" class="validation_form" enctype="multipart/form-data">
+                           
                                 @csrf
                                 <div class="col-md-8 offset-md-2">
                                     <div class="m-section__content">
@@ -165,9 +169,48 @@
                                             </div>
                                         </div>
 <!-- Completed 26/01/2022 -->
+                                        <div class="form-group row">
+                                            <label class="col-md-5">
+                                                Aadhar Details <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-7">
+                                                <input value="{{ old('aadhar_number') }}" type="text" autocomplete="off" placeholder="Enter Aadhar Number" class="form-control" name="aadhar_number"  onKeyPress="if(this.value.length==10) return false;" name="program_fee" style="margin-bottom: 8px;" />
+                                                <input type="file"  accept="application/pdf" class="form-control" name="aadhar"  autocomplete="off"/>
+                                                @error('aadhar')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                                @error('aadhar_number')
+                                              <span class="invalid-feedback" role="alert">
+                                                 {{ $message }}
+                                              </span>
+                                             @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-5">
+                                                Pan Details <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-7">
+                                                <input value="{{ old('pan_number') }}" type="text" autocomplete="off" placeholder="Enter PAN Number" class="form-control" name="aadhar_number"  onKeyPress="if(this.value.length==10) return false;" name="program_fee" style="margin-bottom: 8px;" />
+                                                <input type="file"  accept="application/pdf" class="form-control" name="pan"  autocomplete="off"/>
+                                                @error('pan')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                                @error('pan_number')
+                                              <span class="invalid-feedback" role="alert">
+                                                 {{ $message }}
+                                              </span>
+                                             @enderror
+                                            </div>
+                                        </div>
 
 
 
+                                        
 
 
                              <div class="form-group row">
@@ -224,6 +267,21 @@
                                     </div>
                                 </div>
 
+
+                                <div class="form-group row">
+                                        <label class="col-md-3">
+                                           File (max-size up to 2Mb) <span class="red">*</span>
+                                        </label>
+                                        <div class="col-md-9">
+                                            <input type="file"  class="form-control" name="image" />
+                                            @error('image')
+                                              <span class="invalid-feedback" role="alert">
+                                                 {{ $message }}
+                                              </span>
+                                             @enderror
+                                        </div>
+                                    </div>
+                                
 
 
                                         <div class="form-group text-right">
