@@ -257,13 +257,17 @@
                                             <li>
                                                <div class="row" style="margin-bottom: 12px;">
                                                   <div class="col-md-5">
-                                                    <input class="form-control " required="" name="marketing_from_range[]" type="text" autocomplete="off" placeholder="Name" style="width: 100%;">
+                                                    <input class="form-control " required="" name="daughter_name[]" type="text" autocomplete="off" placeholder="Name" style="width: 100%;">
                                                   </div>
                                                   <div class="col-md-3">
-                                                      <input class="form-control " required="" name="marketing_to_range[]" type="text" autocomplete="off" placeholder="Age" style="width: 100%;">
+                                                      <input class="form-control " required="" name="daughter_age[]" type="text" autocomplete="off" placeholder="Age" style="width: 100%;">
                                                   </div> 
                                                   <div class="col-md-4">
-                                                      <input class="form-control " required="" name="marketing_to_range[]" type="text" autocomplete="off" placeholder="Profession" style="width:100%;">
+                                                  <select class="form-control" name="daughter_profession[]">
+                                                       <option value=''>--Select Profession--</option>
+                                                        <option value="Student">Student</option>
+                                                        <option value="Employee">Employee</option>
+                                                    </select> 
                                                   </div> 
                                                   
                                                    
@@ -349,7 +353,7 @@ $("#marketing_range-add-more").click(function(){
       $(".marketing_range_list").append('<li class="added-li"><div class="row" style="margin-bottom: 12px;"><div class="col-md-5"><input required="" style="width: 100%;" class="form-control " name="son_name[]" type="text" autocomplete="off" placeholder="Name"></div> <div class="col-md-3"><input class="form-control " required=""  name="son_age[]" type="text" autocomplete="off" placeholder="Age" style="width: 100%;"></div> <div class="col-md-4"><select class="form-control" name="son_profession[]"><option value="">--Select Profession--</option><option value="Student">Student</option><option value="Employee">Employee</option></select></div></div><a class="btn btn-danger removebtn" style="margin: 0px;margin-bottom: 5px;" href="#" onclick="parentNode.parentNode.removeChild(parentNode)">-</a></li>');
 });
 $("#marketing_range-add-mor").click(function(){
-      $(".marketing_range_lis").append('<li class="added-li"><div class="row" style="margin-bottom: 12px;"><div class="col-md-5"><input required="" style="width: 100%;" class="form-control " name="from_range[]" type="text" autocomplete="off" placeholder="Name"></div> <div class="col-md-3"><input class="form-control " required=""  name="to_range[]" type="text" autocomplete="off" placeholder="Age" style="width: 100%;"></div> <div class="col-md-4"><input required="" style="width: 100%;" class="form-control " name="from_range[]" type="text" autocomplete="off" placeholder="Profession"></div></div><a class="btn btn-danger removebtn" style="margin: 0px;margin-bottom: 5px;" href="#" onclick="parentNode.parentNode.removeChild(parentNode)">-</a></li>');
+      $(".marketing_range_lis").append('<li class="added-li"><div class="row" style="margin-bottom: 12px;"><div class="col-md-5"><input required="" style="width: 100%;" class="form-control " name="daughter_name[]" type="text" autocomplete="off" placeholder="Name"></div> <div class="col-md-3"><input class="form-control " required=""  name="daughter_age[]" type="text" autocomplete="off" placeholder="Age" style="width: 100%;"></div> <div class="col-md-4"><select class="form-control" name="daughter_profession[]"><option value="">--Select Profession--</option><option value="Student">Student</option><option value="Employee">Employee</option></select></div></div><a class="btn btn-danger removebtn" style="margin: 0px;margin-bottom: 5px;" href="#" onclick="parentNode.parentNode.removeChild(parentNode)">-</a></li>');
 });
 
 

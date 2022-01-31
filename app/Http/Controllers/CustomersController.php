@@ -11,6 +11,7 @@ use Session;
 use DB;
 use Redirect;
 use App\Customer;
+use App\Family_detail;
 class CustomersController extends Controller {
     
     public function index() {
