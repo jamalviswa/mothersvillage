@@ -46,28 +46,38 @@
                 <!--begin::Section-->
                 <div class="m-section">
                     <div class="m-section__content">
-                        <?php if ($results->count() > '0') {
-                        ?>
-                            <div class="table-responsive">
-                                <table class="table m-table m-table--head-bg-brand">
-                                    <thead>
-                                        <tr>
-                                            <th> # </th>
-                                            <th>Applicant Name</th>
-                                            <th></th>
-                                            <th class="text-center">Status</th>
-                                            <th class="text-center">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
+                        <?php if ($results->count() > '0') { ?>
+                        <div class="table-responsive">
+                            <table class="table m-table m-table--head-bg-brand">
+                                <thead>
+                                    <tr>
+                                        <th> # </th>
+                                        <th>Profile</th>
+                                        <th>Applicant Name</th>
+                                        <th>Father/Spouse Name</th>
+                                        <th>Age</th>
+                                        <th>email</th>
+                                        <th>Gender</th>
+                                        <th>Mobile Number</th>
+                                        <th>Occupation</th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
                                         $i = ($results->currentPage() > 1) ? $results->currentPage() * $results->perpage() : $results->currentPage();
                                         foreach ($results as $result) {
-                                        ?>
-                                            <tr>
-                                                <td width="5%">{{ $i }}</td>
-                                                <td>{{ $result->name }}</td>
-                                                <td>{{ $result->description }}</td>
+                                    ?>
+                                    <tr>
+                                        <td width="5%">{{ $i }}</td>
+                                        <td class="text-center">
+                                            @if(!empty($result['photo']))
+                                                <a href="{{URL::to('/files/customers/'.$result['photo'].'')}}"  target="_blank" ><img src="{{URL::to('/files/customers/'.$result['photo'].'')}}" width="50" height="50"/>
+                                                </a>
+                                                @endif
+                                                </td>
+                                        <td>{{ $result->name }}</td>
+                                        <td>{{ $result->fathers_name }}</td>
                                                 <td class="text-center">
                                                     <a rel="tooltip" title='Update Status' href="javascript:;" data-status="<?php echo ($result['status']) ?>" data-id="<?php echo $result['customer_id']; ?>" data-toggle="modal" data-target="#update-status" class="btn btn-secondary m-btn m-btn--air m-btn--custom btn-sm btn-<?php echo $result['status'] ?>">
                                                         {{ $result['status'] }}
