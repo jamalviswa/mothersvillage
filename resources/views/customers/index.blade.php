@@ -10,7 +10,7 @@
                 </h3>
             </div>
             <div>
-                <a href="{{route('customers.add')}}" rel="tooltip" title="" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle" data-original-title="Add Category">
+                <a href="{{route('customers.add')}}" rel="tooltip" title="" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle" data-original-title="Add New">
                     <i class="la la-plus"></i>
                 </a>
             </div>
@@ -53,8 +53,8 @@
                                     <thead>
                                         <tr>
                                             <th> # </th>
-                                            <th>Name</th>
-                                            <th>Description</th>
+                                            <th>Applicant Name</th>
+                                            <th></th>
                                             <th class="text-center">Status</th>
                                             <th class="text-center">Action</th>
                                         </tr>

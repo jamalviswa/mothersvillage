@@ -25,10 +25,10 @@ class CustomersController extends Controller {
                  $query->where('name', 'LIKE', "%$s%");   
             });              
         } 
-        if (!empty($_REQUEST['category'])) {
-            $category = $_REQUEST['category'];  
+        if (!empty($_REQUEST['customer'])) {
+            $category = $_REQUEST['customer'];  
             $result->where(function ($query) use ($category) {
-                 $query->where('category', 'LIKE', "%$category%");   
+                 $query->where('customer', 'LIKE', "%$category%");   
             });              
         } 
         

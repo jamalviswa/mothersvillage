@@ -287,7 +287,7 @@
                                            Photo (max-size up to 2Mb) <span class="red">*</span>
                                         </label>
                                         <div class="col-md-7">
-                                            <input type="file"  class="form-control" name="photo" />
+                                            <input type="file" accept="image/png, image/jpg, image/jpeg" class="form-control" name="photo" />
                                             @error('photo')
                                               <span class="invalid-feedback" role="alert">
                                                  {{ $message }}
