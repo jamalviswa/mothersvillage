@@ -22,15 +22,11 @@
     <div class="m-content">
         <div class="row">
             <div class="col-md-12">
-                <div class="m-portlet">
-                    
+                <div class="m-portlet">    
                     <div class="m-portlet__body">
-                        <!--begin::Section-->
-                     
+                        <!--begin::Section--> 
                         <div class="m-section">
-                       
-                            <form method="post" action="{{ route('customers.store') }}" id="upload" class="validation_form" enctype="multipart/form-data">
-                           
+                            <form method="post" action="{{ route('customers.store') }}" id="upload" class="validation_form" enctype="multipart/form-data"> 
                                 @csrf
                                 <div class="col-md-8 offset-md-2">
                                     <div class="m-section__content">
@@ -168,7 +164,101 @@
                                                 @enderror
                                             </div>
                                         </div>
-<!-- Completed 26/01/2022 -->
+                                        <div class="form-group row">
+                                            <label class="col-md-5">
+                                                Son<span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-7"> 
+                                                <div class="marketing_range">
+                                                    <ul class="marketing_range_list" style="padding:0px">
+                                                        <li>
+                                                            <div class="row" style="margin-bottom: 12px;">
+                                                                <div class="col-md-5">
+                                                                    <input class="form-control " required="" name="son_name[]" type="text" autocomplete="off" placeholder="Name" style="width:100%;">
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <input class="form-control " required="" name="son_age[]" type="text" autocomplete="off" placeholder="Age" style="width:100%;">
+                                                                </div> 
+                                                                <div class="col-md-4">
+                                                                    <select class="form-control" name="son_profession[]">
+                                                                        <option value=''>--Select Profession--</option>
+                                                                        <option value="Student">Student</option>
+                                                                        <option value="Employee">Employee</option>
+                                                                    </select> 
+                                                                </div>        
+                                                            </div>  
+                                                        </li>
+                                                        <button type="button" id="marketing_range-add-more" class="btn btn-success btn-green"><i class="fa fa-plus" ></i></button>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-5">
+                                                Daughter<span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-7"> 
+                                                <div class="marketing_range">
+                                                    <ul class="marketing_range_lis" style="padding:0px">
+                                                        <li>
+                                                            <div class="row" style="margin-bottom: 12px;">
+                                                                <div class="col-md-5">
+                                                                    <input class="form-control " required="" name="daughter_name[]" type="text" autocomplete="off" placeholder="Name" style="width: 100%;">
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <input class="form-control " required="" name="daughter_age[]" type="text" autocomplete="off" placeholder="Age" style="width: 100%;">
+                                                                </div> 
+                                                                <div class="col-md-4">
+                                                                    <select class="form-control" name="daughter_profession[]">
+                                                                        <option value=''>--Select Profession--</option>
+                                                                        <option value="Student">Student</option>
+                                                                        <option value="Employee">Employee</option>
+                                                                    </select> 
+                                                                </div>      
+                                                            </div>  
+                                                        </li>
+                                                        <button type="button" id="marketing_range-add-mor" class="btn btn-success btn-green"><i class="fa fa-plus" ></i></button>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-5">
+                                                Photo (max-size up to 2Mb) <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-7">
+                                                <input type="file" accept="image/png, image/jpg, image/jpeg" class="form-control" name="photo" />
+                                                @error('photo')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group text-right">
+                                            <button type="submit" name="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
+                                                Submit
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $("#marketing_range-add-more").click(function(){
+        $(".marketing_range_list").append('<li class="added-li"><div class="row" style="margin-bottom: 12px;"><div class="col-md-5"><input required="" style="width: 100%;" class="form-control " name="son_name[]" type="text" autocomplete="off" placeholder="Name"></div> <div class="col-md-3"><input class="form-control " required=""  name="son_age[]" type="text" autocomplete="off" placeholder="Age" style="width: 100%;"></div> <div class="col-md-4"><select class="form-control" name="son_profession[]"><option value="">--Select Profession--</option><option value="Student">Student</option><option value="Employee">Employee</option></select></div></div><a class="btn btn-danger removebtn" style="margin: 0px;margin-bottom: 5px;" href="#" onclick="parentNode.parentNode.removeChild(parentNode)">-</a></li>');
+    });
+    $("#marketing_range-add-mor").click(function(){
+        $(".marketing_range_lis").append('<li class="added-li"><div class="row" style="margin-bottom: 12px;"><div class="col-md-5"><input required="" style="width: 100%;" class="form-control " name="daughter_name[]" type="text" autocomplete="off" placeholder="Name"></div> <div class="col-md-3"><input class="form-control " required=""  name="daughter_age[]" type="text" autocomplete="off" placeholder="Age" style="width: 100%;"></div> <div class="col-md-4"><select class="form-control" name="daughter_profession[]"><option value="">--Select Profession--</option><option value="Student">Student</option><option value="Employee">Employee</option></select></div></div><a class="btn btn-danger removebtn" style="margin: 0px;margin-bottom: 5px;" href="#" onclick="parentNode.parentNode.removeChild(parentNode)">-</a></li>');
+    });
+</script>
+
                                         <!-- <div class="form-group row">
                                             <label class="col-md-5">
                                                 Aadhar Details <span class="red">*</span>
@@ -213,108 +303,16 @@
                                         
 
 
-                             <div class="form-group row">
-                                        <label class="col-md-5">
-                                         Son<span class="red">*</span>
-                                        </label>
-                                        <div class="col-md-7"> 
-                                          <div class="marketing_range">
-                                        <ul class="marketing_range_list" style="padding:0px">
-                                            <li>
-                                               <div class="row" style="margin-bottom: 12px;">
-                                                  <div class="col-md-5">
-                                                    <input class="form-control " required="" name="son_name[]" type="text" autocomplete="off" placeholder="Name" style="width:100%;">
-                                                  </div>
-                                                  <div class="col-md-3">
-                                                      <input class="form-control " required="" name="son_age[]" type="text" autocomplete="off" placeholder="Age" style="width:100%;">
-                                                  </div> 
-                                                  <div class="col-md-4">
-                                                  <select class="form-control" name="son_profession[]">
-                                                       <option value=''>--Select Profession--</option>
-                                                        <option value="Student">Student</option>
-                                                        <option value="Employee">Employee</option>
-                                                    </select> 
-                                                  </div> 
-                                                 
-                                                   
-                                            </div>  
-                                            </li>
-                                          
-                                          
-                                            <button type="button" id="marketing_range-add-more" class="btn btn-success btn-green"><i class="fa fa-plus" ></i></button>
-                                            </ul>
-                                    </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                        <label class="col-md-5">
-                                         Daughter<span class="red">*</span>
-                                        </label>
-                                        <div class="col-md-7"> 
-                                          <div class="marketing_range">
-                                        <ul class="marketing_range_lis" style="padding:0px">
-                                            <li>
-                                               <div class="row" style="margin-bottom: 12px;">
-                                                  <div class="col-md-5">
-                                                    <input class="form-control " required="" name="daughter_name[]" type="text" autocomplete="off" placeholder="Name" style="width: 100%;">
-                                                  </div>
-                                                  <div class="col-md-3">
-                                                      <input class="form-control " required="" name="daughter_age[]" type="text" autocomplete="off" placeholder="Age" style="width: 100%;">
-                                                  </div> 
-                                                  <div class="col-md-4">
-                                                  <select class="form-control" name="daughter_profession[]">
-                                                       <option value=''>--Select Profession--</option>
-                                                        <option value="Student">Student</option>
-                                                        <option value="Employee">Employee</option>
-                                                    </select> 
-                                                  </div> 
-                                                  
-                                                   
-                                            </div>  
-                                            </li>
-                                          
-                                          
-                                            <button type="button" id="marketing_range-add-mor" class="btn btn-success btn-green"><i class="fa fa-plus" ></i></button>
-                                            </ul>
-                                    </div>
-                                    </div>
-                                </div>
+                            
 
 
-                                <div class="form-group row">
-                                        <label class="col-md-5">
-                                           Photo (max-size up to 2Mb) <span class="red">*</span>
-                                        </label>
-                                        <div class="col-md-7">
-                                            <input type="file" accept="image/png, image/jpg, image/jpeg" class="form-control" name="photo" />
-                                            @error('photo')
-                                              <span class="invalid-feedback" role="alert">
-                                                 {{ $message }}
-                                              </span>
-                                             @enderror
-                                        </div>
-                                    </div>
+
+                               
                                 
 
 
-                                        <div class="form-group text-right">
-                                            <button type="submit" name="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
-                                                Submit
-                                            </button>
-                                        </div>
+                                       
 
-                                    </div>
-                                </div>
-                            </form>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <style>
     .radio-sec input {
@@ -348,20 +346,5 @@ a.btn.btn-danger.removebtn {
     color: #fff;
 }
 </style>
-<script>
-$("#marketing_range-add-more").click(function(){
-      $(".marketing_range_list").append('<li class="added-li"><div class="row" style="margin-bottom: 12px;"><div class="col-md-5"><input required="" style="width: 100%;" class="form-control " name="son_name[]" type="text" autocomplete="off" placeholder="Name"></div> <div class="col-md-3"><input class="form-control " required=""  name="son_age[]" type="text" autocomplete="off" placeholder="Age" style="width: 100%;"></div> <div class="col-md-4"><select class="form-control" name="son_profession[]"><option value="">--Select Profession--</option><option value="Student">Student</option><option value="Employee">Employee</option></select></div></div><a class="btn btn-danger removebtn" style="margin: 0px;margin-bottom: 5px;" href="#" onclick="parentNode.parentNode.removeChild(parentNode)">-</a></li>');
-});
-$("#marketing_range-add-mor").click(function(){
-      $(".marketing_range_lis").append('<li class="added-li"><div class="row" style="margin-bottom: 12px;"><div class="col-md-5"><input required="" style="width: 100%;" class="form-control " name="daughter_name[]" type="text" autocomplete="off" placeholder="Name"></div> <div class="col-md-3"><input class="form-control " required=""  name="daughter_age[]" type="text" autocomplete="off" placeholder="Age" style="width: 100%;"></div> <div class="col-md-4"><select class="form-control" name="daughter_profession[]"><option value="">--Select Profession--</option><option value="Student">Student</option><option value="Employee">Employee</option></select></div></div><a class="btn btn-danger removebtn" style="margin: 0px;margin-bottom: 5px;" href="#" onclick="parentNode.parentNode.removeChild(parentNode)">-</a></li>');
-});
 
-
-
-// $("#marketing_range-add-mor").click(function(){
-//       $(".marketing_range_lis").append('<li class="added-li"><div class="row" style="margin-bottom:12px;"><div class="col-md-4"><input required=""  class="form-control " name="marketing_from_range[]" type="text" style="width: 112%;" autocomplete="off" placeholder="Name"></div> <div class="col-md-3"><input required=""  class="form-control " name="marketing_from_range[]" type="text" autocomplete="off" placeholder="Age" style="width: 112%;"></div><div class="col-md-3"><input class="form-control " required="" style="width: 112%;" name="marketing_to_range[]" type="text" autocomplete="off" placeholder="Profession"></div><div class="col-md-2"><input class="form-control " required="" name="marketing_to_range[]" type="text" autocomplete="off" placeholder="Class" style="width: 112%;"></div></div><a class="btn btn-danger removebtn" style="margin: 0px;margin-bottom: 3px;" href="#" onclick="parentNode.parentNode.removeChild(parentNode)">-</a></li>');
-// });
-
-     
-    </script>
 @endsection

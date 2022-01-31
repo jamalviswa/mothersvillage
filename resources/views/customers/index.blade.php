@@ -78,20 +78,23 @@
                                                 </td>
                                         <td>{{ $result->name }}</td>
                                         <td>{{ $result->fathers_name }}</td>
-                                                <td class="text-center">
-                                                    <a rel="tooltip" title='Update Status' href="javascript:;" data-status="<?php echo ($result['status']) ?>" data-id="<?php echo $result['customer_id']; ?>" data-toggle="modal" data-target="#update-status" class="btn btn-secondary m-btn m-btn--air m-btn--custom btn-sm btn-<?php echo $result['status'] ?>">
-                                                        {{ $result['status'] }}
-                                                    </a>
-                                                </td>
+                                        <td>{{ $result->age }}</td>
+                                        <td>{{ $result->email }}</td>
+                                        <td>{{ $result->gender }}</td>
+                                        <td>{{ $result->phone }}</td>
+                                        <td>{{ $result->occupation }}</td>
+
+                                               
                                                 <td class="text-center">
                                                     <div class="btn-group">
                                                         <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="Edit" href="{{ route("customers.edit", $result->customer_id) }}">
                                                             <i class="fa fa-pencil"></i>
                                                         </a>
-
+                                                        @if($sessionadmin->adminname == "Admin")
                                                         <a rel="tooltip" class="delete btn btn-secondary m-btn m-btn--air m-btn--custom" title="Delete" data-value="{{$result['customer_id']}}" href="{{ route('customers.delete',$result['customer_id']) }}">
                                                             <i class="fa fa-trash"></i>
                                                         </a>
+                                                        @endif
                                                     </div>
                                                 </td>
                                             </tr>
