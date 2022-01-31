@@ -169,7 +169,7 @@
                                             </div>
                                         </div>
 <!-- Completed 26/01/2022 -->
-                                        <div class="form-group row">
+                                        <!-- <div class="form-group row">
                                             <label class="col-md-5">
                                                 Aadhar Details <span class="red">*</span>
                                             </label>
@@ -206,7 +206,7 @@
                                               </span>
                                              @enderror
                                             </div>
-                                        </div>
+                                        </div> -->
 
 
 
@@ -222,11 +222,18 @@
                                         <ul class="marketing_range_list" style="padding:0px">
                                             <li>
                                                <div class="row" style="margin-bottom: 12px;">
-                                                  <div class="col-md-6">
-                                                    <input class="form-control " required="" name="marketing_from_range[]" type="text" autocomplete="off" placeholder="Name" style="width:100%;">
+                                                  <div class="col-md-5">
+                                                    <input class="form-control " required="" name="son_name[]" type="text" autocomplete="off" placeholder="Name" style="width:100%;">
                                                   </div>
-                                                  <div class="col-md-6">
-                                                      <input class="form-control " required="" name="marketing_to_range[]" type="text" autocomplete="off" placeholder="Age" style="width:100%;">
+                                                  <div class="col-md-3">
+                                                      <input class="form-control " required="" name="son_age[]" type="text" autocomplete="off" placeholder="Age" style="width:100%;">
+                                                  </div> 
+                                                  <div class="col-md-4">
+                                                  <select class="form-control" name="son_profession[]">
+                                                       <option value=''>--Select Profession--</option>
+                                                        <option value="Student">Student</option>
+                                                        <option value="Employee">Employee</option>
+                                                    </select> 
                                                   </div> 
                                                  
                                                    
@@ -249,11 +256,14 @@
                                         <ul class="marketing_range_lis" style="padding:0px">
                                             <li>
                                                <div class="row" style="margin-bottom: 12px;">
-                                                  <div class="col-md-6">
+                                                  <div class="col-md-5">
                                                     <input class="form-control " required="" name="marketing_from_range[]" type="text" autocomplete="off" placeholder="Name" style="width: 100%;">
                                                   </div>
-                                                  <div class="col-md-6">
+                                                  <div class="col-md-3">
                                                       <input class="form-control " required="" name="marketing_to_range[]" type="text" autocomplete="off" placeholder="Age" style="width: 100%;">
+                                                  </div> 
+                                                  <div class="col-md-4">
+                                                      <input class="form-control " required="" name="marketing_to_range[]" type="text" autocomplete="off" placeholder="Profession" style="width:100%;">
                                                   </div> 
                                                   
                                                    
@@ -269,12 +279,12 @@
 
 
                                 <div class="form-group row">
-                                        <label class="col-md-3">
-                                           File (max-size up to 2Mb) <span class="red">*</span>
+                                        <label class="col-md-5">
+                                           Photo (max-size up to 2Mb) <span class="red">*</span>
                                         </label>
-                                        <div class="col-md-9">
-                                            <input type="file"  class="form-control" name="image" />
-                                            @error('image')
+                                        <div class="col-md-7">
+                                            <input type="file"  class="form-control" name="photo" />
+                                            @error('photo')
                                               <span class="invalid-feedback" role="alert">
                                                  {{ $message }}
                                               </span>
@@ -336,10 +346,10 @@ a.btn.btn-danger.removebtn {
 </style>
 <script>
 $("#marketing_range-add-more").click(function(){
-      $(".marketing_range_list").append('<li class="added-li"><div class="row" style="margin-bottom: 12px;"><div class="col-md-6"><input required="" style="width: 100%;" class="form-control " name="from_range[]" type="text" autocomplete="off" placeholder="Name"></div> <div class="col-md-6"><input class="form-control " required=""  name="to_range[]" type="text" autocomplete="off" placeholder="Age" style="width: 100%;"></div></div><a class="btn btn-danger removebtn" style="margin: 0px;margin-bottom: 5px;" href="#" onclick="parentNode.parentNode.removeChild(parentNode)">-</a></li>');
+      $(".marketing_range_list").append('<li class="added-li"><div class="row" style="margin-bottom: 12px;"><div class="col-md-5"><input required="" style="width: 100%;" class="form-control " name="son_name[]" type="text" autocomplete="off" placeholder="Name"></div> <div class="col-md-3"><input class="form-control " required=""  name="son_age[]" type="text" autocomplete="off" placeholder="Age" style="width: 100%;"></div> <div class="col-md-4"><select class="form-control" name="son_profession[]"><option value="">--Select Profession--</option><option value="Student">Student</option><option value="Employee">Employee</option></select></div></div><a class="btn btn-danger removebtn" style="margin: 0px;margin-bottom: 5px;" href="#" onclick="parentNode.parentNode.removeChild(parentNode)">-</a></li>');
 });
 $("#marketing_range-add-mor").click(function(){
-      $(".marketing_range_lis").append('<li class="added-li"><div class="row" style="margin-bottom: 12px;"><div class="col-md-6"><input required="" style="width: 100%;" class="form-control " name="from_range[]" type="text" autocomplete="off" placeholder="Name"></div> <div class="col-md-6"><input class="form-control " required=""  name="to_range[]" type="text" autocomplete="off" placeholder="Age" style="width: 100%;"></div></div><a class="btn btn-danger removebtn" style="margin: 0px;margin-bottom: 5px;" href="#" onclick="parentNode.parentNode.removeChild(parentNode)">-</a></li>');
+      $(".marketing_range_lis").append('<li class="added-li"><div class="row" style="margin-bottom: 12px;"><div class="col-md-5"><input required="" style="width: 100%;" class="form-control " name="from_range[]" type="text" autocomplete="off" placeholder="Name"></div> <div class="col-md-3"><input class="form-control " required=""  name="to_range[]" type="text" autocomplete="off" placeholder="Age" style="width: 100%;"></div> <div class="col-md-4"><input required="" style="width: 100%;" class="form-control " name="from_range[]" type="text" autocomplete="off" placeholder="Profession"></div></div><a class="btn btn-danger removebtn" style="margin: 0px;margin-bottom: 5px;" href="#" onclick="parentNode.parentNode.removeChild(parentNode)">-</a></li>');
 });
 
 
