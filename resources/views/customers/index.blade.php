@@ -35,7 +35,7 @@
                         <div class="btnright">
                        
                             <button type="button" class="btn m-1 btn-warning ">CSV</button>
-                            <button type="button" class="btn  m-1 btn-success  ">Print</button>
+                            <button type="button" class="btn  m-1  btn-info  ">Print</button>
                         </div>
                     </form>
                 </div>
