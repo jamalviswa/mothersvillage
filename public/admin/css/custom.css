@@ -24,7 +24,7 @@ color: #0054ac;
 }
 .image_size {
     font-size: 11px;
-    color: #8c8888;
+    color: #8c8888; 
     padding-top: 8px;
 }
 body {
@@ -35,6 +35,14 @@ body {
 }
 .m-login__forget-password {
     display: none;
+}
+.nava{
+    
+    font-size: 18px;
+    font-weight: 500;
+}
+.nava > a{
+    color: #F4972F !important;
 }
 .m-nav .m-nav__item > .m-nav__link {
     display: table;
@@ -287,7 +295,7 @@ td select {
     .m-menu__link-text {
     color: #fff !important;
     text-transform: uppercase;
-    font-size: 13px !important;
+    font-size: 16px !important;
     white-space: nowrap;
 }
 .m-aside-menu.m-aside-menu--skin-dark
@@ -296,7 +304,7 @@ td select {
     > .m-menu__link
     .m-menu__link-icon {
     color: #fff;
-    font-size: 17px !important;
+    font-size: 19px !important;
 }
 .m-aside-menu.m-aside-menu--skin-dark
     .m-menu__nav
@@ -319,7 +327,7 @@ td select {
 }
 .m-aside-menu .m-menu__nav > .m-menu__item > .m-menu__link.active {
     padding: 9px 27px;
-    border-left: 5px solid #B74139;
+    border-left: 5px solid #B8CE3C;
 }
 .m-aside-menu .m-menu__nav > .m-menu__item > .m-menu__link.active:hover {
     border-left: 0px;
@@ -382,7 +390,7 @@ td select {
     .m-menu__nav
     > .m-menu__item:not(.m-menu__item--parent):not(.m-menu__item--open):not(.m-menu__item--expanded):not(.m-menu__item--active):hover {
     background-color: #fff;
-    border-left: 5px solid #1981ef;
+    border-left: 5px solid #ff0000;
 }
 .m-aside-menu.m-aside-menu--skin-dark
     .m-menu__nav
@@ -692,8 +700,8 @@ label {
     color: #000;
 }
 .m-subheader .m-subheader__title {
-    font-weight: 600 !important;
-    font-size: 18px;
+    font-weight: 800 !important;
+    font-size: 20px;
     padding: 25px 0 13px;
     border: 0px !important;
 }
@@ -1131,7 +1139,7 @@ span.badge.badge-Shortlisted {
     background: #0054ac;
 }
 .m-table.m-table--head-bg-brand thead th {
-    background: #B74139;
+    background: #E93964;
 }
 .title_login {
     color: #0d5d56 !important;

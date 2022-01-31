@@ -99,6 +99,6 @@
 </div>
 <style>
     .m-aside-left.m-aside-left--skin-dark {
-        background-color: #00BABB !important;
+        background-color: #4AB0CF !important;
     }
 </style>
