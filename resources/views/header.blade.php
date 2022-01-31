@@ -1,12 +1,12 @@
-<header class="m-grid__item    m-header "  data-minimize-mobile="hide" data-minimize-offset="200" data-minimize-mobile-offset="200" data-minimize="minimize" >
+<header class="m-grid__item    m-header " data-minimize-mobile="hide" data-minimize-offset="200" data-minimize-mobile-offset="200" data-minimize="minimize">
     <div class="m-container m-container--fluid m-container--full-height">
         <div class="m-stack m-stack--ver m-stack--desktop">
             <!-- BEGIN: Brand -->
             <div class="m-stack__item m-brand  m-brand--skin-dark ">
                 <div class="m-stack m-stack--ver m-stack--general">
                     <div class="m-stack__item m-stack__item--middle m-brand__logo">
-                    <a href="<?php echo url('/customers/index'); ?>" class="m-brand__logo-wrapper">
-                            <img src="<?php echo asset("admin/img/logos/logo.png") ?>"/>
+                        <a href="<?php echo url('/customers/index'); ?>" class="m-brand__logo-wrapper">
+                            <img src="<?php echo asset("admin/img/logos/logo.png") ?>" />
                         </a>
                     </div>
                     <div class="m-stack__item m-stack__item--middle m-brand__tools">
@@ -24,7 +24,7 @@
                         <!-- BEGIN: Responsive Header Menu Toggler -->
                         <a id="m_aside_header_menu_mobile_toggle" href="javascript:;" style="display: none !important;" class="m-brand__icon m-brand__toggler m--visible-tablet-and-mobile-inline-block">
                             <span></span>
-                        </a> 
+                        </a>
                         <!-- END -->
                         <!-- BEGIN: Topbar Toggler -->
                         <a id="m_aside_header_topbar_mobile_toggle" href="javascript:;" class="m-brand__icon m--visible-tablet-and-mobile-inline-block">
@@ -43,13 +43,13 @@
                     <div class="m-stack__item m-topbar__nav-wrapper">
                         <ul class="m-topbar__nav m-nav m-nav--inline">
                             <li id="m_quick_sidebar_toggle" class="m-nav__item"><span class="m-topbar__userpic">
-<?php $profile = (!empty($sessionadmin->profile)) ? asset('files/admin/' . $sessionadmin->profile) : asset('admin/img/users/100_11.png') ?>
-                                    <img src="<?php echo $profile; ?>" class="m--img-rounded m--marginless m--img-centered" alt="" height="60px"  style="margin-top:5px !important">
+                                    <?php $profile = (!empty($sessionadmin->profile)) ? asset('files/admin/' . $sessionadmin->profile) : asset('admin/img/users/100_11.png') ?>
+                                    <img src="<?php echo $profile; ?>" class="m--img-rounded m--marginless m--img-centered" alt="" height="60px" style="margin-top:5px !important">
                                 </span>
                             </li>
                             <li id="m_quick_sidebar_toggle" class="m-nav__item nava">
                                 <a href="<?php echo url('/adminusers/profile'); ?>" class="m-nav__link m-dropdown__toggle">
-<?php echo $sessionadmin->username; ?>
+                                    <?php echo $sessionadmin->username; ?>
                                 </a>
                             </li>
                             <li id="m_quick_sidebar_toggle" class="m-nav__item nava">
@@ -75,7 +75,7 @@
                     <span aria-hidden="true"><i class="fa fa-times"></i></span>
                 </button>
             </div>
-            <div class="modal-footer"> 
+            <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">No</button>
                 <a class="btn btn-primary" href="javascript:;">Yes</a>
             </div>
@@ -83,7 +83,7 @@
     </div>
 </div>
 <script>
-    $(document).on('click', '.delete', function (e) {
+    $(document).on('click', '.delete', function(e) {
         e.preventDefault();
         $('#deleteModal').modal('show');
         $('#deleteModal').find('.btn-primary').attr('href', $(this).attr('href'));
@@ -100,12 +100,15 @@
         right: 15px;
         bottom: 11px;
     }
-    .nav-link.dropdown-toggle::after, .btn.dropdown-toggle::after {
+
+    .nav-link.dropdown-toggle::after,
+    .btn.dropdown-toggle::after {
         display: none;
 
     }
+
     .dropdown-item:hover {
-	background: #0054ac;
-	color: white;
-}
+        background: #0054ac;
+        color: white;
+    }
 </style>
