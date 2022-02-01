@@ -15,7 +15,7 @@ class AdminusersController extends Controller {
                 if ($adminuser->password == md5($request->password)) { 
                     // Session::set('User', $adminuser);
                     Session::put('Adminuser', $adminuser);
-                   return Redirect::to('customers/index');
+                   return Redirect::to('customers/personal/index');
                 } else {
                     Session::flash('message', 'Email / Password mismatch');
                     Session::flash('alert-class', 'error');
@@ -51,7 +51,7 @@ class AdminusersController extends Controller {
                 Adminuser::where('admin_id', $sessionadmin->admin_id)->update($data);
                 Session::flash('message', 'Profile updated!');
                 Session::flash('alert-class', 'success');
-                return Redirect::to('customers/index');
+                return Redirect::to('customers/personal/index');
             }
         }
         return view('adminusers/profile');

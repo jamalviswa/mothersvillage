@@ -22,68 +22,44 @@ Route::any('adminusers/changepassword', 'AdminusersController@changepassword');
 
 //Customer Details
 
-Route::any('customers/index', 'CustomersController@index')->name('customers.index');
-Route::get('customers/add', 'CustomersController@add')->name('customers.add');
-Route::get('customers/edit/{id}', 'CustomersController@edit')->name('customers.edit');
-Route::get('customers/view/{id}', 'CustomersController@view')->name('customers.view');
-Route::post('customers/store', 'CustomersController@store')->name('customers.store');
-Route::post('customers/update/{id}', 'CustomersController@update')->name('customers.update');
-Route::get('customers/delete/{id}', 'CustomersController@delete')->name('customers.delete');
-Route::post('customers/updateStatus', 'CustomersController@updateStatus')->name('customers.updateStatus');
+Route::any('customers/personal/index', 'CustomersController@personal_index')->name('customers.personal_index');
+Route::get('customers/personal/add', 'CustomersController@personal_add')->name('customers.personal_add');
+Route::get('customers/personal/edit/{id}', 'CustomersController@personal_edit')->name('customers.personal_edit');
+Route::get('customers/personal/view/{id}', 'CustomersController@personal_view')->name('customers.personal_view');
+Route::post('customers/personal/store', 'CustomersController@personal_store')->name('customers.personal_store');
+Route::post('customers/personal/update/{id}', 'CustomersController@personal_update')->name('customers.personal_update');
+Route::get('customers/personal/delete/{id}', 'CustomersController@personal_delete')->name('customers.personal_delete');
 
-
-// Route::any('users/index', 'UsersController@index')->name('users.index');
-//   Route::post('users/updateStatus', 'UsersController@updateStatus')->name('users.updateStatus');
+Route::any('customers/official/index', 'CustomersController@official_index')->name('customers.official_index');
+Route::get('customers/official/add', 'CustomersController@official_add')->name('customers.official_add');
+Route::get('customers/official/edit/{id}', 'CustomersController@official_edit')->name('customers.official_edit');
+Route::get('customers/official/view/{id}', 'CustomersController@official_view')->name('customers.official_view');
+Route::post('customers/official/store', 'CustomersController@official_store')->name('customers.official_store');
+Route::post('customers/official/update/{id}', 'CustomersController@official_update')->name('customers.official_update');
+Route::get('customers/official/delete/{id}', 'CustomersController@official_delete')->name('customers.official_delete');
 
 Route::any('payments/index', 'PaymentsController@index')->name('payments.index');
 Route::get('payments/add', 'PaymentsController@add')->name('payments.add');
- Route::post('payments/store', 'PaymentsController@store')->name('payments.store');
-   Route::get('payments/edit/{id}', 'PaymentsController@edit')->name('payments.edit');
-  Route::post('payments/update/{id}', 'PaymentsController@update')->name('payments.update');
- Route::get('payments/delete/{id}', 'PaymentsController@delete')->name('payments.delete');
-  Route::get('payments/delete/{id}', 'PaymentsController@delete')->name('payments.delete');
-    Route::post('payments/updateStatus', 'PaymentsController@updateStatus')->name('payments.updateStatus');
+Route::post('payments/store', 'PaymentsController@store')->name('payments.store');
+Route::get('payments/edit/{id}', 'PaymentsController@edit')->name('payments.edit');
+Route::post('payments/update/{id}', 'PaymentsController@update')->name('payments.update');
+Route::get('payments/delete/{id}', 'PaymentsController@delete')->name('payments.delete');
+Route::get('payments/view/{id}', 'PaymentsController@view')->name('payments.view');
  
-//   Route::any('discounts/index', 'DiscountsController@index')->name('discounts.index');
-// Route::get('discounts/add', 'DiscountsController@add')->name('discounts.add');
-//  Route::post('discounts/store', 'DiscountsController@store')->name('discounts.store');
-//   Route::get('discounts/edit/{id}', 'DiscountsController@edit')->name('discounts.edit');
-//   Route::post('discounts/update/{id}', 'DiscountsController@update')->name('discounts.update');
-//  Route::get('discounts/delete/{id}', 'DiscountsController@delete')->name('discounts.delete');
-//    Route::post('discounts/updateStatus', 'DiscountsController@updateStatus')->name('discounts.updateStatus');
+Route::any('blocks/index', 'BlocksController@index')->name('blocks.index');
+Route::get('blocks/add', 'BlocksController@add')->name('blocks.add');
+Route::post('blocks/store', 'BlocksController@store')->name('blocks.store');
+Route::get('blocks/edit/{id}', 'BlocksController@edit')->name('blocks.edit');
+Route::post('blocks/update/{id}', 'BlocksController@update')->name('blocks.update');
+Route::get('blocks/delete/{id}', 'BlocksController@delete')->name('blocks.delete');
+   
  
-//  Route::any('templates/index', 'TemplatesController@index')->name('templates.index');
-// Route::get('templates/add', 'TemplatesController@add')->name('templates.add');
-// Route::post('templates/store', 'TemplatesController@store')->name('templates.store');
 
-// Route::any('cards/index', 'CardsController@index')->name('cards.index');
-// Route::get('cards/add', 'CardsController@add')->name('cards.add');
 
-// Route::any('activities/index', 'ActivitiesController@index')->name('activities.index');
-// Route::get('activities/add', 'ActivitiesController@add')->name('activities.add');
-// Route::post('activities/store', 'ActivitiesController@store')->name('activities.store');
-//   Route::get('activities/edit/{id}', 'ActivitiesController@edit')->name('activities.edit');
-//   Route::post('activities/update/{id}', 'ActivitiesController@update')->name('activities.update');
-//  Route::get('activities/delete/{id}', 'ActivitiesController@delete')->name('activities.delete');
 
-// Route::any('targetedareas/index', 'TargetedareasController@index')->name('targetedareas.index');
-// Route::get('targetedareas/add', 'TargetedareasController@add')->name('targetedareas.add');
-//  Route::post('targetedareas/store', 'TargetedareasController@store')->name('targetedareas.store');
-//   Route::get('targetedareas/edit/{id}', 'TargetedareasController@edit')->name('targetedareas.edit');
-//   Route::post('targetedareas/update/{id}', 'TargetedareasController@update')->name('targetedareas.update');
-//  Route::get('targetedareas/delete/{id}', 'TargetedareasController@delete')->name('targetedareas.delete');
 
-// Route::any('pushnotifications/index', 'PushnotificationsController@index')->name('pushnotifications.index');
-// Route::get('pushnotifications/add', 'PushnotificationsController@add')->name('pushnotifications.add');
 
-// Route::any('modifiers/index', 'ModifiersController@index')->name('modifiers.index');
-// Route::get('modifiers/add', 'ModifiersController@add')->name('modifiers.add');
-// Route::post('modifiers/store', 'ModifiersController@store')->name('modifiers.store');
-//   Route::get('modifiers/edit/{id}', 'ModifiersController@edit')->name('modifiers.edit');
-//   Route::post('modifiers/update/{id}', 'ModifiersController@update')->name('modifiers.update');
-//  Route::get('modifiers/delete/{id}', 'ModifiersController@delete')->name('modifiers.delete');
 
-// Route::any('settings/index', 'SettingsController@index')->name('settings.index');
 
 
 // Route::any('posts/index', 'PostsController@index')->name('posts.index');

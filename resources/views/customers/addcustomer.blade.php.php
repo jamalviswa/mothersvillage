@@ -72,7 +72,7 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <!-- <div class="form-group row">
                                             <label class="col-md-4">
                                                 App Aadhar No <span class="red">*</span>
                                             </label>
@@ -84,8 +84,8 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
+                                        </div> -->
+                                        <!-- <div class="form-group row">
                                             <label class="col-md-4">
                                                 App Pan No <span class="red">*</span>
                                             </label>
@@ -97,8 +97,8 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
+                                        </div> -->
+                                        <!-- <div class="form-group row">
                                             <label class="col-md-4">
                                                 App Phone No <span class="red">*</span>
                                             </label>
@@ -110,8 +110,8 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
+                                        </div> -->
+                                        <!-- <div class="form-group row">
                                             <label class="col-md-4">
                                                 Co App Aadhar No <span class="red">*</span>
                                             </label>
@@ -123,8 +123,8 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
+                                        </div> -->
+                                        <!-- <div class="form-group row">
                                             <label class="col-md-4">
                                                 Co App Pan No <span class="red">*</span>
                                             </label>
@@ -136,8 +136,8 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
+                                        </div> -->
+                                        <!-- <div class="form-group row">
                                             <label class="col-md-4">
                                                 Co App Phone No <span class="red">*</span>
                                             </label>
@@ -149,8 +149,8 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
+                                        </div> -->
+                                        <!-- <div class="form-group row">
                                             <label class="col-md-4">
                                                 Phase <span class="red">*</span>
                                             </label>
@@ -162,8 +162,8 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
+                                        </div> -->
+                                        <!-- <div class="form-group row">
                                             <label class="col-md-4">
                                                 Block <span class="red">*</span>
                                             </label>
@@ -175,8 +175,8 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
+                                        </div> -->
+                                        <!-- <div class="form-group row">
                                             <label class="col-md-4">
                                                 Flat No <span class="red">*</span>
                                             </label>
@@ -188,8 +188,8 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
+                                        </div> -->
+                                        <!-- <div class="form-group row">
                                             <label class="col-md-4">
                                                 Flat Type <span class="red">*</span>
                                             </label>
@@ -201,8 +201,8 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
+                                        </div> -->
+                                        <!-- <div class="form-group row">
                                             <label class="col-md-4">
                                                 Facing <span class="red">*</span>
                                             </label>
@@ -214,8 +214,8 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
+                                        </div> -->
+                                        <!-- <div class="form-group row">
                                             <label class="col-md-4">
                                                 Floor <span class="red">*</span>
                                             </label>
@@ -227,8 +227,8 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
+                                        </div> -->
+                                        <!-- <div class="form-group row">
                                             <label class="col-md-4">
                                                 Saleable Area <span class="red">*</span>
                                             </label>
@@ -240,8 +240,8 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
+                                        </div> -->
+                                        <!-- <div class="form-group row">
                                             <label class="col-md-4">
                                                 Plinth Area <span class="red">*</span>
                                             </label>
@@ -253,8 +253,8 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
+                                        </div> -->
+                                        <!-- <div class="form-group row">
                                             <label class="col-md-4">
                                                 Comn Area <span class="red">*</span>
                                             </label>
@@ -266,8 +266,8 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
+                                        </div> -->
+                                        <!-- <div class="form-group row">
                                             <label class="col-md-4">
                                                 UDS Area <span class="red">*</span>
                                             </label>
@@ -279,8 +279,8 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
+                                        </div> -->
+                                        <!-- <div class="form-group row">
                                             <label class="col-md-4">
                                                 Mail Id <span class="red">*</span>
                                             </label>
@@ -292,7 +292,7 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="form-group row">
                                             <label class="col-md-4">
                                                 Own Fund / Bank<span class="red">*</span>

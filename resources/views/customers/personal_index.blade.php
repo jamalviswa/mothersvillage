@@ -1,7 +1,5 @@
 @extends('layouts.admin')
 @section('content')
-<?php if ($results->count() > '0') {
-                        ?>
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
     <!-- BEGIN: Subheader -->
     <div class="m-subheader ">
@@ -12,7 +10,7 @@
                 </h3>
             </div>
             <div>
-                <a href="{{route('payments.add')}}" rel="tooltip" title="" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle" data-original-title="Add Category">
+                <a href="{{route('customers.personal_add')}}" rel="tooltip" title="" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle" data-original-title="Add New">
                     <i class="la la-plus"></i>
                 </a>
             </div>
@@ -31,14 +29,14 @@
                         <div class="form-group">
                             <button class="btn btn-primary m-btn m-btn--air m-btn--custom" type="submit" name="search"><i class="fa fa-search"></i></button>
                             <?php if (isset($_REQUEST['search'])) { ?>
-                                <a class="btn btn-danger m-btn m-btn--air m-btn--custom" href="{{route('payments.index')}}"><i class="fa fa-times"></i></a>
+                                <a class="btn btn-danger m-btn m-btn--air m-btn--custom" href="{{route('customers.personal_index')}}"><i class="fa fa-times"></i></a>
                             <?php } ?>
                         </div>
-                        <div class="btnright">
+                        <!-- <div class="btnright">
                        
-                            <button type="button" class="btn m-1 btn-warning endbtn ">CSV</button>
-                            <button type="button" class="btn  m-1 btn-success    endbtn">Print</button>
-                        </div>
+                            <button type="button" class="btn m-1 btn-warning ">CSV</button>
+                            <button type="button" class="btn  m-1  btn-info  ">Print</button>
+                        </div> -->
                     </form>
                 </div>
             </div>
@@ -48,42 +46,55 @@
                 <!--begin::Section-->
                 <div class="m-section">
                     <div class="m-section__content">
-                        <?php //if ($results->count() > '0') {
-                        ?>
-                            <div class="table-responsive">
-                                <table class="table m-table m-table--head-bg-brand">
-                                    <thead>
-                                        <tr>
-                                            <th> # </th>
-                                            <th>Name</th>
-                                            <th>Description</th>
-                                            <th class="text-center">Status</th>
-                                            <th class="text-center">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
+                        <?php if ($results->count() > '0') { ?>
+                        <div class="table-responsive">
+                            <table class="table m-table m-table--head-bg-brand">
+                                <thead>
+                                    <tr>
+                                        <th> # </th>
+                                        <th>Profile</th>
+                                        <th>Applicant Name</th>
+                                        <th>Father/Spouse Name</th>
+                                        <th>Age</th>
+                                        <th>email</th>
+                                        <th>Gender</th>
+                                        <th>Mobile Number</th>
+                                        <th>Occupation</th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
                                         $i = ($results->currentPage() > 1) ? $results->currentPage() * $results->perpage() : $results->currentPage();
                                         foreach ($results as $result) {
-                                        ?>
-                                            <tr>
-                                                <td width="5%">{{ $i }}</td>
-                                                <td>{{ $result->name }}</td>
-                                                <td>{{ $result->description }}</td>
-                                                <td class="text-center">
-                                                    <a rel="tooltip" title='Update Status' href="javascript:;" data-status="<?php echo ($result['status']) ?>" data-id="<?php echo $result['customer_id']; ?>" data-toggle="modal" data-target="#update-status" class="btn btn-secondary m-btn m-btn--air m-btn--custom btn-sm btn-<?php echo $result['status'] ?>">
-                                                        {{ $result['status'] }}
-                                                    </a>
+                                    ?>
+                                    <tr>
+                                        <td width="5%">{{ $i }}</td>
+                                        <td class="text-center">
+                                            @if(!empty($result['photo']))
+                                                <a href="{{URL::to('/files/customers/'.$result['photo'].'')}}"  target="_blank" ><img src="{{URL::to('/files/customers/'.$result['photo'].'')}}" width="50" height="50"/>
+                                                </a>
+                                                @endif
                                                 </td>
+                                        <td>{{ $result->name }}</td>
+                                        <td>{{ $result->fathers_name }}</td>
+                                        <td>{{ $result->age }}</td>
+                                        <td>{{ $result->email }}</td>
+                                        <td>{{ $result->gender }}</td>
+                                        <td>{{ $result->phone }}</td>
+                                        <td>{{ $result->occupation }}</td>
+
+                                               
                                                 <td class="text-center">
                                                     <div class="btn-group">
-                                                        <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="Edit" href="{{ route("payments.edit", $result->payment_id) }}">
+                                                        <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="Edit" href="{{ route("customers.personal_edit", $result->customer_id) }}">
                                                             <i class="fa fa-pencil"></i>
                                                         </a>
-
-                                                        <a rel="tooltip" class="delete btn btn-secondary m-btn m-btn--air m-btn--custom" title="Delete" data-value="{{$result['payment_id']}}" href="{{ route('payments.delete',$result['payment_id']) }}">
+                                                        @if($sessionadmin->adminname == "Admin")
+                                                        <a rel="tooltip" class="delete btn btn-secondary m-btn m-btn--air m-btn--custom" title="Delete" data-value="{{$result['customer_id']}}" href="{{ route('customers.personal_delete',$result['customer_id']) }}">
                                                             <i class="fa fa-trash"></i>
                                                         </a>
+                                                        @endif
                                                     </div>
                                                 </td>
                                             </tr>
@@ -108,14 +119,7 @@
     </div>
     
 </div>
-<script>
-    $('#update-status').on('shown.bs.modal', function(event) {
-        var button = $(event.relatedTarget) // Button that triggered the modal
-        var modal = $(this)
-        modal.find('#category_id').val(button.attr('data-id'));
-        modal.find('#status').val(button.attr('data-status'));
-    });
-</script>
+
 <style>
     .form-control:disabled,
     .form-control[readonly] {
