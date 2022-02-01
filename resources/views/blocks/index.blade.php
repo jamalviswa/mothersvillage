@@ -29,16 +29,8 @@
                                     <input type="text" class="form-control" name="s" placeholder="Search"  @if(isset($_REQUEST['s'])) value="{{ $_REQUEST['s'] }}" @else value="" @endif/>
                                 </div>
                                  <div class="form-group">
-                                <select class="form-control" name="pack">
-                                @php
-                                            $packages = App\Package::where('status','Active')->where('pack','Premium')->get();
-                                            @endphp
-                                            <option value="">Select Pack</option>
-                                            @foreach($packages as $package)
-                                            <option @if(isset($_REQUEST['pack']) && $_REQUEST['pack'] == $package['package_id']) selected  @endif value="{{ $package['package_id'] }}">{{ $package['name'] }}</option>
-                                              @endforeach
-                                            </select>
-                                </select>
+                               
+                               
                                 </div>
                                 <div class="form-group">
                                     <button class="btn btn-primary m-btn m-btn--air m-btn--custom" type="submit" name="search"><i class="fa fa-search"></i></button>
@@ -72,12 +64,12 @@
                                   <?php
                                         $i = ($results->currentPage() > 1) ? $results->currentPage() * $results->perpage() : $results->currentPage();
                                         foreach ($results as $result) {
-                                              $cat=App\Package::where('package_id',$result['pack'])->first();
+                                             
                                            ?>
                                         <tr>
                                             <td>{{ $i }}</td>
                                           
-                                            <td>{{ $cat['name'] }}</td>
+                                            
                                              <td> {{ $result->discount}}</td>
                                              <td>{{ $result->validity}}</td>
                                            <td>
@@ -87,11 +79,11 @@
                                            </td>
                                             <td>
                                                     <div class="btn-group">
-                                                        <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="Edit" href="{{ route("discounts.edit", $result->discount_id) }}">
+                                                        <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="Edit" href="{{ route("blocks.edit", $result->discount_id) }}">
                                                         <i class="fa fa-pencil"></i>
                                                         </a>
                                                         
-                                                        <a rel="tooltip"  class="delete btn btn-secondary m-btn m-btn--air m-btn--custom" title="Delete" data-value="{{$result['discount_id']}}" href="{{ route('discounts.delete',$result['discount_id']) }}">
+                                                        <a rel="tooltip"  class="delete btn btn-secondary m-btn m-btn--air m-btn--custom" title="Delete" data-value="{{$result['discount_id']}}" href="{{ route('blocks.delete',$result['discount_id']) }}">
                                                         <i class="fa fa-trash"></i>
                                                         </a>
                                                     </div>
@@ -116,35 +108,7 @@
             </div>
         </div>
     </div>
-     <div class="modal fade" id="update-status" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Update Discount Status</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                </div>
-                <form method="post" class="validation_form" action="{{ route('discounts.updateStatus') }}">
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <select class="form-control validate[required]" id="status" name="status">
-                                <option value="">--Select--</option>
-                                <option value="Active">Active</option>
-                                <option value="Inactive">Inactive</option>
-                                
-                            </select>
-                            <input type="hidden" id="discount_id" name="discount_id"/>
-                            
-                            <?php echo csrf_field(); ?>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Update</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+     
 </div>
  <script>
         $('#update-status').on('shown.bs.modal', function (event) {

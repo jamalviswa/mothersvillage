@@ -32,7 +32,7 @@ class BlocksController extends Controller {
         
         $result = $result->paginate(10);
         
-        return view('/discounts/index', [
+        return view('/blocks/index', [
             'results' => $result
         ]);      
     }
