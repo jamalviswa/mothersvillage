@@ -133,7 +133,7 @@
 
                                                 <div class="row">
                                                     <div class="col-2">
-                                                        <input value="{{ old('phone') }}" type="text" autocomplete="off" class="form-control" name="phone" max="3"/>
+                                                        <input value="{{ old('phone') }}" type="text" autocomplete="off" class="form-control inptwo" name="phone" max="3"/>
                                                     </div>
                                                     <div class="col-10">
                                                         <input value="{{ old('phone') }}" type="tel" autocomplete="off" class="form-control" name="phone" />
@@ -414,6 +414,9 @@
         margin: 8px 0 9px 6px;
         color: #fff;
     }
+    .inptwo {
+    width: 53px;
+}
 </style>
 
 @endsection
