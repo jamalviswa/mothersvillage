@@ -6,140 +6,88 @@
         <div class="d-flex align-items-center">
             <div class="mr-auto">
                 <h3 class="m-subheader__title m-subheader__title--separator">
-                   Phase List
+                    Phase List
                 </h3>
-            </div>  
-        </div>
-    </div> 
-    <!-- END: Subheader --> 
-    <div class="hi">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="m-portlet">
-                    <div class="m-portlet__body">
-                        <h4 class="m-subheader__title m-subheader__title--separator">
-                            Add 
-                        </h4>
-                        <div class="m-section__content">
-                            <form method="post" action="{{ route('masters.phase_store') }}" id="upload" class="validation_form" enctype="multipart/form-data">
-                                @csrf
-                                <div class="form-group row">
-                                    <label class="col-md-5">
-                                        Phase Name <span class="red">*</span>
-                                    </label>
-                                    <div class="col-md-7">
-                                        <input value="{{ old('phase_name') }}" type="text" autocomplete="off" class="form-control" name="phase_name" />
-                                        @error('phase_name')
-                                            <span class="invalid-feedback" role="alert">
-                                                {{ $message }}
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="form-group text-right">
-                                    <button type="submit" name="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
-                                        Submit
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>     
             </div>
-            <div class="col-md-8">
-                <div class="m-content">
-                    <div class="m-portlet">
-                        <div class="m-portlet__body">
-                            <!--begin::Section-->
-                            <div class="m-section__content">
-                                <form method="GET" class="search-form form-inline" action="#">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" name="s" placeholder="Search"  @if(isset($_REQUEST['s'])) value="{{ $_REQUEST['s'] }}" @else value="" @endif/>
-                                    </div>
-                                    <div class="form-group">
-                                        <button class="btn btn-primary m-btn m-btn--air m-btn--custom" type="submit" name="search"><i class="fa fa-search"></i></button>
-                                        <?php if (isset($_REQUEST['search'])) { ?>
-                                        <a class="btn btn-danger m-btn m-btn--air m-btn--custom" href="{{route('masters.phase_index')}}"><i class="fa fa-times"></i></a>
-                                        <?php } ?>
-                                    </div>
-                                </form>
-                            </div>
+            <div>
+                <a href="{{route('masters.phase_add')}}" rel="tooltip" title="" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle" data-original-title="Add New">
+                    <i class="la la-plus"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- END: Subheader -->
+    <div class="m-content">
+        <div class="m-portlet">
+            <div class="m-portlet__body">
+                <!--begin::Section-->
+                <div class="m-section__content    ">
+                    <form method="GET" class="search-form form-inline " action="#">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="s" placeholder="Search" @if(isset($_REQUEST['s'])) value="{{ $_REQUEST['s'] }}" @else value="" @endif />
                         </div>
-                    </div>
-                    <div class="m-portlet">
-                        <div class="m-portlet__body">
-                            <!--begin::Section-->
-                            <div class="m-section">
-                                <div class="m-section__content">
-                                    <?php  if ($results->count() > '0') { ?>
-                                        <div class="table-responsive">
-                                            <table class="table m-table m-table--head-bg-brand">
-                                                <thead>
-                                                    <tr>
-                                                        <th> # </th>
-                                                        <th> Phase Name</th>
-                                                        <th class="text-center">Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php
-                                                        $i = ($results->currentPage() > 1) ? $results->currentPage() * $results->perpage() : $results->currentPage();
-                                                        foreach ($results as $result) {
-                                                    ?>
-                                                    <tr>
-                                                        <td width="5%">{{ $i }}</td>
-                                                        <td>{{ $result->phase_name }}</td>
-                                                        <td class="text-center">
-                                                            <div class="btn-group">
-                                                                <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="View" href="{{ route("masters.phase_view", $result->phase_id) }}">
-                                                                    <i class="fa fa-eye"></i>
-                                                                </a>
-                                                                <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="Edit" href="{{ route("masters.phase_edit", $result->phase_id) }}">
-                                                                    <i class="fa fa-pencil"></i>
-                                                                </a>
-                                                                <a class="delete btn btn-secondary m-btn m-btn--air m-btn--custom" title="Delete" href="{{ route("masters.phase_delete", $result->phase_id) }}">
-                                                                    <i class="fa fa-trash"></i>
-                                                                </a>
-                                                            </div>   
-                                                        </td>                                             
-                                                    </tr>
-                                                    <?php
-                                                        $i++;
-                                                        } 
-                                                    ?>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        {!! $results->appends(\Request::except('page'))->render() !!}
-                                            <!--@include('pagination.default', ['paginator' => $results])-->
-                                        <?php } else { ?>
-                                        <div class="text-center">
-                                            <img src="{{ asset('admin/img/no-record.png') }}">
-                                        </div>
-                                    <?php } ?>
-                                </div>
-                            </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary m-btn m-btn--air m-btn--custom" type="submit" name="search"><i class="fa fa-search"></i></button>
+                            <?php if (isset($_REQUEST['search'])) { ?>
+                                <a class="btn btn-danger m-btn m-btn--air m-btn--custom" href="{{route('masters.phase_index')}}"><i class="fa fa-times"></i></a>
+                            <?php } ?>
                         </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="m-portlet">
+            <div class="m-portlet__body">
+                <!--begin::Section-->
+                <div class="m-section">
+                    <div class="m-section__content">
+                        <?php if ($results->count() > '0') { ?>
+                        <div class="table-responsive">
+                            <table class="table m-table m-table--head-bg-brand">
+                                <thead>
+                                    <tr>
+                                        <th> # </th>
+                                        <th>Phase Name</th>                              
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                        $i = ($results->currentPage() > 1) ? $results->currentPage() * $results->perpage() : $results->currentPage();
+                                        foreach ($results as $result) {
+                                    ?>
+                                    <tr>
+                                        <td width="5%">{{ $i }}</td>          
+                                        <td>{{ $result->phase_name }}</td>
+                                        <td class="text-center">
+                                            <div class="btn-group">
+                                                <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="Edit" href="{{ route("masters.phase_edit", $result->phase_id) }}">
+                                                    <i class="fa fa-pencil"></i>
+                                                </a>
+                                                <a rel="tooltip" class="delete btn btn-secondary m-btn m-btn--air m-btn--custom" title="Delete" data-value="{{$result['phase_id']}}" href="{{ route('masters.phase_delete',$result['phase_id']) }}">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>    
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                        $i++;
+                                        }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        {!! $results->appends(\Request::except('page'))->render() !!}
+                        <!--@include('pagination.default', ['paginator' => $results])-->
+                        <?php } else { ?>
+                        <div class="text-center">
+                            <img src="{{ asset('admin/img/no-record.png') }}">
+                        </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div>   
 </div>
-    
-    
-    
-<style>
-    .form-control:disabled, .form-control[readonly] {
-        background-color: #F26C4F;
-        opacity: 1;
-        color: #fff;
-        text-align: center;
-        padding: 11px !important;
-        font-size: 20px;
-    }
-    .hi{
-        margin:0 20px;
-    }
-</style>
 @endsection
