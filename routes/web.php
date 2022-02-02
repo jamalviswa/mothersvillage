@@ -53,7 +53,13 @@ Route::get('blocks/edit/{id}', 'BlocksController@edit')->name('blocks.edit');
 Route::post('blocks/update/{id}', 'BlocksController@update')->name('blocks.update');
 Route::get('blocks/delete/{id}', 'BlocksController@delete')->name('blocks.delete');
    
- 
+Route::any('masters/phase/index', 'MastersController@phase_index')->name('masters.phase_index');
+Route::get('masters/phase/add', 'MastersController@phase_add')->name('masters.phase_add');
+Route::get('masters/phase/edit/{id}', 'MastersController@phase_edit')->name('masters.phase_edit');
+Route::get('masters/phase/view/{id}', 'MastersController@phase_view')->name('masters.phase_view');
+Route::post('masters/phase/store', 'MastersController@phase_store')->name('masters.phase_store');
+Route::post('masters/phase/update/{id}', 'MastersController@phase_update')->name('masters.phase_update');
+Route::get('masters/phase/delete/{id}', 'MastersController@phase_delete')->name('masters.phase_delete');
 
 
 

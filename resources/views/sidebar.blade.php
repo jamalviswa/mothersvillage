@@ -21,7 +21,7 @@
                     <span class="m-menu__link-title">
                         <span class="m-menu__link-wrap">
                             <span class="m-menu__link-text">
-                                Customer Details
+                                CUSTOMER DETAILS
                             </span>
                         </span>
                     </span>
@@ -38,7 +38,7 @@
                                     <span class="m-menu__link-title">
                                         <span class="m-menu__link-wrap">
                                             <span class="m-menu__link-text">
-                                                Personal Details
+                                                PERSONAL DETAILS
                                             </span>
                                         </span>
                                     </span>
@@ -53,7 +53,7 @@
                                     <span class="m-menu__link-title">
                                         <span class="m-menu__link-wrap">
                                             <span class="m-menu__link-text">
-                                                Official Details
+                                                DOCUMENT DETAILS
                                             </span>
                                         </span>
                                     </span>
@@ -71,7 +71,7 @@
                     <span class="m-menu__link-title">
                         <span class="m-menu__link-wrap">
                             <span class="m-menu__link-text">
-                                PAYMENT DETAILS
+                                COST DETAILS
                             </span>
                         </span>
                     </span>
@@ -92,6 +92,47 @@
                     </span>
                 </a>
             </li>
+
+
+            <li class="m-menu__item  m-menu__item--submenu m-menu__item--rel"  data-menu-submenu-toggle="click" aria-haspopup="true">
+                <a href="" class="m-menu__link @if(($controller=='MastersController' && $action=='personal_index') || 
+                    ($controller=='MastersController' && $action=='personal_view') || 
+                    ($controller=='MastersController' && $action=='personal_edit') || 
+                    ($controller=='MastersController' && $action=='personal_add') )   active @endif m-menu__link m-menu__toggle">
+                    <i class="m-menu__link-icon flaticon-users"></i>
+                    <span class="m-menu__link-title">
+                        <span class="m-menu__link-wrap">
+                            <span class="m-menu__link-text">
+                               MASTER
+                            </span>
+                        </span>
+                    </span>
+                </a>
+                <div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--left m-menu__submenu--pull">
+                    <span class="m-menu__arrow m-menu__arrow--adjust"></span>
+                        <ul class="m-menu__subnav">
+                            <li class="m-menu__item " aria-haspopup="true" >
+                                <a  href="{{route('masters.phase_index')}}" class="m-menu__link @if(($controller=='MastersController' && $action=='phase_index') || 
+                                    ($controller=='MastersController' && $action=='phase_view') || 
+                                    ($controller=='MastersController' && $action=='phase_edit') || 
+                                    ($controller=='MastersController' && $action=='phase_add') )  active @endif">
+                                    <i class="m-menu__link-icon flaticon-users"></i>
+                                    <span class="m-menu__link-title">
+                                        <span class="m-menu__link-wrap">
+                                            <span class="m-menu__link-text">
+                                                PHASE
+                                            </span>
+                                        </span>
+                                    </span>
+                                </a>
+                            </li>
+                                         
+                        </ul>
+                </div>
+            </li>
+
+
+            
             <li class="m-menu__item " aria-haspopup="true" >
                 <a href="<?php echo url('/adminusers/logout'); ?>" class="m-menu__link">
                     <i class="m-menu__link-icon flaticon-logout"></i>
