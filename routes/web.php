@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
   | and give it the controller to call when that URI is requested.
   |
  */
+
 Route::resource('my', 'MyController');
 Route::any('/', 'AdminusersController@login');
 Route::any('/admin', 'AdminusersController@login');
@@ -45,22 +46,31 @@ Route::get('payments/edit/{id}', 'PaymentsController@edit')->name('payments.edit
 Route::post('payments/update/{id}', 'PaymentsController@update')->name('payments.update');
 Route::get('payments/delete/{id}', 'PaymentsController@delete')->name('payments.delete');
 Route::get('payments/view/{id}', 'PaymentsController@view')->name('payments.view');
- 
+
 Route::any('blocks/index', 'BlocksController@index')->name('blocks.index');
 Route::get('blocks/add', 'BlocksController@add')->name('blocks.add');
 Route::post('blocks/store', 'BlocksController@store')->name('blocks.store');
 Route::get('blocks/edit/{id}', 'BlocksController@edit')->name('blocks.edit');
 Route::post('blocks/update/{id}', 'BlocksController@update')->name('blocks.update');
 Route::get('blocks/delete/{id}', 'BlocksController@delete')->name('blocks.delete');
-   
+
 Route::any('masters/phase/index', 'MastersController@phase_index')->name('masters.phase_index');
 Route::get('masters/phase/add', 'MastersController@phase_add')->name('masters.phase_add');
 Route::get('masters/phase/edit/{id}', 'MastersController@phase_edit')->name('masters.phase_edit');
-Route::get('masters/phase/view/{id}', 'MastersController@phase_view')->name('masters.phase_view');
 Route::post('masters/phase/store', 'MastersController@phase_store')->name('masters.phase_store');
 Route::post('masters/phase/update/{id}', 'MastersController@phase_update')->name('masters.phase_update');
-Route::get('masters/phase/delete/{id}', 'MastersController@phase_delete')->name('masters.phase_delete');
 
+Route::any('masters/block/index', 'MastersController@block_index')->name('masters.block_index');
+Route::get('masters/block/add', 'MastersController@block_add')->name('masters.block_add');
+Route::get('masters/block/edit/{id}', 'MastersController@block_edit')->name('masters.block_edit');
+Route::post('masters/block/store', 'MastersController@block_store')->name('masters.block_store');
+Route::post('masters/block/update/{id}', 'MastersController@block_update')->name('masters.block_update');
+
+Route::any('masters/floor/index', 'MastersController@floor_index')->name('masters.floor_index');
+Route::get('masters/floor/add', 'MastersController@floor_add')->name('masters.floor_add');
+Route::get('masters/floor/edit/{id}', 'MastersController@floor_edit')->name('masters.floor_edit');
+Route::post('masters/floor/store', 'MastersController@floor_store')->name('masters.floor_store');
+Route::post('masters/floor/update/{id}', 'MastersController@floor_update')->name('masters.floor_update');
 
 
 

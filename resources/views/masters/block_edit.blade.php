@@ -9,11 +9,11 @@ $requestdatas = (!empty(old())) ? old() : $detail;
         <div class="d-flex align-items-center">
             <div class="mr-auto">
                 <h3 class="m-subheader__title m-subheader__title--separator">
-                    Edit Phase Details
+                    Edit Block Details
                 </h3>
             </div>
             <div>
-                <a href="{{route('masters.phase_index')}}" rel="tooltip" title="" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle" data-original-title="Back to List">
+                <a href="{{route('masters.block_index')}}" rel="tooltip" title="" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle" data-original-title="Back to List">
                     <i class="fa fa-long-arrow-left"></i>
                 </a>
             </div>
@@ -27,18 +27,38 @@ $requestdatas = (!empty(old())) ? old() : $detail;
                     <div class="m-portlet__body">
                         <!--begin::Section-->
                         <div class="m-section">
-                            <form method="post" action="{{ route('masters.phase_update',$detail['phase_id']) }}" class="validation_form" id="upload" enctype="multipart/form-data">
+                            <form method="post" action="{{ route('masters.block_update',$detail['block_id']) }}" class="validation_form" id="upload" enctype="multipart/form-data">
                                 @csrf
                                 <div class="col-md-8 offset-md-2">
                                     <div class="m-section__content">
                                         <div id="err"></div>
                                         <div class="form-group row">
                                             <label class="col-md-5">
-                                                Phase Name <span class="red">*</span>
+                                                Select Phase <span class="red">*</span>
                                             </label>
                                             <div class="col-md-7">
-                                                <input value="{{ $requestdatas['phase_name'] }}" type="text" autocomplete="off" class="form-control" name="phase_name" />
-                                                @error('phase_name')
+                                                <select class="form-control" name="phase">
+                                                    @php
+                                                    $phases = App\Phase::where('status','Active')->get();
+                                                    @endphp
+                                                    @foreach($phases as $phase)
+                                                    <option {{ $requestdatas['phase_id'] == $phase['phase_id'] ? "selected" : "" }} value="{{ $phase['phase_id'] }}">{{ $phase['phase_name'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('phase')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-5">
+                                                Block Name <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-7">
+                                                <input value="{{ $requestdatas['block_name'] }}" type="text" autocomplete="off" class="form-control" name="block_name" />
+                                                @error('block_name')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>

@@ -125,7 +125,7 @@
                                 </a>
                             </li>
                             <li class="m-menu__item" aria-haspopup="true" >
-                                <a  href="" class="m-menu__link @if(($controller=='MastersController' && $action=='block_index') || 
+                                <a  href="{{route('masters.block_index')}}" class="m-menu__link @if(($controller=='MastersController' && $action=='block_index') || 
                                     ($controller=='MastersController' && $action=='block_add') )  active @endif">
                                     <i class="m-menu__link-icon flaticon-users"></i>
                                     <span class="m-menu__link-title">
