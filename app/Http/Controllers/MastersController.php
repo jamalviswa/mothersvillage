@@ -14,6 +14,8 @@ use DB;
 use Redirect;
 use App\Phase;
 use App\Block;
+use App\Floor;
+use App\Flattype;
 
 class MastersController extends Controller
 {
@@ -136,7 +138,7 @@ class MastersController extends Controller
         return \Redirect::route('masters.block_index', []);
     }
 
-    //Phase Details edit function
+    //Block Details edit function
 
     public function block_edit($id = null)
     {
@@ -161,4 +163,236 @@ class MastersController extends Controller
         Session::flash('alert-class', 'success');
         return \Redirect::route('masters.block_index', []);
     }
+
+    //Floor Details index function
+
+    public function floor_index()
+    {
+        $sessionadmin = Parent::checkadmin();
+        $result = Floor::where('status', '<>', 'Trash')->orderBy('floor_id', 'desc');
+        if (!empty($_REQUEST['s'])) {
+            $s = $_REQUEST['s'];
+            $result->where(function ($query) use ($s) {
+                $query->where('floor_name', 'LIKE', "%$s%");
+            });
+        }
+        $result = $result->paginate(10);
+        return view('/masters/floor_index', [
+            'results' => $result
+        ]);
+    }
+
+    //Floor Details add function
+
+    public function floor_add()
+    {
+        $sessionadmin = Parent::checkadmin();
+        return view('masters/floor_add', []);
+    }
+    public function floor_store(Request $request)
+    {
+        $sessionadmin = Parent::checkadmin();
+        $check = $this->validate($request, [
+            'floor_name' => ['required', Rule::unique('floors')->where(function ($query) use ($request) {
+                return $query->where('floor_name', $request->floor_name)->where('status', '<>', 'Trash');
+            })],
+        ]);
+        $data = new Floor();
+        $data->floor_name = $request->floor_name;
+        $data->created_date = date('Y-m-d H:i:s');
+        $data->status = "Active";
+        $data->save();
+        Session::flash('message', 'Floor Details Added!');
+        Session::flash('alert-class', 'success');
+        return \Redirect::route('masters.floor_index', []);
+    }
+
+    //Floor Details edit function
+
+    public function floor_edit($id = null)
+    {
+        $sessionadmin = Parent::checkadmin();
+        $detail = Floor::where('floor_id', '=', $id)->first();
+        return view('masters/floor_edit', ['detail' => $detail]);
+    }
+    public function floor_update(Request $request, $id = null)
+    {
+        $check = $this->validate($request, [
+            'floor_name' => ['required', Rule::unique('floors')->where(function ($query) use ($request, $id) {
+                return $query->where('floor_name', $request->floor_name)->where('floor_id', '<>', $id)->where('status', '<>', 'Trash');
+            })],
+        ]);
+        $data = Floor::findOrFail($id);
+        $data->floor_name = $request->floor_name;
+        $data->modified_date = date('Y-m-d H:i:s');
+        $data->save();
+        Session::flash('message', 'Floor Details Updated!');
+        Session::flash('alert-class', 'success');
+        return \Redirect::route('masters.floor_index', []);
+    }
+
+    //Flat Type Details index function
+
+    public function flattype_index()
+    {
+        $sessionadmin = Parent::checkadmin();
+        $result = Flattype::where('status', '<>', 'Trash')->orderBy('flattype_id', 'desc');
+        if (!empty($_REQUEST['s'])) {
+            $s = $_REQUEST['s'];
+            $result->where(function ($query) use ($s) {
+                $query->where('flattype_name', 'LIKE', "%$s%");
+            });
+        }
+        $result = $result->paginate(10);
+        return view('/masters/flattype_index', [
+            'results' => $result
+        ]);
+    }
+
+    //Flat Type Details add function
+
+    public function flattype_add()
+    {
+        $sessionadmin = Parent::checkadmin();
+        return view('masters/flattype_add', []);
+    }
+    public function flattype_store(Request $request)
+    {
+        $sessionadmin = Parent::checkadmin();
+        $check = $this->validate($request, [
+            'flattype_name' => ['required', Rule::unique('flattypes')->where(function ($query) use ($request) {
+                return $query->where('flattype_name', $request->flattype_name)->where('status', '<>', 'Trash');
+            })],
+        ]);
+        $data = new Flattype();
+        $data->flattype_name = $request->flattype_name;
+        $data->created_date = date('Y-m-d H:i:s');
+        $data->status = "Active";
+        $data->save();
+        Session::flash('message', 'Flat Type Details Added!');
+        Session::flash('alert-class', 'success');
+        return \Redirect::route('masters.flattype_index', []);
+    }
+
+    //Flat Type Details edit function
+
+    public function flattype_edit($id = null)
+    {
+        $sessionadmin = Parent::checkadmin();
+        $detail = Flattype::where('flattype_id', '=', $id)->first();
+        return view('masters/flattype_edit', ['detail' => $detail]);
+    }
+    public function flattype_update(Request $request, $id = null)
+    {
+        $check = $this->validate($request, [
+            'flattype_name' => ['required', Rule::unique('flattypes')->where(function ($query) use ($request, $id) {
+                return $query->where('flattype_name', $request->flattype_name)->where('flattype_id', '<>', $id)->where('status', '<>', 'Trash');
+            })],
+        ]);
+        $data = Flattype::findOrFail($id);
+        $data->flattype_name = $request->flattype_name;
+        $data->modified_date = date('Y-m-d H:i:s');
+        $data->save();
+        Session::flash('message', 'Flat Type Details Updated!');
+        Session::flash('alert-class', 'success');
+        return \Redirect::route('masters.flattype_index', []);
+    }
+
+      //Flat Number Details index function
+
+      public function flatnumber_index()
+      {
+          $sessionadmin = Parent::checkadmin();
+          $result = Flatnumber::where('status', '<>', 'Trash')->orderBy('flatnumber_id', 'desc');
+          if (!empty($_REQUEST['s'])) {
+              $s = $_REQUEST['s'];
+              $result->where(function ($query) use ($s) {
+                  $query->where('flatnumber', 'LIKE', "%$s%");
+              });
+          }
+          if (!empty($_REQUEST['phase'])) {
+              $phase = $_REQUEST['phase'];
+              $result->where(function ($query) use ($phase) {
+                  $query->where('phase_id', 'LIKE', "%$phase%");
+              });
+          }
+          if (!empty($_REQUEST['block'])) {
+            $block = $_REQUEST['block'];
+            $result->where(function ($query) use ($block) {
+                $query->where('block_id', 'LIKE', "%$block%");
+            });
+        }
+        if (!empty($_REQUEST['floor'])) {
+            $floor = $_REQUEST['floor'];
+            $result->where(function ($query) use ($floor) {
+                $query->where('floor_id', 'LIKE', "%$floor%");
+            });
+        }
+        if (!empty($_REQUEST['flattype'])) {
+            $flattype = $_REQUEST['flattype'];
+            $result->where(function ($query) use ($flattype) {
+                $query->where('flattype_id', 'LIKE', "%$flattype%");
+            });
+        }
+          $result = $result->paginate(10);
+          return view('/masters/block_index', [
+              'results' => $result
+          ]);
+      }
+  
+      //Flat Number Details add function
+  
+      public function flatnumber_add()
+      {
+          $sessionadmin = Parent::checkadmin();
+          return view('masters/flatnumber_add', []);
+      }
+      public function flatnumber_store(Request $request)
+      {
+          $sessionadmin = Parent::checkadmin();
+          $check = $this->validate($request, [
+              'phase' => ['required'],
+              'block' => ['required'],
+              'floor' => ['required'],
+              'flattype' => ['required'],
+              'flatnumber' => ['required', Rule::unique('flatnumbers')->where(function ($query) use ($request) {
+                  return $query->where('flatnumber', $request->flatnumber)->where('status', '<>', 'Trash');
+              })],
+          ]);
+          $data = new Flatnumber();
+          $data->phase_id = $request->phase;
+          $data->block_name = $request->block_name;
+          $data->created_date = date('Y-m-d H:i:s');
+          $data->status = "Active";
+          $data->save();
+          Session::flash('message', 'Block Details Added!');
+          Session::flash('alert-class', 'success');
+          return \Redirect::route('masters.block_index', []);
+      }
+  
+      //Block Details edit function
+  
+      public function block_edit($id = null)
+      {
+          $sessionadmin = Parent::checkadmin();
+          $detail = Block::where('block_id', '=', $id)->first();
+          return view('masters/block_edit', ['detail' => $detail]);
+      }
+      public function block_update(Request $request, $id = null)
+      {
+          $check = $this->validate($request, [
+              'phase' => ['required'],
+              'block_name' => ['required', Rule::unique('blocks')->where(function ($query) use ($request, $id) {
+                  return $query->where('block_name', $request->block_name)->where('block_id', '<>', $id)->where('status', '<>', 'Trash');
+              })],
+          ]);
+          $data = Block::findOrFail($id);
+          $data->phase_id = $request->phase;
+          $data->block_name = $request->block_name;
+          $data->modified_date = date('Y-m-d H:i:s');
+          $data->save();
+          Session::flash('message', 'Block Details Updated!');
+          Session::flash('alert-class', 'success');
+          return \Redirect::route('masters.block_index', []);
+      }
 }

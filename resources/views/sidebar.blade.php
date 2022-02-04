@@ -113,7 +113,8 @@
                         <ul class="m-menu__subnav">
                             <li class="m-menu__item " aria-haspopup="true" >
                                 <a  href="{{route('masters.phase_index')}}" class="m-menu__link @if(($controller=='MastersController' && $action=='phase_index') || 
-                                    ($controller=='MastersController' && $action=='phase_add') )  active @endif">
+                                    ($controller=='MastersController' && $action=='phase_add') ||
+                                    ($controller=='MastersController' && $action=='phase_edit') )  active @endif">
                                     <i class="m-menu__link-icon flaticon-users"></i>
                                     <span class="m-menu__link-title">
                                         <span class="m-menu__link-wrap">
@@ -126,7 +127,8 @@
                             </li>
                             <li class="m-menu__item" aria-haspopup="true" >
                                 <a  href="{{route('masters.block_index')}}" class="m-menu__link @if(($controller=='MastersController' && $action=='block_index') || 
-                                    ($controller=='MastersController' && $action=='block_add') )  active @endif">
+                                    ($controller=='MastersController' && $action=='block_add')   ||
+                                    ($controller=='MastersController' && $action=='block_edit') )  active @endif">
                                     <i class="m-menu__link-icon flaticon-users"></i>
                                     <span class="m-menu__link-title">
                                         <span class="m-menu__link-wrap">
@@ -138,8 +140,9 @@
                                 </a>
                             </li>
                             <li class="m-menu__item" aria-haspopup="true" >
-                                <a  href="" class="m-menu__link @if(($controller=='MastersController' && $action=='floor_index') || 
-                                    ($controller=='MastersController' && $action=='floor_add') )  active @endif">
+                                <a  href="{{route('masters.floor_index')}}" class="m-menu__link @if(($controller=='MastersController' && $action=='floor_index') || 
+                                    ($controller=='MastersController' && $action=='floor_add') ||
+                                    ($controller=='MastersController' && $action=='floor_edit') )  active @endif">
                                     <i class="m-menu__link-icon flaticon-users"></i>
                                     <span class="m-menu__link-title">
                                         <span class="m-menu__link-wrap">
@@ -151,8 +154,9 @@
                                 </a>
                             </li>
                             <li class="m-menu__item" aria-haspopup="true" >
-                                <a  href="" class="m-menu__link @if(($controller=='MastersController' && $action=='flattype_index') || 
-                                    ($controller=='MastersController' && $action=='flattype_add') )  active @endif">
+                                <a  href="{{route('masters.flattype_index')}}" class="m-menu__link @if(($controller=='MastersController' && $action=='flattype_index') || 
+                                ($controller=='MastersController' && $action=='flattype_add') ||
+                                    ($controller=='MastersController' && $action=='flattype_edit') )  active @endif">
                                     <i class="m-menu__link-icon flaticon-users"></i>
                                     <span class="m-menu__link-title">
                                         <span class="m-menu__link-wrap">
@@ -164,8 +168,9 @@
                                 </a>
                             </li>
                             <li class="m-menu__item" aria-haspopup="true" >
-                                <a  href="" class="m-menu__link @if(($controller=='MastersController' && $action=='flatnumber_index') || 
-                                    ($controller=='MastersController' && $action=='flatnumber_add') )  active @endif">
+                                <a  href="{{route('masters.flatnumber_index')}}" class="m-menu__link @if(($controller=='MastersController' && $action=='flatnumber_index') || 
+                                    ($controller=='MastersController' && $action=='flatnumber_add') ||
+                                    ($controller=='MastersController' && $action=='flatnumber_edit') )  active @endif">
                                     <i class="m-menu__link-icon flaticon-users"></i>
                                     <span class="m-menu__link-title">
                                         <span class="m-menu__link-wrap">

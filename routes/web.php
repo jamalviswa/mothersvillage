@@ -72,6 +72,18 @@ Route::get('masters/floor/edit/{id}', 'MastersController@floor_edit')->name('mas
 Route::post('masters/floor/store', 'MastersController@floor_store')->name('masters.floor_store');
 Route::post('masters/floor/update/{id}', 'MastersController@floor_update')->name('masters.floor_update');
 
+Route::any('masters/flattype/index', 'MastersController@flattype_index')->name('masters.flattype_index');
+Route::get('masters/flattype/add', 'MastersController@flattype_add')->name('masters.flattype_add');
+Route::get('masters/flattype/edit/{id}', 'MastersController@flattype_edit')->name('masters.flattype_edit');
+Route::post('masters/flattype/store', 'MastersController@flattype_store')->name('masters.flattype_store');
+Route::post('masters/flattype/update/{id}', 'MastersController@flattype_update')->name('masters.flattype_update');
+
+Route::any('masters/flatnumber/index', 'MastersController@flatnumber_index')->name('masters.flatnumber_index');
+Route::get('masters/flatnumber/add', 'MastersController@flatnumber_add')->name('masters.flatnumber_add');
+Route::get('masters/flatnumber/edit/{id}', 'MastersController@flatnumber_edit')->name('masters.flatnumber_edit');
+Route::post('masters/flatnumber/store', 'MastersController@flatnumber_store')->name('masters.flatnumber_store');
+Route::post('masters/flatnumber/update/{id}', 'MastersController@flatnumber_update')->name('masters.flatnumber_update');
+
 
 
 
