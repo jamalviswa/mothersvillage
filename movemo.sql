@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 08, 2022 at 11:08 AM
+-- Generation Time: Feb 08, 2022 at 11:37 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -235,6 +235,28 @@ CREATE TABLE `flatnumbers` (
   `created_date` datetime DEFAULT NULL,
   `modified_date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `flatnumbers`
+--
+
+INSERT INTO `flatnumbers` (`flatnumber_id`, `phase_id`, `block_id`, `floor_id`, `flattype_id`, `flatnumber`, `status`, `created_date`, `modified_date`) VALUES
+(3, 9, 8, 7, 9, '101', 'Active', '2022-02-08 10:18:28', '2022-02-08 10:26:35'),
+(4, 9, 8, 7, 8, '110', 'Active', '2022-02-08 10:26:58', NULL),
+(5, 9, 8, 7, 8, '111', 'Active', '2022-02-08 10:27:12', NULL),
+(6, 9, 8, 7, 10, '120', 'Active', '2022-02-08 10:27:31', NULL),
+(7, 9, 8, 7, 12, '105', 'Active', '2022-02-08 10:28:08', NULL),
+(8, 9, 8, 7, 12, '114', 'Active', '2022-02-08 10:28:23', NULL),
+(9, 9, 8, 7, 9, '102', 'Active', '2022-02-08 10:28:46', NULL),
+(10, 9, 8, 7, 9, '103', 'Active', '2022-02-08 10:29:07', NULL),
+(11, 9, 8, 7, 9, '104', 'Active', '2022-02-08 10:29:51', NULL),
+(12, 9, 8, 7, 9, '108', 'Active', '2022-02-08 10:30:17', NULL),
+(13, 9, 8, 7, 9, '109', 'Active', '2022-02-08 10:30:46', NULL),
+(14, 9, 8, 7, 9, '119', 'Active', '2022-02-08 10:32:17', NULL),
+(15, 9, 8, 7, 9, '118', 'Active', '2022-02-08 10:32:28', NULL),
+(16, 9, 8, 7, 9, '117', 'Active', '2022-02-08 10:32:36', NULL),
+(17, 9, 8, 7, 9, '113', 'Active', '2022-02-08 10:32:47', '2022-02-08 10:35:21'),
+(18, 9, 8, 7, 9, '112', 'Active', '2022-02-08 10:32:55', NULL);
 
 -- --------------------------------------------------------
 
@@ -663,7 +685,7 @@ ALTER TABLE `family_details`
 -- AUTO_INCREMENT for table `flatnumbers`
 --
 ALTER TABLE `flatnumbers`
-  MODIFY `flatnumber_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `flatnumber_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `flattypes`
