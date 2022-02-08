@@ -47,50 +47,49 @@
                 <div class="m-section">
                     <div class="m-section__content">
                         <?php if ($results->count() > '0') { ?>
-                        <div class="table-responsive">
-                            <table class="table m-table m-table--head-bg-brand">
-                                <thead>
-                                    <tr>
-                                        <th> # </th>
-                                        <th>User Name</th>
-                                        <th>Profile</th>
-                                        <th>email</th>
-                                        <th>Password</th>
-                                        <th>Admin Type</th>
-                                        <th class="text-center">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
+                            <div class="table-responsive">
+                                <table class="table m-table m-table--head-bg-brand">
+                                    <thead>
+                                        <tr>
+                                            <th> # </th>
+                                            <th>User Name</th>
+                                            <th>Profile</th>
+                                            <th>email</th>
+                                            <th>Password</th>
+                                            <th>Admin Type</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
                                         $i = ($results->currentPage() > 1) ? $results->currentPage() * $results->perpage() : $results->currentPage();
                                         foreach ($results as $result) {
-                                    ?>
-                                    <tr>
-                                        <td width="5%">{{ $i }}</td>
-                                        <td>{{ $result->username }}</td>
-                                        <td>
-                                            @if(!empty($result['profile']))
-                                                <a href="{{URL::to('/files/admin/'.$result['profile'].'')}}"  target="_blank" ><img src="{{URL::to('/files/admin/'.$result['profile'].'')}}" width="50" height="50"/>
-                                                </a>
-                                                @endif
+                                        ?>
+                                            <tr>
+                                                <td width="5%">{{ $i }}</td>
+                                                <td>{{ $result->username }}</td>
+                                                <td>
+                                                    @if(!empty($result['profile']))
+                                                    <a href="{{URL::to('/files/admin/'.$result['profile'].'')}}" target="_blank"><img src="{{URL::to('/files/admin/'.$result['profile'].'')}}" width="50" height="50" />
+                                                    </a>
+                                                    @endif
                                                 </td>
-                                        <td>{{ $result->email }}</td>
-                                        <td>
-                                        {{ $result->password_text }}
-                                        </td>
-                                        <td>
-                                        {{ $result->adminname }}
-                                        </td>
+                                                <td>{{ $result->email }}</td>
+                                                <td>
+                                                    {{ $result->password_text }}
+                                                </td>
+                                                <td>
+                                                    {{ $result->adminname }}
+                                                </td>
                                                 <td class="text-center">
                                                     <div class="btn-group">
-                                                        <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="Edit" href="{{ route("adminusers.subadmin_edit", $result->admin_id) }}">
-                                                            <i class="fa fa-pencil"></i>
+                                                        <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="View" href="{{ route("adminusers.subadmin_view", $result->admin_id) }}">
+                                                            <i class="fa fa-eye"></i>
                                                         </a>
-                                                       
                                                         <a rel="tooltip" class="delete btn btn-secondary m-btn m-btn--air m-btn--custom" title="Delete" data-value="{{$result['admin_id']}}" href="{{ route('adminusers.subadmin_delete',$result['admin_id']) }}">
                                                             <i class="fa fa-trash"></i>
                                                         </a>
-                                                       
+
                                                     </div>
                                                 </td>
                                             </tr>
@@ -113,7 +112,7 @@
             </div>
         </div>
     </div>
-    
+
 </div>
 
 <style>

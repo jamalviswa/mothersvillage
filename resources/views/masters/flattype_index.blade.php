@@ -53,7 +53,8 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $i = ($results->currentPage() > 1) ? $results->currentPage() * $results->perpage() : $results->currentPage();
+                                        //$i = ($results->currentPage() > 1) ? $results->currentPage() * $results->perpage() : $results->currentPage();
+                                        $i = ($results->currentpage() - 1) * $results->perpage() + 1;
                                         foreach ($results as $result) {
                                         ?>
                                             <tr>

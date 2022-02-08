@@ -124,43 +124,22 @@ class AdminusersController extends Controller {
         return \Redirect::route('adminusers.subadmin_index', []); 
     }
 
-    public function subadmin_edit($id = null)
+    public function subadmin_view($id = null)
     {
         $sessionadmin = Parent::checkadmin();
         $detail = Adminuser::where('admin_id', '=', $id)->first();
-        return view('adminusers/subadmin_edit', ['detail' => $detail]);
-    }
-    public function subadmin_update(Request $request, $id = null)
-    {
-        $check= $this->validate($request, [
-            'username' => ['required'],
-            'password' => ['required'],
-            'adminname' => ['required'],
-            'email' => ['required','email','regex:/^\S*$/u',
-            'regex:/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}/',Rule::unique('adminusers')->where(function ($query) use($request, $id) {
-                return $query->where('email', $request->email)->where('admin_id','<>',$id)->where('status','<>', 'Trash');
-            })],
-        ]);
-        $data = Adminuser::findOrFail($id);
-        $data->username = $request->username;
-        $data->email = $request->email;
-        $data->password_text = $request->password;
-        $data->password = md5($request->password);
-        $data->adminname = $request->adminname;
-        if (!empty($request->file('profile'))) {
-            $image = $request->file('profile');
-            $imagename = uniqid() . '.' . $image->getClientOriginalExtension();
-            $destinationPath = public_path('/files/admin/');
-            $chck= $image->move($destinationPath, $imagename);          
-            $data->profile = $imagename;
-        }  
-        $data->modified_date = date('Y-m-d H:i:s'); 
-        $data->save(); 
-        Session::flash('message', 'Sub Admin Details Updated!');
-        Session::flash('alert-class', 'success');
-        return \Redirect::route('adminusers.subadmin_index', []);     
+        return view('adminusers/subadmin_view', ['detail' => $detail]);
     }
 
+    public function subadmin_delete(Request $request, $id = null)
+    {        
+            $data = Adminuser::findOrFail($id);
+            $data->status = 'Trash';
+            $data->save();
+            Session::flash('message', 'Deleted Sucessfully!');
+            Session::flash('alert-class', 'success');
+                return \Redirect::route('adminusers.subadmin_index', []);
+        }
 
 }
 
