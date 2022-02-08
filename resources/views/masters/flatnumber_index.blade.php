@@ -101,7 +101,7 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $i = ($results->currentPage() > 1) ? $results->currentPage() * $results->perpage() : $results->currentPage();
+                                        $i = ($results->currentpage() - 1) * $results->perpage() + 1;
                                         foreach ($results as $result) {
                                             $phase = App\Phase::where('phase_id', $result['phase_id'])->first();
                                             $block = App\Block::where('block_id', $result['block_id'])->first();
