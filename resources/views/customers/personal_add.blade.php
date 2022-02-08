@@ -35,8 +35,8 @@
                                                 Name of the applicant <span class="red">*</span>
                                             </label>
                                             <div class="col-md-7">
-                                                <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
-                                                @error('name')
+                                                <input value="{{ old('applicant_name') }}" type="text" autocomplete="off" class="form-control" name="applicant_name" />
+                                                @error('applicant_name')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
@@ -48,8 +48,8 @@
                                                 Application Number <span class="red">*</span>
                                             </label>
                                             <div class="col-md-7">
-                                                <input value="{{ old('age') }}" type="text" autocomplete="off" class="form-control" name="age" />
-                                                @error('age')
+                                                <input value="{{ old('application_number') }}" type="text" autocomplete="off" class="form-control" name="application_number" />
+                                                @error('application_number')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
@@ -61,21 +61,24 @@
                                                 Date of Application <span class="red">*</span>
                                             </label>
                                             <div class="col-md-7">
-                                                <input value="{{ old('age') }}" type="date" autocomplete="off" class="form-control" name="age" />
-                                                @error('age')
+
+                                                <input value="{{ old('date_of_application') }}" type="text" class="form-control datepicker" name="date_of_application" />
+
+                                                @error('date_of_application')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
                                                 @enderror
                                             </div>
                                         </div>
+
                                         <div class="form-group row">
                                             <label class="col-md-5">
-                                                Name of the co-applicant <span class="red">*</span>
+                                                Name of the co-applicant
                                             </label>
                                             <div class="col-md-7">
-                                                <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
-                                                @error('name')
+                                                <input value="{{ old('co_applicant_name') }}" type="text" autocomplete="off" class="form-control" name="co_applicant_name" />
+                                                @error('co_applicant_name')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
@@ -133,7 +136,7 @@
 
                                                 <div class="row">
                                                     <div class="col-2">
-                                                        <input value="{{ old('phone') }}" type="text" autocomplete="off" class="form-control inptwo" name="phone" max="3"/>
+                                                        <input value="{{ old('phone') }}" type="text" autocomplete="off" class="form-control inptwo" name="phone" max="3" />
                                                     </div>
                                                     <div class="col-10">
                                                         <input value="{{ old('phone') }}" type="tel" autocomplete="off" class="form-control" name="phone" />
@@ -161,7 +164,7 @@
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-md-5">
-                                            Occupation <span class="red">*</span>
+                                            Occupation
                                         </label>
                                         <div class="col-md-7">
                                             <input value="{{ old('occupation') }}" type="text" autocomplete="off" class="form-control" name="occupation" />
@@ -174,7 +177,7 @@
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-md-5">
-                                            Total Years of Experience <span class="red">*</span>
+                                            Total Years of Experience
                                         </label>
                                         <div class="col-md-7">
                                             <input value="{{ old('experience') }}" type="text" autocomplete="off" class="form-control" name="experience" />
@@ -187,12 +190,12 @@
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-md-5">
-                                            Residential/ Permanent Address <span class="red">*</span>
+                                            Residential/ Permanent Address
                                         </label>
                                         <div class="col-md-7">
-                                            <textarea rows="4" class="form-control" name="address"> {{ old('address')}}</textarea>
+                                            <textarea rows="4" class="form-control" name="permanent_address"> {{ old('permanent_address')}}</textarea>
 
-                                            @error('address')
+                                            @error('permanent_address')
                                             <span class="invalid-feedback" role="alert">
                                                 {{ $message }}
                                             </span>
@@ -201,12 +204,12 @@
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-md-5">
-                                            Correspondance/ Present Address <span class="red">*</span>
+                                            Correspondance/ Present Address
                                         </label>
                                         <div class="col-md-7">
-                                            <textarea rows="4" class="form-control" name="address"> {{ old('address')}}</textarea>
+                                            <textarea rows="4" class="form-control" name="present_address"> {{ old('present_address')}}</textarea>
 
-                                            @error('address')
+                                            @error('present_address')
                                             <span class="invalid-feedback" role="alert">
                                                 {{ $message }}
                                             </span>
@@ -215,7 +218,7 @@
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-md-5">
-                                            Annual Income<span class="red">*</span>
+                                            Annual Income
                                         </label>
                                         <div class="col-md-7">
                                             <input value="{{ old('income') }}" type="text" autocomplete="off" class="form-control" name="income" />
@@ -241,7 +244,7 @@
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-md-5">
-                                            Son<span class="red">*</span>
+                                            Son
                                         </label>
                                         <div class="col-md-7">
                                             <div class="marketing_range">
@@ -249,17 +252,27 @@
                                                     <li>
                                                         <div class="row" style="margin-bottom: 12px;">
                                                             <div class="col-md-5">
-                                                                <input class="form-control " required="" name="son_name[]" type="text" autocomplete="off" placeholder="Name" style="width:100%;">
+                                                                <input class="form-control " name="son_name[]" type="text" autocomplete="off" placeholder="Name" style="width:100%;">
                                                             </div>
                                                             <div class="col-md-3">
-                                                                <input class="form-control " required="" name="son_age[]" type="text" autocomplete="off" placeholder="Age" style="width:100%;">
+                                                                <input class="form-control " name="son_age[]" type="text" autocomplete="off" placeholder="Age" style="width:100%;">
                                                             </div>
                                                             <div class="col-md-4">
-                                                                <select class="form-control" name="son_profession[]">
+                                                                <select  class="form-control profession_son" name="son_profession[]">
                                                                     <option value=''>--Select Profession--</option>
-                                                                    <option value="Student">Student</option>
+                                                                    <option value="Children">Children</option>
+                                                                    <option value="Student" id="student">Student</option>
                                                                     <option value="Employee">Employee</option>
                                                                     <option value="others">others</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-5" id="brand_other" style="display:none;margin-top: 12px;">
+
+                                                                <select class="form-control" name="son_school[]">
+                                                                    <option value=''>--Select School--</option>
+                                                                    <option value="MVS">MVS</option>
+                                                                    <option value="Others">Others</option>
+
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -271,7 +284,7 @@
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-md-5">
-                                            Daughter<span class="red">*</span>
+                                            Daughter
                                         </label>
                                         <div class="col-md-7">
                                             <div class="marketing_range">
@@ -279,17 +292,26 @@
                                                     <li>
                                                         <div class="row" style="margin-bottom: 12px;">
                                                             <div class="col-md-5">
-                                                                <input class="form-control " required="" name="daughter_name[]" type="text" autocomplete="off" placeholder="Name" style="width: 100%;">
+                                                                <input class="form-control " name="daughter_name[]" type="text" autocomplete="off" placeholder="Name" style="width: 100%;">
                                                             </div>
                                                             <div class="col-md-3">
-                                                                <input class="form-control " required="" name="daughter_age[]" type="text" autocomplete="off" placeholder="Age" style="width: 100%;">
+                                                                <input class="form-control " name="daughter_age[]" type="text" autocomplete="off" placeholder="Age" style="width: 100%;">
                                                             </div>
                                                             <div class="col-md-4">
-                                                                <select class="form-control" name="daughter_profession[]">
+                                                                <select class="form-control profession_daughter" name="daughter_profession[]">
                                                                     <option value=''>--Select Profession--</option>
-                                                                    <option value="Student">Student</option>
+                                                                    <option value="Children">Children</option>
+                                                                    <option value="Student" id="student">Student</option>
                                                                     <option value="Employee">Employee</option>
                                                                     <option value="others">others</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-5" id="son" style="display:none;margin-top: 12px;">
+                                                                <select class="form-control" name="daughter_school[]">
+                                                                    <option value=''>--Select School--</option>
+                                                                    <option value="MVS">MVS</option>
+                                                                    <option value="Others">Others</option>
+
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -316,68 +338,85 @@
 </div>
 </div>
 <script>
-    $("#marketing_range-add-more").click(function() {
-        $(".marketing_range_list").append('<li class="added-li"><div class="row" style="margin-bottom: 12px;"><div class="col-md-5"><input required="" style="width: 100%;" class="form-control " name="son_name[]" type="text" autocomplete="off" placeholder="Name"></div> <div class="col-md-3"><input class="form-control " required=""  name="son_age[]" type="text" autocomplete="off" placeholder="Age" style="width: 100%;"></div> <div class="col-md-4"><select class="form-control" name="son_profession[]"><option value="">--Select Profession--</option><option value="Student">Student</option><option value="Employee">Employee</option></select></div></div><a class="btn btn-danger removebtn" style="margin: 0px;margin-bottom: 5px;" href="#" onclick="parentNode.parentNode.removeChild(parentNode)">-</a></li>');
-    });
+    // $("#marketing_range-add-more").click(function() {
+    //     $(".marketing_range_list").append('<li class="added-li"><div class="row" style="margin-bottom: 12px;"><div class="col-md-4"><input style="width: 100%;" class="form-control " name="son_name[]" type="text" autocomplete="off" placeholder="Name"></div><div class="col-md-2"><input class="form-control" name="son_age[]" type="text" autocomplete="off" placeholder="Age" style="width: 100%;"></div><div class="col-md-3"><select class="form-control profession_son" name="son_profession[]"><option value="">Select Profession</option><option value="Children">Children</option><option value="Student" id="student">Student</option><option value="Employee">Employee</option><option value="Others">Others</option></select></div><div class="col-md-5" id="brand_other" style="display:none;margin-top: 12px"><select class="form-control" name="son_school[]"><option value="">Select School</option><option value="MVS">MVS</option><option value="Others">Others</option></select></div></div><a class="btn btn-danger removebtn" style="margin: 0px;margin-bottom: 5px;" href="#" onclick="parentNode.parentNode.removeChild(parentNode)">-</a></li>');
+    // });
     $("#marketing_range-add-mor").click(function() {
-        $(".marketing_range_lis").append('<li class="added-li"><div class="row" style="margin-bottom: 12px;"><div class="col-md-5"><input required="" style="width: 100%;" class="form-control " name="daughter_name[]" type="text" autocomplete="off" placeholder="Name"></div> <div class="col-md-3"><input class="form-control " required=""  name="daughter_age[]" type="text" autocomplete="off" placeholder="Age" style="width: 100%;"></div> <div class="col-md-4"><select class="form-control" name="daughter_profession[]"><option value="">--Select Profession--</option><option value="Student">Student</option><option value="Employee">Employee</option></select></div></div><a class="btn btn-danger removebtn" style="margin: 0px;margin-bottom: 5px;" href="#" onclick="parentNode.parentNode.removeChild(parentNode)">-</a></li>');
+        $(".marketing_range_lis").append('<li class="added-li"><div class="row" style="margin-bottom: 12px;"><div class="col-md-5"><input required="" style="width: 100%;" class="form-control " name="daughter_name[]" type="text" autocomplete="off" placeholder="Name"></div> <div class="col-md-3"><input class="form-control " required=""  name="daughter_age[]" type="text" autocomplete="off" placeholder="Age" style="width: 100%;"></div> <div class="col-md-4"><select class="form-control" name="daughter_profession[]"><option value="">--Select Profession--</option><option value="Children">Children</option><option value="Student">Student</option><option value="Employee">Employee</option><option value="Others">Others</option></select></div></div><a class="btn btn-danger removebtn" style="margin: 0px;margin-bottom: 5px;" href="#" onclick="parentNode.parentNode.removeChild(parentNode)">-</a></li>');
+    });
+
+    $(document).on('click', '#marketing_range-add-more', function () {
+        var html = '<li class="added-li">';
+        html += '<div class="row" style="margin-bottom: 12px;">';
+        html += '<div class="col-md-4">';
+        html += '<input style="width: 100%;" class="form-control " name="son_name[]" type="text" autocomplete="off" placeholder="Name">';
+        html += '</div>';
+        html += '<div class="col-md-2">';
+        html += '<input class="form-control" name="son_age[]" type="text" autocomplete="off" placeholder="Age" style="width: 100%;">';
+        html += '</div>';
+        html += '<div class="col-md-3">';
+        html += '<select class="form-control profession" name="son_profession[]">';
+        html += '<option value="">Select Profession</option>';
+        html += '<option value="Children">Children</option>';
+        html += '<option value="Student" id="Student">Student</option>';
+        html += '<option value="Employee">Employee</option>';
+        html += '<option value="Others">Others</option>';
+        html += '</select>';
+        html += '</div>';
+        html += '<div class="col-md-5" id="brand" style="margin-top: 12px;display:none;">';
+        html += '<select class="form-control" name="son_school[]">';
+        html += '<option value="">Select School</option>';
+        html += '<option value="MVS">MVS</option>';
+        html += '<option value="Others">Others</option>';
+        html += '</select>';
+        html += '</div>';
+        html += '</div>';
+        html += '<a class="btn btn-danger removebtn" style="margin: 0px;margin-bottom: 5px;" href="#" onclick="parentNode.parentNode.removeChild(parentNode)">-</a>';
+        html += '</li>';
+        $('.marketing_range_list').append(html); 
+    });
+    
+
+
+    $('.datepicker').datepicker({
+        format: 'dd-mm-yyyy',
+        autoclose: true,
+        endDate: "today"
+    });
+    jQuery(document).ready(function() {
+        jQuery('.profession_son').change(function() {
+            if (jQuery(this).val() === "Student") {
+                jQuery('#brand_other').show();
+
+            } else {
+                jQuery('#brand_other').hide();
+
+            }
+        });
+    });
+    jQuery(document).ready(function() {
+        jQuery('.profession').change(function() {
+            if (jQuery(this).val() === "Student") {
+                jQuery('#brand').show();
+
+            } else {
+                jQuery('#brand').hide();
+
+            }
+        });
+    });
+    jQuery(document).ready(function() {
+        jQuery('.profession_daughter').change(function() {
+            if (jQuery(this).val() === "Student") {
+                jQuery('#son').show();
+
+            } else {
+                jQuery('#son').hide();
+
+            }
+        });
     });
 </script>
-
-<!-- <div class="form-group row">
-                                            <label class="col-md-5">
-                                                Aadhar Details <span class="red">*</span>
-                                            </label>
-                                            <div class="col-md-7">
-                                                <input value="{{ old('aadhar_number') }}" type="text" autocomplete="off" placeholder="Enter Aadhar Number" class="form-control" name="aadhar_number"  onKeyPress="if(this.value.length==10) return false;" name="program_fee" style="margin-bottom: 8px;" />
-                                                <input type="file"  accept="application/pdf" class="form-control" name="aadhar"  autocomplete="off"/>
-                                                @error('aadhar')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                                @error('aadhar_number')
-                                              <span class="invalid-feedback" role="alert">
-                                                 {{ $message }}
-                                              </span>
-                                             @enderror
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-5">
-                                                Pan Details <span class="red">*</span>
-                                            </label>
-                                            <div class="col-md-7">
-                                                <input value="{{ old('pan_number') }}" type="text" autocomplete="off" placeholder="Enter PAN Number" class="form-control" name="aadhar_number"  onKeyPress="if(this.value.length==10) return false;" name="program_fee" style="margin-bottom: 8px;" />
-                                                <input type="file"  accept="application/pdf" class="form-control" name="pan"  autocomplete="off"/>
-                                                @error('pan')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                                @error('pan_number')
-                                              <span class="invalid-feedback" role="alert">
-                                                 {{ $message }}
-                                              </span>
-                                             @enderror
-                                            </div>
-                                        </div> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <style>
     .radio-sec input {
@@ -414,9 +453,10 @@
         margin: 8px 0 9px 6px;
         color: #fff;
     }
+
     .inptwo {
-    width: 53px;
-}
+        width: 53px;
+    }
 </style>
 
 @endsection

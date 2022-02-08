@@ -92,7 +92,23 @@
                     </span>
                 </a>
             </li>
-
+            @if($sessionadmin->adminname == "Admin")
+            <li class="m-menu__item " aria-haspopup="true" >
+                <a  href="{{route('adminusers.subadmin_index')}}" class="m-menu__link @if(($controller=='AdminusersController' && $action=='subadmin_index') || 
+                    ($controller=='AdminusersController' &&$action=='subadmin_view') || 
+                    ($controller=='AdminusersController' &&$action=='subadmin_edit') || 
+                    ($controller=='AdminusersController' && $action=='subadmin_add') )  active @endif">
+                    <i class="m-menu__link-icon flaticon-file"></i>
+                    <span class="m-menu__link-title">
+                        <span class="m-menu__link-wrap">
+                            <span class="m-menu__link-text">
+                                SUB ADMIN MGNT
+                            </span>
+                        </span>
+                    </span>
+                </a>
+            </li>
+           
 
             <li class="m-menu__item  m-menu__item--submenu m-menu__item--rel"  data-menu-submenu-toggle="click" aria-haspopup="true">
                 <a href="" class="m-menu__link @if(($controller=='MastersController' && $action=='personal_index') || 
@@ -185,7 +201,7 @@
                         </ul>
                 </div>
             </li>
-
+            @endif
 
             
             <li class="m-menu__item " aria-haspopup="true" >

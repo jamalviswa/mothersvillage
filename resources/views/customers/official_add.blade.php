@@ -7,7 +7,7 @@
         <div class="d-flex align-items-center">
             <div class="mr-auto">
                 <h3 class="m-subheader__title m-subheader__title--separator">
-                    Official Details
+                    Document Details
                 </h3>
             </div>
             <div>
@@ -77,7 +77,7 @@
 
                                         <div class="form-group row">
                                             <label class="col-md-5">
-                                                Applicant Aadhar Details <span class="red">*</span>
+                                                Applicant Aadhar Details 
                                             </label>
                                             <div class="col-md-7">
                                                 <input value="{{ old('aadhar_number') }}" type="text" autocomplete="off" placeholder="Enter Aadhar Number" class="form-control" name="aadhar_number" onKeyPress="if(this.value.length==10) return false;" name="program_fee" style="margin-bottom: 8px;" />
@@ -96,7 +96,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-md-5">
-                                                Applicant Pan Details <span class="red">*</span>
+                                                Applicant Pan Details 
                                             </label>
                                             <div class="col-md-7">
                                                 <input value="{{ old('pan_number') }}" type="text" autocomplete="off" placeholder="Enter PAN Number" class="form-control" name="aadhar_number" onKeyPress="if(this.value.length==10) return false;" name="program_fee" style="margin-bottom: 8px;" />
@@ -115,7 +115,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-md-5">
-                                                Applicant Passport Details <span class="red">*</span>
+                                                Applicant Passport Details 
                                             </label>
                                             <div class="col-md-7">
                                                 <input value="{{ old('pan_number') }}" type="text" autocomplete="off" placeholder="Enter Passport Number" class="form-control" name="aadhar_number" onKeyPress="if(this.value.length==10) return false;" name="program_fee" style="margin-bottom: 8px;" />
@@ -134,7 +134,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-md-5">
-                                                Name of the Co-Applicant<span class="red">*</span>
+                                                Name of the Co-Applicant
                                             </label>
                                             <div class="col-md-7">
                                                 <input value="{{ old('phone') }}" type="tel" autocomplete="off" class="form-control" name="phone" />
@@ -147,7 +147,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-md-5">
-                                                Co-applicant Address<span class="red">*</span>
+                                                Co-applicant Address
                                             </label>
                                             <div class="col-md-7">
                                                 <textarea rows="4" class="form-control" name="address"> {{ old('address')}}</textarea>
@@ -160,7 +160,7 @@
                                             </div>
                                         </div><div class="form-group row">
                                             <label class="col-md-5">
-                                            Co-Applicant Aadhar Details <span class="red">*</span>
+                                            Co-Applicant Aadhar Details 
                                             </label>
                                             <div class="col-md-7">
                                                 <input value="{{ old('aadhar_number') }}" type="text" autocomplete="off" placeholder="Enter Aadhar Number" class="form-control" name="aadhar_number" onKeyPress="if(this.value.length==10) return false;" name="program_fee" style="margin-bottom: 8px;" />
@@ -179,7 +179,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-md-5">
-                                                Co-Applicant Pan Details <span class="red">*</span>
+                                                Co-Applicant Pan Details 
                                             </label>
                                             <div class="col-md-7">
                                                 <input value="{{ old('pan_number') }}" type="text" autocomplete="off" placeholder="Enter PAN Number" class="form-control" name="aadhar_number" onKeyPress="if(this.value.length==10) return false;" name="program_fee" style="margin-bottom: 8px;" />
@@ -198,7 +198,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-md-5">
-                                            Co-Applicant Passport Details <span class="red">*</span>
+                                            Co-Applicant Passport Details 
                                             </label>
                                             <div class="col-md-7">
                                                 <input value="{{ old('pan_number') }}" type="text" autocomplete="off" placeholder="Enter Passport Number" class="form-control" name="aadhar_number" onKeyPress="if(this.value.length==10) return false;" name="program_fee" style="margin-bottom: 8px;" />
@@ -217,7 +217,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-md-5">
-                                                Applicant Mobile Number<span class="red">*</span>
+                                                Applicant Mobile Number
                                             </label>
                                             <div class="col-md-7">
                                                 <input value="{{ old('phone') }}" type="tel" autocomplete="off" class="form-control" name="phone" />
@@ -230,7 +230,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-md-5">
-                                                Co-Applicant Mobile Number<span class="red">*</span>
+                                                Co-Applicant Mobile Number
                                             </label>
                                             <div class="col-md-7">
                                                 <input value="{{ old('phone') }}" type="tel" autocomplete="off" class="form-control" name="phone" />
@@ -242,11 +242,19 @@
                                             </div>
                                         </div>
 
-
-                                       
-
-
-
+                                        <div class="form-group row">
+                                            <label class="col-md-5">
+                                               Co-Applicant Mail Id 
+                                            </label>
+                                            <div class="col-md-7">
+                                                <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
+                                                @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div>
 
 
 
@@ -390,19 +398,7 @@
                                         </div>
 
 
-                                        <div class="form-group row">
-                                            <label class="col-md-5">
-                                                Mail Id <span class="red">*</span>
-                                            </label>
-                                            <div class="col-md-7">
-                                                <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
-                                                @error('name')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                            </div>
-                                        </div>
+                                       
 
                                         <div class="form-group text-right">
                                             <button type="submit" name="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">

@@ -1,8 +1,10 @@
 <?php
 namespace App\Http\Controllers;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Rules\Email;
 use Auth;
 use Session;
 use Redirect;
@@ -73,6 +75,93 @@ class AdminusersController extends Controller {
             }
         }
     }
+    public function subadmin_index() { 
+        $sessionadmin = Parent::checkadmin();
+        $result = Adminuser::where('status', '<>', 'Trash')->orderBy('admin_id', 'desc');
+        if (!empty($_REQUEST['s'])) {
+            $s = $_REQUEST['s'];    
+            $result->where(function ($query) use ($s) {
+                 $query->where('username', 'LIKE', "%$s%");   
+            });              
+        } 
+        $result = $result->paginate(10);
+        return view('/adminusers/subadmin_index', [
+            'results' => $result
+        ]);  
+    }
+    public function subadmin_add() {
+        $sessionadmin = Parent::checkadmin();
+        return view('adminusers/subadmin_add', []);
+    }
+    public function subadmin_store(Request $request){
+        $check= $this->validate($request, [
+            'username' => ['required'],
+            'password' => ['required'],
+            'adminname' => ['required'],
+            'email' => ['required','email','regex:/^\S*$/u',
+            'regex:/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}/',Rule::unique('adminusers')->where(function ($query) use($request) {
+                return $query->where('email', $request->email)->where('status','<>', 'Trash');
+            })], 
+        ]);
+        $data = new Adminuser();
+        $data->username = $request->username;
+        $data->email = $request->email;
+        $data->password_text = $request->password;
+        $data->password = md5($request->password);
+        $data->adminname = $request->adminname;
+        if (!empty($request->file('profile'))) {
+            $image = $request->file('profile');
+            $imagename = uniqid() . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('/files/admin/');
+            $chck= $image->move($destinationPath, $imagename);          
+            $data->profile = $imagename;
+        }   
+        $data->created_date = date('Y-m-d H:i:s');
+        $data->status = "Active"; 
+        $data->save();
+        Session::flash('message', 'Subadmin Details Added!');
+        Session::flash('alert-class', 'success');
+        return \Redirect::route('adminusers.subadmin_index', []); 
+    }
+
+    public function subadmin_edit($id = null)
+    {
+        $sessionadmin = Parent::checkadmin();
+        $detail = Adminuser::where('admin_id', '=', $id)->first();
+        return view('adminusers/subadmin_edit', ['detail' => $detail]);
+    }
+    public function subadmin_update(Request $request, $id = null)
+    {
+        $check= $this->validate($request, [
+            'username' => ['required'],
+            'password' => ['required'],
+            'adminname' => ['required'],
+            'email' => ['required','email','regex:/^\S*$/u',
+            'regex:/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}/',Rule::unique('adminusers')->where(function ($query) use($request, $id) {
+                return $query->where('email', $request->email)->where('admin_id','<>',$id)->where('status','<>', 'Trash');
+            })],
+        ]);
+        $data = Adminuser::findOrFail($id);
+        $data->username = $request->username;
+        $data->email = $request->email;
+        $data->password_text = $request->password;
+        $data->password = md5($request->password);
+        $data->adminname = $request->adminname;
+        if (!empty($request->file('profile'))) {
+            $image = $request->file('profile');
+            $imagename = uniqid() . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('/files/admin/');
+            $chck= $image->move($destinationPath, $imagename);          
+            $data->profile = $imagename;
+        }  
+        $data->modified_date = date('Y-m-d H:i:s'); 
+        $data->save(); 
+        Session::flash('message', 'Sub Admin Details Updated!');
+        Session::flash('alert-class', 'success');
+        return \Redirect::route('adminusers.subadmin_index', []);     
+    }
+
+
 }
 
     // public function dashboard() {

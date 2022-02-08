@@ -16,6 +16,7 @@ use App\Phase;
 use App\Block;
 use App\Floor;
 use App\Flattype;
+use App\Flatnumber;
 
 class MastersController extends Controller
 {
@@ -298,25 +299,25 @@ class MastersController extends Controller
         return \Redirect::route('masters.flattype_index', []);
     }
 
-      //Flat Number Details index function
+    //Flat Number Details index function
 
-      public function flatnumber_index()
-      {
-          $sessionadmin = Parent::checkadmin();
-          $result = Flatnumber::where('status', '<>', 'Trash')->orderBy('flatnumber_id', 'desc');
-          if (!empty($_REQUEST['s'])) {
-              $s = $_REQUEST['s'];
-              $result->where(function ($query) use ($s) {
-                  $query->where('flatnumber', 'LIKE', "%$s%");
-              });
-          }
-          if (!empty($_REQUEST['phase'])) {
-              $phase = $_REQUEST['phase'];
-              $result->where(function ($query) use ($phase) {
-                  $query->where('phase_id', 'LIKE', "%$phase%");
-              });
-          }
-          if (!empty($_REQUEST['block'])) {
+    public function flatnumber_index()
+    {
+        $sessionadmin = Parent::checkadmin();
+        $result = Flatnumber::where('status', '<>', 'Trash')->orderBy('flatnumber_id', 'desc');
+        if (!empty($_REQUEST['s'])) {
+            $s = $_REQUEST['s'];
+            $result->where(function ($query) use ($s) {
+                $query->where('flatnumber', 'LIKE', "%$s%");
+            });
+        }
+        if (!empty($_REQUEST['phase'])) {
+            $phase = $_REQUEST['phase'];
+            $result->where(function ($query) use ($phase) {
+                $query->where('phase_id', 'LIKE', "%$phase%");
+            });
+        }
+        if (!empty($_REQUEST['block'])) {
             $block = $_REQUEST['block'];
             $result->where(function ($query) use ($block) {
                 $query->where('block_id', 'LIKE', "%$block%");
@@ -334,65 +335,74 @@ class MastersController extends Controller
                 $query->where('flattype_id', 'LIKE', "%$flattype%");
             });
         }
-          $result = $result->paginate(10);
-          return view('/masters/block_index', [
-              'results' => $result
-          ]);
-      }
-  
-      //Flat Number Details add function
-  
-      public function flatnumber_add()
-      {
-          $sessionadmin = Parent::checkadmin();
-          return view('masters/flatnumber_add', []);
-      }
-      public function flatnumber_store(Request $request)
-      {
-          $sessionadmin = Parent::checkadmin();
-          $check = $this->validate($request, [
-              'phase' => ['required'],
-              'block' => ['required'],
-              'floor' => ['required'],
-              'flattype' => ['required'],
-              'flatnumber' => ['required', Rule::unique('flatnumbers')->where(function ($query) use ($request) {
-                  return $query->where('flatnumber', $request->flatnumber)->where('status', '<>', 'Trash');
-              })],
-          ]);
-          $data = new Flatnumber();
-          $data->phase_id = $request->phase;
-          $data->block_name = $request->block_name;
-          $data->created_date = date('Y-m-d H:i:s');
-          $data->status = "Active";
-          $data->save();
-          Session::flash('message', 'Block Details Added!');
-          Session::flash('alert-class', 'success');
-          return \Redirect::route('masters.block_index', []);
-      }
-  
-      //Block Details edit function
-  
-      public function block_edit($id = null)
-      {
-          $sessionadmin = Parent::checkadmin();
-          $detail = Block::where('block_id', '=', $id)->first();
-          return view('masters/block_edit', ['detail' => $detail]);
-      }
-      public function block_update(Request $request, $id = null)
-      {
-          $check = $this->validate($request, [
-              'phase' => ['required'],
-              'block_name' => ['required', Rule::unique('blocks')->where(function ($query) use ($request, $id) {
-                  return $query->where('block_name', $request->block_name)->where('block_id', '<>', $id)->where('status', '<>', 'Trash');
-              })],
-          ]);
-          $data = Block::findOrFail($id);
-          $data->phase_id = $request->phase;
-          $data->block_name = $request->block_name;
-          $data->modified_date = date('Y-m-d H:i:s');
-          $data->save();
-          Session::flash('message', 'Block Details Updated!');
-          Session::flash('alert-class', 'success');
-          return \Redirect::route('masters.block_index', []);
-      }
+        $result = $result->paginate(10);
+        return view('/masters/block_index', [
+            'results' => $result
+        ]);
+    }
+
+    //Flat Number Details add function
+
+    public function flatnumber_add()
+    {
+        $sessionadmin = Parent::checkadmin();
+        return view('masters/flatnumber_add', []);
+    }
+    public function flatnumber_store(Request $request)
+    {
+        $sessionadmin = Parent::checkadmin();
+        $check = $this->validate($request, [
+            'phase' => ['required'],
+            'block' => ['required'],
+            'floor' => ['required'],
+            'flattype' => ['required'],
+            'flatnumber' => ['required', Rule::unique('flatnumbers')->where(function ($query) use ($request) {
+                return $query->where('flatnumber', $request->flatnumber)->where('status', '<>', 'Trash');
+            })],
+        ]);
+        $data = new Flatnumber();
+        $data->phase_id = $request->phase;
+        $data->block_id = $request->block;
+        $data->floor_id = $request->floor;
+        $data->flattype_id = $request->flattype;
+        $data->flatnumber = $request->flatnumber;
+        $data->created_date = date('Y-m-d H:i:s');
+        $data->status = "Active";
+        $data->save();
+        Session::flash('message', 'Flat Number Details Added!');
+        Session::flash('alert-class', 'success');
+        return \Redirect::route('masters.flatnumber_index', []);
+    }
+
+    //Flat Number Details edit function
+
+    public function flatnumber_edit($id = null)
+    {
+        $sessionadmin = Parent::checkadmin();
+        $detail = Flatnumber::where('flatnumber_id', '=', $id)->first();
+        return view('masters/flatnumber_edit', ['detail' => $detail]);
+    }
+    public function flatnumber_update(Request $request, $id = null)
+    {
+        $check = $this->validate($request, [
+            'phase' => ['required'],
+            'block' => ['required'],
+            'floor' => ['required'],
+            'flattype' => ['required'],
+            'flatnumber' => ['required', Rule::unique('flatnumbers')->where(function ($query) use ($request, $id) {
+                return $query->where('flatnumber', $request->flatnumber)->where('flatnumber_id', '<>', $id)->where('status', '<>', 'Trash');
+            })],
+        ]);
+        $data = Block::findOrFail($id);
+        $data->phase_id = $request->phase;
+        $data->block_id = $request->block;
+        $data->floor_id = $request->floor;
+        $data->flattype_id = $request->flattype;
+        $data->flatnumber = $request->flatnumber;
+        $data->modified_date = date('Y-m-d H:i:s');
+        $data->save();
+        Session::flash('message', 'Flat Number Details Updated!');
+        Session::flash('alert-class', 'success');
+        return \Redirect::route('masters.flatnumber_index', []);
+    }
 }

@@ -21,6 +21,17 @@ Route::any('adminusers/logout', 'AdminusersController@logout');
 Route::any('adminusers/profile', 'AdminusersController@profile');
 Route::any('adminusers/changepassword', 'AdminusersController@changepassword');
 
+
+
+Route::any('adminusers/subadmin/index', 'AdminusersController@subadmin_index')->name('adminusers.subadmin_index');
+Route::get('adminusers/subadmin/add', 'AdminusersController@subadmin_add')->name('adminusers.subadmin_add');
+Route::get('adminusers/subadmin/edit/{id}', 'AdminusersController@subadmin_edit')->name('adminusers.subadmin_edit');
+Route::get('adminusers/subadmin/view/{id}', 'AdminusersController@subadmin_view')->name('adminusers.subadmin_view');
+Route::post('adminusers/subadmin/store', 'AdminusersController@subadmin_store')->name('adminusers.subadmin_store');
+Route::post('adminusers/subadmin/update/{id}', 'AdminusersController@subadmin_update')->name('adminusers.subadmin_update');
+Route::get('adminusers/subadmin/delete/{id}', 'AdminusersController@subadmin_delete')->name('adminusers.subadmin_delete');
+
+
 //Customer Details
 
 Route::any('customers/personal/index', 'CustomersController@personal_index')->name('customers.personal_index');
@@ -30,6 +41,7 @@ Route::get('customers/personal/view/{id}', 'CustomersController@personal_view')-
 Route::post('customers/personal/store', 'CustomersController@personal_store')->name('customers.personal_store');
 Route::post('customers/personal/update/{id}', 'CustomersController@personal_update')->name('customers.personal_update');
 Route::get('customers/personal/delete/{id}', 'CustomersController@personal_delete')->name('customers.personal_delete');
+
 
 Route::any('customers/official/index', 'CustomersController@official_index')->name('customers.official_index');
 Route::get('customers/official/add', 'CustomersController@official_add')->name('customers.official_add');

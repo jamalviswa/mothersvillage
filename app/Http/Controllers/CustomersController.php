@@ -45,21 +45,28 @@ class CustomersController extends Controller {
     }
     public function personal_store(Request $request){
         $check= $this->validate($request, [
+            'applicant_name' => ['required'],
+            'date_of_application'=>['required'],
             'fathers_name' => ['required'],
             'age' => ['required'],
             'gender' => ['required'],
-            'phone' => ['required'],
-            'name' => ['required'],
-            'occupation' => ['required'],
-            'address' => ['required'],
-            'income' => ['required'],
-            'experience' => ['required'],
-            'email' => ['required',Rule::unique('customers')->where(function ($query) use($request) {
+            'photo' => ['required'],
+            'email' => ['required','email','regex:/^\S*$/u',
+            'regex:/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}/',Rule::unique('customers')->where(function ($query) use($request) {
                 return $query->where('email', $request->email)->where('status','<>', 'Trash');
+            })],
+            'phone' => ['required','numeric', 'digits_between:1,15',
+            Rule::unique('customers')->where(function ($query) use($request) {
+                return $query->where('phone', $request->phone)->where('status','<>', 'Trash');
+            })],
+            'application_number' => ['required',Rule::unique('customers')->where(function ($query) use($request) {
+                return $query->where('application_number', $request->application_number)->where('status','<>', 'Trash');
             })],
         ]);
         $data = new Customer();
-        $data->name = $request->name;
+        $data->applicant_name = $request->applicant_name;
+        $data->application_number = $request->application_number;
+        $data->date_of_application = $request->date_of_application;
         $data->fathers_name = $request->fathers_name;
         $data->age = $request->age;
         $data->gender = $request->gender;
