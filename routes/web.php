@@ -59,6 +59,14 @@ Route::post('payments/update/{id}', 'PaymentsController@update')->name('payments
 Route::get('payments/delete/{id}', 'PaymentsController@delete')->name('payments.delete');
 Route::get('payments/view/{id}', 'PaymentsController@view')->name('payments.view');
 
+Route::any('costs/index', 'CostsController@index')->name('costs.index');
+Route::get('costs/add', 'CostsController@add')->name('costs.add');
+Route::post('costs/store', 'CostsController@store')->name('costs.store');
+Route::get('costs/edit/{id}', 'CostsController@edit')->name('costs.edit');
+Route::post('costs/update/{id}', 'CostsController@update')->name('costs.update');
+Route::get('costs/delete/{id}', 'CostsController@delete')->name('costs.delete');
+Route::get('costs/view/{id}', 'CostsController@view')->name('costs.view');
+
 Route::any('blocks/index', 'BlocksController@index')->name('blocks.index');
 Route::get('blocks/add', 'BlocksController@add')->name('blocks.add');
 Route::post('blocks/store', 'BlocksController@store')->name('blocks.store');
@@ -66,10 +74,12 @@ Route::get('blocks/edit/{id}', 'BlocksController@edit')->name('blocks.edit');
 Route::post('blocks/update/{id}', 'BlocksController@update')->name('blocks.update');
 Route::get('blocks/delete/{id}', 'BlocksController@delete')->name('blocks.delete');
 
+//Master
+
 Route::any('masters/phase/index', 'MastersController@phase_index')->name('masters.phase_index');
 Route::get('masters/phase/add', 'MastersController@phase_add')->name('masters.phase_add');
-Route::get('masters/phase/edit/{id}', 'MastersController@phase_edit')->name('masters.phase_edit');
 Route::post('masters/phase/store', 'MastersController@phase_store')->name('masters.phase_store');
+Route::get('masters/phase/edit/{id}', 'MastersController@phase_edit')->name('masters.phase_edit');
 Route::post('masters/phase/update/{id}', 'MastersController@phase_update')->name('masters.phase_update');
 
 Route::any('masters/block/index', 'MastersController@block_index')->name('masters.block_index');
@@ -95,6 +105,7 @@ Route::get('masters/flatnumber/add', 'MastersController@flatnumber_add')->name('
 Route::get('masters/flatnumber/edit/{id}', 'MastersController@flatnumber_edit')->name('masters.flatnumber_edit');
 Route::post('masters/flatnumber/store', 'MastersController@flatnumber_store')->name('masters.flatnumber_store');
 Route::post('masters/flatnumber/update/{id}', 'MastersController@flatnumber_update')->name('masters.flatnumber_update');
+Route::post('masters/map/', 'MastersController@map')->name('masters.map');
 
 
 

@@ -63,6 +63,21 @@
                 </div>
             </li>
             <li class="m-menu__item " aria-haspopup="true" >
+                <a  href="{{route('costs.add')}}" class="m-menu__link @if(($controller=='CostsController' && $action=='index') || 
+                    ($controller=='CostsController' &&$action=='view') || 
+                    ($controller=='CostsController' &&$action=='edit') || 
+                    ($controller=='CostsController' && $action=='add') )  active @endif">
+                    <i class="m-menu__link-icon flaticon-file"></i>
+                    <span class="m-menu__link-title">
+                        <span class="m-menu__link-wrap">
+                            <span class="m-menu__link-text">
+                                COST DETAILS
+                            </span>
+                        </span>
+                    </span>
+                </a>
+            </li>
+            <li class="m-menu__item " aria-haspopup="true" >
                 <a  href="{{route('payments.add')}}" class="m-menu__link @if(($controller=='PaymentsController' && $action=='index') || 
                     ($controller=='PaymentsController' &&$action=='view') || 
                     ($controller=='PaymentsController' &&$action=='edit') || 
@@ -71,7 +86,7 @@
                     <span class="m-menu__link-title">
                         <span class="m-menu__link-wrap">
                             <span class="m-menu__link-text">
-                                COST DETAILS
+                                PAYMENT DETAILS
                             </span>
                         </span>
                     </span>
@@ -109,12 +124,12 @@
                 </a>
             </li>
            
-
+<!-- /*Masters*/ -->
             <li class="m-menu__item  m-menu__item--submenu m-menu__item--rel"  data-menu-submenu-toggle="click" aria-haspopup="true">
-                <a href="" class="m-menu__link @if(($controller=='MastersController' && $action=='personal_index') || 
-                    ($controller=='MastersController' && $action=='personal_view') || 
-                    ($controller=='MastersController' && $action=='personal_edit') || 
-                    ($controller=='MastersController' && $action=='personal_add') )   active @endif m-menu__link m-menu__toggle">
+                <a href="" class="m-menu__link @if(($controller=='MastersController' && $action=='phase_index') || 
+                    ($controller=='MastersController' && $action=='phase_view') || 
+                    ($controller=='MastersController' && $action=='phase_edit') || 
+                    ($controller=='MastersController' && $action=='phase_add') )   active @endif  m-menu__toggle">
                     <i class="m-menu__link-icon flaticon-users"></i>
                     <span class="m-menu__link-title">
                         <span class="m-menu__link-wrap">

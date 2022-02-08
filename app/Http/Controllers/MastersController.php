@@ -21,7 +21,7 @@ use App\Flatnumber;
 class MastersController extends Controller
 {
 
-    //Phase Details index function
+    //Phase 
 
     public function phase_index()
     {
@@ -39,13 +39,12 @@ class MastersController extends Controller
         ]);
     }
 
-    //Phase Details add function
-
     public function phase_add()
     {
         $sessionadmin = Parent::checkadmin();
         return view('masters/phase_add', []);
     }
+
     public function phase_store(Request $request)
     {
         $sessionadmin = Parent::checkadmin();
@@ -64,14 +63,13 @@ class MastersController extends Controller
         return \Redirect::route('masters.phase_index', []);
     }
 
-    //Phase Details edit function
-
     public function phase_edit($id = null)
     {
         $sessionadmin = Parent::checkadmin();
         $detail = Phase::where('phase_id', '=', $id)->first();
         return view('masters/phase_edit', ['detail' => $detail]);
     }
+
     public function phase_update(Request $request, $id = null)
     {
         $check = $this->validate($request, [
@@ -88,7 +86,7 @@ class MastersController extends Controller
         return \Redirect::route('masters.phase_index', []);
     }
 
-    //Block Details index function
+    //Block 
 
     public function block_index()
     {
@@ -112,13 +110,12 @@ class MastersController extends Controller
         ]);
     }
 
-    //Block Details add function
-
     public function block_add()
     {
         $sessionadmin = Parent::checkadmin();
         return view('masters/block_add', []);
     }
+
     public function block_store(Request $request)
     {
         $sessionadmin = Parent::checkadmin();
@@ -139,14 +136,13 @@ class MastersController extends Controller
         return \Redirect::route('masters.block_index', []);
     }
 
-    //Block Details edit function
-
     public function block_edit($id = null)
     {
         $sessionadmin = Parent::checkadmin();
         $detail = Block::where('block_id', '=', $id)->first();
         return view('masters/block_edit', ['detail' => $detail]);
     }
+
     public function block_update(Request $request, $id = null)
     {
         $check = $this->validate($request, [
@@ -165,7 +161,7 @@ class MastersController extends Controller
         return \Redirect::route('masters.block_index', []);
     }
 
-    //Floor Details index function
+    //Floor 
 
     public function floor_index()
     {
@@ -183,13 +179,12 @@ class MastersController extends Controller
         ]);
     }
 
-    //Floor Details add function
-
     public function floor_add()
     {
         $sessionadmin = Parent::checkadmin();
         return view('masters/floor_add', []);
     }
+
     public function floor_store(Request $request)
     {
         $sessionadmin = Parent::checkadmin();
@@ -208,14 +203,13 @@ class MastersController extends Controller
         return \Redirect::route('masters.floor_index', []);
     }
 
-    //Floor Details edit function
-
     public function floor_edit($id = null)
     {
         $sessionadmin = Parent::checkadmin();
         $detail = Floor::where('floor_id', '=', $id)->first();
         return view('masters/floor_edit', ['detail' => $detail]);
     }
+
     public function floor_update(Request $request, $id = null)
     {
         $check = $this->validate($request, [
@@ -232,7 +226,7 @@ class MastersController extends Controller
         return \Redirect::route('masters.floor_index', []);
     }
 
-    //Flat Type Details index function
+    //Flat Type 
 
     public function flattype_index()
     {
@@ -250,13 +244,12 @@ class MastersController extends Controller
         ]);
     }
 
-    //Flat Type Details add function
-
     public function flattype_add()
     {
         $sessionadmin = Parent::checkadmin();
         return view('masters/flattype_add', []);
     }
+
     public function flattype_store(Request $request)
     {
         $sessionadmin = Parent::checkadmin();
@@ -275,14 +268,13 @@ class MastersController extends Controller
         return \Redirect::route('masters.flattype_index', []);
     }
 
-    //Flat Type Details edit function
-
     public function flattype_edit($id = null)
     {
         $sessionadmin = Parent::checkadmin();
         $detail = Flattype::where('flattype_id', '=', $id)->first();
         return view('masters/flattype_edit', ['detail' => $detail]);
     }
+
     public function flattype_update(Request $request, $id = null)
     {
         $check = $this->validate($request, [
@@ -299,7 +291,7 @@ class MastersController extends Controller
         return \Redirect::route('masters.flattype_index', []);
     }
 
-    //Flat Number Details index function
+    //Flat Number 
 
     public function flatnumber_index()
     {
@@ -336,12 +328,10 @@ class MastersController extends Controller
             });
         }
         $result = $result->paginate(10);
-        return view('/masters/block_index', [
+        return view('/masters/flatnumber_index', [
             'results' => $result
         ]);
     }
-
-    //Flat Number Details add function
 
     public function flatnumber_add()
     {
@@ -374,8 +364,6 @@ class MastersController extends Controller
         return \Redirect::route('masters.flatnumber_index', []);
     }
 
-    //Flat Number Details edit function
-
     public function flatnumber_edit($id = null)
     {
         $sessionadmin = Parent::checkadmin();
@@ -393,7 +381,7 @@ class MastersController extends Controller
                 return $query->where('flatnumber', $request->flatnumber)->where('flatnumber_id', '<>', $id)->where('status', '<>', 'Trash');
             })],
         ]);
-        $data = Block::findOrFail($id);
+        $data = Flatnumber::findOrFail($id);
         $data->phase_id = $request->phase;
         $data->block_id = $request->block;
         $data->floor_id = $request->floor;
@@ -404,5 +392,18 @@ class MastersController extends Controller
         Session::flash('message', 'Flat Number Details Updated!');
         Session::flash('alert-class', 'success');
         return \Redirect::route('masters.flatnumber_index', []);
+    }
+
+    public function map(Request $request)
+    {
+        if (!empty($_REQUEST['phase'])) {
+            $id = $_REQUEST['phase'];
+            $blocks = Block::where('phase_id', $id)->get();
+            echo '<option value="">Select Block</option>';
+            foreach ($blocks as $block) {
+                echo '<option value="' . $block->block_id . '">' . $block->block_name . '</option>';
+            }
+            exit;
+        }
     }
 }

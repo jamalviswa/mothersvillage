@@ -30,19 +30,23 @@
                                 @csrf
                                 <div class="col-md-8 offset-md-2">
                                     <div class="m-section__content">
+
+
                                         <div class="form-group row">
                                             <label class="col-md-5">
-                                                Select Phase
+                                                Phase<span class="red">*</span>
                                             </label>
                                             <div class="col-md-7">
-                                                <select class="form-control" name="phase">
-                                                    @php
-                                                    $phases = App\Phase::where('status','Active')->get();
-                                                    @endphp
-                                                    <option value=""> Select Phase</option>
-                                                    @foreach($phases as $phase)
-                                                    <option {{ old('phase_id') == $phase['phase_id'] ? "selected" : "" }} value="{{ $phase['phase_id'] }}">{{ $phase['phase_name'] }}</option>
-                                                    @endforeach
+                                                <select class="form-control" id="phase" name="phase">
+                                                    <option>Select Phase</option>
+                                                    <?php
+                                                    $phases = App\Phase::where('status', 'Active')->get();
+                                                    foreach ($phases as $phase) {
+                                                    ?>
+                                                        <option value="<?php echo $phase->phase_id ?>"><?php echo $phase->phase_name ?></option>
+
+                                                    <?php }
+                                                    ?>
                                                 </select>
                                                 @error('phase')
                                                 <span class="invalid-feedback" role="alert">
@@ -51,25 +55,14 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <div class="form-group row block hide">
                                             <label class="col-md-5">
-                                                Select Block
+                                                Block <span class="red">*</span>
                                             </label>
                                             <div class="col-md-7">
-                                                <select class="form-control" name="block">
-                                                    @php
-                                                    $blocks = App\Block::where('status','Active')->get();
-                                                    @endphp
-                                                    <option value=""> Select Block</option>
-                                                    @foreach($blocks as $block)
-                                                    <option {{ old('block_id') == $block['block_id'] ? "selected" : "" }} value="{{ $block['block_id'] }}">{{ $block['block_name'] }}</option>
-                                                    @endforeach
+                                                <select class="form-control" id="block" name="block">
+
                                                 </select>
-                                                @error('block')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -142,4 +135,22 @@
         </div>
     </div>
 </div>
+<script>
+    $('#phase').change(function() {
+        var phase = $(this).val();
+        $.ajax({
+            url: "{{route('masters.map')}}",
+            type: 'POST',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "phase": phase
+            },
+            dataType: 'html',
+            success: function(data) {
+                $('.block').removeClass('hide');
+                $("#block").html(data);
+            }
+        });
+    });
+</script>
 @endsection

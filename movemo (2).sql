@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 08, 2022 at 07:06 AM
+-- Generation Time: Feb 08, 2022 at 11:01 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -97,11 +97,11 @@ CREATE TABLE `blocks` (
 --
 
 INSERT INTO `blocks` (`block_id`, `phase_id`, `block_name`, `status`, `created_date`, `modified_date`) VALUES
-(1, 2, 'Block A', 'Active', '2022-02-03 10:36:01', NULL),
-(3, 2, 'Block B', 'Active', '2022-02-04 11:12:24', NULL),
-(4, 2, 'Block C', 'Active', '2022-02-04 11:12:34', NULL),
-(5, 2, 'Block D', 'Active', '2022-02-04 11:12:51', NULL),
-(6, 2, 'Block E', 'Active', '2022-02-04 11:13:03', NULL);
+(8, 9, 'BLOCK A', 'Active', '2022-02-08 09:56:00', NULL),
+(9, 9, 'BLOCK B', 'Active', '2022-02-08 09:56:31', NULL),
+(10, 9, 'BLOCK C', 'Active', '2022-02-08 09:56:41', NULL),
+(11, 9, 'BLOCK D', 'Active', '2022-02-08 09:56:50', NULL),
+(12, 9, 'BLOCK E', 'Active', '2022-02-08 09:57:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -255,12 +255,12 @@ CREATE TABLE `flattypes` (
 --
 
 INSERT INTO `flattypes` (`flattype_id`, `flattype_name`, `status`, `created_date`, `modified_date`) VALUES
-(1, '1 BHK', 'Active', '2022-02-04 11:05:47', '2022-02-04 11:06:00'),
-(2, '2 BHK', 'Active', '2022-02-04 11:06:09', NULL),
-(3, '2 BHK P', 'Active', '2022-02-04 11:06:24', '2022-02-04 11:06:34'),
-(4, '2 BHK SP', 'Active', '2022-02-04 11:06:45', NULL),
-(5, '3 BHK', 'Active', '2022-02-04 11:06:58', NULL),
-(6, '3 BHK P', 'Active', '2022-02-04 11:07:07', NULL);
+(8, '1 BHK', 'Active', '2022-02-08 09:58:28', NULL),
+(9, '2 BHK', 'Active', '2022-02-08 09:58:36', NULL),
+(10, '2 BHK P', 'Active', '2022-02-08 09:58:48', NULL),
+(11, '2 BHK SP', 'Active', '2022-02-08 09:59:00', NULL),
+(12, '3 BHK', 'Active', '2022-02-08 09:59:11', NULL),
+(13, '3BHK P', 'Active', '2022-02-08 09:59:21', NULL);
 
 -- --------------------------------------------------------
 
@@ -281,11 +281,11 @@ CREATE TABLE `floors` (
 --
 
 INSERT INTO `floors` (`floor_id`, `floor_name`, `status`, `created_date`, `modified_date`) VALUES
-(1, 'First Floor', 'Active', '2022-02-04 07:07:25', NULL),
-(2, 'Second Floor', 'Active', '2022-02-04 07:07:41', '2022-02-04 07:33:13'),
-(3, 'Third Floor', 'Active', '2022-02-04 07:33:02', NULL),
-(4, 'Fourth Floor', 'Active', '2022-02-04 07:33:24', NULL),
-(5, 'Fifth Floor', 'Active', '2022-02-04 07:33:43', NULL);
+(7, 'FIRST FLOOR', 'Active', '2022-02-08 09:57:31', NULL),
+(8, 'SECOND FLOOR', 'Active', '2022-02-08 09:57:42', NULL),
+(9, 'THIRD FLOOR', 'Active', '2022-02-08 09:57:51', NULL),
+(10, 'FOURTH FLOOR', 'Active', '2022-02-08 09:58:00', NULL),
+(11, 'FIFTH FLOOR', 'Active', '2022-02-08 09:58:12', NULL);
 
 -- --------------------------------------------------------
 
@@ -400,7 +400,7 @@ CREATE TABLE `phases` (
 --
 
 INSERT INTO `phases` (`phase_id`, `phase_name`, `status`, `created_date`, `modified_date`) VALUES
-(2, 'Phase 1', 'Active', '2022-02-02 12:00:54', NULL);
+(9, 'PHASE 1', 'Active', '2022-02-08 09:55:44', NULL);
 
 -- --------------------------------------------------------
 
@@ -633,7 +633,7 @@ ALTER TABLE `adminusers`
 -- AUTO_INCREMENT for table `blocks`
 --
 ALTER TABLE `blocks`
-  MODIFY `block_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `block_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `cardtypes`
@@ -663,19 +663,19 @@ ALTER TABLE `family_details`
 -- AUTO_INCREMENT for table `flatnumbers`
 --
 ALTER TABLE `flatnumbers`
-  MODIFY `flatnumber_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `flatnumber_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `flattypes`
 --
 ALTER TABLE `flattypes`
-  MODIFY `flattype_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `flattype_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `floors`
 --
 ALTER TABLE `floors`
-  MODIFY `floor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `floor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `laps`
@@ -705,7 +705,7 @@ ALTER TABLE `payments`
 -- AUTO_INCREMENT for table `phases`
 --
 ALTER TABLE `phases`
-  MODIFY `phase_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `phase_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `settings`
