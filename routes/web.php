@@ -107,7 +107,13 @@ Route::post('masters/flatnumber/store', 'MastersController@flatnumber_store')->n
 Route::post('masters/flatnumber/update/{id}', 'MastersController@flatnumber_update')->name('masters.flatnumber_update');
 Route::post('masters/map/', 'MastersController@map')->name('masters.map');
 
-
+Route::any('countries/index', 'CountriesController@index')->name('countries.index');
+Route::get('countries/add', 'CountriesController@add')->name('countries.add');
+Route::post('countries/store', 'CountriesController@store')->name('countries.store');
+Route::get('countries/edit/{id}', 'CountriesController@edit')->name('countries.edit');
+Route::post('countries/update/{id}', 'CountriesController@update')->name('countries.update');
+Route::get('countries/delete/{id}', 'CountriesController@delete')->name('countries.delete');
+Route::get('countries/view/{id}', 'CountriesController@view')->name('countries.view');
 
 
 

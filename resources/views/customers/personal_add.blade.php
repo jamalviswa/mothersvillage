@@ -136,7 +136,16 @@
 
                                                 <div class="row">
                                                     <div class="col-2">
-                                                        <input value="{{ old('phone') }}" type="text" autocomplete="off" class="form-control inptwo" name="phone" max="3" />
+                                                        <select class="form-control" name="mobile_code">
+                                                            <?php
+                                                            $phases = App\Country::where('status', 'Active')->get();
+                                                            foreach ($phases as $phase) {
+                                                            ?>
+                                                                <option value="<?php echo $phase->country_id ?>"><?php echo $phase->image ?> <?php echo $phase->country_name ?>  <?php echo $phase->country_code?></option>
+
+                                                            <?php }
+                                                            ?>
+                                                        </select>
                                                     </div>
                                                     <div class="col-10">
                                                         <input value="{{ old('phone') }}" type="tel" autocomplete="off" class="form-control" name="phone" />
@@ -258,22 +267,26 @@
                                                                 <input class="form-control " name="son_age[]" type="text" autocomplete="off" placeholder="Age" style="width:100%;">
                                                             </div>
                                                             <div class="col-md-4">
-                                                                <select  class="form-control profession_son" name="son_profession[]">
+                                                                <select class="form-control profession_son" name="son_profession[]">
                                                                     <option value=''>--Select Profession--</option>
                                                                     <option value="Children">Children</option>
-                                                                    <option value="Student" id="student">Student</option>
+                                                                    <option value="Student">Student</option>
                                                                     <option value="Employee">Employee</option>
                                                                     <option value="others">others</option>
                                                                 </select>
                                                             </div>
                                                             <div class="col-md-5" id="brand_other" style="display:none;margin-top: 12px;">
 
-                                                                <select class="form-control" name="son_school[]">
+                                                                <select class="form-control mis" name="son_school[]">
                                                                     <option value=''>--Select School--</option>
-                                                                    <option value="MVS">MVS</option>
+                                                                    <option value="MIS">MIS</option>
                                                                     <option value="Others">Others</option>
 
                                                                 </select>
+                                                            </div>
+                                                            <div class="col-md-5" id="class" style="display:none;margin-top: 12px;">
+
+                                                                <input class="form-control " name="son_class[]" type="text" autocomplete="off" placeholder="Class" style="width:100%;">
                                                             </div>
                                                         </div>
                                                     </li>
@@ -345,7 +358,7 @@
         $(".marketing_range_lis").append('<li class="added-li"><div class="row" style="margin-bottom: 12px;"><div class="col-md-5"><input required="" style="width: 100%;" class="form-control " name="daughter_name[]" type="text" autocomplete="off" placeholder="Name"></div> <div class="col-md-3"><input class="form-control " required=""  name="daughter_age[]" type="text" autocomplete="off" placeholder="Age" style="width: 100%;"></div> <div class="col-md-4"><select class="form-control" name="daughter_profession[]"><option value="">--Select Profession--</option><option value="Children">Children</option><option value="Student">Student</option><option value="Employee">Employee</option><option value="Others">Others</option></select></div></div><a class="btn btn-danger removebtn" style="margin: 0px;margin-bottom: 5px;" href="#" onclick="parentNode.parentNode.removeChild(parentNode)">-</a></li>');
     });
 
-    $(document).on('click', '#marketing_range-add-more', function () {
+    $(document).on('click', '#marketing_range-add-more', function() {
         var html = '<li class="added-li">';
         html += '<div class="row" style="margin-bottom: 12px;">';
         html += '<div class="col-md-4">';
@@ -355,7 +368,7 @@
         html += '<input class="form-control" name="son_age[]" type="text" autocomplete="off" placeholder="Age" style="width: 100%;">';
         html += '</div>';
         html += '<div class="col-md-3">';
-        html += '<select class="form-control profession" name="son_profession[]">';
+        html += '<select class="form-control jam" name="son_profession[]">';
         html += '<option value="">Select Profession</option>';
         html += '<option value="Children">Children</option>';
         html += '<option value="Student" id="Student">Student</option>';
@@ -363,7 +376,7 @@
         html += '<option value="Others">Others</option>';
         html += '</select>';
         html += '</div>';
-        html += '<div class="col-md-5" id="brand" style="margin-top: 12px;display:none;">';
+        html += '<div class="col-md-5" id="aham" style="margin-top: 12px;display:none;">';
         html += '<select class="form-control" name="son_school[]">';
         html += '<option value="">Select School</option>';
         html += '<option value="MVS">MVS</option>';
@@ -373,9 +386,9 @@
         html += '</div>';
         html += '<a class="btn btn-danger removebtn" style="margin: 0px;margin-bottom: 5px;" href="#" onclick="parentNode.parentNode.removeChild(parentNode)">-</a>';
         html += '</li>';
-        $('.marketing_range_list').append(html); 
+        $('.marketing_range_list').append(html);
     });
-    
+
 
 
     $('.datepicker').datepicker({
@@ -387,20 +400,34 @@
         jQuery('.profession_son').change(function() {
             if (jQuery(this).val() === "Student") {
                 jQuery('#brand_other').show();
-
+                jQuery('#class').hide();
             } else {
                 jQuery('#brand_other').hide();
+                jQuery('#class').hide();
 
             }
         });
     });
+
     jQuery(document).ready(function() {
-        jQuery('.profession').change(function() {
-            if (jQuery(this).val() === "Student") {
-                jQuery('#brand').show();
+        jQuery('.mis').change(function() {
+            if (jQuery(this).val() === "MIS") {
+                jQuery('#class').show();
 
             } else {
-                jQuery('#brand').hide();
+                jQuery('#class').hide();
+
+            }
+        });
+    });
+
+    jQuery(document).ready(function() {
+        jQuery('.jam').change(function() {
+            if (jQuery(this).val() === "Student") {
+                jQuery('#aham').show();
+
+            } else {
+                jQuery('#aham').hide();
 
             }
         });

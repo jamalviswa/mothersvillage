@@ -217,6 +217,21 @@
                 </div>
             </li>
             @endif
+            <li class="m-menu__item " aria-haspopup="true" >
+                <a  href="{{route('countries.index')}}" class="m-menu__link @if(($controller=='CountriesController' && $action=='index') || 
+                    ($controller=='CountriesController' &&$action=='view') || 
+                    ($controller=='CountriesController' &&$action=='edit') || 
+                    ($controller=='CountriesController' && $action=='add') )  active @endif">
+                    <i class="m-menu__link-icon flaticon-file"></i>
+                    <span class="m-menu__link-title">
+                        <span class="m-menu__link-wrap">
+                            <span class="m-menu__link-text">
+                                Country
+                            </span>
+                        </span>
+                    </span>
+                </a>
+            </li>
 
             
             <li class="m-menu__item " aria-haspopup="true" >
