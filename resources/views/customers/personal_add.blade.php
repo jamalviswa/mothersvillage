@@ -135,24 +135,21 @@
                                             <div class="col-md-7">
 
                                                 <div class="row">
-                                                    <div class="col-2">
-                                                        <select class="form-control" name="mobile_code">
-                                                            <?php
-                                                            $phases = App\Country::where('status', 'Active')->get();
-                                                            foreach ($phases as $phase) {
-                                                            ?>
-                                                                <option value="<?php echo $phase->country_id ?>"><?php echo $phase->image ?> <?php echo $phase->country_name ?>  <?php echo $phase->country_code?></option>
-
-                                                            <?php }
-                                                            ?>
-                                                        </select>
+                                                    <div class="col-3">
+                                                        <input value="{{ old('phone_code') }} +91" type="tel" autocomplete="off" class="form-control" name="phone_code" style="width:72%" maxlength="4" />
                                                     </div>
-                                                    <div class="col-10">
-                                                        <input value="{{ old('phone') }}" type="tel" autocomplete="off" class="form-control" name="phone" />
+                                                    <div class="col-9">
+                                                        <input value="{{ old('phone') }}" id="phone" type="tel" autocomplete="off" class="form-control" name="phone" />
                                                     </div>
                                                 </div>
                                             </div>
-                                            @error('phone') <span class="invalid-feedback" role="alert">
+                                            @error('phone_code')
+                                            <span class="invalid-feedback" role="alert">
+                                                {{ $message }}
+                                            </span>
+                                            @enderror
+                                            @error('phone')
+                                            <span class="invalid-feedback" role="alert">
                                                 {{ $message }}
                                             </span>
                                             @enderror
@@ -320,16 +317,66 @@
                                                                 </select>
                                                             </div>
                                                             <div class="col-md-5" id="son" style="display:none;margin-top: 12px;">
-                                                                <select class="form-control" name="daughter_school[]">
+                                                                <select class="form-control jan" name="daughter_school[]">
                                                                     <option value=''>--Select School--</option>
-                                                                    <option value="MVS">MVS</option>
+                                                                    <option value="MIS">MIS</option>
                                                                     <option value="Others">Others</option>
 
                                                                 </select>
                                                             </div>
+                                                            <div class="col-md-5" id="classdaughter" style="display:none;margin-top: 12px;">
+
+                                                                <input class="form-control " name="daughter_class[]" type="text" autocomplete="off" placeholder="Class" style="width:100%;">
+                                                            </div>
                                                         </div>
                                                     </li>
                                                     <button type="button" id="marketing_range-add-mor" class="btn btn-success btn-green"><i class="fa fa-plus"></i></button>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group row" id="son_append" style="display:none;">
+                                        <label class="col-md-5">
+                                            Son
+                                        </label>
+                                        <div class="col-md-7">
+                                            <div class="marketing_range">
+                                                <ul class="marketing_range_list" style="padding:0px">
+                                                    <li>
+                                                        <div class="row" style="margin-bottom: 12px;">
+                                                            <div class="col-md-5">
+                                                                <input class="form-control " name="son_name[]" type="text" autocomplete="off" placeholder="Name" style="width:100%;">
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input class="form-control " name="son_age[]" type="text" autocomplete="off" placeholder="Age" style="width:100%;">
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <select class="form-control profession_son" name="son_profession[]">
+                                                                    <option value=''>--Select Profession--</option>
+                                                                    <option value="Children">Children</option>
+                                                                    <option value="Student">Student</option>
+                                                                    <option value="Employee">Employee</option>
+                                                                    <option value="others">others</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-5" id="brand_other" style="display:none;margin-top: 12px;">
+
+                                                                <select class="form-control mis" name="son_school[]">
+                                                                    <option value=''>--Select School--</option>
+                                                                    <option value="MIS">MIS</option>
+                                                                    <option value="Others">Others</option>
+
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-5" id="class" style="display:none;margin-top: 12px;">
+
+                                                                <input class="form-control " name="son_class[]" type="text" autocomplete="off" placeholder="Class" style="width:100%;">
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <button type="button" id="marketing_range-add-more" class="btn btn-success btn-green"><i class="fa fa-plus"></i></button>
                                                 </ul>
                                             </div>
                                         </div>
@@ -368,7 +415,7 @@
         html += '<input class="form-control" name="son_age[]" type="text" autocomplete="off" placeholder="Age" style="width: 100%;">';
         html += '</div>';
         html += '<div class="col-md-3">';
-        html += '<select class="form-control jam" name="son_profession[]">';
+        html += '<select class="form-control" id="jam"  name="son_profession[]">';
         html += '<option value="">Select Profession</option>';
         html += '<option value="Children">Children</option>';
         html += '<option value="Student" id="Student">Student</option>';
@@ -388,8 +435,6 @@
         html += '</li>';
         $('.marketing_range_list').append(html);
     });
-
-
 
     $('.datepicker').datepicker({
         format: 'dd-mm-yyyy',
@@ -421,30 +466,33 @@
         });
     });
 
-    jQuery(document).ready(function() {
-        jQuery('.jam').change(function() {
-            if (jQuery(this).val() === "Student") {
-                jQuery('#aham').show();
-
-            } else {
-                jQuery('#aham').hide();
-
-            }
-        });
-    });
+   
     jQuery(document).ready(function() {
         jQuery('.profession_daughter').change(function() {
             if (jQuery(this).val() === "Student") {
                 jQuery('#son').show();
+                jQuery('#classdaughter').hide();
 
             } else {
                 jQuery('#son').hide();
+                jQuery('#classdaughter').hide();
+
+            }
+        });
+    });
+
+    jQuery(document).ready(function() {
+        jQuery('.jan').change(function() {
+            if (jQuery(this).val() === "MIS") {
+                jQuery('#classdaughter').show();
+
+            } else {
+                jQuery('#classdaughter').hide();
 
             }
         });
     });
 </script>
-
 <style>
     .radio-sec input {
         position: relative;

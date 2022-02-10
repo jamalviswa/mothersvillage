@@ -346,9 +346,7 @@ class MastersController extends Controller
             'block' => ['required'],
             'floor' => ['required'],
             'flattype' => ['required'],
-            'flatnumber' => ['required', Rule::unique('flatnumbers')->where(function ($query) use ($request) {
-                return $query->where('flatnumber', $request->flatnumber)->where('status', '<>', 'Trash');
-            })],
+            'flatnumber' => ['required'],
         ]);
         $data = new Flatnumber();
         $data->phase_id = $request->phase;
