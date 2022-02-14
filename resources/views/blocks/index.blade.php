@@ -44,33 +44,71 @@
         <div class="m-portlet">
             <div class="m-portlet__body">
                 <!--begin::Section-->
-                <div class="m-section">
+                <div class="m-section marginzero">
                     <div class="m-section__content">
 
 
-                        <div class="container">
-                            <div class="item" style="background-color:#ffff00;">
+                        <div class="row">
+                            <div class="col box" style="background-color:#ffff00;">
                                 <p>1 BHK</p>
                             </div>
-                            <div class="item" style="background-color:#c7f8ca;">
+                            <div class="col box" style="background-color:#c7f8ca;">
                                 <p>2 BHK</p>
                             </div>
-                            <div class="item" style="background-color:#7ea1fa;">
+                            <div class="col box" style="background-color:#7ea1fa;">
                                 <p>2 BHK P</p>
                             </div>
-                            <div class="item" style="background-color:#a7905a;">
+                            <div class="col box" style="background-color:#a7905a;">
                                 <p>2 BHK SP</p>
                             </div>
-                            <div class="item" style="background-color:#ffa9ff;">
+                            <div class="col box" style="background-color:#ffa9ff;">
                                 <p>3 BHK</p>
                             </div>
-                            <div class="item" style="background-color:#21ffff;">
+                            <div class="col box" style="background-color:#21ffff;">
                                 <p>3 BHK P</p>
                             </div>
                         </div>
 
 
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="m-portlet">
+            <div class="m-portlet__body">
+                <div class="container">
+                    <div class="row blck">
+
+                        <div class="col smbox " style="background-color:green;">101</div>
+                        <div class="col smbox"  style="background-color:red;">102</div>
+                        <div class="col smbox " style="background-color:green;">103</div>
+                        <div class="col smbox"  style="background-color:red;">104</div>
+                        <div class="col smbox " style="background-color:green;">105</div>
+                        <div class="col smbox"  style="background-color:red;">108</div>
+                        <div class="col smbox " style="background-color:green;">109</div>
+                        <div class="col smbox"  style="background-color:red;">110</div>
+                        <div class="col smbox " style="background-color:green;">111</div>
+                        <div class="col smbox"  style="background-color:red;">112</div>
+                        <div class="col smbox " style="background-color:green;">113</div>
+                        <div class="col smbox"  style="background-color:red;">114</div>
+
+                    </div>
+                    <div class="row blck">
+
+<div class="col smbox " style="background-color:green;">101</div>
+<div class="col smbox"  style="background-color:red;">102</div>
+<div class="col smbox " style="background-color:green;">103</div>
+<div class="col smbox"  style="background-color:red;">104</div>
+<div class="col smbox " style="background-color:green;">105</div>
+<div class="col smbox"  style="background-color:red;">108</div>
+<div class="col smbox " style="background-color:green;">109</div>
+<div class="col smbox"  style="background-color:red;">110</div>
+<div class="col smbox " style="background-color:green;">111</div>
+<div class="col smbox"  style="background-color:red;">112</div>
+<div class="col smbox " style="background-color:green;">113</div>
+<div class="col smbox"  style="background-color:red;">114</div>
+
+</div>
                 </div>
             </div>
         </div>
@@ -96,27 +134,40 @@ $('#update-status').on('shown.bs.modal', function(event) {
     font-size: 20px;
 }
 
-.container {
-    display: grid;
-    grid-template-columns: repeat(6, 3fr);
-    grid-auto-rows: 10rem;
-    gap: 2rem;
-    width: 100%;
-    padding: 1rem;
-    margin: 0 auto;
-    box-sizing: border-box;
-    padding-bottom: 0px;
-    margin-bottom: 0px;
+.marginzero {
+    margin: 0 0 0 0 !important;
 }
 
-.item {
+.smbox {
+    width: 100px;
+    height: 100px;
+    margin-left: 10PX;
+    border: 1px solid BLACK;
     border-radius: 20px;
-    padding: 40px;
-    font-size: 25px ;
+}
+
+.box {
+    border-radius: 20px;
+    padding-top: 50px;
+    margin: 20px;
+    width: 70px;
+    height: 150px;
+    margin-bottom: 0px;
+    font-size: 25px;
     font-weight: 700;
     text-align: center;
     color: black;
     font-family: sans-serif;
+    cursor: pointer;
+}
+.blck{
+    margin-bottom: 20px;
+}
+.blck>.col {
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    padding-top: 30px;
     cursor: pointer;
 }
 </style>
