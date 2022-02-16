@@ -85,7 +85,8 @@ class CustomersController extends Controller
         $data->gender = $request->gender;
         $data->phone_code = $request->phone_code;
         $data->phone = $request->phone;
-        $data->address = $request->address;
+        $data->permanent_address0 = $request->permanent_address;
+        $data->present_address = $request->present_address;
         $data->income = $request->income;
         $data->email = $request->email;
         $data->occupation = $request->occupation;
