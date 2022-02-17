@@ -2,177 +2,176 @@
 @section('content')
 <?php if ($results->count() > '0') {
 ?>
-<div class="m-grid__item m-grid__item--fluid m-wrapper">
-    <!-- BEGIN: Subheader -->
-    <div class="m-subheader ">
-        <div class="d-flex align-items-center">
-            <div class="mr-auto">
-                <h3 class="m-subheader__title m-subheader__title--separator">
-                    Block Details
-                </h3>
-            </div>
-
-        </div>
-    </div>
-    <!-- END: Subheader -->
-    <div class="m-content">
-        <div class="m-portlet">
-            <div class="m-portlet__body">
-                <!--begin::Section-->
-                <div class="m-section__content">
-                    <form method="GET" class="search-form form-inline" action="#">
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="s" placeholder="Search"
-                                @if(isset($_REQUEST['s'])) value="{{ $_REQUEST['s'] }}" @else value="" @endif />
-                        </div>
-                        <div class="form-group">
-
-
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-primary m-btn m-btn--air m-btn--custom" type="submit"
-                                name="search"><i class="fa fa-search"></i></button>
-                            <?php if (isset($_REQUEST['search'])) { ?>
-                            <a class="btn btn-danger m-btn m-btn--air m-btn--custom" href="{{route('blocks.index')}}"><i
-                                    class="fa fa-times"></i></a>
-                            <?php } ?>
-                        </div>
-                    </form>
+    <div class="m-grid__item m-grid__item--fluid m-wrapper">
+        <!-- BEGIN: Subheader -->
+        <div class="m-subheader ">
+            <div class="d-flex align-items-center">
+                <div class="mr-auto">
+                    <h3 class="m-subheader__title m-subheader__title--separator">
+                        Block Details
+                    </h3>
                 </div>
+
             </div>
         </div>
-        <div class="m-portlet">
-            <div class="m-portlet__body">
-                <!--begin::Section-->
-                <div class="m-section marginzero">
+        <!-- END: Subheader -->
+        <div class="m-content">
+            <div class="m-portlet">
+                <div class="m-portlet__body">
+                    <!--begin::Section-->
                     <div class="m-section__content">
+                        <form method="GET" class="search-form form-inline" action="#">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="s" placeholder="Search" @if(isset($_REQUEST['s'])) value="{{ $_REQUEST['s'] }}" @else value="" @endif />
+                            </div>
+                            <div class="form-group">
 
 
-                        <div class="row">
-                            <div class="col box" style="background-color:#ffff00;">
-                                <p>1 BHK</p>
                             </div>
-                            <div class="col box" style="background-color:#c7f8ca;">
-                                <p>2 BHK</p>
+                            <div class="form-group">
+                                <button class="btn btn-primary m-btn m-btn--air m-btn--custom" type="submit" name="search"><i class="fa fa-search"></i></button>
+                                <?php if (isset($_REQUEST['search'])) { ?>
+                                    <a class="btn btn-danger m-btn m-btn--air m-btn--custom" href="{{route('blocks.index')}}"><i class="fa fa-times"></i></a>
+                                <?php } ?>
                             </div>
-                            <div class="col box" style="background-color:#7ea1fa;">
-                                <p>2 BHK P</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="m-portlet">
+                <div class="m-portlet__body">
+                    <!--begin::Section-->
+                    <div class="m-section marginzero">
+                        <div class="m-section__content">
+
+
+                            <div class="row">
+                                <div class="col box" style="background-color:#ffff00;">
+                                    <p>1 BHK</p>
+                                </div>
+                                <div class="col box" style="background-color:#c7f8ca;">
+                                    <p>2 BHK</p>
+                                </div>
+                                <div class="col box" style="background-color:#7ea1fa;">
+                                    <p>2 BHK P</p>
+                                </div>
+                                <div class="col box" style="background-color:#a7905a;">
+                                    <p>2 BHK SP</p>
+                                </div>
+                                <div class="col box" style="background-color:#ffa9ff;">
+                                    <p>3 BHK</p>
+                                </div>
+                                <div class="col box" style="background-color:#21ffff;">
+                                    <p>3 BHK P</p>
+                                </div>
                             </div>
-                            <div class="col box" style="background-color:#a7905a;">
-                                <p>2 BHK SP</p>
-                            </div>
-                            <div class="col box" style="background-color:#ffa9ff;">
-                                <p>3 BHK</p>
-                            </div>
-                            <div class="col box" style="background-color:#21ffff;">
-                                <p>3 BHK P</p>
-                            </div>
+
+
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="m-portlet">
+                <div class="m-portlet__body">
+                    <div class="container">
+                        <div class="row blck">
 
+                            <div class="col smbox " style="background-color:green;">101</div>
+                            <div class="col smbox" style="background-color:red;">102</div>
+                            <div class="col smbox " style="background-color:green;">103</div>
+                            <div class="col smbox" style="background-color:red;">104</div>
+                            <div class="col smbox " style="background-color:green;">105</div>
+                            <div class="col smbox" style="background-color:red;">108</div>
+                            <div class="col smbox " style="background-color:green;">109</div>
+                            <div class="col smbox" style="background-color:red;">110</div>
+                            <div class="col smbox " style="background-color:green;">111</div>
+                            <div class="col smbox" style="background-color:red;">112</div>
+                            <div class="col smbox " style="background-color:green;">113</div>
+                            <div class="col smbox" style="background-color:red;">114</div>
 
+                        </div>
+                        <div class="row blck">
+
+                            <div class="col smbox " style="background-color:green;">101</div>
+                            <div class="col smbox" style="background-color:red;">102</div>
+                            <div class="col smbox " style="background-color:green;">103</div>
+                            <div class="col smbox" style="background-color:red;">104</div>
+                            <div class="col smbox " style="background-color:green;">105</div>
+                            <div class="col smbox" style="background-color:red;">108</div>
+                            <div class="col smbox " style="background-color:green;">109</div>
+                            <div class="col smbox" style="background-color:red;">110</div>
+                            <div class="col smbox " style="background-color:green;">111</div>
+                            <div class="col smbox" style="background-color:red;">112</div>
+                            <div class="col smbox " style="background-color:green;">113</div>
+                            <div class="col smbox" style="background-color:red;">114</div>
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="m-portlet">
-            <div class="m-portlet__body">
-                <div class="container">
-                    <div class="row blck">
 
-                        <div class="col smbox " style="background-color:green;">101</div>
-                        <div class="col smbox"  style="background-color:red;">102</div>
-                        <div class="col smbox " style="background-color:green;">103</div>
-                        <div class="col smbox"  style="background-color:red;">104</div>
-                        <div class="col smbox " style="background-color:green;">105</div>
-                        <div class="col smbox"  style="background-color:red;">108</div>
-                        <div class="col smbox " style="background-color:green;">109</div>
-                        <div class="col smbox"  style="background-color:red;">110</div>
-                        <div class="col smbox " style="background-color:green;">111</div>
-                        <div class="col smbox"  style="background-color:red;">112</div>
-                        <div class="col smbox " style="background-color:green;">113</div>
-                        <div class="col smbox"  style="background-color:red;">114</div>
-
-                    </div>
-                    <div class="row blck">
-
-<div class="col smbox " style="background-color:green;">101</div>
-<div class="col smbox"  style="background-color:red;">102</div>
-<div class="col smbox " style="background-color:green;">103</div>
-<div class="col smbox"  style="background-color:red;">104</div>
-<div class="col smbox " style="background-color:green;">105</div>
-<div class="col smbox"  style="background-color:red;">108</div>
-<div class="col smbox " style="background-color:green;">109</div>
-<div class="col smbox"  style="background-color:red;">110</div>
-<div class="col smbox " style="background-color:green;">111</div>
-<div class="col smbox"  style="background-color:red;">112</div>
-<div class="col smbox " style="background-color:green;">113</div>
-<div class="col smbox"  style="background-color:red;">114</div>
-
-</div>
-                </div>
-            </div>
-        </div>
     </div>
+    <script>
+        $('#update-status').on('shown.bs.modal', function(event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var modal = $(this)
+            modal.find('#discount_id').val(button.attr('data-id'));
+            modal.find('#status').val(button.attr('data-status'));
+        });
+    </script>
+    <style>
+        .form-control:disabled,
+        .form-control[readonly] {
+            background-color: #F26C4F;
+            opacity: 1;
+            color: #fff;
+            text-align: center;
+            padding: 11px !important;
+            font-size: 20px;
+        }
 
-</div>
-<script>
-$('#update-status').on('shown.bs.modal', function(event) {
-    var button = $(event.relatedTarget) // Button that triggered the modal
-    var modal = $(this)
-    modal.find('#discount_id').val(button.attr('data-id'));
-    modal.find('#status').val(button.attr('data-status'));
-});
-</script>
-<style>
-.form-control:disabled,
-.form-control[readonly] {
-    background-color: #F26C4F;
-    opacity: 1;
-    color: #fff;
-    text-align: center;
-    padding: 11px !important;
-    font-size: 20px;
-}
+        .marginzero {
+            margin: 0 0 0 0 !important;
+        }
 
-.marginzero {
-    margin: 0 0 0 0 !important;
-}
+        .smbox {
+            width: 100px;
+            height: 100px;
+            margin-left: 10PX;
+            border: 1px solid BLACK;
+            border-radius: 20px;
+        }
 
-.smbox {
-    width: 100px;
-    height: 100px;
-    margin-left: 10PX;
-    border: 1px solid BLACK;
-    border-radius: 20px;
-}
+        .box {
+            border-radius: 20px;
+            padding-top: 50px;
+            margin: 20px;
+            width: 70px;
+            height: 150px;
+            margin-bottom: 0px;
+            font-size: 25px;
+            font-weight: 700;
+            text-align: center;
+            color: black;
+            font-family: sans-serif;
+            cursor: pointer;
+        }
 
-.box {
-    border-radius: 20px;
-    padding-top: 50px;
-    margin: 20px;
-    width: 70px;
-    height: 150px;
-    margin-bottom: 0px;
-    font-size: 25px;
-    font-weight: 700;
-    text-align: center;
-    color: black;
-    font-family: sans-serif;
-    cursor: pointer;
-}
-.blck{
-    margin-bottom: 20px;
-}
-.blck>.col {
-    color: white;
-    font-size: 20px;
-    text-align: center;
-    padding-top: 30px;
-    cursor: pointer;
-}
-</style>
-@endsection
-<!-- <div class="table-responsive">
+        .blck {
+            margin-bottom: 20px;
+        }
+
+        .blck>.col {
+            color: white;
+            font-size: 20px;
+            text-align: center;
+            padding-top: 30px;
+            cursor: pointer;
+        }
+    </style>
+    @endsection
+    <!-- <div class="table-responsive">
                             <table class="table m-table m-table--head-bg-brand">
                                 <thead>
                                     <tr>

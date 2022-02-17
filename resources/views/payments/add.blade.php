@@ -7,7 +7,7 @@
         <div class="d-flex align-items-center">
             <div class="mr-auto">
                 <h3 class="m-subheader__title m-subheader__title--separator">
-                    Payment Tariff
+                    Payment Details
                 </h3>
             </div>
             <div>
@@ -17,331 +17,312 @@
             </div>
         </div>
     </div>
-    <!-- END: Subheader -->
     <div class="m-content">
         <div class="row">
             <div class="col-md-12">
                 <div class="m-portlet">
                     <div class="m-portlet__body">
-                        <!--begin::Section-->
-                        <div class="m-section">
-                            <form method="post" action="{{ route('payments.store') }}" id="upload" class="validation_form" enctype="multipart/form-data">
-                                @csrf
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="m-section__content">
-                                            <div class="form-group row">
-                                                <label class="col-md-8">
-                                                    Application number
-                                                </label>
-                                                <div class="col-md-4">
-                                                    <input value="{{ old('num_cards') }}" type="text" autocomplete="off" class="form-control" name="num_cards" />
-                                                    @error('num_cards')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        {{ $message }}
-                                                    </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-md-8">
-                                                    Applicant name
-                                                </label>
-                                                <div class="col-md-4">
-                                                    <input value="{{ old('num_cards') }}" type="text" autocomplete="off" class="form-control" name="num_cards" />
-                                                    @error('num_cards')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        {{ $message }}
-                                                    </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                          
-                                            <!--<div id="err"></div>-->
-                                            <div class="form-group row">
-                                                <label class="col-md-8">
-                                                    Rate per SQFT <span class="red">*</span>
-                                                </label>
-                                                <div class="col-md-4">
-                                                    <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
-                                                    @error('name')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        {{ $message }}
-                                                    </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-md-8">
-                                                    Area Of the Flat(Salable Area) <span class="red">*</span>
-                                                </label>
-                                                <div class="col-md-4">
-                                                    <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
-                                                    @error('name')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        {{ $message }}
-                                                    </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-md-8">
-                                                    Salable Value
-                                                </label>
-                                                <div class="col-md-4">
-                                                    <input value="{{ old('num_cards') }}" type="text" disabled autocomplete="off" class="form-control" name="num_cards" />
-                                                    @error('num_cards')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        {{ $message }}
-                                                    </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label class="col-md-8">
-                                                    UDS (in sq ft.)<span class="red">*</span>
-                                                </label>
-                                                <div class="col-md-4">
-                                                    <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
-                                                    @error('name')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        {{ $message }}
-                                                    </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-md-8">
-                                                    Guideline Value<span class="red">*</span>
-                                                </label>
-                                                <div class="col-md-4">
-                                                    <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
-                                                    @error('name')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        {{ $message }}
-                                                    </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group text-right">
-                                                <button type="submit" name="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
-                                                    Submit
-                                                </button>
-                                            </div>
-
-
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6"><span>[A]</span>
-                                        <div class="form-group row">
-                                            <label class="col-md-8">
-                                                Land Cost
-                                            </label>
-                                            <div class="col-md-4">
-                                                <input value="{{ old('num_cards') }}" type="text" disabled autocomplete="off" class="form-control" name="num_cards" />
-                                                @error('num_cards')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                            </div>
-                                        </div><span>[B]</span>
-                                        <div class="form-group row">
-                                            <label class="col-md-8">
-                                                Construction Cost
-                                            </label>
-                                            <div class="col-md-4">
-                                                <input value="{{ old('num_cards') }}" type="text" disabled autocomplete="off" class="form-control" name="num_cards" />
-                                                @error('num_cards')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                            </div>
-                                        </div><span>[C]</span>
-                                        <div class="form-group row">
-                                            <label class="col-md-8">
-                                                Electricity charges
-                                            </label>
-                                            <div class="col-md-4">
-                                                <input value="{{ old('num_cards') }}" type="text" autocomplete="off" class="form-control" name="num_cards" />
-                                                @error('num_cards')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-8">
-                                                Metro Water Supply
-                                            </label>
-                                            <div class="col-md-4">
-                                                <input value="{{ old('num_cards') }}" type="text" autocomplete="off" class="form-control" name="num_cards" />
-                                                @error('num_cards')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-8">
-                                                Car Park
-                                            </label>
-                                            <div class="col-md-4">
-                                                <input value="{{ old('num_cards') }}" type="text" autocomplete="off" class="form-control" name="num_cards" />
-                                                @error('num_cards')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-8">
-                                                Amenities charges
-                                            </label>
-                                            <div class="col-md-4">
-                                                <input value="{{ old('num_cards') }}" type="text" autocomplete="off" class="form-control" name="num_cards" />
-                                                @error('num_cards')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-8">
-                                                Maintenance Charges(To be decided )
-                                            </label>
-                                            <div class="col-md-4">
-                                                <input value="{{ old('num_cards') }}" type="text" autocomplete="off" class="form-control" name="num_cards" />
-                                                @error('num_cards')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-8 stronglabel">
-                                                Gross Amount=[A]+[B]+[C]
-                                            </label>
-                                            <div class="col-md-4">
-                                                <input value="{{ old('num_cards') }}" disabled type="text" autocomplete="off" class="form-control" name="num_cards" />
-                                                @error('num_cards')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-
-
-
-                                        <span>[D]</span>
-                                        <div class="form-group row">
-                                            <label class="col-md-8">
-                                                Stamp Duty charges @7% on [A]
-                                            </label>
-                                            <div class="col-md-4">
-                                                <input value="{{ old('num_cards') }}" type="text" disabled autocomplete="off" class="form-control" name="num_cards" />
-                                                @error('num_cards')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-8">
-                                                Registration charges @4% on [A](demand draft)
-                                            </label>
-                                            <div class="col-md-4">
-                                                <input value="{{ old('num_cards') }}" type="text" disabled autocomplete="off" class="form-control" name="num_cards" />
-                                                @error('num_cards')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-8">
-                                                Registration charges for Construction Agreement @2% on [B]+[C]
-                                            </label>
-                                            <div class="col-md-4">
-                                                <input value="{{ old('num_cards') }}" type="text" disabled autocomplete="off" class="form-control" name="num_cards" />
-                                                @error('num_cards')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                            </div>
-                                        </div><span>[E]</span>
-                                        <div class="form-group row">
-                                            <label class="col-md-8">
-                                                Corpus fund
-                                            </label>
-                                            <div class="col-md-4">
-                                                <input value="{{ old('num_cards') }}" type="text" autocomplete="off" class="form-control" name="num_cards" />
-                                                @error('num_cards')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                            </div>
-                                        </div><span>[F]</span>
-                                        <div class="form-group row">
-                                            <label class="col-md-8">
-                                                GST @1%
-                                            </label>
-                                            <div class="col-md-4">
-                                                <input value="{{ old('num_cards') }}" type="text" disabled autocomplete="off" class="form-control" name="num_cards" />
-                                                @error('num_cards')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <!-- <div class="form-group row">
-                                            <label class="col-md-4">
-                                                Status <span class="red">*</span>
-                                            </label>
-                                            <div class="col-md-4 radio-sec">
-                                                <label><input type="radio" class="" name="status" value="Active" checked="checked"> <span> Active</span></label><br>
-                                                <label><input type="radio" class="" name="status" value="Inactive"> <span> Inactive</span></label><br>
-                                                @error('status')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                            </div>
-                                        </div> -->
-                                        <div class="form-group text-right">
-                                            <button type="submit" name="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
-                                                Submit
-                                            </button>
-                                        </div>
-
+                        <div class="col-md-8 offset-md-2">
+                            <div class="m-section__content">
+                                <div class="form-group row">
+                                    <label class="col-md-5">
+                                        Application number<span class="red">*</span>
+                                    </label>
+                                    <div class="col-md-5">
+                                        <input value="{{ old('num_cards') }}" type="text" autocomplete="off" placeholder="Enter Application Number" class="form-control" name="num_cards" />
+                                        @error('num_cards')
+                                        <span class="invalid-feedback" role="alert">
+                                            {{ $message }}
+                                        </span>
+                                        @enderror
                                     </div>
                                 </div>
-                            </form>
+                                <div class="form-group row">
+                                    <label class="col-md-5">
+                                        Name
+                                    </label>
+                                    <div class="col-md-5">
+                                        <input value="{{ old('num_cards') }}" type="text" disabled autocomplete="off" class="form-control" name="num_cards" />
+                                        @error('num_cards')
+                                        <span class="invalid-feedback" role="alert">
+                                            {{ $message }}
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-5">
+                                        Type <span class="red">*</span>
+                                    </label>
+                                    <div class="col-md-7 radio-sec">
+                                        <label class="col-md-4"><input type="radio" class="" name="Type" value="Own_Fund"> <span> Own Fund</span></label><br>
+                                        <label class="col-md-4"><input type="radio" class="" name="Type" value="Bank"> <span> Bank</span></label><br>
+                                    </div>
+                                    <div class="col-md-8 offset-md-4">
+                                        @error('Type')
+                                        <span class="invalid-feedback" role="alert">
+                                            {{ $message }}
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="m-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="m-portlet">
+                    <div class="m-portlet__body">
+                        <div class="col-md-8 offset-md-2">
+                            <div class="m-section__content">
+                                <div class="form-group row">
+                                    <h4 class="col-md-10"> Own Fund</h4>
+
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-5">
+                                        Date<span class="red">*</span>
+                                    </label>
+                                    <div class="col-md-5">
+                                        <input value="{{ old('phone') }}" type="date" autocomplete="off" class="form-control" name="phone" />
+                                        @error('phone')
+                                        <span class="invalid-feedback" role="alert">
+                                            {{ $message }}
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-md-5">
+                                        Payment Type <span class="red">*</span>
+                                    </label>
+                                    <div class="col-md-7 radio-sec">
+                                        <label class="col-md-4"><input type="radio" class="" name="Type" value="Own_Fund"> <span> Check</span></label><br>
+                                        <label class="col-md-4"><input type="radio" class="" name="Type" value="Bank"> <span> Cash</span></label><br>
+                                    </div>
+                                    <div class="col-md-8 offset-md-4">
+                                        @error('Type')
+                                        <span class="invalid-feedback" role="alert">
+                                            {{ $message }}
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <h5 class="col-md-10"> Check</h5>
+
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-5">
+                                        Check No
+                                    </label>
+                                    <div class="col-md-5">
+                                        <input value="{{ old('pan_number') }}" type="text" autocomplete="off" placeholder="Enter Check Number" class="form-control" name="aadhar_number" onKeyPress="if(this.value.length==10) return false;" name="program_fee" style="margin-bottom: 8px;" />
+                                        @error('pan')
+                                        <span class="invalid-feedback" role="alert">
+                                            {{ $message }}
+                                        </span>
+                                        @enderror
+                                        @error('pan_number')
+                                        <span class="invalid-feedback" role="alert">
+                                            {{ $message }}
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-5">
+                                        Amount
+                                    </label>
+                                    <div class="col-md-5">
+                                        <input value="{{ old('pan_number') }}" type="text" autocomplete="off" placeholder="Enter Amount" class="form-control" name="aadhar_number" onKeyPress="if(this.value.length==10) return false;" name="program_fee" style="margin-bottom: 8px;" />
+                                        @error('pan')
+                                        <span class="invalid-feedback" role="alert">
+                                            {{ $message }}
+                                        </span>
+                                        @enderror
+                                        @error('pan_number')
+                                        <span class="invalid-feedback" role="alert">
+                                            {{ $message }}
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <h5 class="col-md-10"> Cash</h5>
+
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-5">
+                                        Amount
+                                    </label>
+                                    <div class="col-md-5">
+                                        <input value="{{ old('pan_number') }}" type="text" autocomplete="off" placeholder="Enter Amount" class="form-control" name="aadhar_number" onKeyPress="if(this.value.length==10) return false;" name="program_fee" style="margin-bottom: 8px;" />
+                                        @error('pan')
+                                        <span class="invalid-feedback" role="alert">
+                                            {{ $message }}
+                                        </span>
+                                        @enderror
+                                        @error('pan_number')
+                                        <span class="invalid-feedback" role="alert">
+                                            {{ $message }}
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-5">
+                                        Receipt No
+                                    </label>
+                                    <div class="col-md-5">
+                                        <input value="{{ old('pan_number') }}" type="text" autocomplete="off" placeholder="Enter Receipt Number" class="form-control" name="aadhar_number" onKeyPress="if(this.value.length==10) return false;" name="program_fee" style="margin-bottom: 8px;" />
+                                        @error('pan')
+                                        <span class="invalid-feedback" role="alert">
+                                            {{ $message }}
+                                        </span>
+                                        @enderror
+                                        @error('pan_number')
+                                        <span class="invalid-feedback" role="alert">
+                                            {{ $message }}
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-5">
+                                        Receipt File
+                                    </label>
+                                    <div class="col-md-5">
+                                        <input type="file" accept="application/pdf" class="form-control" name="pan" autocomplete="off" />
+                                        @error('pan')
+                                        <span class="invalid-feedback" role="alert">
+                                            {{ $message }}
+                                        </span>
+                                        @enderror
+                                        @error('pan_number')
+                                        <span class="invalid-feedback" role="alert">
+                                            {{ $message }}
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group text-right col-md-10">
+                                    <button type="submit" name="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
+                                        Submit
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="m-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="m-portlet">
+                    <div class="m-portlet__body">
+                        <div class="col-md-8 offset-md-2">
+                            <div class="m-section__content">
+                                <div class="form-group row">
+                                    <h4 class="col-md-10"> Bank</h4>
+
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-5">
+                                        Date<span class="red">*</span>
+                                    </label>
+                                    <div class="col-md-5">
+                                        <input value="{{ old('phone') }}" type="date" autocomplete="off" class="form-control" name="phone" />
+                                        @error('phone')
+                                        <span class="invalid-feedback" role="alert">
+                                            {{ $message }}
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                
+                                
+                                <div class="form-group row">
+                                    <label class="col-md-5">
+                                        Amount
+                                    </label>
+                                    <div class="col-md-5">
+                                        <input value="{{ old('pan_number') }}" type="text" autocomplete="off" placeholder="Enter Amount" class="form-control" name="aadhar_number" onKeyPress="if(this.value.length==10) return false;" name="program_fee" style="margin-bottom: 8px;" />
+                                        @error('pan')
+                                        <span class="invalid-feedback" role="alert">
+                                            {{ $message }}
+                                        </span>
+                                        @enderror
+                                        @error('pan_number')
+                                        <span class="invalid-feedback" role="alert">
+                                            {{ $message }}
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group row">
+                                    <label class="col-md-5">
+                                        Receipt No
+                                    </label>
+                                    <div class="col-md-5">
+                                        <input value="{{ old('pan_number') }}" type="text" autocomplete="off" placeholder="Enter Receipt Number" class="form-control" name="aadhar_number" onKeyPress="if(this.value.length==10) return false;" name="program_fee" style="margin-bottom: 8px;" />
+                                        @error('pan')
+                                        <span class="invalid-feedback" role="alert">
+                                            {{ $message }}
+                                        </span>
+                                        @enderror
+                                        @error('pan_number')
+                                        <span class="invalid-feedback" role="alert">
+                                            {{ $message }}
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-5">
+                                        Receipt File
+                                    </label>
+                                    <div class="col-md-5">
+                                        <input type="file" accept="application/pdf" class="form-control" name="pan" autocomplete="off" />
+                                        @error('pan')
+                                        <span class="invalid-feedback" role="alert">
+                                            {{ $message }}
+                                        </span>
+                                        @enderror
+                                        @error('pan_number')
+                                        <span class="invalid-feedback" role="alert">
+                                            {{ $message }}
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group text-right col-md-10">
+                                    <button type="submit" name="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
+                                        Submit
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- END: Subheader -->
+
 </div>
 <script>
     // $(document).ready(function(){
