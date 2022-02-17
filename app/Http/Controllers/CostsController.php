@@ -33,13 +33,13 @@ class CostsController extends Controller {
         
         $result = $result->paginate(10);
         
-        return view('/payments/index', [
+        return view('/costs/index', [
             'results' => $result
         ]);      
     }
     public function add() {
          $sessionadmin = Parent::checkadmin();
-        return view('payments/add', []);
+        return view('costs/add', []);
     }
      public function store(Request $request)
     {
