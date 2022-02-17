@@ -6,7 +6,7 @@
         <div class="d-flex align-items-center">
             <div class="mr-auto">
                 <h3 class="m-subheader__title m-subheader__title--separator">
-                    Customer List
+                    Customers List
                 </h3>
             </div>
             <div>
@@ -47,44 +47,48 @@
                 <div class="m-section">
                     <div class="m-section__content">
                         <?php if ($results->count() > '0') { ?>
-                        <div class="table-responsive">
-                            <table class="table m-table m-table--head-bg-brand">
-                                <thead>
-                                    <tr>
-                                        <th> # </th>
-                                        <th>Profile</th>
-                                        <th>Applicant Name</th>
-                                        <th>Father/Spouse Name</th>
-                                        <th>Age</th>
-                                        <th>email</th>
-                                        <th>Gender</th>
-                                        <th>Mobile Number</th>
-                                        <th>Occupation</th>
-                                        <th class="text-center">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                        $i = ($results->currentPage() > 1) ? $results->currentPage() * $results->perpage() : $results->currentPage();
+                            <div class="table-responsive">
+                                <table class="table m-table m-table--head-bg-brand">
+                                    <thead>
+                                        <tr>
+                                            <th> # </th>
+                                            <th>Profile</th>
+                                            <th>Applicant Name</th>
+                                            <th>Application Number</th>
+                                            <th>Application Date</th>
+                                            <th>Father/Spouse Name</th>
+                                            <th>Co-Applicant Name</th>
+                                            <th>Age</th>
+                                            <th>Gender</th>
+                                            <th>Mobile Number</th>
+                                            <th>email</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        //$i = ($results->currentPage() > 1) ? $results->currentPage() * $results->perpage() : $results->currentPage();
+                                        $i = ($results->currentpage() - 1) * $results->perpage() + 1;
                                         foreach ($results as $result) {
-                                    ?>
-                                    <tr>
-                                        <td width="5%">{{ $i }}</td>
-                                        <td class="text-center">
-                                            @if(!empty($result['photo']))
-                                                <a href="{{URL::to('/files/customers/'.$result['photo'].'')}}"  target="_blank" ><img src="{{URL::to('/files/customers/'.$result['photo'].'')}}" width="50" height="50"/>
-                                                </a>
-                                                @endif
+                                        ?>
+                                            <tr>
+                                                <td width="5%">{{ $i }}</td>
+                                                <td class="text-center">
+                                                    @if(!empty($result['photo']))
+                                                    <a href="{{URL::to('/files/customers/'.$result['photo'].'')}}" target="_blank"><img src="{{URL::to('/files/customers/'.$result['photo'].'')}}" width="50" height="50" />
+                                                    </a>
+                                                    @endif
                                                 </td>
-                                        <td>{{ $result->applicant_name }}</td>
-                                        <td>{{ $result->fathers_name }}</td>
-                                        <td>{{ $result->age }}</td>
-                                        <td>{{ $result->email }}</td>
-                                        <td>{{ $result->gender }}</td>
-                                        <td>{{ $result->phone }}</td>
-                                        <td>{{ $result->occupation }}</td>
+                                                <td>{{ $result->applicant_name }}</td>
+                                                <td>{{ $result->application_number }}</td>
+                                                <td>{{ $result->date_of_application }}</td>
+                                                <td>{{ $result->fathers_name }}</td>
+                                                <td><?php echo !empty($result->co_applicant_name) ? $result->co_applicant_name : "-"; ?></td>
+                                                <td>{{ $result->age }}</td>
+                                                <td>{{ $result->gender }}</td>
+                                                <td width=><?php echo $result->phone_code . " " . $result->phone; ?></td>
+                                                <td>{{ $result->email }}</td>
 
-                                               
                                                 <td class="text-center">
                                                     <div class="btn-group">
                                                         <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="Edit" href="{{ route("customers.personal_edit", $result->customer_id) }}">
@@ -117,18 +121,6 @@
             </div>
         </div>
     </div>
-    
-</div>
 
-<style>
-    .form-control:disabled,
-    .form-control[readonly] {
-        background-color: #F26C4F;
-        opacity: 1;
-        color: #fff;
-        text-align: center;
-        padding: 11px !important;
-        font-size: 20px;
-    }
-</style>
+</div>
 @endsection

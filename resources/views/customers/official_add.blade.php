@@ -38,13 +38,21 @@
                                                 Name of the Applicant<span class="red">*</span>
                                             </label>
                                             <div class="col-md-7">
-                                                <input value="{{ old('phone') }}" type="tel" autocomplete="off" class="form-control" name="phone" />
+                                                <!-- <input value="{{ old('phone') }}" type="tel" autocomplete="off" class="form-control" name="phone" />
                                                 @error('phone')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
-                                                @enderror
-                                            </div>
+                                                @enderror -->
+                                           
+                                            <select class="form-control profession_son m-select2" name="son_profession[]">
+                                                                    <option value=''>--Select Profession--</option>
+                                                                    <option value="Children">Children</option>
+                                                                    <option value="Student">Student</option>
+                                                                    <option value="Employee">Employee</option>
+                                                                    <option value="others">others</option>
+                                                                </select>
+                                                                </div>
                                         </div>
 
                                         <div class="form-group row">
@@ -422,6 +430,9 @@
     $("#marketing_range-add-mor").click(function() {
         $(".marketing_range_lis").append('<li class="added-li"><div class="row" style="margin-bottom: 12px;"><div class="col-md-5"><input required="" style="width: 100%;" class="form-control " name="daughter_name[]" type="text" autocomplete="off" placeholder="Name"></div> <div class="col-md-3"><input class="form-control " required=""  name="daughter_age[]" type="text" autocomplete="off" placeholder="Age" style="width: 100%;"></div> <div class="col-md-4"><select class="form-control" name="daughter_profession[]"><option value="">--Select Profession--</option><option value="Student">Student</option><option value="Employee">Employee</option></select></div></div><a class="btn btn-danger removebtn" style="margin: 0px;margin-bottom: 5px;" href="#" onclick="parentNode.parentNode.removeChild(parentNode)">-</a></li>');
     });
+
+
+    $(".m-select2").select2();
 </script>
 
 
