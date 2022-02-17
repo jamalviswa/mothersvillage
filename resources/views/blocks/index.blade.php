@@ -46,7 +46,7 @@
 
 
                             <div class="row">
-                                <div class="col box" style="background-color:#ffff00;">
+                                <div class="col box" style="background-color:#ffff45;">
                                     <p>1 BHK</p>
                                 </div>
                                 <div class="col box" style="background-color:#c7f8ca;">
