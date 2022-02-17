@@ -76,7 +76,7 @@
                                                 </a>
                                                 @endif
                                                 </td>
-                                        <td>{{ $result->name }}</td>
+                                        <td>{{ $result->applicant_name }}</td>
                                         <td>{{ $result->fathers_name }}</td>
                                         <td>{{ $result->age }}</td>
                                         <td>{{ $result->email }}</td>
