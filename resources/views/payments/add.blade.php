@@ -29,8 +29,17 @@
                                         Application number<span class="red">*</span>
                                     </label>
                                     <div class="col-md-5">
-                                        <input value="{{ old('num_cards') }}" type="text" autocomplete="off" placeholder="Enter Application Number" class="form-control" name="num_cards" />
-                                        @error('num_cards')
+                                      
+                                        <select class="form-control m-select2" name="application_number">
+                                                  @php
+                                            $categories = App\Customer::where('status','Active')->get();
+                                            @endphp
+                                                <option value=""> Select Application Number</option>
+                                                @foreach($categories as $category)
+                                            <option {{ old('application_number') == $category['customer_id '] ? "selected" : "" }} value="{{ $category['customer_id '] }}">{{ $category['application_number'] }}</option>
+                                              @endforeach
+                                            </select>
+                                        @error('application_number')
                                         <span class="invalid-feedback" role="alert">
                                             {{ $message }}
                                         </span>
@@ -249,8 +258,8 @@
                                     </div>
                                 </div>
 
-                                
-                                
+
+
                                 <div class="form-group row">
                                     <label class="col-md-5">
                                         Amount
@@ -269,7 +278,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group row">
                                     <label class="col-md-5">
                                         Receipt No
