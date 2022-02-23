@@ -111,7 +111,7 @@
         border-radius: 20px;
         height: 150px;
         cursor: pointer;
-        max-width:235px ;
+        max-width:150px ;
         margin-left: 20px;
     }
 
