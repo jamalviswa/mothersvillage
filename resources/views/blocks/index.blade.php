@@ -23,22 +23,22 @@
                         <div class="m-section">
                             <div class="m-section__content">
                                 <div class="row">
-                                    <div class="col-md-3 j-typebox" style="background-color:#ffff45;">
+                                    <div class="col-md-2 j-typebox" style="background-color:#ffff45;">
                                         <p class="j-type">1 BHK</p>
                                     </div>
-                                    <div class="col-md-3 j-typebox" style="background-color:#c7f8ca;">
+                                    <div class="col-md-2 j-typebox" style="background-color:#c7f8ca;">
                                         <p class="j-type">2 BHK</p>
                                     </div>
-                                    <div class="col-md-3 j-typebox" style="background-color:#7ea1fa;">
+                                    <div class="col-md-2 j-typebox" style="background-color:#7ea1fa;">
                                         <p class="j-type">2 BHK P</p>
                                     </div>
-                                    <div class="col-md-3 j-typebox" style="background-color:#a7905a;">
+                                    <div class="col-md-2 j-typebox" style="background-color:#a7905a;">
                                         <p class="j-type">2 BHK SP</p>
                                     </div>
-                                    <div class="col-md-3 j-typebox" style="background-color:#ffa9ff;">
+                                    <div class="col-md-2 j-typebox" style="background-color:#ffa9ff;">
                                         <p class="j-type">3 BHK</p>
                                     </div>
-                                    <div class="col-md-3 j-typebox" style="background-color:#21ffff;">
+                                    <div class="col-md-2 j-typebox" style="background-color:#21ffff;">
                                         <p class="j-type">3 BHK P</p>
                                     </div>
                                 </div>
@@ -111,7 +111,7 @@
         border-radius: 20px;
         height: 150px;
         cursor: pointer;
-        max-width: 170px;
+        max-width:235px ;
         margin-left: 20px;
     }
 
