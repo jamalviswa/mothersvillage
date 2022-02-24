@@ -141,7 +141,9 @@
                 </a>
                 <div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--left m-menu__submenu--pull">
                     <span class="m-menu__arrow m-menu__arrow--adjust"></span>
-                        <ul class="m-menu__subnav">
+                        <ul class="m-menu__subnav"  href="{{route('masters.phase_index')}}" class="m-menu__link @if(($controller=='MastersController' && $action=='phase_index') || 
+                                    ($controller=='MastersController' && $action=='phase_add') ||
+                                    ($controller=='MastersController' && $action=='phase_edit') )  active @endif">
                             <li class="m-menu__item " aria-haspopup="true" >
                                 <a  href="{{route('masters.phase_index')}}" class="m-menu__link @if(($controller=='MastersController' && $action=='phase_index') || 
                                     ($controller=='MastersController' && $action=='phase_add') ||
