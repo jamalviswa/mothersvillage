@@ -58,7 +58,7 @@ class MastersController extends Controller
         $data->created_date = date('Y-m-d H:i:s');
         $data->status = "Active";
         $data->save();
-        Session::flash('message', 'Phase Details Added!');
+        Session::flash('message', 'Phase Added!');
         Session::flash('alert-class', 'success');
         return \Redirect::route('masters.phase_index', []);
     }
@@ -81,7 +81,7 @@ class MastersController extends Controller
         $data->phase_name = $request->phase_name;
         $data->modified_date = date('Y-m-d H:i:s');
         $data->save();
-        Session::flash('message', 'Phase Details Updated!');
+        Session::flash('message', 'Phase Updated!');
         Session::flash('alert-class', 'success');
         return \Redirect::route('masters.phase_index', []);
     }

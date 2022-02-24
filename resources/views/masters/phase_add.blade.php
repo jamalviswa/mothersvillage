@@ -35,7 +35,7 @@
                                                Phase Name <span class="red">*</span>
                                             </label>
                                             <div class="col-md-7">
-                                                <input value="{{ old('phase_name') }}" type="text" autocomplete="off" class="form-control" name="phase_name" />
+                                                <input value="{{ old('phase_name') }}" type="text" placeholder="Enter Phase Name" style="text-transform: capitalize;" autocomplete="off" class="form-control" name="phase_name" />
                                                 @error('phase_name')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
