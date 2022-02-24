@@ -58,7 +58,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group row state hide">
+                                <!-- <div class="form-group row state hide">
                                     <label class="col-md-5">
                                         Applicant Date <span class="red">*</span>
                                     </label>
@@ -67,7 +67,7 @@
 
                                         </select>
                                     </div>
-                                </div>
+                                </div> -->
                                 <!-- <div class="form-group row state hide">
                                     <label class="col-md-5">
                                         Applicant Name
