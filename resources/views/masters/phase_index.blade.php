@@ -21,10 +21,11 @@
         <div class="m-portlet">
             <div class="m-portlet__body">
                 <!--begin::Section-->
-                <div class="m-section__content    ">
+                <div class="m-section__content">
+                <?php if ($results->count() > '0') { ?>
                     <form method="GET" class="search-form form-inline " action="#">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="s" placeholder="Search" @if(isset($_REQUEST['s'])) value="{{ $_REQUEST['s'] }}" @else value="" @endif />
+                            <input type="text" style="text-transform: capitalize;" autocomplete="off" class="form-control" name="s" placeholder="Search" @if(isset($_REQUEST['s'])) value="{{ $_REQUEST['s'] }}" @else value="" @endif />
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary m-btn m-btn--air m-btn--custom" type="submit" name="search"><i class="fa fa-search"></i></button>
@@ -41,7 +42,7 @@
                 <!--begin::Section-->
                 <div class="m-section">
                     <div class="m-section__content">
-                        <?php if ($results->count() > '0') { ?>
+                      
                         <div class="table-responsive">
                             <table class="table m-table m-table--head-bg-brand">
                                 <thead>
@@ -59,7 +60,7 @@
                                     ?>
                                     <tr>
                                         <td width="5%">{{ $i }}</td>          
-                                        <td>{{ $result->phase_name }}</td>
+                                        <td style="text-transform:capitalize;">{{ $result->phase_name }}</td>
                                         <td class="text-center">
                                             <div class="btn-group">
                                                 <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="Edit" href="{{ route("masters.phase_edit", $result->phase_id) }}">

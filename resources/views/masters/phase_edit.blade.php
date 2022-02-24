@@ -37,7 +37,7 @@ $requestdatas = (!empty(old())) ? old() : $detail;
                                                 Phase Name <span class="red">*</span>
                                             </label>
                                             <div class="col-md-7">
-                                                <input value="{{ $requestdatas['phase_name'] }}" type="text" autocomplete="off" class="form-control" name="phase_name" />
+                                                <input value="{{ $requestdatas['phase_name'] }}" placeholder="Enter Phase Name" style="text-transform: capitalize;" type="text" autocomplete="off" class="form-control" name="phase_name" />
                                                 @error('phase_name')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
