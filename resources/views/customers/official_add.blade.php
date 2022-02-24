@@ -11,7 +11,7 @@
                 </h3>
             </div>
             <div>
-                <a href="{{route('customers.personal_index')}}" rel="tooltip" title="" class="m-portlet__nav-link btn btn-lg btn-secondary  
+                <a href="{{route('customers.official_index')}}" rel="tooltip" title="" class="m-portlet__nav-link btn btn-lg btn-secondary  
                          m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle" data-original-title="Back to List">
                     <i class="fa fa-long-arrow-left"></i>
                 </a>
@@ -31,29 +31,31 @@
                                 <div class="col-md-8 offset-md-2">
                                     <div class="m-section__content">
 
-
-
-                                        <div class="form-group row">
+                                    <div class="form-group row">
                                             <label class="col-md-5">
-                                                Name of the Applicant<span class="red">*</span>
+                                            Name of the Applicant<span class="red">*</span>
                                             </label>
                                             <div class="col-md-7">
-                                                <!-- <input value="{{ old('phone') }}" type="tel" autocomplete="off" class="form-control" name="phone" />
-                                                @error('phone')
+                                                <select class="form-control m-select2" id="country" name="phase">
+                                                    <option>Select Application Number</option>
+                                                    <?php
+                                                    $phases = App\Customer::where('status', 'Active')->get();
+                                                    foreach ($phases as $phase) {
+                                                    ?>
+                                                        <option value="<?php echo $phase->customer_id ?>"><?php echo $phase->application_number ?></option>
+
+                                                    <?php }
+                                                    ?>
+                                                </select>
+                                                @error('phase')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
-                                                @enderror -->
-                                           
-                                            <select class="form-control profession_son m-select2" name="son_profession[]">
-                                                                    <option value=''>--Select Profession--</option>
-                                                                    <option value="Children">Children</option>
-                                                                    <option value="Student">Student</option>
-                                                                    <option value="Employee">Employee</option>
-                                                                    <option value="others">others</option>
-                                                                </select>
-                                                                </div>
+                                                @enderror
+                                            </div>
                                         </div>
+
+                                       
 
                                         <div class="form-group row">
                                             <label class="col-md-5">

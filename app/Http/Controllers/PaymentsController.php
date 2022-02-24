@@ -11,7 +11,7 @@ use Session;
 use DB;
 use Redirect;
 use App\Payment;
-
+use App\Customer;
 class PaymentsController extends Controller {
     
     public function index() {       
@@ -120,5 +120,24 @@ class PaymentsController extends Controller {
             Session::flash('message', 'Status Updated Sucessfully!');
             Session::flash('alert-class', 'success');
             return Redirect::back();
+    }
+
+
+
+
+    
+    public function map(Request $request){
+        if (!empty($_REQUEST['application_name'])) {
+            $id = $_REQUEST['application_name'];
+            $states = Customer::where('customer_id',$id)->get();
+            //print_r($states);exit;
+            //echo '<option value="">Select State</option>';
+            foreach ($states as $state) {
+               // print_r($state);exit;
+               echo '<option value="' . $state->applicant_name . '">' . $state->applicant_name . '</option>';
+                //echo '<input value="' . $state->customer_id . '' . $state->applicant_name . '" />';
+            }
+            exit;
+        }
     }
 }
