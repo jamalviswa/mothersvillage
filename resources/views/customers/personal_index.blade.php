@@ -57,7 +57,6 @@
                                             <th>Application Number</th>
                                             <th>Application Date</th>
                                             <th>Father/Spouse Name</th>
-                                            <th>Co-Applicant Name</th>
                                             <th>Age</th>
                                             <th>Gender</th>
                                             <th>Mobile Number</th>
@@ -83,7 +82,6 @@
                                                 <td>{{ $result->application_number }}</td>
                                                 <td>{{ $result->date_of_application }}</td>
                                                 <td>{{ $result->fathers_name }}</td>
-                                                <td><?php echo !empty($result->co_applicant_name) ? $result->co_applicant_name : "-"; ?></td>
                                                 <td>{{ $result->age }}</td>
                                                 <td>{{ $result->gender }}</td>
                                                 <td width=><?php echo $result->phone_code . " " . $result->phone; ?></td>

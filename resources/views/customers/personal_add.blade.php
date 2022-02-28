@@ -72,19 +72,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group row">
-                                            <label class="col-md-5">
-                                                Name of the co-applicant
-                                            </label>
-                                            <div class="col-md-7">
-                                                <input value="{{ old('co_applicant_name') }}" type="text"  style="text-transform: capitalize;" autocomplete="off" class="form-control" name="co_applicant_name" />
-                                                @error('co_applicant_name')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                            </div>
-                                        </div>
+                                       
                                         <div class="form-group row">
                                             <label class="col-md-5">
                                                 Father / Spouse Name <span class="red">*</span>

@@ -26,65 +26,64 @@
                     <div class="m-portlet__body">
                         <!--begin::Section-->
                         <div class="m-section">
-                            <form method="post" action="{{ route('customers.personal_store') }}" id="upload" class="validation_form" enctype="multipart/form-data">
+                            <form method="post" action="{{ route('customers.official_store') }}" id="upload" class="validation_form" enctype="multipart/form-data">
                                 @csrf
                                 <div class="col-md-8 offset-md-2">
                                     <div class="m-section__content">
-
                                         <div class="form-group row">
                                             <label class="col-md-5">
-                                                Name of the Applicant<span class="red">*</span>
+                                                Application Number<span class="red">*</span>
                                             </label>
                                             <div class="col-md-7">
-                                                <select class="form-control m-select2" id="country" name="phase">
+                                                <select class="form-control m-select2" id="country" name="application_number">
                                                     <option>Select Application Number</option>
                                                     <?php
                                                     $phases = App\Customer::where('status', 'Active')->get();
                                                     foreach ($phases as $phase) {
                                                     ?>
                                                         <option value="<?php echo $phase->customer_id ?>"><?php echo $phase->application_number ?></option>
-
                                                     <?php }
                                                     ?>
                                                 </select>
-                                                @error('phase')
+                                                @error('application_number')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
                                                 @enderror
                                             </div>
                                         </div>
-
-
-
                                         <div class="form-group row">
                                             <label class="col-md-5">
-                                                Application Number<span class="red">*</span>
+                                                Name of the Applicant <span class="red">*</span>
                                             </label>
-                                            <div class="col-md-7">
-                                                <input value="{{ old('phone') }}" type="tel" autocomplete="off" class="form-control" name="phone" />
-                                                @error('phone')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
+                                            <div class="col-md-7 state" id="state1">
+                                                <input type="text" disabled autocomplete="off" class="form-control" name="applicant_name" />
                                             </div>
                                         </div>
-
                                         <div class="form-group row">
                                             <label class="col-md-5">
-                                                Date of Application<span class="red">*</span>
+                                                Date of Application <span class="red">*</span>
                                             </label>
-                                            <div class="col-md-7">
-                                                <input value="{{ old('phone') }}" type="date" autocomplete="off" class="form-control" name="phone" />
-                                                @error('phone')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
+                                            <div class="col-md-7 states" id="state2">
+                                                <input type="text" disabled autocomplete="off" class="form-control" name="date_of_application" />
+
                                             </div>
                                         </div>
-
+                                        <div class="form-group row">
+                                            <label class="col-md-5">
+                                                Applicant Mobile Number<span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-7">
+                                                <div class="row">
+                                                    <div class="col-3 statess" id="state3">
+                                                        <input value="{{ old('phone_code') }}" disabled type="tel" autocomplete="off" class="form-control" name="phone_code" style="width:72%" maxlength="4" />
+                                                    </div>
+                                                    <div class="col-9 statesss" id="state4">
+                                                        <input value="{{ old('phone') }}" disabled type="tel" autocomplete="off" class="form-control" name="phone" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="form-group row">
                                             <label class="col-md-5">
                                                 Applicant Aadhar Details
@@ -109,8 +108,8 @@
                                                 Applicant Pan Details
                                             </label>
                                             <div class="col-md-7">
-                                                <input value="{{ old('pan_number') }}" type="text" autocomplete="off" placeholder="Enter PAN Number" class="form-control" name="aadhar_number" onKeyPress="if(this.value.length==10) return false;" name="program_fee" style="margin-bottom: 8px;" />
-                                                <input type="file" accept="application/pdf" class="form-control" name="pan" autocomplete="off" />
+                                                <input value="{{ old('pan_number') }}" type="text" autocomplete="off" placeholder="Enter PAN Number" class="form-control" name="pan_number" maxlength="10" style="margin-bottom: 8px;" />
+                                                <input type="file" accept="application/pdf,image/jpeg" class="form-control" name="pan" autocomplete="off" />
                                                 @error('pan')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
@@ -128,27 +127,14 @@
                                                 Applicant Passport Details
                                             </label>
                                             <div class="col-md-7">
-                                                <input value="{{ old('pan_number') }}" type="text" autocomplete="off" placeholder="Enter Passport Number" class="form-control" name="aadhar_number" onKeyPress="if(this.value.length==10) return false;" name="program_fee" style="margin-bottom: 8px;" />
-                                                <input type="file" accept="application/pdf" class="form-control" name="pan" autocomplete="off" />
-                                                @error('pan')
+                                                <input value="{{ old('passport_number') }}" type="text" autocomplete="off" placeholder="Enter Passport Number" class="form-control" name="passport_number" maxlength="10" style="margin-bottom: 8px;" />
+                                                <input type="file" accept="application/pdf,image/jpeg" class="form-control" name="passport" autocomplete="off" />
+                                                @error('passport')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
                                                 @enderror
-                                                @error('pan_number')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-5">
-                                                Name of the Co-Applicant
-                                            </label>
-                                            <div class="col-md-7">
-                                                <input value="{{ old('phone') }}" type="tel" autocomplete="off" class="form-control" name="phone" />
-                                                @error('phone')
+                                                @error('passport_number')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
@@ -157,12 +143,34 @@
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-md-5">
-                                                Co-applicant Address
+                                                Name of the co-applicant
                                             </label>
                                             <div class="col-md-7">
-                                                <textarea rows="4" class="form-control" name="address"> {{ old('address')}}</textarea>
-
-                                                @error('address')
+                                                <input value="{{ old('co_applicant_name') }}" type="text" style="text-transform: capitalize;" autocomplete="off" class="form-control" name="co_applicant_name" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-5">
+                                                Co-Applicant Mobile Number
+                                            </label>
+                                            <div class="col-md-7">
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <input value="{{ old('coapp_phone_code') }}+91" type="tel" autocomplete="off" class="form-control" name="coapp_phone_code" style="width:72%" maxlength="4" />
+                                                    </div>
+                                                    <div class="col-9">
+                                                        <input value="{{ old('coapp_phone') }}" id="phone" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="10" autocomplete="off" class="form-control" name="coapp_phone" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-5">
+                                                Co-Applicant Mail Id
+                                            </label>
+                                            <div class="col-md-7">
+                                                <input value="{{ old('coapp_email') }}" type="email" autocomplete="off" class="form-control" name="coapp_email" />
+                                                @error('coapp_email')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
@@ -174,14 +182,14 @@
                                                 Co-Applicant Aadhar Details
                                             </label>
                                             <div class="col-md-7">
-                                                <input value="{{ old('aadhar_number') }}" type="text" autocomplete="off" placeholder="Enter Aadhar Number" class="form-control" name="aadhar_number" onKeyPress="if(this.value.length==10) return false;" name="program_fee" style="margin-bottom: 8px;" />
-                                                <input type="file" accept="application/pdf" class="form-control" name="aadhar" autocomplete="off" />
-                                                @error('aadhar')
+                                                <input value="{{ old('coaadhar_number') }}" id="aadhar_number" type="text" autocomplete="off" placeholder="Enter Aadhar Number" class="form-control" name="coaadhar_number" maxlength="14" style="margin-bottom: 8px;" />
+                                                <input type="file" accept="application/pdf,image/jpeg" class="form-control" name="coaadhar" autocomplete="off" />
+                                                @error('coaadhar')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
                                                 @enderror
-                                                @error('aadhar_number')
+                                                @error('coaadhar_number')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
@@ -193,14 +201,14 @@
                                                 Co-Applicant Pan Details
                                             </label>
                                             <div class="col-md-7">
-                                                <input value="{{ old('pan_number') }}" type="text" autocomplete="off" placeholder="Enter PAN Number" class="form-control" name="aadhar_number" onKeyPress="if(this.value.length==10) return false;" name="program_fee" style="margin-bottom: 8px;" />
-                                                <input type="file" accept="application/pdf" class="form-control" name="pan" autocomplete="off" />
-                                                @error('pan')
+                                                <input value="{{ old('copan_number') }}" type="text" autocomplete="off" placeholder="Enter PAN Number" class="form-control" name="copan_number" maxlength="10" style="margin-bottom: 8px;" />
+                                                <input type="file" accept="application/pdf,image/jpeg" class="form-control" name="copan" autocomplete="off" />
+                                                @error('copan')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
                                                 @enderror
-                                                @error('pan_number')
+                                                @error('copan_number')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
@@ -212,27 +220,14 @@
                                                 Co-Applicant Passport Details
                                             </label>
                                             <div class="col-md-7">
-                                                <input value="{{ old('pan_number') }}" type="text" autocomplete="off" placeholder="Enter Passport Number" class="form-control" name="aadhar_number" onKeyPress="if(this.value.length==10) return false;" name="program_fee" style="margin-bottom: 8px;" />
-                                                <input type="file" accept="application/pdf" class="form-control" name="pan" autocomplete="off" />
-                                                @error('pan')
+                                                <input value="{{ old('copassport_number') }}" type="text" autocomplete="off" placeholder="Enter Passport Number" class="form-control" name="copassport_number" maxlength="10" style="margin-bottom: 8px;" />
+                                                <input type="file" accept="application/pdf,image/jpeg" class="form-control" name="copassport" autocomplete="off" />
+                                                @error('copassport')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
                                                 @enderror
-                                                @error('pan_number')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-5">
-                                                Applicant Mobile Number
-                                            </label>
-                                            <div class="col-md-7">
-                                                <input value="{{ old('phone') }}" type="tel" autocomplete="off" class="form-control" name="phone" />
-                                                @error('phone')
+                                                @error('copassport_number')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
@@ -241,33 +236,18 @@
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-md-5">
-                                                Co-Applicant Mobile Number
+                                                Co-applicant Address
                                             </label>
                                             <div class="col-md-7">
-                                                <input value="{{ old('phone') }}" type="tel" autocomplete="off" class="form-control" name="phone" />
-                                                @error('phone')
+                                                <textarea rows="4" class="form-control" name="coapp_address"> {{ old('coapp_address')}}</textarea>
+
+                                                @error('coapp_address')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
                                                 @enderror
                                             </div>
                                         </div>
-
-                                        <div class="form-group row">
-                                            <label class="col-md-5">
-                                                Co-Applicant Mail Id
-                                            </label>
-                                            <div class="col-md-7">
-                                                <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
-                                                @error('name')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-
-
                                         <div class="form-group row">
                                             <label class="col-md-5">
                                                 Phase<span class="red">*</span>
@@ -402,10 +382,6 @@
                                                 @enderror
                                             </div>
                                         </div>
-
-
-
-
                                         <div class="form-group text-right">
                                             <button type="submit" name="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
                                                 Submit
@@ -489,6 +465,79 @@
         });
     });
 
+    $('#country').change(function() {
+        var country = $(this).val();
+        $.ajax({
+            url: "{{route('customers.maps')}}",
+            type: 'POST',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "application_name": country
+            },
+            dataType: 'html',
+            success: function(data) {
+
+                $("#state1").html(data);
+                // $('#state1').append(data);
+                $('.state').removeClass('hide');
+            }
+        });
+    });
+    $('#country').change(function() {
+        var country = $(this).val();
+        $.ajax({
+            url: "{{route('customers.maps')}}",
+            type: 'POST',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "application_date": country
+            },
+            dataType: 'html',
+            success: function(data) {
+
+                $("#state2").html(data);
+                // $('#state1').append(data);
+                $('.states').removeClass('hide');
+            }
+        });
+    });
+    $('#country').change(function() {
+        var country = $(this).val();
+        $.ajax({
+            url: "{{route('customers.maps')}}",
+            type: 'POST',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "phone_code": country
+            },
+            dataType: 'html',
+            success: function(data) {
+
+                $("#state3").html(data);
+                // $('#state1').append(data);
+                $('.statess').removeClass('hide');
+            }
+        });
+    });
+    $('#country').change(function() {
+        var country = $(this).val();
+        $.ajax({
+            url: "{{route('customers.maps')}}",
+            type: 'POST',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "phone": country
+            },
+            dataType: 'html',
+            success: function(data) {
+
+                $("#state4").html(data);
+                // $('#state1').append(data);
+                $('.statesss').removeClass('hide');
+            }
+        });
+    });
+
     $('#aadhar_number').on('keypress change blur', function() {
         $(this).val(function(index, value) {
             return value.replace(/[^a-z0-9]+/gi, '').replace(/(.{4})/g, '$1 ');
@@ -501,25 +550,4 @@
         });
     });
 </script>
-
-<style>
-    .radio-sec input {
-        position: relative;
-        top: 0px;
-        margin-right: 5px;
-        margin-left: 0px;
-    }
-
-    .course-div {
-        box-shadow: 0 0 5px 2px #ddd;
-        padding: 18px;
-        margin: 15px 0;
-    }
-
-    ul {
-        list-style: none;
-        margin-left: 0px;
-    }
-</style>
-
 @endsection

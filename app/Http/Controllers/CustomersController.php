@@ -85,7 +85,6 @@ class CustomersController extends Controller
         $data->application_number = $request->application_number;
         $data->date_of_application = $request->date_of_application;
         $data->fathers_name = $request->fathers_name;
-        $data->co_applicant_name = $request->co_applicant_name;
         $data->age = $request->age;
         $data->gender = $request->gender;
         $data->phone_code = $request->phone_code;
@@ -319,22 +318,16 @@ class CustomersController extends Controller
             'plinth_area' => ['required'],
             'uds_area' => ['required'],
             'comn_area' => ['required'],
-
-
-            'fathers_name' => ['required'],
-            'age' => ['required'],
-            'gender' => ['required'],
-            'phone' => ['required'],
-            'name' => ['required'],
-            'occupation' => ['required'],
-            'address' => ['required'],
-            'income' => ['required'],
-            'experience' => ['required'],
-            'email' => ['required', Rule::unique('customers')->where(function ($query) use ($request) {
-                return $query->where('email', $request->email)->where('status', '<>', 'Trash');
-            })],
+            'phone' => ["required"],
+            'phone_code' => ["required"],
+            'application_number' => ["required"],
+            'applicant_name' => ["required"],
+            'date_of_application' => ["required"],
         ]);
         $data = new Document();
+        $data->application_number = $request->application_number;
+        $data->applicant_name = $request->applicant_name;
+        $data->date_of_application = $request->date_of_application;
         $data->phase = $request->phase;
         $data->block = $request->block;
         $data->floor = $request->floor;
@@ -353,71 +346,61 @@ class CustomersController extends Controller
             $chck = $aadhar->move($destinationPath, $aadhar_struc);
             $data->aadhar  = $aadhar_struc;
         }
-
-
-        $data->name = $request->name;
-        $data->fathers_name = $request->fathers_name;
-        $data->age = $request->age;
-        $data->gender = $request->gender;
+        $data->pan_number = $request->pan_number;
+        if (!empty($request->file('pan'))) {
+            $pan = $request->file('pan');
+            $pan_struc = uniqid() . '.' . $pan->getClientOriginalExtension();
+            $destinationPath = public_path('/files/forms/');
+            $chck = $pan->move($destinationPath, $pan_struc);
+            $data->pan  = $pan_struc;
+        }
+        $data->passport_number = $request->passport_number;
+        if (!empty($request->file('passport'))) {
+            $passport = $request->file('passport');
+            $passport_struc = uniqid() . '.' . $passport->getClientOriginalExtension();
+            $destinationPath = public_path('/files/forms/');
+            $chck = $passport->move($destinationPath, $passport_struc);
+            $data->passport  = $passport_struc;
+        }
         $data->phone = $request->phone;
-        $data->address = $request->address;
-        $data->income = $request->income;
-        $data->email = $request->email;
-        $data->occupation = $request->occupation;
-        $data->experience = $request->experience;
-        if (!empty($request->file('photo'))) {
-            $image = $request->file('photo');
-            $imagename = uniqid() . '.' . $image->getClientOriginalExtension();
-            $destinationPath = public_path('/files/customers/');
-            $chck = $image->move($destinationPath, $imagename);
-            $data->photo = $imagename;
+        $data->phone_code = $request->phone_code;
+        $data->coapp_phone = $request->coapp_phone;
+        $data->coapp_phone_code = $request->coapp_phone_code;
+        $data->co_applicant_name = $request->co_applicant_name;
+        $data->coapp_address = $request->coapp_address;
+        $data->coapp_email = $request->coapp_email;
+        $data->coaadhar_number = $request->coaadhar_number;
+        if (!empty($request->file('coaadhar'))) {
+            $coaadhar = $request->file('coaadhar');
+            $coaadhar_struc = uniqid() . '.' . $coaadhar->getClientOriginalExtension();
+            $destinationPath = public_path('/files/forms/');
+            $chck = $coaadhar->move($destinationPath, $coaadhar_struc);
+            $data->coaadhar  = $coaadhar_struc;
+        }
+        $data->copan_number = $request->copan_number;
+        if (!empty($request->file('copan'))) {
+            $copan = $request->file('copan');
+            $copan_struc = uniqid() . '.' . $copan->getClientOriginalExtension();
+            $destinationPath = public_path('/files/forms/');
+            $chck = $copan->move($destinationPath, $copan_struc);
+            $data->copan  = $copan_struc;
+        }
+        $data->copassport_number = $request->copassport_number;
+        if (!empty($request->file('copassport'))) {
+            $copassport = $request->file('copassport');
+            $copassport_struc = uniqid() . '.' . $copassport->getClientOriginalExtension();
+            $destinationPath = public_path('/files/forms/');
+            $chck = $copassport->move($destinationPath, $copassport_struc);
+            $data->copassport  = $copassport_struc;
         }
         $data->created_date = date('Y-m-d H:i:s');
-        $data->status = "Active";
+        $data->status = "Active"; 
         $data->save();
-        $last_id = $data->customer_id;
-        if (!empty($request->son_profession)) {
-            if (!empty($request->son_age)) {
-                if (!empty($request->son_name)) {
-                    $n = sizeof($request->son_name);
-                    $son_name = $request->son_name;
-                    $son_profession = $request->son_profession;
-                    $son_age = $request->son_age;
-                    for ($i = 0; $i < $n; $i++) {
-                        $data = new Family_detail();
-                        $data->customer_id = $last_id;
-                        $data->son_profession = $son_profession[$i];
-                        $data->son_age = $son_age[$i];
-                        $data->son_name = $son_name[$i];
-                        $data->status = "Active";
-                        $data->save();
-                    }
-                }
-            }
-        }
-        if (!empty($request->daughter_profession)) {
-            if (!empty($request->daughter_age)) {
-                if (!empty($request->daughter_name)) {
-                    $n = sizeof($request->daughter_name);
-                    $daughter_name = $request->daughter_name;
-                    $daughter_profession = $request->daughter_profession;
-                    $daughter_age = $request->daughter_age;
-                    for ($i = 0; $i < $n; $i++) {
-                        $data = new Family_detail();
-                        $data->customer_id = $last_id;
-                        $data->daughter_profession = $daughter_profession[$i];
-                        $data->daughter_age = $daughter_age[$i];
-                        $data->daughter_name = $daughter_name[$i];
-                        $data->status = "Active";
-                        $data->save();
-                    }
-                }
-            }
-        }
-        Session::flash('message', 'Customer Personal Details Added!');
+        Session::flash('message', 'Customer Document Details Added!');
         Session::flash('alert-class', 'success');
         return \Redirect::route('customers.official_index', []);
     }
+
     public function map(Request $request)
     {
         if (!empty($_REQUEST['phase'])) {
@@ -450,6 +433,39 @@ class CustomersController extends Controller
             echo '<option value="">Select Flat Number</option>';
             foreach ($flatnumbers as $flatnumber) {
                 echo '<option value="' . $flatnumber->flatnumber_id . '">' . $flatnumber->flatnumber . '</option>';
+            }
+            exit;
+        }
+    }
+    public function maps(Request $request)
+    {
+        if (!empty($_REQUEST['application_name'])) {
+            $id = $_REQUEST['application_name'];
+            $names = Customer::where('customer_id', $id)->get();
+            foreach ($names as $name) {
+                echo '<input type="text" disabled class="form-control"  value="' . $name->applicant_name . '"> ';
+            }
+            exit;
+        } else  if (!empty($_REQUEST['application_date'])) {
+            $id = $_REQUEST['application_date'];
+            $dates = Customer::where('customer_id', $id)->get();
+            foreach ($dates as $date) {
+                echo ' <input type="text" disabled class="form-control"  value="' . $date->date_of_application . '"> ';
+            }
+            exit;
+        } else  if (!empty($_REQUEST['phone_code'])) {
+            $id = $_REQUEST['phone_code'];
+            $dates = Customer::where('customer_id', $id)->get();
+            foreach ($dates as $date) {
+                echo ' <input type="text" disabled class="form-control"  value="' . $date->phone_code . '"> ';
+            }
+            exit;
+        }
+        else  if (!empty($_REQUEST['phone'])) {
+            $id = $_REQUEST['phone'];
+            $dates = Customer::where('customer_id', $id)->get();
+            foreach ($dates as $date) {
+                echo ' <input type="text" disabled class="form-control"  value="' . $date->phone . '"> ';
             }
             exit;
         }

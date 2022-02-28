@@ -48,14 +48,26 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="form-group row state hide">
+                                <div class="form-group row">
                                     <label class="col-md-5">
                                         Applicant Name <span class="red">*</span>
                                     </label>
-                                    <div class="col-md-7">
-                                        <select class="form-control" disabled id="state1" style="-webkit-appearance: none;" name="appln_name" />
+                                    <div class="col-md-7 state"  id="state1">
+                                    <input value="{{ old('appln_name') }}"  type="text" disabled autocomplete="off" class="form-control" name="appln_name" />
+                                        <!-- <select class="form-control" disabled id="state1" style="-webkit-appearance: none;" name="appln_name" />
 
-                                        </select>
+                                        </select> -->
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-5">
+                                        Applicant Date <span class="red">*</span>
+                                    </label>
+                                    <div class="col-md-7 states"  id="state2">
+                                    <input value="{{ old('appln_name') }}"  type="text" disabled autocomplete="off" class="form-control" name="appln_name" />
+                                        <!-- <select class="form-control" disabled id="state1" style="-webkit-appearance: none;" name="appln_name" />
+
+                                        </select> -->
                                     </div>
                                 </div>
                                 <!-- <div class="form-group row state hide">
@@ -316,13 +328,13 @@
             },
             dataType: 'html',
             success: function(data) {
-                $('.state').removeClass('hide');
+                
                 $("#state1").html(data);
-                // $("#state2").html(data);
+               // $('#state1').append(data);
+                $('.state').removeClass('hide');
             }
         });
     });
-
     $('#country').change(function() {
         var country = $(this).val();
         $.ajax({
@@ -334,12 +346,15 @@
             },
             dataType: 'html',
             success: function(data) {
-                $('.state').removeClass('hide');
+                
                 $("#state2").html(data);
-                // $("#state2").html(data);
+               // $('#state1').append(data);
+                $('.states').removeClass('hide');
             }
         });
     });
+
+  
 </script>
 <style>
     .radio-sec input {
