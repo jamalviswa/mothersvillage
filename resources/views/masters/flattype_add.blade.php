@@ -32,11 +32,56 @@
                                     <div class="m-section__content">
                                         <div class="form-group row">
                                             <label class="col-md-5">
+                                                Phase<span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-7">
+                                                <select class="form-control" id="phase" name="phase">
+                                                    <option>Select Phase</option>
+                                                    <?php
+                                                    $phases = App\Phase::where('status', 'Active')->get();
+                                                    foreach ($phases as $phase) {
+                                                    ?>
+                                                        <option value="<?php echo $phase->phase_id ?>"><?php echo $phase->phase_name ?></option>
+
+                                                    <?php }
+                                                    ?>
+                                                </select>
+                                                @error('phase')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row block hide">
+                                            <label class="col-md-5">
+                                                Block <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-7">
+                                                <select class="form-control" id="block" name="block">
+
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row floor hide">
+                                            <label class="col-md-5">
+                                                Floor <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-7">
+                                                <select class="form-control" id="floor" name="floor">
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-5">
                                                 Flat Type <span class="red">*</span>
                                             </label>
                                             <div class="col-md-7">
-                                                <input value="{{ old('flattype_name') }}" type="text" autocomplete="off" class="form-control" name="flattype_name" />
-                                                @error('flattype_name')
+                                                <input value="{{ old('flattype') }}" type="text" autocomplete="off" class="form-control" name="flattype" />
+                                                @error('flattype')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
@@ -58,4 +103,38 @@
         </div>
     </div>
 </div>
+<script>
+    $('#phase').change(function() {
+        var phase = $(this).val();
+        $.ajax({
+            url: "{{route('masters.map')}}",
+            type: 'POST',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "phase": phase
+            },
+            dataType: 'html',
+            success: function(data) {
+                $('.block').removeClass('hide');
+                $("#block").html(data);
+            }
+        });
+    });
+    $('#block').change(function() {
+        var block = $(this).val();
+        $.ajax({
+            url: "{{route('masters.map')}}",
+            type: 'POST',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "block": block
+            },
+            dataType: 'html',
+            success: function(data) {
+                $('.floor').removeClass('hide');
+                $("#floor").html(data);
+            }
+        });
+    });
+</script>
 @endsection

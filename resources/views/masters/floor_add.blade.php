@@ -30,6 +30,39 @@
                                 @csrf
                                 <div class="col-md-8 offset-md-2">
                                     <div class="m-section__content">
+                                    <div class="form-group row">
+                                            <label class="col-md-5">
+                                                Phase<span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-7">
+                                                <select class="form-control" id="phase" name="phase">
+                                                    <option>Select Phase</option>
+                                                    <?php
+                                                    $phases = App\Phase::where('status', 'Active')->get();
+                                                    foreach ($phases as $phase) {
+                                                    ?>
+                                                        <option value="<?php echo $phase->phase_id ?>"><?php echo $phase->phase_name ?></option>
+
+                                                    <?php }
+                                                    ?>
+                                                </select>
+                                                @error('phase')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row block hide">
+                                            <label class="col-md-5">
+                                                Block <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-7">
+                                                <select class="form-control" id="block" name="block">
+
+                                                </select>
+                                            </div>
+                                        </div>
                                         <div class="form-group row">
                                             <label class="col-md-5">
                                                 Floor Name <span class="red">*</span>
@@ -58,4 +91,22 @@
         </div>
     </div>
 </div>
+<script>
+    $('#phase').change(function() {
+        var phase = $(this).val();
+        $.ajax({
+            url: "{{route('masters.map')}}",
+            type: 'POST',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "phase": phase
+            },
+            dataType: 'html',
+            success: function(data) {
+                $('.block').removeClass('hide');
+                $("#block").html(data);
+            }
+        });
+    });
+</script>
 @endsection

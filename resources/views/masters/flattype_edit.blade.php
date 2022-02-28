@@ -34,11 +34,64 @@ $requestdatas = (!empty(old())) ? old() : $detail;
                                         <div id="err"></div>
                                         <div class="form-group row">
                                             <label class="col-md-5">
+                                                Phase<span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-7">
+                                                <select class="form-control phase" name="phase" id="phase">
+                                                    @php
+                                                    $phases = App\Phase::where('status','Active')->get();
+                                                    @endphp
+                                                    <option value="">---Select Phase---</option>
+                                                    @foreach($phases as $phase)
+                                                    <option {!!($phase['phase_id']==$requestdatas['phase'])? "selected" :""; !!} value="{{ $phase['phase_id'] }}">{{ $phase['phase_name'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('phase')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class= "form-group row block ">
+                                            <label class="col-md-5">
+                                                BLock <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-7">
+                                                <select class="form-control"  id="block"  name="block" >
+                                            @php
+                                            $blocks = App\Block::where('phase_id',$requestdatas['phase'])->get();
+                                            @endphp
+                                            <option value="">---Select Block---</option>
+                                            @foreach($blocks as $block)
+                                            <option  {!!($block['block_id']==$requestdatas['block'])? "selected" :""; !!} value="{{ $block['block_id'] }}">{{ $block['block_name'] }}</option>
+                                              @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class= "form-group row floor ">
+                                            <label class="col-md-5">
+                                                Floor <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-7">
+                                                <select class="form-control"  id="floor"  name="floor" >
+                                            @php
+                                            $floors = App\Floor::where('block',$requestdatas['block'])->get();
+                                            @endphp
+                                            <option value="">---Select Floor---</option>
+                                            @foreach($floors as $floor)
+                                            <option  {!!($floor['floor_id']==$requestdatas['floor'])? "selected" :""; !!} value="{{ $floor['floor_id'] }}">{{ $floor['floor_name'] }}</option>
+                                              @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-5">
                                                 Flat Type <span class="red">*</span>
                                             </label>
                                             <div class="col-md-7">
-                                                <input value="{{ $requestdatas['flattype_name'] }}" type="text" autocomplete="off" class="form-control" name="flattype_name" />
-                                                @error('flattype_name')
+                                                <input value="{{ $requestdatas['flattype'] }}" type="text" autocomplete="off" class="form-control" name="flattype" />
+                                                @error('flattype')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
@@ -60,4 +113,38 @@ $requestdatas = (!empty(old())) ? old() : $detail;
         </div>
     </div>
 </div>
+<script>
+    $('#phase').change(function() {
+        var phase = $(this).val();
+        $.ajax({
+            url: "{{route('masters.map')}}",
+            type: 'POST',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "phase": phase
+            },
+            dataType: 'html',
+            success: function(data) {
+                $('.block').removeClass('hide');
+                $("#block").html(data);
+            }
+        });
+    });
+    $('#block').change(function() {
+        var block = $(this).val();
+        $.ajax({
+            url: "{{route('masters.map')}}",
+            type: 'POST',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "block": block
+            },
+            dataType: 'html',
+            success: function(data) {
+                $('.floor').removeClass('hide');
+                $("#floor").html(data);
+            }
+        });
+    });
+</script>
 @endsection

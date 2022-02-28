@@ -43,7 +43,7 @@ $requestdatas = (!empty(old())) ? old() : $detail;
                                                     @endphp
                                                     <option value="">---Select Phase---</option>
                                                     @foreach($phases as $phase)
-                                                    <option {!!($phase['phase_id']==$requestdatas['phase_id'])? "selected" :""; !!} value="{{ $phase['phase_id'] }}">{{ $phase['phase_name'] }}</option>
+                                                    <option {!!($phase['phase_id']==$requestdatas['phase'])? "selected" :""; !!} value="{{ $phase['phase_id'] }}">{{ $phase['phase_name'] }}</option>
                                                     @endforeach
                                                 </select>
                                                 @error('phase')
@@ -53,62 +53,52 @@ $requestdatas = (!empty(old())) ? old() : $detail;
                                                 @enderror
                                             </div>
                                         </div>
-                                        <div class="form-group row block ">
+                                        <div class= "form-group row block ">
                                             <label class="col-md-5">
-                                                Block <span class="red">*</span>
+                                                BLock <span class="red">*</span>
                                             </label>
                                             <div class="col-md-7">
-                                                <select class="form-control" id="block" name="block">
-                                                    @php
-                                                    $blocks = App\Block::where('phase_id',$requestdatas['phase_id'])->get();
-                                                    @endphp
-                                                    <option value="">---Select Block---</option>
-                                                    @foreach($blocks as $block)
-                                                    <option {!!($block['block_id']==$requestdatas['block_id'])? "selected" :""; !!} value="{{ $block['block_id'] }}">{{ $block['block_name'] }}</option>
-                                                    @endforeach
+                                                <select class="form-control"  id="block"  name="block" >
+                                            @php
+                                            $blocks = App\Block::where('phase_id',$requestdatas['phase'])->get();
+                                            @endphp
+                                            <option value="">---Select Block---</option>
+                                            @foreach($blocks as $block)
+                                            <option  {!!($block['block_id']==$requestdatas['block'])? "selected" :""; !!} value="{{ $block['block_id'] }}">{{ $block['block_name'] }}</option>
+                                              @endforeach
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <div class= "form-group row floor ">
                                             <label class="col-md-5">
-                                                Floor<span class="red">*</span>
+                                                Floor <span class="red">*</span>
                                             </label>
                                             <div class="col-md-7">
-                                                <select class="form-control" name="floor">
-                                                    @php
-                                                    $floors = App\Floor::where('status','Active')->get();
-                                                    @endphp
-                                                    <option value="">---Select Floor---</option>
-                                                    @foreach($floors as $floor)
-                                                    <option {!!($floor['floor_id']==$requestdatas['floor_id'])? "selected" :""; !!} value="{{ $floor['floor_id'] }}">{{ $floor['floor_name'] }}</option>
-                                                    @endforeach
+                                                <select class="form-control"  id="floor"  name="floor" >
+                                            @php
+                                            $floors = App\Floor::where('block',$requestdatas['block'])->get();
+                                            @endphp
+                                            <option value="">---Select Floor---</option>
+                                            @foreach($floors as $floor)
+                                            <option  {!!($floor['floor_id']==$requestdatas['floor'])? "selected" :""; !!} value="{{ $floor['floor_id'] }}">{{ $floor['floor_name'] }}</option>
+                                              @endforeach
                                                 </select>
-                                                @error('floor')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <div class= "form-group row flattype ">
                                             <label class="col-md-5">
-                                                Flat Type<span class="red">*</span>
+                                                Flat Type <span class="red">*</span>
                                             </label>
                                             <div class="col-md-7">
-                                                <select class="form-control" name="flattype">
-                                                    @php
-                                                    $flattypes = App\Flattype::where('status','Active')->get();
-                                                    @endphp
-                                                    <option value="">---Select Flat Type---</option>
-                                                    @foreach($flattypes as $flattype)
-                                                    <option {!!($flattype['flattype_id']==$requestdatas['flattype_id'])? "selected" :""; !!} value="{{ $flattype['flattype_id'] }}">{{ $flattype['flattype_name'] }}</option>
-                                                    @endforeach
+                                                <select class="form-control"  id="flattype"  name="flattype" >
+                                            @php
+                                            $flattypes = App\Flattype::where('floor',$requestdatas['floor'])->get();
+                                            @endphp
+                                            <option value="">---Select Flat Type---</option>
+                                            @foreach($flattypes as $flattype)
+                                            <option  {!!($flattype['flattype_id']==$requestdatas['flattype'])? "selected" :""; !!} value="{{ $flattype['flattype_id'] }}">{{ $flattype['flattype'] }}</option>
+                                              @endforeach
                                                 </select>
-                                                @error('flattype')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -154,6 +144,38 @@ $requestdatas = (!empty(old())) ? old() : $detail;
             success: function(data) {
                 $('.block').removeClass('hide');
                 $("#block").html(data);
+            }
+        });
+    });
+    $('#block').change(function() {
+        var block = $(this).val();
+        $.ajax({
+            url: "{{route('masters.map')}}",
+            type: 'POST',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "block": block
+            },
+            dataType: 'html',
+            success: function(data) {
+                $('.floor').removeClass('hide');
+                $("#floor").html(data);
+            }
+        });
+    });
+    $('#floor').change(function() {
+        var floor = $(this).val();
+        $.ajax({
+            url: "{{route('masters.map')}}",
+            type: 'POST',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "floor": floor
+            },
+            dataType: 'html',
+            success: function(data) {
+                $('.flattype').removeClass('hide');
+                $("#flattype").html(data);
             }
         });
     });

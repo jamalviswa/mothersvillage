@@ -22,10 +22,9 @@
             <div class="m-portlet__body">
                 <!--begin::Section-->
                 <div class="m-section__content">
-                <?php if ($results->count() > '0') { ?>
                     <form method="GET" class="search-form form-inline " action="#">
                         <div class="form-group">
-                            <input type="text" style="text-transform: capitalize;" autocomplete="off" class="form-control" name="s" placeholder="Search" @if(isset($_REQUEST['s'])) value="{{ $_REQUEST['s'] }}" @else value="" @endif />
+                            <input type="text" autocomplete="off" class="form-control" name="s" placeholder="Search" @if(isset($_REQUEST['s'])) value="{{ $_REQUEST['s'] }}" @else value="" @endif />
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary m-btn m-btn--air m-btn--custom" type="submit" name="search"><i class="fa fa-search"></i></button>
@@ -42,51 +41,51 @@
                 <!--begin::Section-->
                 <div class="m-section">
                     <div class="m-section__content">
-                      
-                        <div class="table-responsive">
-                            <table class="table m-table m-table--head-bg-brand">
-                                <thead>
-                                    <tr>
-                                        <th> # </th>
-                                        <th>Phase Name</th>                              
-                                        <th class="text-center">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
+                        <?php if ($results->count() > '0') { ?>
+                            <div class="table-responsive">
+                                <table class="table m-table m-table--head-bg-brand">
+                                    <thead>
+                                        <tr>
+                                            <th> # </th>
+                                            <th>Phase Name</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
                                         //$i = ($results->currentPage() > 1) ? $results->currentPage() * $results->perpage() : $results->currentPage();
                                         $i = ($results->currentpage() - 1) * $results->perpage() + 1;
                                         foreach ($results as $result) {
-                                    ?>
-                                    <tr>
-                                        <td width="5%">{{ $i }}</td>          
-                                        <td style="text-transform:capitalize;">{{ $result->phase_name }}</td>
-                                        <td class="text-center">
-                                            <div class="btn-group">
-                                                <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="Edit" href="{{ route("masters.phase_edit", $result->phase_id) }}">
-                                                    <i class="fa fa-pencil"></i>
-                                                </a>   
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <?php
-                                        $i++;
+                                        ?>
+                                            <tr>
+                                                <td width="5%">{{ $i }}</td>
+                                                <td>{{ $result->phase_name }}</td>
+                                                <td class="text-center">
+                                                    <div class="btn-group">
+                                                        <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="Edit" href="{{ route("masters.phase_edit", $result->phase_id) }}">
+                                                            <i class="fa fa-pencil"></i>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                            $i++;
                                         }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        {!! $results->appends(\Request::except('page'))->render() !!}
-                        <!--@include('pagination.default', ['paginator' => $results])-->
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            {!! $results->appends(\Request::except('page'))->render() !!}
+                            <!--@include('pagination.default', ['paginator' => $results])-->
                         <?php } else { ?>
-                        <div class="text-center">
-                            <img src="{{ asset('admin/img/no-record.png') }}">
-                        </div>
+                            <div class="text-center">
+                                <img src="{{ asset('admin/img/no-record.png') }}">
+                            </div>
                         <?php } ?>
                     </div>
                 </div>
             </div>
         </div>
-    </div>   
+    </div>
 </div>
 @endsection

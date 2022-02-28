@@ -50,6 +50,8 @@ Route::get('customers/official/view/{id}', 'CustomersController@official_view')-
 Route::post('customers/official/store', 'CustomersController@official_store')->name('customers.official_store');
 Route::post('customers/official/update/{id}', 'CustomersController@official_update')->name('customers.official_update');
 Route::get('customers/official/delete/{id}', 'CustomersController@official_delete')->name('customers.official_delete');
+Route::post('customers/map/', 'CustomersController@map')->name('customers.map');
+
 
 Route::any('payments/index', 'PaymentsController@index')->name('payments.index');
 Route::get('payments/add', 'PaymentsController@add')->name('payments.add');

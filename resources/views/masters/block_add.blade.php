@@ -32,7 +32,7 @@
                                     <div class="m-section__content">
                                         <div class="form-group row">
                                             <label class="col-md-5">
-                                                Select Phase
+                                             Phase <span class="red">*</span>
                                             </label>
                                             <div class="col-md-7">
                                                 <select class="form-control" name="phase">

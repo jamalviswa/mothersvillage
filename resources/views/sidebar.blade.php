@@ -127,9 +127,20 @@
 <!-- /*Masters*/ -->
             <li class="m-menu__item  m-menu__item--submenu m-menu__item--rel"  data-menu-submenu-toggle="click" aria-haspopup="true">
                 <a href="" class="m-menu__link @if(($controller=='MastersController' && $action=='phase_index') || 
-                    ($controller=='MastersController' && $action=='phase_view') || 
                     ($controller=='MastersController' && $action=='phase_edit') || 
-                    ($controller=='MastersController' && $action=='phase_add') )   active @endif  m-menu__toggle">
+                    ($controller=='MastersController' && $action=='phase_add') ||
+                    ($controller=='MastersController' && $action=='block_add') ||
+                    ($controller=='MastersController' && $action=='block_edit') || 
+                    ($controller=='MastersController' && $action=='block_index') || 
+                    ($controller=='MastersController' && $action=='floor_add') ||
+                    ($controller=='MastersController' && $action=='floor_edit') || 
+                    ($controller=='MastersController' && $action=='floor_index') || 
+                    ($controller=='MastersController' && $action=='flattype_add') ||
+                    ($controller=='MastersController' && $action=='flattype_edit') || 
+                    ($controller=='MastersController' && $action=='flattype_index') || 
+                    ($controller=='MastersController' && $action=='flatnumber_add') ||
+                    ($controller=='MastersController' && $action=='flatnumber_edit') || 
+                    ($controller=='MastersController' && $action=='flatnumber_index')  )   active @endif  m-menu__toggle">
                     <i class="m-menu__link-icon flaticon-users"></i>
                     <span class="m-menu__link-title">
                         <span class="m-menu__link-wrap">

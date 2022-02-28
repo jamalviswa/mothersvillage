@@ -33,7 +33,7 @@
                                 @endphp
                                 <option value="">Select Phase</option>
                                 @foreach($phases as $phase)
-                                <option @if(isset($_REQUEST['phase_id']) && $_REQUEST['phase_id']==$phase['phase_id']) selected @endif value="{{ $phase['phase_id'] }}">{{ $phase['phase_name'] }}</option>
+                                <option @if(isset($_REQUEST['phase']) && $_REQUEST['phase']==$phase['phase']) selected @endif value="{{ $phase['phase_id'] }}">{{ $phase['phase_name'] }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -44,11 +44,11 @@
                                 @endphp
                                 <option value="">Select Block</option>
                                 @foreach($blocks as $block)
-                                <option @if(isset($_REQUEST['block_id']) && $_REQUEST['block_id']==$block['block_id']) selected @endif value="{{ $block['block_id'] }}">{{ $block['block_name'] }}</option>
+                                <option @if(isset($_REQUEST['block']) && $_REQUEST['block']==$block['block']) selected @endif value="{{ $block['block_id'] }}">{{ $block['block_name'] }}</option>
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <select class="form-control" name="floor">
                                 @php
                                 $floors = App\Floor::where('status','Active')->get();
@@ -58,8 +58,8 @@
                                 <option @if(isset($_REQUEST['floor_id']) && $_REQUEST['floor_id']==$floor['floor_id']) selected @endif value="{{ $floor['floor_id'] }}">{{ $floor['floor_name'] }}</option>
                                 @endforeach
                             </select>
-                        </div>
-                        <div class="form-group">
+                        </div> -->
+                        <!-- <div class="form-group">
                             <select class="form-control" name="flattype">
                                 @php
                                 $flattypes = App\Flattype::where('status','Active')->get();
@@ -69,7 +69,7 @@
                                 <option @if(isset($_REQUEST['flattype_id']) && $_REQUEST['flattype_id']==$flattype['flattype_id']) selected @endif value="{{ $flattype['flattype_id'] }}">{{ $flattype['flattype_name'] }}</option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <button class="btn btn-primary m-btn m-btn--air m-btn--custom" type="submit" name="search"><i class="fa fa-search"></i></button>
                             <?php if (isset($_REQUEST['search'])) { ?>
@@ -91,9 +91,9 @@
                                     <thead>
                                         <tr>
                                             <th> # </th>
-                                            <th>Phase Name</th>
-                                            <th>Block Name</th>
-                                            <th>Floor Name</th>
+                                            <th>Phase</th>
+                                            <th>Block</th>
+                                            <th>Floor</th>
                                             <th>Flat Type</th>
                                             <th>Flat Number</th>
                                             <th class="text-center">Action</th>
@@ -103,17 +103,17 @@
                                         <?php
                                         $i = ($results->currentpage() - 1) * $results->perpage() + 1;
                                         foreach ($results as $result) {
-                                            $phase = App\Phase::where('phase_id', $result['phase_id'])->first();
-                                            $block = App\Block::where('block_id', $result['block_id'])->first();
-                                            $floor = App\Floor::where('floor_id', $result['floor_id'])->first();
-                                            $flattype = App\Flattype::where('flattype_id', $result['flattype_id'])->first();
+                                            $phase = App\Phase::where('phase_id', $result['phase'])->first();
+                                            $block = App\Block::where('block_id', $result['block'])->first();
+                                            $floor = App\Floor::where('floor_id', $result['floor'])->first();
+                                            $flattype = App\Flattype::where('flattype_id', $result['flattype'])->first();
                                         ?>
                                             <tr>
                                                 <td width="5%">{{ $i }}</td>
                                                 <td>{{ $phase['phase_name'] }}</td>
                                                 <td>{{ $block['block_name'] }}</td>
                                                 <td>{{ $floor['floor_name'] }}</td>
-                                                <td>{{ $flattype['flattype_name'] }}</td>
+                                                <td>{{ $flattype['flattype'] }}</td>
                                                 <td>{{ $result->flatnumber }}</td>
                                                 <td class="text-center">
                                                     <div class="btn-group">

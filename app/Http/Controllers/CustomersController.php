@@ -14,6 +14,11 @@ use DB;
 use Redirect;
 use App\Customer;
 use App\Family_detail;
+use App\Block;
+use App\Floor;
+use App\Flattype;
+use App\Flatnumber;
+use App\Document;
 
 class CustomersController extends Controller
 {
@@ -85,7 +90,9 @@ class CustomersController extends Controller
         $data->gender = $request->gender;
         $data->phone_code = $request->phone_code;
         $data->phone = $request->phone;
-        $data->permanent_address0 = $request->permanent_address;
+        $data->altphone_code = $request->altphone_code;
+        $data->altphone = $request->altphone;
+        $data->permanent_address = $request->permanent_address;
         $data->present_address = $request->present_address;
         $data->income = $request->income;
         $data->email = $request->email;
@@ -302,6 +309,18 @@ class CustomersController extends Controller
     public function official_store(Request $request)
     {
         $check = $this->validate($request, [
+            'phase' => ['required'],
+            'block' => ['required'],
+            'floor' => ['required'],
+            'flattype' => ['required'],
+            'flatnumber' => ['required'],
+            'facing' => ['required'],
+            'salable_area' => ['required'],
+            'plinth_area' => ['required'],
+            'uds_area' => ['required'],
+            'comn_area' => ['required'],
+
+
             'fathers_name' => ['required'],
             'age' => ['required'],
             'gender' => ['required'],
@@ -315,7 +334,27 @@ class CustomersController extends Controller
                 return $query->where('email', $request->email)->where('status', '<>', 'Trash');
             })],
         ]);
-        $data = new Customer();
+        $data = new Document();
+        $data->phase = $request->phase;
+        $data->block = $request->block;
+        $data->floor = $request->floor;
+        $data->flattype = $request->flattype;
+        $data->flatnumber = $request->flatnumber;
+        $data->facing = $request->facing;
+        $data->salable_area = $request->salable_area;
+        $data->plinth_area = $request->plinth_area;
+        $data->uds_area = $request->uds_area;
+        $data->comn_area = $request->comn_area;
+        $data->aadhar_number = $request->aadhar_number;
+        if (!empty($request->file('aadhar'))) {
+            $aadhar = $request->file('aadhar');
+            $aadhar_struc = uniqid() . '.' . $aadhar->getClientOriginalExtension();
+            $destinationPath = public_path('/files/forms/');
+            $chck = $aadhar->move($destinationPath, $aadhar_struc);
+            $data->aadhar  = $aadhar_struc;
+        }
+
+
         $data->name = $request->name;
         $data->fathers_name = $request->fathers_name;
         $data->age = $request->age;
@@ -378,5 +417,41 @@ class CustomersController extends Controller
         Session::flash('message', 'Customer Personal Details Added!');
         Session::flash('alert-class', 'success');
         return \Redirect::route('customers.official_index', []);
+    }
+    public function map(Request $request)
+    {
+        if (!empty($_REQUEST['phase'])) {
+            $id = $_REQUEST['phase'];
+            $blocks = Block::where('phase_id', $id)->get();
+            echo '<option value="">Select Block</option>';
+            foreach ($blocks as $block) {
+                echo '<option value="' . $block->block_id . '">' . $block->block_name . '</option>';
+            }
+            exit;
+        } else  if (!empty($_REQUEST['block'])) {
+            $id = $_REQUEST['block'];
+            $floors = Floor::where('block', $id)->get();
+            echo '<option value="">Select Floor</option>';
+            foreach ($floors as $floor) {
+                echo '<option value="' . $floor->floor_id . '">' . $floor->floor_name . '</option>';
+            }
+            exit;
+        } else  if (!empty($_REQUEST['floor'])) {
+            $id = $_REQUEST['floor'];
+            $flattypes = Flattype::where('floor', $id)->get();
+            echo '<option value="">Select Flat Type</option>';
+            foreach ($flattypes as $flattype) {
+                echo '<option value="' . $flattype->flattype_id . '">' . $flattype->flattype . '</option>';
+            }
+            exit;
+        } else  if (!empty($_REQUEST['flattype'])) {
+            $id = $_REQUEST['flattype'];
+            $flatnumbers = Flatnumber::where('flattype', $id)->get();
+            echo '<option value="">Select Flat Number</option>';
+            foreach ($flatnumbers as $flatnumber) {
+                echo '<option value="' . $flatnumber->flatnumber_id . '">' . $flatnumber->flatnumber . '</option>';
+            }
+            exit;
+        }
     }
 }

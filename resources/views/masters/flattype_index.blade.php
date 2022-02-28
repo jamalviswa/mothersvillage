@@ -27,6 +27,39 @@
                             <input type="text" class="form-control" name="s" placeholder="Search" @if(isset($_REQUEST['s'])) value="{{ $_REQUEST['s'] }}" @else value="" @endif />
                         </div>
                         <div class="form-group">
+                            <select class="form-control" name="phase">
+                                @php
+                                $phases = App\Phase::where('status','Active')->get();
+                                @endphp
+                                <option value="">Select Phase</option>
+                                @foreach($phases as $phase)
+                                <option @if(isset($_REQUEST['phase']) && $_REQUEST['phase']==$phase['phase']) selected @endif value="{{ $phase['phase_id'] }}">{{ $phase['phase_name'] }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" name="block">
+                                @php
+                                $blocks = App\Block::where('status','Active')->get();
+                                @endphp
+                                <option value="">Select Block</option>
+                                @foreach($blocks as $block)
+                                <option @if(isset($_REQUEST['block']) && $_REQUEST['block']==$block['block']) selected @endif value="{{ $block['block_id'] }}">{{ $block['block_name'] }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <!-- <div class="form-group">
+                            <select class="form-control" name="floor">
+                                @php
+                                $floors = App\Floor::where('status','Active')->get();
+                                @endphp
+                                <option value="">Select Floor</option>
+                                @foreach($floors as $floor)
+                                <option @if(isset($_REQUEST['floor']) && $_REQUEST['floor']==$floor['floor']) selected @endif value="{{ $floor['floor_id'] }}">{{ $floor['floor_name'] }}</option>
+                                @endforeach
+                            </select>
+                        </div> -->
+                        <div class="form-group">
                             <button class="btn btn-primary m-btn m-btn--air m-btn--custom" type="submit" name="search"><i class="fa fa-search"></i></button>
                             <?php if (isset($_REQUEST['search'])) { ?>
                                 <a class="btn btn-danger m-btn m-btn--air m-btn--custom" href="{{route('masters.flattype_index')}}"><i class="fa fa-times"></i></a>
@@ -47,6 +80,9 @@
                                     <thead>
                                         <tr>
                                             <th> # </th>
+                                            <th>Phase</th>
+                                            <th>Block</th>
+                                            <th>Floor</th>
                                             <th>Flat Type</th>
                                             <th class="text-center">Action</th>
                                         </tr>
@@ -56,10 +92,16 @@
                                         //$i = ($results->currentPage() > 1) ? $results->currentPage() * $results->perpage() : $results->currentPage();
                                         $i = ($results->currentpage() - 1) * $results->perpage() + 1;
                                         foreach ($results as $result) {
+                                            $phase = App\Phase::where('phase_id', $result['phase'])->first();
+                                            $block = App\Block::where('block_id', $result['block'])->first();
+                                            $floor = App\Floor::where('floor_id', $result['floor'])->first();
                                         ?>
                                             <tr>
                                                 <td width="5%">{{ $i }}</td>
-                                                <td>{{ $result->flattype_name }}</td>
+                                                <td>{{ $phase['phase_name'] }}</td>
+                                                <td>{{ $block['block_name'] }}</td>
+                                                <td>{{ $floor['floor_name'] }}</td>
+                                                <td>{{ $result->flattype }}</td>
                                                 <td class="text-center">
                                                     <div class="btn-group">
                                                         <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="Edit" href="{{ route("masters.flattype_edit", $result->flattype_id) }}">

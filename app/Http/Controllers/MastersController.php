@@ -131,7 +131,7 @@ class MastersController extends Controller
         $data->created_date = date('Y-m-d H:i:s');
         $data->status = "Active";
         $data->save();
-        Session::flash('message', 'Block Details Added!');
+        Session::flash('message', 'Block Added!');
         Session::flash('alert-class', 'success');
         return \Redirect::route('masters.block_index', []);
     }
@@ -156,7 +156,7 @@ class MastersController extends Controller
         $data->block_name = $request->block_name;
         $data->modified_date = date('Y-m-d H:i:s');
         $data->save();
-        Session::flash('message', 'Block Details Updated!');
+        Session::flash('message', 'Block Updated!');
         Session::flash('alert-class', 'success');
         return \Redirect::route('masters.block_index', []);
     }
@@ -171,6 +171,18 @@ class MastersController extends Controller
             $s = $_REQUEST['s'];
             $result->where(function ($query) use ($s) {
                 $query->where('floor_name', 'LIKE', "%$s%");
+            });
+        }
+        if (!empty($_REQUEST['phase'])) {
+            $phase = $_REQUEST['phase'];
+            $result->where(function ($query) use ($phase) {
+                $query->where('phase', 'LIKE', "%$phase%");
+            });
+        }
+        if (!empty($_REQUEST['block'])) {
+            $block = $_REQUEST['block'];
+            $result->where(function ($query) use ($block) {
+                $query->where('block', 'LIKE', "%$block%");
             });
         }
         $result = $result->paginate(10);
@@ -189,16 +201,18 @@ class MastersController extends Controller
     {
         $sessionadmin = Parent::checkadmin();
         $check = $this->validate($request, [
-            'floor_name' => ['required', Rule::unique('floors')->where(function ($query) use ($request) {
-                return $query->where('floor_name', $request->floor_name)->where('status', '<>', 'Trash');
-            })],
+            'phase' => ['required'],
+            'block' => ['required'],
+            'floor_name'=> ['required'],
         ]);
         $data = new Floor();
+        $data->phase = $request->phase;
+        $data->block = $request->block;
         $data->floor_name = $request->floor_name;
         $data->created_date = date('Y-m-d H:i:s');
         $data->status = "Active";
         $data->save();
-        Session::flash('message', 'Floor Details Added!');
+        Session::flash('message', 'Floor Added!');
         Session::flash('alert-class', 'success');
         return \Redirect::route('masters.floor_index', []);
     }
@@ -213,15 +227,17 @@ class MastersController extends Controller
     public function floor_update(Request $request, $id = null)
     {
         $check = $this->validate($request, [
-            'floor_name' => ['required', Rule::unique('floors')->where(function ($query) use ($request, $id) {
-                return $query->where('floor_name', $request->floor_name)->where('floor_id', '<>', $id)->where('status', '<>', 'Trash');
-            })],
+            'phase' => ['required'],
+            'block' => ['required'],
+            'floor_name'=> ['required'],
         ]);
         $data = Floor::findOrFail($id);
+        $data->phase = $request->phase;
+        $data->block = $request->block;
         $data->floor_name = $request->floor_name;
         $data->modified_date = date('Y-m-d H:i:s');
         $data->save();
-        Session::flash('message', 'Floor Details Updated!');
+        Session::flash('message', 'Floor Updated!');
         Session::flash('alert-class', 'success');
         return \Redirect::route('masters.floor_index', []);
     }
@@ -238,6 +254,24 @@ class MastersController extends Controller
                 $query->where('flattype_name', 'LIKE', "%$s%");
             });
         }
+        if (!empty($_REQUEST['phase'])) {
+            $phase = $_REQUEST['phase'];
+            $result->where(function ($query) use ($phase) {
+                $query->where('phase', 'LIKE', "%$phase%");
+            });
+        }
+        if (!empty($_REQUEST['block'])) {
+            $block = $_REQUEST['block'];
+            $result->where(function ($query) use ($block) {
+                $query->where('block', 'LIKE', "%$block%");
+            });
+        }
+        // if (!empty($_REQUEST['floor'])) {
+        //     $floor = $_REQUEST['floor'];
+        //     $result->where(function ($query) use ($floor) {
+        //         $query->where('floor', 'LIKE', "%$floor%");
+        //     });
+        // }
         $result = $result->paginate(10);
         return view('/masters/flattype_index', [
             'results' => $result
@@ -254,16 +288,20 @@ class MastersController extends Controller
     {
         $sessionadmin = Parent::checkadmin();
         $check = $this->validate($request, [
-            'flattype_name' => ['required', Rule::unique('flattypes')->where(function ($query) use ($request) {
-                return $query->where('flattype_name', $request->flattype_name)->where('status', '<>', 'Trash');
-            })],
+            'phase' => ['required'],
+            'block' => ['required'],
+            'floor'=> ['required'],
+            'flattype'=> ['required'],
         ]);
         $data = new Flattype();
-        $data->flattype_name = $request->flattype_name;
+        $data->phase = $request->phase;
+        $data->block = $request->block;
+        $data->floor = $request->floor;
+        $data->flattype = $request->flattype;
         $data->created_date = date('Y-m-d H:i:s');
         $data->status = "Active";
         $data->save();
-        Session::flash('message', 'Flat Type Details Added!');
+        Session::flash('message', 'Flat Type Added!');
         Session::flash('alert-class', 'success');
         return \Redirect::route('masters.flattype_index', []);
     }
@@ -278,15 +316,19 @@ class MastersController extends Controller
     public function flattype_update(Request $request, $id = null)
     {
         $check = $this->validate($request, [
-            'flattype_name' => ['required', Rule::unique('flattypes')->where(function ($query) use ($request, $id) {
-                return $query->where('flattype_name', $request->flattype_name)->where('flattype_id', '<>', $id)->where('status', '<>', 'Trash');
-            })],
+            'phase' => ['required'],
+            'block' => ['required'],
+            'floor'=> ['required'],
+            'flattype'=> ['required'],
         ]);
         $data = Flattype::findOrFail($id);
-        $data->flattype_name = $request->flattype_name;
+        $data->phase = $request->phase;
+        $data->block = $request->block;
+        $data->floor = $request->floor;
+        $data->flattype = $request->flattype;
         $data->modified_date = date('Y-m-d H:i:s');
         $data->save();
-        Session::flash('message', 'Flat Type Details Updated!');
+        Session::flash('message', 'Flat Type Updated!');
         Session::flash('alert-class', 'success');
         return \Redirect::route('masters.flattype_index', []);
     }
@@ -306,27 +348,27 @@ class MastersController extends Controller
         if (!empty($_REQUEST['phase'])) {
             $phase = $_REQUEST['phase'];
             $result->where(function ($query) use ($phase) {
-                $query->where('phase_id', 'LIKE', "%$phase%");
+                $query->where('phase', 'LIKE', "%$phase%");
             });
         }
         if (!empty($_REQUEST['block'])) {
             $block = $_REQUEST['block'];
             $result->where(function ($query) use ($block) {
-                $query->where('block_id', 'LIKE', "%$block%");
+                $query->where('block', 'LIKE', "%$block%");
             });
         }
-        if (!empty($_REQUEST['floor'])) {
-            $floor = $_REQUEST['floor'];
-            $result->where(function ($query) use ($floor) {
-                $query->where('floor_id', 'LIKE', "%$floor%");
-            });
-        }
-        if (!empty($_REQUEST['flattype'])) {
-            $flattype = $_REQUEST['flattype'];
-            $result->where(function ($query) use ($flattype) {
-                $query->where('flattype_id', 'LIKE', "%$flattype%");
-            });
-        }
+        // if (!empty($_REQUEST['floor'])) {
+        //     $floor = $_REQUEST['floor'];
+        //     $result->where(function ($query) use ($floor) {
+        //         $query->where('floor_id', 'LIKE', "%$floor%");
+        //     });
+        // }
+        // if (!empty($_REQUEST['flattype'])) {
+        //     $flattype = $_REQUEST['flattype'];
+        //     $result->where(function ($query) use ($flattype) {
+        //         $query->where('flattype_id', 'LIKE', "%$flattype%");
+        //     });
+        // }
         $result = $result->paginate(10);
         return view('/masters/flatnumber_index', [
             'results' => $result
@@ -349,15 +391,15 @@ class MastersController extends Controller
             'flatnumber' => ['required'],
         ]);
         $data = new Flatnumber();
-        $data->phase_id = $request->phase;
-        $data->block_id = $request->block;
-        $data->floor_id = $request->floor;
-        $data->flattype_id = $request->flattype;
+        $data->phase = $request->phase;
+        $data->block = $request->block;
+        $data->floor = $request->floor;
+        $data->flattype = $request->flattype;
         $data->flatnumber = $request->flatnumber;
         $data->created_date = date('Y-m-d H:i:s');
         $data->status = "Active";
         $data->save();
-        Session::flash('message', 'Flat Number Details Added!');
+        Session::flash('message', 'Flat Number  Added!');
         Session::flash('alert-class', 'success');
         return \Redirect::route('masters.flatnumber_index', []);
     }
@@ -375,19 +417,18 @@ class MastersController extends Controller
             'block' => ['required'],
             'floor' => ['required'],
             'flattype' => ['required'],
-            'flatnumber' => ['required', Rule::unique('flatnumbers')->where(function ($query) use ($request, $id) {
-                return $query->where('flatnumber', $request->flatnumber)->where('flatnumber_id', '<>', $id)->where('status', '<>', 'Trash');
-            })],
+            'flatnumber' => ['required'],
+          
         ]);
         $data = Flatnumber::findOrFail($id);
-        $data->phase_id = $request->phase;
-        $data->block_id = $request->block;
-        $data->floor_id = $request->floor;
-        $data->flattype_id = $request->flattype;
+        $data->phase = $request->phase;
+        $data->block = $request->block;
+        $data->floor = $request->floor;
+        $data->flattype = $request->flattype;
         $data->flatnumber = $request->flatnumber;
         $data->modified_date = date('Y-m-d H:i:s');
         $data->save();
-        Session::flash('message', 'Flat Number Details Updated!');
+        Session::flash('message', 'Flat Number Updated!');
         Session::flash('alert-class', 'success');
         return \Redirect::route('masters.flatnumber_index', []);
     }
@@ -400,6 +441,22 @@ class MastersController extends Controller
             echo '<option value="">Select Block</option>';
             foreach ($blocks as $block) {
                 echo '<option value="' . $block->block_id . '">' . $block->block_name . '</option>';
+            }
+            exit;
+        } else  if (!empty($_REQUEST['block'])) {
+            $id = $_REQUEST['block'];
+            $floors = Floor::where('block', $id)->get();
+            echo '<option value="">Select Floor</option>';
+            foreach ($floors as $floor) {
+                echo '<option value="' . $floor->floor_id . '">' . $floor->floor_name . '</option>';
+            }
+            exit;
+        } else  if (!empty($_REQUEST['floor'])) {
+            $id = $_REQUEST['floor'];
+            $flattypes = Flattype::where('floor', $id)->get();
+            echo '<option value="">Select Flat Type</option>';
+            foreach ($flattypes as $flattype) {
+                echo '<option value="' . $flattype->flattype_id . '">' . $flattype->flattype . '</option>';
             }
             exit;
         }

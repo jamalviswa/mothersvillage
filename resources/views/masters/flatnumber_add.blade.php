@@ -65,48 +65,27 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <div class="form-group row floor hide">
                                             <label class="col-md-5">
-                                                Select Floor
+                                                Floor <span class="red">*</span>
                                             </label>
                                             <div class="col-md-7">
-                                                <select class="form-control" name="floor">
-                                                    @php
-                                                    $floors = App\Floor::where('status','Active')->get();
-                                                    @endphp
-                                                    <option value=""> Select Floor</option>
-                                                    @foreach($floors as $floor)
-                                                    <option {{ old('floor_id') == $floor['floor_id'] ? "selected" : "" }} value="{{ $floor['floor_id'] }}">{{ $floor['floor_name'] }}</option>
-                                                    @endforeach
+                                                <select class="form-control" id="floor" name="floor">
+
                                                 </select>
-                                                @error('floor')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <div class="form-group row flattype hide">
                                             <label class="col-md-5">
-                                                Select Flat Type
+                                                Flat Type <span class="red">*</span>
                                             </label>
                                             <div class="col-md-7">
-                                                <select class="form-control" name="flattype">
-                                                    @php
-                                                    $flattypes = App\Flattype::where('status','Active')->get();
-                                                    @endphp
-                                                    <option value=""> Select Flattype</option>
-                                                    @foreach($flattypes as $flattype)
-                                                    <option {{ old('flattype_id') == $flattype['flattype_id'] ? "selected" : "" }} value="{{ $flattype['flattype_id'] }}">{{ $flattype['flattype_name'] }}</option>
-                                                    @endforeach
+                                                <select class="form-control" id="flattype" name="flattype">
+
                                                 </select>
-                                                @error('flattype')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
                                             </div>
                                         </div>
+                                        
                                         <div class="form-group row">
                                             <label class="col-md-5">
                                                 Flat Number <span class="red">*</span>
@@ -149,6 +128,38 @@
             success: function(data) {
                 $('.block').removeClass('hide');
                 $("#block").html(data);
+            }
+        });
+    });
+    $('#block').change(function() {
+        var block = $(this).val();
+        $.ajax({
+            url: "{{route('masters.map')}}",
+            type: 'POST',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "block": block
+            },
+            dataType: 'html',
+            success: function(data) {
+                $('.floor').removeClass('hide');
+                $("#floor").html(data);
+            }
+        });
+    });
+    $('#floor').change(function() {
+        var floor = $(this).val();
+        $.ajax({
+            url: "{{route('masters.map')}}",
+            type: 'POST',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "floor": floor
+            },
+            dataType: 'html',
+            success: function(data) {
+                $('.flattype').removeClass('hide');
+                $("#flattype").html(data);
             }
         });
     });

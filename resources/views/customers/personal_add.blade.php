@@ -35,7 +35,7 @@
                                                 Name of the applicant <span class="red">*</span>
                                             </label>
                                             <div class="col-md-7">
-                                                <input value="{{ old('applicant_name') }}" type="text" style="text-transform: capitalize;" autocomplete="off" class="form-control" name="applicant_name" />
+                                                <input value="{{ old('applicant_name') }}" type="text"  style="text-transform: capitalize;" autocomplete="off" class="form-control" name="applicant_name" />
                                                 @error('applicant_name')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
@@ -48,7 +48,7 @@
                                                 Application Number <span class="red">*</span>
                                             </label>
                                             <div class="col-md-7">
-                                                <input value="MV{{ old('application_number') }}" type="text" autocomplete="off" class="form-control" name="application_number" />
+                                                <input value="{{ old('application_number') }}" type="text"   autocomplete="off" class="form-control" name="application_number" />
                                                 @error('application_number')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
@@ -62,7 +62,7 @@
                                             </label>
                                             <div class="col-md-7">
 
-                                                <input value="{{ old('date_of_application') }}" autocomplete="off" type="text" class="form-control datepicker" name="date_of_application" />
+                                                <input value="{{old('date_of_application') }}" autocomplete="off" type="text" class="form-control datepicker" name="date_of_application" />
 
                                                 @error('date_of_application')
                                                 <span class="invalid-feedback" role="alert">
@@ -77,7 +77,7 @@
                                                 Name of the co-applicant
                                             </label>
                                             <div class="col-md-7">
-                                                <input value="{{ old('co_applicant_name') }}" type="text" style="text-transform: capitalize;" autocomplete="off" class="form-control" name="co_applicant_name" />
+                                                <input value="{{ old('co_applicant_name') }}" type="text"  style="text-transform: capitalize;" autocomplete="off" class="form-control" name="co_applicant_name" />
                                                 @error('co_applicant_name')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
@@ -103,7 +103,7 @@
                                                 Age <span class="red">*</span>
                                             </label>
                                             <div class="col-md-7">
-                                                <input value="{{ old('age') }}" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="2" autocomplete="off" class="form-control" name="age" />
+                                                <input value="{{ old('age') }}" type="text"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="2" autocomplete="off" class="form-control" name="age" />
                                                 @error('age')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
@@ -139,7 +139,7 @@
                                                         <input value="{{ old('phone_code') }}+91" type="tel" autocomplete="off" class="form-control" name="phone_code" style="width:72%" maxlength="4" />
                                                     </div>
                                                     <div class="col-9">
-                                                        <input value="{{ old('phone') }}" id="phone" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="10" autocomplete="off" class="form-control" name="phone" />
+                                                        <input value="{{ old('phone') }}"  id="phone" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="10" autocomplete="off" class="form-control" name="phone" />
                                                     </div>
                                                 </div>
 
@@ -167,7 +167,7 @@
                                                         <input value="{{ old('altphone_code') }}+91" type="tel" autocomplete="off" class="form-control" name="altphone_code" style="width:72%" maxlength="4" />
                                                     </div>
                                                     <div class="col-9">
-                                                        <input value="{{ old('altphone') }}" id="phone" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="10" autocomplete="off" class="form-control" name="altphone" />
+                                                        <input value="{{ old('altphone') }}" id="phone"  type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="10" autocomplete="off" class="form-control" name="altphone" />
                                                     </div>
                                                 </div>
 
@@ -189,7 +189,7 @@
                                                 Email <span class="red">*</span>
                                             </label>
                                             <div class="col-md-7">
-                                                <input value="{{ old('email') }}" type="email" autocomplete="off" class="form-control" name="email" />
+                                                <input value="{{ old('email') }}" type="email"  autocomplete="off" class="form-control" name="email" />
                                                 @error('email')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
@@ -269,6 +269,7 @@
                                                 Photo (max-size up to 2Mb) <span class="red">*</span>
                                             </label>
                                             <div class="col-md-7">
+                                           
                                                 <input type="file" accept="image/png, image/jpg, image/jpeg" class="form-control" name="photo" />
                                                 @error('photo')
                                                 <span class="invalid-feedback" role="alert">
@@ -287,21 +288,21 @@
                                                         <li>
                                                             <div class="row" style="margin-bottom: 12px;">
                                                                 <div class="col-md-4">
-                                                                    <input class="form-control " name="son_name[]" type="text" autocomplete="off" placeholder="Name" style="width:100%;">
+                                                                    <input class="form-control " name="son_name[]"  style="text-transform: capitalize;" type="text" autocomplete="off" placeholder="Name" style="width:100%;">
                                                                 </div>
                                                                 <div class="col-md-4">
-                                                                    <input class="form-control " name="son_age[]" type="text" autocomplete="off" placeholder="Age" style="width:100%;">
+                                                                    <input class="form-control " name="son_age[]" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="2" autocomplete="off" placeholder="Age" style="width:100%;">
                                                                 </div>
                                                                 <div class="col-md-4">
-                                                                    <input class="form-control " name="son_profession[]" type="text" autocomplete="off" placeholder="Profession" style="width:100%;">
+                                                                    <input class="form-control " name="son_profession[]"  style="text-transform: capitalize;" type="text" autocomplete="off" placeholder="Profession" style="width:100%;">
                                                                 </div>
                                                             </div>
                                                             <div class="row" style="margin-bottom: 12px;">                                                              
                                                                 <div class="col-md-4">
-                                                                    <input class="form-control " name="son_school[]" type="text" autocomplete="off" placeholder="School" style="width:100%;">
+                                                                    <input class="form-control " name="son_school[]"  style="text-transform: capitalize;" type="text" autocomplete="off" placeholder="School" style="width:100%;">
                                                                 </div>
                                                                 <div class="col-md-4">
-                                                                    <input class="form-control " name="son_class[]" type="text" autocomplete="off" placeholder="Class" style="width:100%;">
+                                                                    <input class="form-control " name="son_class[]"  style="text-transform: capitalize;" type="text" autocomplete="off" placeholder="Class" style="width:100%;">
                                                                 </div>
                                                             </div>
                                                         </li>
@@ -320,21 +321,21 @@
                                                         <li>
                                                             <div class="row" style="margin-bottom: 12px;">
                                                                 <div class="col-md-4">
-                                                                    <input class="form-control " name="daughter_name[]" type="text" autocomplete="off" placeholder="Name" style="width:100%;">
+                                                                    <input class="form-control " name="daughter_name[]" style="text-transform: capitalize;" type="text" autocomplete="off" placeholder="Name" style="width:100%;">
                                                                 </div>
                                                                 <div class="col-md-4">
-                                                                    <input class="form-control " name="daughter_age[]" type="text" autocomplete="off" placeholder="Age" style="width:100%;">
+                                                                    <input class="form-control " name="daughter_age[]" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="2" type="text" autocomplete="off" placeholder="Age" style="width:100%;">
                                                                 </div>
                                                                 <div class="col-md-4">
-                                                                    <input class="form-control " name="daughter_profession[]" type="text" autocomplete="off" placeholder="Profession" style="width:100%;">
+                                                                    <input class="form-control " name="daughter_profession[]" style="text-transform: capitalize;" type="text" autocomplete="off" placeholder="Profession" style="width:100%;">
                                                                 </div>
                                                             </div>
                                                             <div class="row" style="margin-bottom: 12px;">                                                              
                                                                 <div class="col-md-4">
-                                                                    <input class="form-control " name="daughter_school[]" type="text" autocomplete="off" placeholder="School" style="width:100%;">
+                                                                    <input class="form-control " name="daughter_school[]" style="text-transform: capitalize;" type="text" autocomplete="off" placeholder="School" style="width:100%;">
                                                                 </div>
                                                                 <div class="col-md-4">
-                                                                    <input class="form-control " name="daughter_class[]" type="text" autocomplete="off" placeholder="Class" style="width:100%;">
+                                                                    <input class="form-control " name="daughter_class[]" style="text-transform: capitalize;" type="text" autocomplete="off" placeholder="Class" style="width:100%;">
                                                                 </div>
                                                             </div>
                                                         </li>
@@ -364,10 +365,10 @@
 </div>
 <script>
     $("#marketing_range-add-more").click(function() {
-        $(".marketing_range_list").append('<li class="added-li"><div class="row" style="margin-bottom: 12px;"><div class="col-md-4"><input style="width: 100%;" class="form-control " name="son_name[]" type="text" autocomplete="off" placeholder="Name"></div><div class="col-md-4"><input class="form-control" name="son_age[]" type="text" autocomplete="off" placeholder="Age" style="width: 100%;"></div><div class="col-md-4"><input style="width: 100%;" class="form-control " name="son_profession[]" type="text" autocomplete="off" placeholder="Profession"></div></div><div class="row" style="margin-bottom: 12px;"><div class="col-md-4"><input style="width: 100%;" class="form-control " name="son_school[]" type="text" autocomplete="off" placeholder="School"></div><div class="col-md-4"><input style="width: 100%;" class="form-control " name="son_class[]" type="text" autocomplete="off" placeholder="Class"></div></div><a class="btn btn-danger removebtn" style="margin: 0px;margin-bottom: 5px;" href="#" onclick="parentNode.parentNode.removeChild(parentNode)">-</a></li>');
+        $(".marketing_range_list").append('<li class="added-li"><div class="row" style="margin-bottom: 12px;"><div class="col-md-4"><input style="width: 100%;text-transform: capitalize;" class="form-control " name="son_name[]"  type="text" autocomplete="off" placeholder="Name"></div><div class="col-md-4"><input class="form-control" name="son_age[]" type="text" autocomplete="off" maxlength="2" placeholder="Age" style="width: 100%;"></div><div class="col-md-4"><input style="width: 100%;text-transform: capitalize;" class="form-control " name="son_profession[]"  type="text" autocomplete="off" placeholder="Profession"></div></div><div class="row" style="margin-bottom: 12px;"><div class="col-md-4"><input style="width: 100%;text-transform: capitalize;" class="form-control " name="son_school[]"  type="text" autocomplete="off" placeholder="School"></div><div class="col-md-4"><input style="width: 100%;text-transform: capitalize;" class="form-control " name="son_class[]" type="text" autocomplete="off" placeholder="Class"></div></div><a class="btn btn-danger removebtn" style="margin: 0px;margin-bottom: 5px;" href="#" onclick="parentNode.parentNode.removeChild(parentNode)">-</a></li>');
     });
     $("#marketing_range-add-mor").click(function() {
-        $(".marketing_range_lis").append('<li class="added-li"><div class="row" style="margin-bottom: 12px;"><div class="col-md-4"><input style="width: 100%;" class="form-control " name="daughter_name[]" type="text" autocomplete="off" placeholder="Name"></div><div class="col-md-4"><input class="form-control" name="daughter_age[]" type="text" autocomplete="off" placeholder="Age" style="width: 100%;"></div><div class="col-md-4"><input style="width: 100%;" class="form-control " name="daughter_profession[]" type="text" autocomplete="off" placeholder="Profession"></div></div><div class="row" style="margin-bottom: 12px;"><div class="col-md-4"><input style="width: 100%;" class="form-control " name="daughter_school[]" type="text" autocomplete="off" placeholder="School"></div><div class="col-md-4"><input style="width: 100%;" class="form-control " name="daughter_class[]" type="text" autocomplete="off" placeholder="Class"></div></div><a class="btn btn-danger removebtn" style="margin: 0px;margin-bottom: 5px;" href="#" onclick="parentNode.parentNode.removeChild(parentNode)">-</a></li>');
+        $(".marketing_range_lis").append('<li class="added-li"><div class="row" style="margin-bottom: 12px;"><div class="col-md-4"><input style="width: 100%;text-transform: capitalize;" class="form-control " name="daughter_name[]"  type="text" autocomplete="off" placeholder="Name"></div><div class="col-md-4"><input class="form-control" name="daughter_age[]" type="text" autocomplete="off"  maxlength="2" placeholder="Age" style="width: 100%;"></div><div class="col-md-4"><input style="width: 100%;text-transform: capitalize;" class="form-control " name="daughter_profession[]"  type="text" autocomplete="off" placeholder="Profession"></div></div><div class="row" style="margin-bottom: 12px;"><div class="col-md-4"><input style="width: 100%;text-transform: capitalize;" class="form-control " name="daughter_school[]"  type="text" autocomplete="off" placeholder="School"></div><div class="col-md-4"><input style="width: 100%;text-transform: capitalize;" class="form-control " name="daughter_class[]"  type="text" autocomplete="off" placeholder="Class"></div></div><a class="btn btn-danger removebtn" style="margin: 0px;margin-bottom: 5px;" href="#" onclick="parentNode.parentNode.removeChild(parentNode)">-</a></li>');
     });
    
 
@@ -492,6 +493,7 @@
     .inptwo {
         width: 53px;
     }
+
 </style>
 
 @endsection
