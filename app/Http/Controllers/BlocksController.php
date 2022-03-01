@@ -10,32 +10,44 @@ use App\Rules\Email;
 use Session;
 use DB;
 use Redirect;
-use App\Discount;
+use App\Flatnumber;
+use App\Block;
+use App\Flattype;
 class BlocksController extends Controller {
     
     public function index() {       
           $sessionadmin = Parent::checkadmin();
-        $result = Discount::where('status', '<>', 'Trash')
-                        ->orderBy('discount_id', 'desc');
-        if (!empty($_REQUEST['s'])) {
-            $s = $_REQUEST['s'];    
-            $result->where(function ($query) use ($s) {
-                 $query->where('discount', 'LIKE', "%$s%");   
-            });              
-        } 
-        if (!empty($_REQUEST['pack'])) {
-            $category = $_REQUEST['pack'];  
-            $result->where(function ($query) use ($category) {
-                 $query->where('pack', 'LIKE', "%$category%");   
-            });              
-        } 
-        
-        $result = $result->paginate(10);
+      
         
         return view('/blocks/index', [
-            'results' => $result
+            
         ]);      
     }
+    public function map(Request $request)
+    {
+        //$data = array();
+        if (!empty($_REQUEST['phase'])) {
+            $id = $_REQUEST['phase'];
+            $blocks = Block::where('block_name', $id)->first();
+
+           
+            $flats = Flatnumber::where('block', $blocks['block_id'])->orderBy('flatnumber', 'asc')->get();
+            //echo '<option value="">Select Block</option>';
+            // print_r($flats);exit;
+            foreach ($flats as $flat) {
+              $flattype = Flattype::where('flattype_id', $flat['flattype'])->first();
+             
+               // echo '<option value="' . $block->block_id . '">' . $block->block_name . '</option>';
+                echo '<div class="col-md-2 j-box lab-' .$flattype->flattype.'">
+                <div class="j-numb">'
+                . $flat->flatnumber. '<br>
+                <span class="lab-'.$flattype->flattype.'lab">'.$flattype->flattype.'
+                </div>
+            </div>';
+            }
+            exit;
+        }
+      }
     public function add() {
         $sessionadmin = Parent::checkadmin();
         return view('/discounts/add', []);

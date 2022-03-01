@@ -77,7 +77,7 @@ Route::post('blocks/store', 'BlocksController@store')->name('blocks.store');
 Route::get('blocks/edit/{id}', 'BlocksController@edit')->name('blocks.edit');
 Route::post('blocks/update/{id}', 'BlocksController@update')->name('blocks.update');
 Route::get('blocks/delete/{id}', 'BlocksController@delete')->name('blocks.delete');
-
+Route::post('blocks/map/', 'BlocksController@map')->name('blocks.map');
 //Master
 
 Route::any('masters/phase/index', 'MastersController@phase_index')->name('masters.phase_index');

@@ -52,20 +52,26 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <div class="form-group row state hide">
                                             <label class="col-md-5">
                                                 Name of the Applicant <span class="red">*</span>
                                             </label>
-                                            <div class="col-md-7 state" id="state1">
-                                                <input type="text" disabled autocomplete="off" class="form-control" name="applicant_name" />
+                                            <div class="col-md-7">
+                                            <select class="form-control" id="state1" name="applicant_name" disabled>
+
+</select>
+                                                <!-- <input type="text" name="applicant_name"  autocomplete="off" class="form-control"  /> -->
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-md-5">
                                                 Date of Application <span class="red">*</span>
                                             </label>
-                                            <div class="col-md-7 states" id="state2">
-                                                <input type="text" disabled autocomplete="off" class="form-control" name="date_of_application" />
+                                            <div class="col-md-7 states">
+                                            <select class="form-control" id="state2" name="date_of_application" disabled>
+
+</select>
+                                                <!-- <input type="text" disabled autocomplete="off" class="form-control" name="date_of_application" /> -->
 
                                             </div>
                                         </div>
@@ -75,11 +81,17 @@
                                             </label>
                                             <div class="col-md-7">
                                                 <div class="row">
-                                                    <div class="col-3 statess" id="state3">
-                                                        <input value="{{ old('phone_code') }}" disabled type="tel" autocomplete="off" class="form-control" name="phone_code" style="width:72%" maxlength="4" />
+                                                    <div class="col-3 statess">
+                                                    <select class="form-control" id="state3" name="phone_code" disabled>
+
+</select>
+                                                        <!-- <input value="{{ old('phone_code') }}" disabled type="tel" autocomplete="off" class="form-control" name="phone_code" style="width:72%" maxlength="4" /> -->
                                                     </div>
-                                                    <div class="col-9 statesss" id="state4">
-                                                        <input value="{{ old('phone') }}" disabled type="tel" autocomplete="off" class="form-control" name="phone" />
+                                                    <div class="col-9 statesss" >
+                                                    <select class="form-control" id="state4" name="phone" disabled>
+
+</select>
+                                                        <!-- <input value="{{ old('phone') }}" disabled type="tel" autocomplete="off" class="form-control" name="phone" /> -->
                                                     </div>
                                                 </div>
                                             </div>
@@ -468,7 +480,7 @@
     $('#country').change(function() {
         var country = $(this).val();
         $.ajax({
-            url: "{{route('customers.maps')}}",
+            url: "{{route('customers.map')}}",
             type: 'POST',
             data: {
                 "_token": "{{ csrf_token() }}",
@@ -486,7 +498,7 @@
     $('#country').change(function() {
         var country = $(this).val();
         $.ajax({
-            url: "{{route('customers.maps')}}",
+            url: "{{route('customers.map')}}",
             type: 'POST',
             data: {
                 "_token": "{{ csrf_token() }}",
@@ -504,7 +516,7 @@
     $('#country').change(function() {
         var country = $(this).val();
         $.ajax({
-            url: "{{route('customers.maps')}}",
+            url: "{{route('customers.map')}}",
             type: 'POST',
             data: {
                 "_token": "{{ csrf_token() }}",
@@ -522,7 +534,7 @@
     $('#country').change(function() {
         var country = $(this).val();
         $.ajax({
-            url: "{{route('customers.maps')}}",
+            url: "{{route('customers.map')}}",
             type: 'POST',
             data: {
                 "_token": "{{ csrf_token() }}",

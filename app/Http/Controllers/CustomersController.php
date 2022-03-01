@@ -339,29 +339,8 @@ class CustomersController extends Controller
         $data->uds_area = $request->uds_area;
         $data->comn_area = $request->comn_area;
         $data->aadhar_number = $request->aadhar_number;
-        if (!empty($request->file('aadhar'))) {
-            $aadhar = $request->file('aadhar');
-            $aadhar_struc = uniqid() . '.' . $aadhar->getClientOriginalExtension();
-            $destinationPath = public_path('/files/forms/');
-            $chck = $aadhar->move($destinationPath, $aadhar_struc);
-            $data->aadhar  = $aadhar_struc;
-        }
         $data->pan_number = $request->pan_number;
-        if (!empty($request->file('pan'))) {
-            $pan = $request->file('pan');
-            $pan_struc = uniqid() . '.' . $pan->getClientOriginalExtension();
-            $destinationPath = public_path('/files/forms/');
-            $chck = $pan->move($destinationPath, $pan_struc);
-            $data->pan  = $pan_struc;
-        }
         $data->passport_number = $request->passport_number;
-        if (!empty($request->file('passport'))) {
-            $passport = $request->file('passport');
-            $passport_struc = uniqid() . '.' . $passport->getClientOriginalExtension();
-            $destinationPath = public_path('/files/forms/');
-            $chck = $passport->move($destinationPath, $passport_struc);
-            $data->passport  = $passport_struc;
-        }
         $data->phone = $request->phone;
         $data->phone_code = $request->phone_code;
         $data->coapp_phone = $request->coapp_phone;
@@ -370,22 +349,43 @@ class CustomersController extends Controller
         $data->coapp_address = $request->coapp_address;
         $data->coapp_email = $request->coapp_email;
         $data->coaadhar_number = $request->coaadhar_number;
+        $data->copan_number = $request->copan_number;
+        $data->copassport_number = $request->copassport_number;
+        if (!empty($request->file('aadhar'))) {
+            $aadhar = $request->file('aadhar');
+            $aadhar_struc = uniqid() . '.' . $aadhar->getClientOriginalExtension();
+            $destinationPath = public_path('/files/forms/');
+            $chck = $aadhar->move($destinationPath, $aadhar_struc);
+            $data->aadhar  = $aadhar_struc;
+        }
+        if (!empty($request->file('pan'))) {
+            $pan = $request->file('pan');
+            $pan_struc = uniqid() . '.' . $pan->getClientOriginalExtension();
+            $destinationPath = public_path('/files/forms/');
+            $chck = $pan->move($destinationPath, $pan_struc);
+            $data->pan  = $pan_struc;
+        }      
+        if (!empty($request->file('passport'))) {
+            $passport = $request->file('passport');
+            $passport_struc = uniqid() . '.' . $passport->getClientOriginalExtension();
+            $destinationPath = public_path('/files/forms/');
+            $chck = $passport->move($destinationPath, $passport_struc);
+            $data->passport  = $passport_struc;
+        }      
         if (!empty($request->file('coaadhar'))) {
             $coaadhar = $request->file('coaadhar');
             $coaadhar_struc = uniqid() . '.' . $coaadhar->getClientOriginalExtension();
             $destinationPath = public_path('/files/forms/');
             $chck = $coaadhar->move($destinationPath, $coaadhar_struc);
             $data->coaadhar  = $coaadhar_struc;
-        }
-        $data->copan_number = $request->copan_number;
+        }      
         if (!empty($request->file('copan'))) {
             $copan = $request->file('copan');
             $copan_struc = uniqid() . '.' . $copan->getClientOriginalExtension();
             $destinationPath = public_path('/files/forms/');
             $chck = $copan->move($destinationPath, $copan_struc);
             $data->copan  = $copan_struc;
-        }
-        $data->copassport_number = $request->copassport_number;
+        }    
         if (!empty($request->file('copassport'))) {
             $copassport = $request->file('copassport');
             $copassport_struc = uniqid() . '.' . $copassport->getClientOriginalExtension();
@@ -394,7 +394,8 @@ class CustomersController extends Controller
             $data->copassport  = $copassport_struc;
         }
         $data->created_date = date('Y-m-d H:i:s');
-        $data->status = "Active"; 
+        $data->status = "Active";
+       
         $data->save();
         Session::flash('message', 'Customer Document Details Added!');
         Session::flash('alert-class', 'success');
@@ -435,39 +436,84 @@ class CustomersController extends Controller
                 echo '<option value="' . $flatnumber->flatnumber_id . '">' . $flatnumber->flatnumber . '</option>';
             }
             exit;
-        }
-    }
-    public function maps(Request $request)
-    {
-        if (!empty($_REQUEST['application_name'])) {
+        } else  if (!empty($_REQUEST['application_name'])) {
             $id = $_REQUEST['application_name'];
             $names = Customer::where('customer_id', $id)->get();
             foreach ($names as $name) {
-                echo '<input type="text" disabled class="form-control"  value="' . $name->applicant_name . '"> ';
-            }
-            exit;
-        } else  if (!empty($_REQUEST['application_date'])) {
-            $id = $_REQUEST['application_date'];
-            $dates = Customer::where('customer_id', $id)->get();
-            foreach ($dates as $date) {
-                echo ' <input type="text" disabled class="form-control"  value="' . $date->date_of_application . '"> ';
-            }
-            exit;
-        } else  if (!empty($_REQUEST['phone_code'])) {
-            $id = $_REQUEST['phone_code'];
-            $dates = Customer::where('customer_id', $id)->get();
-            foreach ($dates as $date) {
-                echo ' <input type="text" disabled class="form-control"  value="' . $date->phone_code . '"> ';
-            }
-            exit;
-        }
-        else  if (!empty($_REQUEST['phone'])) {
-            $id = $_REQUEST['phone'];
-            $dates = Customer::where('customer_id', $id)->get();
-            foreach ($dates as $date) {
-                echo ' <input type="text" disabled class="form-control"  value="' . $date->phone . '"> ';
+                echo '<option >' . $name->applicant_name . '</option>';
+                //echo '<input type="text" disabled class="form-control" value="' . $name->applicant_name . '"> ';
             }
             exit;
         }
     }
+    // public function maps(Request $request)
+    // {
+    //     if (!empty($_REQUEST['application_name'])) {
+    //         $id = $_REQUEST['application_name'];
+    //         $names = Customer::where('customer_id', $id)->get();
+    //         foreach ($names as $name) {
+    //             echo '<option >' . $name->applicant_name . '</option>';
+    //             //echo '<input type="text" disabled class="form-control" value="' . $name->applicant_name . '"> ';
+    //         }
+    //         exit;
+    //     } else  if (!empty($_REQUEST['application_date'])) {
+    //         $id = $_REQUEST['application_date'];
+    //         $dates = Customer::where('customer_id', $id)->get();
+    //         foreach ($dates as $date) {
+    //             echo '<option >' . $date->date_of_application . '</option>';
+    //            // echo ' <input type="text" disabled class="form-control"  value="' . $date->date_of_application . '"> ';
+    //         }
+    //         exit;
+    //     } else  if (!empty($_REQUEST['phone_code'])) {
+    //         $id = $_REQUEST['phone_code'];
+    //         $phones = Customer::where('customer_id', $id)->get();
+    //         foreach ($phones as $phone) {
+    //             echo '<option >' . $phone->phone_code . '</option>';
+    //           //  echo ' <input type="text" disabled class="form-control"  value="' . $date->phone_code . '"> ';
+    //         }
+    //         exit;
+    //     }
+    //     else  if (!empty($_REQUEST['phone'])) {
+    //         $id = $_REQUEST['phone'];
+    //         $mobiles = Customer::where('customer_id', $id)->get();
+    //         foreach ($mobiles as $mobile) {
+    //             echo '<option >' . $mobile->phone . '</option>';
+    //             //echo ' <input type="text" disabled class="form-control"  value="' . $date->phone . '"> ';
+    //         }
+    //         exit;
+    //     }
+    // }
+    // public function maps(Request $request)
+    // {
+    //     if (!empty($_REQUEST['application_name'])) {
+    //         $id = $_REQUEST['application_name'];
+    //         $names = Customer::where('customer_id', $id)->get();
+    //         foreach ($names as $name) {
+    //             echo '<input type="text" disabled class="form-control" value="' . $name->applicant_name . '"> ';
+    //         }
+    //         exit;
+    //     } else  if (!empty($_REQUEST['application_date'])) {
+    //         $id = $_REQUEST['application_date'];
+    //         $dates = Customer::where('customer_id', $id)->get();
+    //         foreach ($dates as $date) {
+    //             echo ' <input type="text" disabled class="form-control"  value="' . $date->date_of_application . '"> ';
+    //         }
+    //         exit;
+    //     } else  if (!empty($_REQUEST['phone_code'])) {
+    //         $id = $_REQUEST['phone_code'];
+    //         $dates = Customer::where('customer_id', $id)->get();
+    //         foreach ($dates as $date) {
+    //             echo ' <input type="text" disabled class="form-control"  value="' . $date->phone_code . '"> ';
+    //         }
+    //         exit;
+    //     }
+    //     else  if (!empty($_REQUEST['phone'])) {
+    //         $id = $_REQUEST['phone'];
+    //         $dates = Customer::where('customer_id', $id)->get();
+    //         foreach ($dates as $date) {
+    //             echo ' <input type="text" disabled class="form-control"  value="' . $date->phone . '"> ';
+    //         }
+    //         exit;
+    //     }
+    // }
 }
