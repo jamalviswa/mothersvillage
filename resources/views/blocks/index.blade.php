@@ -1,7 +1,5 @@
 @extends('layouts.admin')
 @section('content')
-<?php //if ($results->count() > '0') {
-?>
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
     <!-- BEGIN: Subheader -->
     <div class="m-subheader ">
@@ -37,33 +35,8 @@
                                                 </li>
                                             <?php } ?>
                                         </ul>
-                                        <!-- <div class="col-md-2 j-typebox"  style="background-color:#ffff45;">
-                                        <p class="j-type" id="phase"><?php echo $block->block_name ?></p>
-                                    </div> -->
-
-
                                     </div>
-                                </div>
-                                <!-- <div class="row">
-                                    <div class="col-md-2 j-typebox" style="background-color:#ffff45;">
-                                        <p class="j-type">1 BHK</p>
-                                    </div>
-                                    <div class="col-md-2 j-typebox" style="background-color:#c7f8ca;">
-                                        <p class="j-type">2 BHK</p>
-                                    </div>
-                                    <div class="col-md-2 j-typebox" style="background-color:#7ea1fa;">
-                                        <p class="j-type">2 BHK P</p>
-                                    </div>
-                                    <div class="col-md-2 j-typebox" style="background-color:#a7905a;">
-                                        <p class="j-type">2 BHK SP</p>
-                                    </div>
-                                    <div class="col-md-2 j-typebox" style="background-color:#ffa9ff;">
-                                        <p class="j-type">3 BHK</p>
-                                    </div>
-                                    <div class="col-md-2 j-typebox" style="background-color:#21ffff;">
-                                        <p class="j-type">3 BHK P</p>
-                                    </div>
-                                </div> -->
+                                </div>                          
                             </div>
                         </div>
                     </div>
@@ -76,11 +49,6 @@
 
                             </div>
                         </div>
-
-
-
-
-
                     </div>
                 </div>
             </div>
@@ -88,23 +56,6 @@
     </div>
 </div>
 <script>
-    //  $('#phase').change(function() {
-    //     var phase = $(this).val();
-    //     $.ajax({
-    //         url: "{{route('blocks.map')}}",
-    //         type: 'POST',
-    //         data: {
-    //             "_token": "{{ csrf_token() }}",
-    //             "phase": phase
-    //         },
-    //         dataType: 'html',
-    //         success: function(data) {
-    //             $('.block').removeClass('hide');
-    //             $("#block").html(data);
-    //         }
-    //     });
-    // });
-
     $(document).on("click", ".date-btn", function() {
         var phase = $(this).val();
         $(this).css('background-color', 'green');

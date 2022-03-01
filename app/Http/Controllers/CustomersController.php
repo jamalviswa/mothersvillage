@@ -307,25 +307,28 @@ class CustomersController extends Controller
     }
     public function official_store(Request $request)
     {
+        
         $check = $this->validate($request, [
-            'phase' => ['required'],
-            'block' => ['required'],
-            'floor' => ['required'],
-            'flattype' => ['required'],
-            'flatnumber' => ['required'],
-            'facing' => ['required'],
-            'salable_area' => ['required'],
-            'plinth_area' => ['required'],
-            'uds_area' => ['required'],
-            'comn_area' => ['required'],
-            'phone' => ["required"],
-            'phone_code' => ["required"],
-            'application_number' => ["required"],
-            'applicant_name' => ["required"],
-            'date_of_application' => ["required"],
+            // 'phase' => ['required'],
+            // 'block' => ['required'],
+            // 'floor' => ['required'],
+            // 'flattype' => ['required'],
+            // 'flatnumber' => ['required'],
+            // 'facing' => ['required'],
+            // 'salable_area' => ['required'],
+            // 'plinth_area' => ['required'],
+            // 'uds_area' => ['required'],
+            // 'comn_area' => ['required'],
+            // 'phone' => ["required"],
+            // 'phone_code' => ["required"],
+            // 'application_number' => ["required"],
+            // 'applicant_name' => ["required"],
+            // 'date_of_application' => ["required"],
         ]);
+       // print_r($request->aadhar_number);exit;
         $data = new Document();
         $data->application_number = $request->application_number;
+        
         $data->applicant_name = $request->applicant_name;
         $data->date_of_application = $request->date_of_application;
         $data->phase = $request->phase;
@@ -339,6 +342,7 @@ class CustomersController extends Controller
         $data->uds_area = $request->uds_area;
         $data->comn_area = $request->comn_area;
         $data->aadhar_number = $request->aadhar_number;
+        
         $data->pan_number = $request->pan_number;
         $data->passport_number = $request->passport_number;
         $data->phone = $request->phone;
@@ -436,84 +440,40 @@ class CustomersController extends Controller
                 echo '<option value="' . $flatnumber->flatnumber_id . '">' . $flatnumber->flatnumber . '</option>';
             }
             exit;
-        } else  if (!empty($_REQUEST['application_name'])) {
+        } 
+    }
+   
+    public function maps(Request $request)
+    {
+        if (!empty($_REQUEST['application_name'])) {
             $id = $_REQUEST['application_name'];
             $names = Customer::where('customer_id', $id)->get();
             foreach ($names as $name) {
-                echo '<option >' . $name->applicant_name . '</option>';
-                //echo '<input type="text" disabled class="form-control" value="' . $name->applicant_name . '"> ';
+                echo '<input type="text" disabled class="form-control" value="' . $name->applicant_name . '"> ';
+            }
+            exit;
+        } else  if (!empty($_REQUEST['application_date'])) {
+            $id = $_REQUEST['application_date'];
+            $dates = Customer::where('customer_id', $id)->get();
+            foreach ($dates as $date) {
+                echo ' <input type="text" disabled class="form-control"  value="' . $date->date_of_application . '"> ';
+            }
+            exit;
+        } else  if (!empty($_REQUEST['phone_code'])) {
+            $id = $_REQUEST['phone_code'];
+            $dates = Customer::where('customer_id', $id)->get();
+            foreach ($dates as $date) {
+                echo ' <input type="text" disabled class="form-control"  value="' . $date->phone_code . '"> ';
+            }
+            exit;
+        }
+        else  if (!empty($_REQUEST['phone'])) {
+            $id = $_REQUEST['phone'];
+            $dates = Customer::where('customer_id', $id)->get();
+            foreach ($dates as $date) {
+                echo ' <input type="text" disabled class="form-control"  value="' . $date->phone . '"> ';
             }
             exit;
         }
     }
-    // public function maps(Request $request)
-    // {
-    //     if (!empty($_REQUEST['application_name'])) {
-    //         $id = $_REQUEST['application_name'];
-    //         $names = Customer::where('customer_id', $id)->get();
-    //         foreach ($names as $name) {
-    //             echo '<option >' . $name->applicant_name . '</option>';
-    //             //echo '<input type="text" disabled class="form-control" value="' . $name->applicant_name . '"> ';
-    //         }
-    //         exit;
-    //     } else  if (!empty($_REQUEST['application_date'])) {
-    //         $id = $_REQUEST['application_date'];
-    //         $dates = Customer::where('customer_id', $id)->get();
-    //         foreach ($dates as $date) {
-    //             echo '<option >' . $date->date_of_application . '</option>';
-    //            // echo ' <input type="text" disabled class="form-control"  value="' . $date->date_of_application . '"> ';
-    //         }
-    //         exit;
-    //     } else  if (!empty($_REQUEST['phone_code'])) {
-    //         $id = $_REQUEST['phone_code'];
-    //         $phones = Customer::where('customer_id', $id)->get();
-    //         foreach ($phones as $phone) {
-    //             echo '<option >' . $phone->phone_code . '</option>';
-    //           //  echo ' <input type="text" disabled class="form-control"  value="' . $date->phone_code . '"> ';
-    //         }
-    //         exit;
-    //     }
-    //     else  if (!empty($_REQUEST['phone'])) {
-    //         $id = $_REQUEST['phone'];
-    //         $mobiles = Customer::where('customer_id', $id)->get();
-    //         foreach ($mobiles as $mobile) {
-    //             echo '<option >' . $mobile->phone . '</option>';
-    //             //echo ' <input type="text" disabled class="form-control"  value="' . $date->phone . '"> ';
-    //         }
-    //         exit;
-    //     }
-    // }
-    // public function maps(Request $request)
-    // {
-    //     if (!empty($_REQUEST['application_name'])) {
-    //         $id = $_REQUEST['application_name'];
-    //         $names = Customer::where('customer_id', $id)->get();
-    //         foreach ($names as $name) {
-    //             echo '<input type="text" disabled class="form-control" value="' . $name->applicant_name . '"> ';
-    //         }
-    //         exit;
-    //     } else  if (!empty($_REQUEST['application_date'])) {
-    //         $id = $_REQUEST['application_date'];
-    //         $dates = Customer::where('customer_id', $id)->get();
-    //         foreach ($dates as $date) {
-    //             echo ' <input type="text" disabled class="form-control"  value="' . $date->date_of_application . '"> ';
-    //         }
-    //         exit;
-    //     } else  if (!empty($_REQUEST['phone_code'])) {
-    //         $id = $_REQUEST['phone_code'];
-    //         $dates = Customer::where('customer_id', $id)->get();
-    //         foreach ($dates as $date) {
-    //             echo ' <input type="text" disabled class="form-control"  value="' . $date->phone_code . '"> ';
-    //         }
-    //         exit;
-    //     }
-    //     else  if (!empty($_REQUEST['phone'])) {
-    //         $id = $_REQUEST['phone'];
-    //         $dates = Customer::where('customer_id', $id)->get();
-    //         foreach ($dates as $date) {
-    //             echo ' <input type="text" disabled class="form-control"  value="' . $date->phone . '"> ';
-    //         }
-    //         exit;
-    //     }
-    // }
 }
