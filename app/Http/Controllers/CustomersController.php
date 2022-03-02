@@ -309,28 +309,32 @@ class CustomersController extends Controller
     {
         
         $check = $this->validate($request, [
-            // 'phase' => ['required'],
-            // 'block' => ['required'],
-            // 'floor' => ['required'],
-            // 'flattype' => ['required'],
-            // 'flatnumber' => ['required'],
-            // 'facing' => ['required'],
-            // 'salable_area' => ['required'],
-            // 'plinth_area' => ['required'],
-            // 'uds_area' => ['required'],
-            // 'comn_area' => ['required'],
-            // 'phone' => ["required"],
-            // 'phone_code' => ["required"],
-            // 'application_number' => ["required"],
-            // 'applicant_name' => ["required"],
-            // 'date_of_application' => ["required"],
+            'phase' => ['required'],
+            'block' => ['required'],
+            'floor' => ['required'],
+            'flattype' => ['required'],
+            'flatnumber' => ['required'],
+            'facing' => ['required'],
+            'salable_area' => ['required'],
+            'plinth_area' => ['required'],
+            'uds_area' => ['required'],
+            'comn_area' => ['required'],
+
+           
         ]);
        // print_r($request->aadhar_number);exit;
         $data = new Document();
-        $data->application_number = $request->application_number;
+        $data->customer_id = $request->application_number;
+        $names = Customer::where('customer_id', $request->application_number)->first();
         
-        $data->applicant_name = $request->applicant_name;
-        $data->date_of_application = $request->date_of_application;
+         
+         $data->application_number = $names->application_number;
+          $data->date_of_application = $names->date_of_application;
+         $data->applicant_name = $names->applicant_name;
+         $data->phone = $names->phone;
+        $data->phone_code = $names->phone_code;
+        
+        //$data->date_of_application = $request->date_of_application;
         $data->phase = $request->phase;
         $data->block = $request->block;
         $data->floor = $request->floor;
@@ -345,8 +349,7 @@ class CustomersController extends Controller
         
         $data->pan_number = $request->pan_number;
         $data->passport_number = $request->passport_number;
-        $data->phone = $request->phone;
-        $data->phone_code = $request->phone_code;
+        
         $data->coapp_phone = $request->coapp_phone;
         $data->coapp_phone_code = $request->coapp_phone_code;
         $data->co_applicant_name = $request->co_applicant_name;
@@ -449,7 +452,7 @@ class CustomersController extends Controller
             $id = $_REQUEST['application_name'];
             $names = Customer::where('customer_id', $id)->get();
             foreach ($names as $name) {
-                echo '<input type="text" disabled class="form-control" value="' . $name->applicant_name . '"> ';
+                echo '<input type="text" disabled class="form-control"  value="' . $name->applicant_name . '"> ';
             }
             exit;
         } else  if (!empty($_REQUEST['application_date'])) {

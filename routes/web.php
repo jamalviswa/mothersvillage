@@ -70,6 +70,7 @@ Route::get('costs/edit/{id}', 'CostsController@edit')->name('costs.edit');
 Route::post('costs/update/{id}', 'CostsController@update')->name('costs.update');
 Route::get('costs/delete/{id}', 'CostsController@delete')->name('costs.delete');
 Route::get('costs/view/{id}', 'CostsController@view')->name('costs.view');
+Route::post('costs/map/', 'CostsController@map')->name('costs.map');
 
 Route::any('blocks/index', 'BlocksController@index')->name('blocks.index');
 Route::get('blocks/add', 'BlocksController@add')->name('blocks.add');

@@ -7,7 +7,7 @@
         <div class="d-flex align-items-center">
             <div class="mr-auto">
                 <h3 class="m-subheader__title m-subheader__title--separator">
-                    Cost value 
+                    Cost Details
                 </h3>
             </div>
             <div>
@@ -32,11 +32,20 @@
                                         <div class="m-section__content">
                                             <div class="form-group row">
                                                 <label class="col-md-8">
-                                                    Application number
+                                                    Application Number<span class="red">*</span>
                                                 </label>
                                                 <div class="col-md-4">
-                                                    <input value="{{ old('num_cards') }}" type="text" autocomplete="off" class="form-control" name="num_cards" />
-                                                    @error('num_cards')
+                                                    <select class="form-control m-select2" id="country" name="application_number">
+                                                        <option>Select Application Number</option>
+                                                        <?php
+                                                        //$phases = App\Customer::where('status', 'Active')->get();
+                                                        $phases = App\Document::where('status', 'Active')->get();
+                                                        foreach ($phases as $phase) {
+                                                        ?>
+                                                            <option value="<?php echo $phase->customer_id ?>"><?php echo $phase->application_number ?></option>
+                                                        <?php } ?>
+                                                    </select>
+                                                    @error('application_number')
                                                     <span class="invalid-feedback" role="alert">
                                                         {{ $message }}
                                                     </span>
@@ -45,26 +54,19 @@
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-md-8">
-                                                    Applicant name
+                                                    Name of the Applicant <span class="red">*</span>
                                                 </label>
-                                                <div class="col-md-4">
-                                                    <input value="{{ old('num_cards') }}" type="text" autocomplete="off" class="form-control" name="num_cards" />
-                                                    @error('num_cards')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        {{ $message }}
-                                                    </span>
-                                                    @enderror
+                                                <div class="col-md-4" id="state1">
+                                                    <input type="text" disabled autocomplete="off" class="form-control" />
                                                 </div>
                                             </div>
-                                          
-                                            <!--<div id="err"></div>-->
                                             <div class="form-group row">
                                                 <label class="col-md-8">
                                                     Rate per SQFT <span class="red">*</span>
                                                 </label>
                                                 <div class="col-md-4">
-                                                    <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
-                                                    @error('name')
+                                                    <input value="{{ old('rate_sqft') }}" type="text" id="Text1" autocomplete="off" class="form-control" name="rate_sqft" />
+                                                    @error('rate_sqft')
                                                     <span class="invalid-feedback" role="alert">
                                                         {{ $message }}
                                                     </span>
@@ -73,15 +75,10 @@
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-md-8">
-                                                    Area Of the Flat(Salable Area) <span class="red">*</span>
+                                                    Area of the Flat (Salable Area)<span class="red">*</span>
                                                 </label>
-                                                <div class="col-md-4">
-                                                    <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
-                                                    @error('name')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        {{ $message }}
-                                                    </span>
-                                                    @enderror
+                                                <div class="col-md-4" id="state2">
+                                                    <input type="text" disabled autocomplete="off" class="form-control" />
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -89,26 +86,20 @@
                                                     Salable Value
                                                 </label>
                                                 <div class="col-md-4">
-                                                    <input value="{{ old('num_cards') }}" type="text" disabled autocomplete="off" class="form-control" name="num_cards" />
-                                                    @error('num_cards')
+                                                    <input value="{{ old('salable_value') }}" type="text" id="txtresult" disabled autocomplete="off" class="form-control" name="salable_value" />
+                                                    @error('salable_value')
                                                     <span class="invalid-feedback" role="alert">
                                                         {{ $message }}
                                                     </span>
                                                     @enderror
                                                 </div>
                                             </div>
-
                                             <div class="form-group row">
                                                 <label class="col-md-8">
-                                                    UDS (in sq ft.)<span class="red">*</span>
+                                                    UDS (in Sq.Ft)<span class="red">*</span>
                                                 </label>
-                                                <div class="col-md-4">
-                                                    <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
-                                                    @error('name')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        {{ $message }}
-                                                    </span>
-                                                    @enderror
+                                                <div class="col-md-4" id="state3">
+                                                    <input type="text" disabled autocomplete="off" class="form-control" />
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -116,8 +107,8 @@
                                                     Guideline Value<span class="red">*</span>
                                                 </label>
                                                 <div class="col-md-4">
-                                                    <input value="{{ old('name') }}" type="text" autocomplete="off" class="form-control" name="name" />
-                                                    @error('name')
+                                                    <input value="{{ old('guideline_value') }}" type="text" id="Text4" autocomplete="off" class="form-control" name="guideline_value" />
+                                                    @error('guideline_value')
                                                     <span class="invalid-feedback" role="alert">
                                                         {{ $message }}
                                                     </span>
@@ -129,8 +120,6 @@
                                                     Submit
                                                 </button>
                                             </div>
-
-
                                         </div>
                                     </div>
                                     <div class="col-md-6"><span>[A]</span>
@@ -139,8 +128,8 @@
                                                 Land Cost
                                             </label>
                                             <div class="col-md-4">
-                                                <input value="{{ old('num_cards') }}" type="text" disabled autocomplete="off" class="form-control" name="num_cards" />
-                                                @error('num_cards')
+                                                <input value="{{ old('land_cost') }}" type="text" id="txt" disabled autocomplete="off" class="form-control" name="land_cost" />
+                                                @error('land_cost')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
@@ -152,8 +141,8 @@
                                                 Construction Cost
                                             </label>
                                             <div class="col-md-4">
-                                                <input value="{{ old('num_cards') }}" type="text" disabled autocomplete="off" class="form-control" name="num_cards" />
-                                                @error('num_cards')
+                                                <input value="{{ old('construction_cost') }}" type="text" id="txtres" disabled autocomplete="off" class="form-control" name="construction_cost" />
+                                                @error('construction_cost')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
@@ -165,8 +154,8 @@
                                                 Electricity charges
                                             </label>
                                             <div class="col-md-4">
-                                                <input value="{{ old('num_cards') }}" type="text" autocomplete="off" class="form-control" name="num_cards" />
-                                                @error('num_cards')
+                                                <input value="{{ old('electricity_charges') }}" type="text" autocomplete="off" class="form-control" id="electricity" name="electricity_charges" />
+                                                @error('electricity_charges')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
@@ -178,8 +167,8 @@
                                                 Metro Water Supply
                                             </label>
                                             <div class="col-md-4">
-                                                <input value="{{ old('num_cards') }}" type="text" autocomplete="off" class="form-control" name="num_cards" />
-                                                @error('num_cards')
+                                                <input value="{{ old('water_supply') }}" type="text" autocomplete="off" class="form-control" id="water" name="water_supply" />
+                                                @error('water_supply')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
@@ -191,8 +180,8 @@
                                                 Car Park
                                             </label>
                                             <div class="col-md-4">
-                                                <input value="{{ old('num_cards') }}" type="text" autocomplete="off" class="form-control" name="num_cards" />
-                                                @error('num_cards')
+                                                <input value="{{ old('car_park') }}" type="text" autocomplete="off" class="form-control" id="car" name="car_park" />
+                                                @error('car_park')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
@@ -204,8 +193,8 @@
                                                 Amenities charges
                                             </label>
                                             <div class="col-md-4">
-                                                <input value="{{ old('num_cards') }}" type="text" autocomplete="off" class="form-control" name="num_cards" />
-                                                @error('num_cards')
+                                                <input value="{{ old('amenities_charges') }}" type="text" autocomplete="off" class="form-control" id="amenities" name="amenities_charges" />
+                                                @error('amenities_charges')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
@@ -217,8 +206,8 @@
                                                 Maintenance Charges(To be decided )
                                             </label>
                                             <div class="col-md-4">
-                                                <input value="{{ old('num_cards') }}" type="text" autocomplete="off" class="form-control" name="num_cards" />
-                                                @error('num_cards')
+                                                <input value="{{ old('maintenance') }}" type="text" autocomplete="off" id="maintenance" class="form-control" name="maintenance" />
+                                                @error('maintenance')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
@@ -230,8 +219,8 @@
                                                 Gross Amount=[A]+[B]+[C]
                                             </label>
                                             <div class="col-md-4">
-                                                <input value="{{ old('num_cards') }}" disabled type="text" autocomplete="off" class="form-control" name="num_cards" />
-                                                @error('num_cards')
+                                                <input value="{{ old('gross_amount') }}" disabled type="text" id="result" autocomplete="off" class="form-control" name="gross_amount" />
+                                                @error('gross_amount')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
@@ -253,7 +242,7 @@
                                                 Stamp Duty charges @7% on [A]
                                             </label>
                                             <div class="col-md-4">
-                                                <input value="{{ old('num_cards') }}" type="text" disabled autocomplete="off" class="form-control" name="num_cards" />
+                                                <input value="{{ old('num_cards') }}" type="text" id="stamp" disabled autocomplete="off" class="form-control" name="num_cards" />
                                                 @error('num_cards')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
@@ -344,41 +333,92 @@
     </div>
 </div>
 <script>
-    // $(document).ready(function(){
-    //   $("#free").click(function(){
-    //     $("#price").hide();
-
-    //   });
-    //   $("#premium").click(function(){
-    //     $("#price").show();
-    //   });
-    // });
-
-    // $('.pack').on('change', function () {
-    //     if (this.value == 'Premium') {
-    //         $("#price").show();
-    //     } else {
-    //         $("#price").hide();
-    //     }
-
-    // });
-
-    $('#pack').change(function() {
-        var pack = $(this).val();
-        if (pack == 'Premium') {
-            $('#price').addClass('hide');
-
-        } else {
-            $('.#price').removeClass('hide');
-        }
+    $('#country').change(function() {
+        var country = $(this).val();
+        $.ajax({
+            url: "{{route('costs.map')}}",
+            type: 'POST',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "application_name": country
+            },
+            dataType: 'html',
+            success: function(data) {
+                $("#state1").html(data);
+            }
+        });
     });
+    $('#country').change(function() {
+        var sal = $(this).val();
+        $.ajax({
+            url: "{{route('costs.map')}}",
+            type: 'POST',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "salable_area": sal
+            },
+            dataType: 'html',
+            success: function(data) {
+                $("#state2").html(data);
+            }
+        });
+    });
+    $('#country').change(function() {
+        var uds = $(this).val();
+        $.ajax({
+            url: "{{route('costs.map')}}",
+            type: 'POST',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "uds_area": uds
+            },
+            dataType: 'html',
+            success: function(data) {
+                $("#state3").html(data);
+            }
+        });
+    });
+    $('#Text1, #Text2').on("paste keyup",
+
+        function() {
+
+            var result = parseFloat($("#Text1").val()) * parseFloat($("#Text2").val());
+
+            $("#txtresult").val((isNaN(result) ? '' : result));
+
+            var result = (parseFloat($("#txtresult").val()) / 100) * 7;
+
+               $("#stamp").val((isNaN(result) ? '' : result));
+
+        }
+
+    );
+    $('#Text3, #Text4').on("paste keyup",
+
+        function() {
+
+            var result = parseFloat($("#Text3").val()) * parseFloat($("#Text4").val());
+
+            $("#txt").val((isNaN(result) ? '' : result));
+
+            var result = parseFloat($("#txtresult").val()) - parseFloat($("#txt").val());
+
+            $("#txtres").val((isNaN(result) ? '' : result));
+
+        }
+    );
+    $('#electricity, #car,#water,#amenities,#maintenance').on("paste keyup",
+
+function() {
+
+    var result = parseFloat($("#txt").val()) + parseFloat($("#txtres").val()) +  parseFloat($("#electricity").val()) + parseFloat($("#water").val()) + parseFloat($("#car").val()) +  parseFloat($("#amenities").val()) + parseFloat($("#maintenance").val());
+
+    $("#result").val((isNaN(result) ? '' : result));
+
+}
+
+);
 </script>
 <style>
-    .radio-sec input {
-        position: relative;
-        top: 0px;
-        margin-right: 5px;
-        margin-left: 0px;
-    }
 </style>
 @endsection

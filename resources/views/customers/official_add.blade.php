@@ -42,8 +42,11 @@
                                                     foreach ($phases as $phase) {
                                                     ?>
                                                         <option value="<?php echo $phase->customer_id ?>"><?php echo $phase->application_number ?></option>
+                                                      
                                                     <?php }
-                                                    ?>
+                                                    ?>  
+                                                 
+                                                    
                                                 </select>
                                                 @error('application_number')
                                                 <span class="invalid-feedback" role="alert">
@@ -56,18 +59,20 @@
                                             <label class="col-md-5">
                                                 Name of the Applicant <span class="red">*</span>
                                             </label>
-                                            <div class="col-md-7"  id="state1">
+                                            <div class="col-md-7"  id="state1" >
                                          
-                                                <input type="text" name="applicant_name" autocomplete="off" class="form-control"  />
+                                                <input type="text"  autocomplete="off" class="form-control"  />
+                                              
+                                               
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-md-5">
                                                 Date of Application <span class="red">*</span>
                                             </label>
-                                            <div class="col-md-7 states"  id="state2">
+                                            <div class="col-md-7"  id="state2">
                                           
-                                                <input type="text" disabled autocomplete="off" class="form-control" name="date_of_application" />
+                                                <input type="text"  autocomplete="off" class="form-control"  />
 
                                             </div>
                                         </div>
@@ -77,13 +82,13 @@
                                             </label>
                                             <div class="col-md-7">
                                                 <div class="row">
-                                                    <div class="col-3 statess"  id="state3">
+                                                    <div class="col-3"  id="state3">
                                                   
-                                                        <input value="{{ old('phone_code') }}" disabled type="tel" autocomplete="off" class="form-control" name="phone_code" style="width:72%" maxlength="4" />
+                                                        <input value="{{ old('phone_code') }}"  type="tel" autocomplete="off" class="form-control"  style="width:72%" maxlength="4" />
                                                     </div>
-                                                    <div class="col-9 statesss"  id="state4">
+                                                    <div class="col-9"  id="state4">
                                                    
-                                                        <input value="{{ old('phone') }}" disabled type="tel" autocomplete="off" class="form-control" name="phone" />
+                                                        <input value="{{ old('phone') }}"  type="tel" autocomplete="off" class="form-control"  />
                                                     </div>
                                                 </div>
                                             </div>
@@ -105,16 +110,7 @@
                                             <div class="col-md-7">
                                                 <input value="{{ old('pan_number') }}" type="text" autocomplete="off" placeholder="Enter PAN Number" class="form-control" name="pan_number" maxlength="10" style="margin-bottom: 8px;" />
                                                 <input type="file" accept="application/pdf,image/jpeg" class="form-control" name="pan" autocomplete="off" />
-                                                @error('pan')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                                @error('pan_number')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
+                                              
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -124,16 +120,7 @@
                                             <div class="col-md-7">
                                                 <input value="{{ old('passport_number') }}" type="text" autocomplete="off" placeholder="Enter Passport Number" class="form-control" name="passport_number" maxlength="10" style="margin-bottom: 8px;" />
                                                 <input type="file" accept="application/pdf,image/jpeg" class="form-control" name="passport" autocomplete="off" />
-                                                @error('passport')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                                @error('passport_number')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
+                                              
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -165,11 +152,7 @@
                                             </label>
                                             <div class="col-md-7">
                                                 <input value="{{ old('coapp_email') }}" type="email" autocomplete="off" class="form-control" name="coapp_email" />
-                                                @error('coapp_email')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
+                                              
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -179,16 +162,7 @@
                                             <div class="col-md-7">
                                                 <input value="{{ old('coaadhar_number') }}" id="aadhar_number" type="text" autocomplete="off" placeholder="Enter Aadhar Number" class="form-control" name="coaadhar_number" maxlength="14" style="margin-bottom: 8px;" />
                                                 <input type="file" accept="application/pdf,image/jpeg" class="form-control" name="coaadhar" autocomplete="off" />
-                                                @error('coaadhar')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                                @error('coaadhar_number')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
+                                               
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -198,16 +172,7 @@
                                             <div class="col-md-7">
                                                 <input value="{{ old('copan_number') }}" type="text" autocomplete="off" placeholder="Enter PAN Number" class="form-control" name="copan_number" maxlength="10" style="margin-bottom: 8px;" />
                                                 <input type="file" accept="application/pdf,image/jpeg" class="form-control" name="copan" autocomplete="off" />
-                                                @error('copan')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                                @error('copan_number')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
+                                              
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -217,16 +182,7 @@
                                             <div class="col-md-7">
                                                 <input value="{{ old('copassport_number') }}" type="text" autocomplete="off" placeholder="Enter Passport Number" class="form-control" name="copassport_number" maxlength="10" style="margin-bottom: 8px;" />
                                                 <input type="file" accept="application/pdf,image/jpeg" class="form-control" name="copassport" autocomplete="off" />
-                                                @error('copassport')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                                @error('copassport_number')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
+                                              
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -236,11 +192,7 @@
                                             <div class="col-md-7">
                                                 <textarea rows="4" class="form-control" name="coapp_address"> {{ old('coapp_address')}}</textarea>
 
-                                                @error('coapp_address')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
+                                               
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -462,6 +414,7 @@
 
     $('#country').change(function() {
         var country = $(this).val();
+        
         $.ajax({
             url: "{{route('customers.maps')}}",
             type: 'POST',
@@ -473,8 +426,8 @@
             success: function(data) {
 
                 $("#state1").html(data);
-                // $('#state1').append(data);
-                $('.state').removeClass('hide');
+               
+                //$('.state').removeClass('hide');
             }
         });
     });
@@ -491,7 +444,7 @@
             success: function(data) {
 
                 $("#state2").html(data);
-                // $('#state1').append(data);
+               
                 $('.states').removeClass('hide');
             }
         });

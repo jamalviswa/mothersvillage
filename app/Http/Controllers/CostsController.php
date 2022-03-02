@@ -10,33 +10,22 @@ use App\Rules\Email;
 use Session;
 use DB;
 use Redirect;
-use App\Payment;
+use App\Cost;
+use App\Customer;
+use App\Document;
 
 class CostsController extends Controller {
     
     public function index() {       
          $sessionadmin = Parent::checkadmin();
-        $result = Payment::where('status', '<>', 'Trash')
-                        ->orderBy('payment_id', 'desc');
-        if (!empty($_REQUEST['s'])) {
-            $s = $_REQUEST['s'];    
-            $result->where(function ($query) use ($s) {
-                 $query->where('name', 'LIKE', "%$s%");   
-            });              
-        } 
-        if (!empty($_REQUEST['payment'])) {
-            $package = $_REQUEST['payment'];  
-            $result->where(function ($query) use ($package) {
-                 $query->where('payment', 'LIKE', "%$package%");   
-            });              
-        } 
-        
-        $result = $result->paginate(10);
+       
+       
         
         return view('/costs/index', [
-            'results' => $result
+           
         ]);      
     }
+    
     public function add() {
          $sessionadmin = Parent::checkadmin();
         return view('costs/add', []);
@@ -53,7 +42,7 @@ class CostsController extends Controller {
            
             'duration' => ['required'],
         ]);
-          $data = new Package();
+          $data = new Cost();
         $data->name = $request->name;
         $data->pack= $request->pack;
         $data->num_cards = $request->num_cards;
@@ -66,6 +55,31 @@ class CostsController extends Controller {
                 Session::flash('alert-class', 'success');
         return \Redirect::route('payments.index', []);
         
+    }
+    public function map(Request $request)
+    {
+        if (!empty($_REQUEST['application_name'])) {
+            $id = $_REQUEST['application_name'];
+            $names = Customer::where('customer_id', $id)->get();
+            foreach ($names as $name) {
+                echo '<input type="text" disabled class="form-control"  name="applicant_name" value="' . $name->applicant_name . '"> ';
+            }
+            exit;
+        } else if (!empty($_REQUEST['salable_area'])) {
+            $id = $_REQUEST['salable_area'];
+            $names = Document::where('customer_id', $id)->get();
+            foreach ($names as $name) {
+                echo '<input type="text" disabled class="form-control" name="sal_area" id="Text2" value="' . $name->salable_area . '"> ';
+            }
+            exit;
+        }  else if (!empty($_REQUEST['uds_area'])) {
+            $id = $_REQUEST['uds_area'];
+            $names = Document::where('customer_id', $id)->get();
+            foreach ($names as $name) {
+                echo '<input type="text" disabled class="form-control" name="uds_area" id="Text3" value="' . $name->uds_area . '"> ';
+            }
+            exit;
+        }
     }
      public function edit($id = null)
     {
