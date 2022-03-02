@@ -386,10 +386,6 @@
 
             $("#txtresult").val((isNaN(result) ? '' : result));
 
-            var result = (parseFloat($("#txtresult").val()) / 100) * 7;
-
-               $("#stamp").val((isNaN(result) ? '' : result));
-
         }
 
     );
@@ -404,6 +400,10 @@
             var result = parseFloat($("#txtresult").val()) - parseFloat($("#txt").val());
 
             $("#txtres").val((isNaN(result) ? '' : result));
+
+            var results = ((parseFloat($("#txt").val()) * 7) / 100);
+            var result = Math.round(results);
+            $("#stamp").val((isNaN(result) ? '' : result));
 
         }
     );
