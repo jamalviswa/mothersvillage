@@ -15,6 +15,7 @@ use Redirect;
 use App\Flatnumber;
 use App\Block;
 use App\Flattype;
+use App\Document;
 
 class BlocksController extends Controller
 {
@@ -30,14 +31,29 @@ class BlocksController extends Controller
       $id = $_REQUEST['phase'];
       $blocks = Block::where('block_name', $id)->first();
       $flats = Flatnumber::where('block', $blocks['block_id'])->orderBy('flatnumber', 'asc')->get();
+
       foreach ($flats as $flat) {
+        //print_r($flat['flatnumber_id']);exit;
         $flattype = Flattype::where('flattype_id', $flat['flattype'])->first();
-        echo '<div class="col-md-2 j-box lab-' . $flattype->flattype . '">
-                <div class="j-numb">'. $flat->flatnumber . '<br>
-                  <span>' . $flattype->flattype . '
-                  </span>
-                </div>
-              </div>';
+
+        $document = Document::where('flatnumber', $flat['flatnumber_id'])->first();
+        // print_r($document);
+        // exit;
+        if (!empty($document)) {
+          echo '<div class="col-md-2 j-box lab-' . $flattype->flattype . ' sales">
+        <div class="j-numb sales">' . $flat->flatnumber . '<br>
+          <span>' . $flattype->flattype . '
+          </span>
+        </div>
+      </div>';
+        } else {
+          echo '<div class="col-md-2 j-box lab-' . $flattype->flattype . '">
+        <div class="j-numb">' . $flat->flatnumber . '<br>
+          <span>' . $flattype->flattype . '
+          </span>
+        </div>
+      </div>';
+        }
       }
       exit;
     }

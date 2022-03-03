@@ -62,10 +62,51 @@
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-md-8">
+                                                   Block <span class="red">*</span>
+                                                </label>
+                                                <div class="col-md-4" id="state4">
+                                                    <input type="text" disabled autocomplete="off" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-md-8">
+                                                   Flat Number <span class="red">*</span>
+                                                </label>
+                                                <div class="col-md-4" id="state5">
+                                                    <input type="text" disabled autocomplete="off" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-md-8">
+                                                   Flat Type <span class="red">*</span>
+                                                </label>
+                                                <div class="col-md-4" id="state6">
+                                                    <input type="text" disabled autocomplete="off" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-md-8">
+                                                    Floor <span class="red">*</span>
+                                                </label>
+                                                <div class="col-md-4" id="state7">
+                                                    <input type="text" disabled autocomplete="off" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-md-8">
+                                                    Flat Facing <span class="red">*</span>
+                                                </label>
+                                                <div class="col-md-4" id="state8">
+                                                    <input type="text" disabled autocomplete="off" class="form-control" />
+                                                </div>
+                                            </div>
+                                    
+                                            <div class="form-group row">
+                                                <label class="col-md-8">
                                                     Rate per SQFT <span class="red">*</span>
                                                 </label>
                                                 <div class="col-md-4">
-                                                    <input value="{{ old('rate_sqft') }}" type="text" id="Text1" autocomplete="off" class="form-control" name="rate_sqft" />
+                                                    <input value="{{ old('rate_sqft') }}" type="number" id="Text1" autocomplete="off" class="form-control" name="rate_sqft" />
                                                     @error('rate_sqft')
                                                     <span class="invalid-feedback" role="alert">
                                                         {{ $message }}
@@ -107,18 +148,13 @@
                                                     Guideline Value<span class="red">*</span>
                                                 </label>
                                                 <div class="col-md-4">
-                                                    <input value="{{ old('guideline_value') }}" type="text" id="Text4" autocomplete="off" class="form-control" name="guideline_value" />
+                                                    <input value="{{ old('guideline_value') }}" type="number" id="Text4" autocomplete="off" class="form-control" name="guideline_value" />
                                                     @error('guideline_value')
                                                     <span class="invalid-feedback" role="alert">
                                                         {{ $message }}
                                                     </span>
                                                     @enderror
                                                 </div>
-                                            </div>
-                                            <div class="form-group text-right">
-                                                <button type="submit" name="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
-                                                    Submit
-                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -154,7 +190,7 @@
                                                 Electricity charges
                                             </label>
                                             <div class="col-md-4">
-                                                <input value="{{ old('electricity_charges') }}" type="text" autocomplete="off" class="form-control" id="electricity" name="electricity_charges" />
+                                                <input value="{{ old('electricity_charges') }}" type="number" autocomplete="off" class="form-control" id="electricity" name="electricity_charges" />
                                                 @error('electricity_charges')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
@@ -167,7 +203,7 @@
                                                 Metro Water Supply
                                             </label>
                                             <div class="col-md-4">
-                                                <input value="{{ old('water_supply') }}" type="text" autocomplete="off" class="form-control" id="water" name="water_supply" />
+                                                <input value="{{ old('water_supply') }}" type="number" autocomplete="off" class="form-control" id="water" name="water_supply" />
                                                 @error('water_supply')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
@@ -180,7 +216,7 @@
                                                 Car Park
                                             </label>
                                             <div class="col-md-4">
-                                                <input value="{{ old('car_park') }}" type="text" autocomplete="off" class="form-control" id="car" name="car_park" />
+                                                <input value="{{ old('car_park') }}" type="number" autocomplete="off" class="form-control" id="car" name="car_park" />
                                                 @error('car_park')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
@@ -193,7 +229,7 @@
                                                 Amenities charges
                                             </label>
                                             <div class="col-md-4">
-                                                <input value="{{ old('amenities_charges') }}" type="text" autocomplete="off" class="form-control" id="amenities" name="amenities_charges" />
+                                                <input value="{{ old('amenities_charges') }}" type="number" autocomplete="off" class="form-control" id="amenities" name="amenities_charges" />
                                                 @error('amenities_charges')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
@@ -206,7 +242,7 @@
                                                 Maintenance Charges(To be decided )
                                             </label>
                                             <div class="col-md-4">
-                                                <input value="{{ old('maintenance') }}" type="text" autocomplete="off" id="maintenance" class="form-control" name="maintenance" />
+                                                <input value="{{ old('maintenance') }}" type="number" autocomplete="off" id="maintenance" class="form-control" name="maintenance" />
                                                 @error('maintenance')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
@@ -227,15 +263,6 @@
                                                 @enderror
                                             </div>
                                         </div>
-
-
-
-
-
-
-
-
-
                                         <span>[D]</span>
                                         <div class="form-group row">
                                             <label class="col-md-8">
@@ -281,7 +308,7 @@
                                                 Corpus fund
                                             </label>
                                             <div class="col-md-4">
-                                                <input value="{{ old('corpus_fund') }}" type="text" autocomplete="off" class="form-control" name="corpus_fund" />
+                                                <input value="{{ old('corpus_fund')}}" type="number" autocomplete="off" class="form-control" name="corpus_fund" />
                                                 @error('corpus_fund')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
@@ -302,13 +329,11 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                       
                                         <div class="form-group text-right">
                                             <button type="submit" name="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
                                                 Submit
                                             </button>
                                         </div>
-
                                     </div>
                                 </div>
                             </form>
@@ -365,27 +390,93 @@
             }
         });
     });
+    $('#country').change(function() {
+        var block = $(this).val();
+        $.ajax({
+            url: "{{route('costs.map')}}",
+            type: 'POST',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "block": block
+            },
+            dataType: 'html',
+            success: function(data) {
+                $("#state4").html(data);
+            }
+        });
+    });
+    $('#country').change(function() {
+        var flatnumber = $(this).val();
+        $.ajax({
+            url: "{{route('costs.map')}}",
+            type: 'POST',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "flatnumber": flatnumber
+            },
+            dataType: 'html',
+            success: function(data) {
+                $("#state5").html(data);
+            }
+        });
+    });
+    $('#country').change(function() {
+        var flattype = $(this).val();
+        $.ajax({
+            url: "{{route('costs.map')}}",
+            type: 'POST',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "flattype": flattype
+            },
+            dataType: 'html',
+            success: function(data) {
+                $("#state6").html(data);
+            }
+        });
+    });
+    $('#country').change(function() {
+        var floor = $(this).val();
+        $.ajax({
+            url: "{{route('costs.map')}}",
+            type: 'POST',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "floor": floor
+            },
+            dataType: 'html',
+            success: function(data) {
+                $("#state7").html(data);
+            }
+        });
+    });
+    $('#country').change(function() {
+        var facing = $(this).val();
+        $.ajax({
+            url: "{{route('costs.map')}}",
+            type: 'POST',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "facing": facing
+            },
+            dataType: 'html',
+            success: function(data) {
+                $("#state8").html(data);
+            }
+        });
+    });
     $('#Text1, #Text2').on("paste keyup",
-
         function() {
-
             var result = parseFloat($("#Text1").val()) * parseFloat($("#Text2").val());
-
             $("#txtresult").val((isNaN(result) ? '' : result));
-
         }
-
     );
     $('#Text3, #Text4').on("paste keyup",
-
         function() {
-
             var result = parseFloat($("#Text3").val()) * parseFloat($("#Text4").val());
-
             $("#txt").val((isNaN(result) ? '' : result));
 
             var result = parseFloat($("#txtresult").val()) - parseFloat($("#txt").val());
-
             $("#txtres").val((isNaN(result) ? '' : result));
 
             var results = ((parseFloat($("#txt").val()) * 7) / 100);
@@ -395,32 +486,21 @@
             var results = ((parseFloat($("#txt").val()) * 4) / 100);
             var result = Math.round(results);
             $("#registration").val((isNaN(result) ? '' : result));
-
-
         }
     );
     $('#electricity, #car,#water,#amenities,#maintenance').on("paste keyup",
+        function() {
+            var result = parseFloat($("#txt").val()) + parseFloat($("#txtres").val()) + parseFloat($("#electricity").val()) + parseFloat($("#water").val()) + parseFloat($("#car").val()) + parseFloat($("#amenities").val()) + parseFloat($("#maintenance").val());
+            $("#result").val((isNaN(result) ? '' : result));
 
-function() {
-
-    var result = parseFloat($("#txt").val()) + parseFloat($("#txtres").val()) +  parseFloat($("#electricity").val()) + parseFloat($("#water").val()) + parseFloat($("#car").val()) +  parseFloat($("#amenities").val()) + parseFloat($("#maintenance").val());
-
-    $("#result").val((isNaN(result) ? '' : result));
-
-    var results = ((parseFloat($("#result").val()) * 1) / 100);
+            var results = ((parseFloat($("#result").val()) * 1) / 100);
             var result = Math.round(results);
             $("#gst").val((isNaN(result) ? '' : result));
 
-            var agreement = (((parseFloat($("#txtres").val()) + parseFloat($("#Text4").val()) + parseFloat($("#electricity").val()) + parseFloat($("#water").val()) + parseFloat($("#car").val()) +  parseFloat($("#amenities").val()) + parseFloat($("#maintenance").val())) * 2) / 100);
+            var agreement = (((parseFloat($("#txtres").val()) + parseFloat($("#electricity").val()) + parseFloat($("#water").val()) + parseFloat($("#car").val()) + parseFloat($("#amenities").val()) + parseFloat($("#maintenance").val())) * 2) / 100);
             var agreements = Math.round(agreement);
-             $("#construction").val((isNaN(agreements) ? '' : agreements));
-
-            
-
-}
-
-);
+            $("#construction").val((isNaN(agreements) ? '' : agreements));
+        }
+    );
 </script>
-<style>
-</style>
 @endsection

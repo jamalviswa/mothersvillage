@@ -116,6 +116,14 @@
         background-color: #21ffff;
     }
 
+
+    .col-md-2.j-box.lab-2.BHK.sales, .col-md-2.j-box.lab-1.BHK.sales, .col-md-2.j-box.lab-3.BHK.sales, .col-md-2.j-box.lab-2.BHK.P.sales, .col-md-2.j-box.lab-2.BHK.SP.sales, .col-md-2.j-box.lab-3.BHK.P.sales{
+        background-color: #ff0000;
+    }
+   
+     
+   
+
     .j-box {
         height: 115px;
         border: 2px solid BLACK;
@@ -126,6 +134,14 @@
         margin-left: 20px;
         margin-bottom: 20px;
         cursor: pointer;
+    }
+    .j-numb.sales{
+        color: #fff;
+        font-size: 20px;
+        text-align: center;
+        padding-top: 30px;
+        cursor: pointer;
+        font-weight: 600;
     }
 
     .j-numb {
