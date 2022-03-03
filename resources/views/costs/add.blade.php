@@ -242,8 +242,8 @@
                                                 Stamp Duty charges @7% on [A]
                                             </label>
                                             <div class="col-md-4">
-                                                <input value="{{ old('num_cards') }}" type="text" id="stamp" disabled autocomplete="off" class="form-control" name="num_cards" />
-                                                @error('num_cards')
+                                                <input value="{{ old('stamp') }}" type="text" id="stamp" disabled autocomplete="off" class="form-control" name="stamp" />
+                                                @error('stamp')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
@@ -255,8 +255,8 @@
                                                 Registration charges @4% on [A](demand draft)
                                             </label>
                                             <div class="col-md-4">
-                                                <input value="{{ old('num_cards') }}" type="text" disabled autocomplete="off" class="form-control" name="num_cards" />
-                                                @error('num_cards')
+                                                <input value="{{ old('registration') }}" type="text" id="registration" disabled autocomplete="off" class="form-control" name="registration" />
+                                                @error('registration')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
@@ -268,8 +268,8 @@
                                                 Registration charges for Construction Agreement @2% on [B]+[C]
                                             </label>
                                             <div class="col-md-4">
-                                                <input value="{{ old('num_cards') }}" type="text" disabled autocomplete="off" class="form-control" name="num_cards" />
-                                                @error('num_cards')
+                                                <input value="{{ old('construction') }}" type="text" id="construction" disabled autocomplete="off" class="form-control" name="construction" />
+                                                @error('construction')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
@@ -281,8 +281,8 @@
                                                 Corpus fund
                                             </label>
                                             <div class="col-md-4">
-                                                <input value="{{ old('num_cards') }}" type="text" autocomplete="off" class="form-control" name="num_cards" />
-                                                @error('num_cards')
+                                                <input value="{{ old('corpus_fund') }}" type="text" autocomplete="off" class="form-control" name="corpus_fund" />
+                                                @error('corpus_fund')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
@@ -294,28 +294,15 @@
                                                 GST @1%
                                             </label>
                                             <div class="col-md-4">
-                                                <input value="{{ old('num_cards') }}" type="text" disabled autocomplete="off" class="form-control" name="num_cards" />
-                                                @error('num_cards')
+                                                <input value="{{ old('gst') }}" id="gst" type="text" disabled autocomplete="off" class="form-control" name="gst" />
+                                                @error('gst')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
                                                 @enderror
                                             </div>
                                         </div>
-                                        <!-- <div class="form-group row">
-                                            <label class="col-md-4">
-                                                Status <span class="red">*</span>
-                                            </label>
-                                            <div class="col-md-4 radio-sec">
-                                                <label><input type="radio" class="" name="status" value="Active" checked="checked"> <span> Active</span></label><br>
-                                                <label><input type="radio" class="" name="status" value="Inactive"> <span> Inactive</span></label><br>
-                                                @error('status')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                            </div>
-                                        </div> -->
+                                       
                                         <div class="form-group text-right">
                                             <button type="submit" name="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
                                                 Submit
@@ -405,6 +392,11 @@
             var result = Math.round(results);
             $("#stamp").val((isNaN(result) ? '' : result));
 
+            var results = ((parseFloat($("#txt").val()) * 4) / 100);
+            var result = Math.round(results);
+            $("#registration").val((isNaN(result) ? '' : result));
+
+
         }
     );
     $('#electricity, #car,#water,#amenities,#maintenance').on("paste keyup",
@@ -414,6 +406,16 @@ function() {
     var result = parseFloat($("#txt").val()) + parseFloat($("#txtres").val()) +  parseFloat($("#electricity").val()) + parseFloat($("#water").val()) + parseFloat($("#car").val()) +  parseFloat($("#amenities").val()) + parseFloat($("#maintenance").val());
 
     $("#result").val((isNaN(result) ? '' : result));
+
+    var results = ((parseFloat($("#result").val()) * 1) / 100);
+            var result = Math.round(results);
+            $("#gst").val((isNaN(result) ? '' : result));
+
+            var agreement = (((parseFloat($("#txtres").val()) + parseFloat($("#Text4").val()) + parseFloat($("#electricity").val()) + parseFloat($("#water").val()) + parseFloat($("#car").val()) +  parseFloat($("#amenities").val()) + parseFloat($("#maintenance").val())) * 2) / 100);
+            var agreements = Math.round(agreement);
+             $("#construction").val((isNaN(agreements) ? '' : agreements));
+
+            
 
 }
 
