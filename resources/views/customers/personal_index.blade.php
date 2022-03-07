@@ -89,6 +89,9 @@
 
                                                 <td class="text-center">
                                                     <div class="btn-group">
+                                                    <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="View" href="{{ route("customers.personal_view", $result->customer_id) }}">
+                                                            <i class="fa fa-eye"></i>
+                                                        </a>
                                                         <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="Edit" href="{{ route("customers.personal_edit", $result->customer_id) }}">
                                                             <i class="fa fa-pencil"></i>
                                                         </a>

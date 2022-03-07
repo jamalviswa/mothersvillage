@@ -19,6 +19,8 @@ use App\Floor;
 use App\Flattype;
 use App\Flatnumber;
 use App\Document;
+use App\Son;
+use App\Daughter;
 
 class CustomersController extends Controller
 {
@@ -120,7 +122,7 @@ class CustomersController extends Controller
                             $son_class = $request->son_class;
                             $son_age = $request->son_age;
                             for ($i = 0; $i < $n; $i++) {
-                                $data = new Family_detail();
+                                $data = new Son();
                                 $data->customer_id = $last_id;
                                 $data->son_class = $son_class[$i];
                                 $data->son_school = $son_school[$i];
@@ -147,7 +149,7 @@ class CustomersController extends Controller
                             $daughter_profession = $request->daughter_profession;
                             $daughter_age = $request->daughter_age;
                             for ($i = 0; $i < $n; $i++) {
-                                $data = new Family_detail();
+                                $data = new Daughter();
                                 $data->customer_id = $last_id;
                                 $data->daughter_class = $daughter_class[$i];
                                 $data->daughter_school = $daughter_school[$i];
@@ -215,13 +217,13 @@ class CustomersController extends Controller
         if (!empty($request->son_profession)) {
             if (!empty($request->son_age)) {
                 if (!empty($request->son_name)) {
-                    $delete = Family_detail::where('customer_id', $id)->delete();
+                    $delete = Son::where('customer_id', $id)->delete();
                     $n = sizeof($request->son_name);
                     $son_name = $request->son_name;
                     $son_profession = $request->son_profession;
                     $son_age = $request->son_age;
                     for ($i = 0; $i < $n; $i++) {
-                        $data = new Family_detail();
+                        $data = new Son();
                         $data->customer_id = $id;
                         $data->son_profession = $son_profession[$i];
                         $data->son_age = $son_age[$i];
@@ -262,7 +264,7 @@ class CustomersController extends Controller
     {
         $sessionadmin = Parent::checkadmin();
         $detail = Customer::where('customer_id', '=', $id)->first();
-        return view('customers/personal/view', ['detail' => $detail]);
+        return view('customers/personal_view', ['detail' => $detail]);
     }
 
     //Customers Details delete function
