@@ -274,6 +274,27 @@ class CustomersController extends Controller
         $data = Customer::findOrFail($id);
         $data->status = 'Trash';
         $data->save();
+        $sons = Son::where('customer_id', '=', $id)->get();
+        foreach($sons as $son){
+            $last = $son['id'];
+            $data = Son::findOrFail($last);
+            $data->status = 'Trash';
+            $data->save();
+        }
+        $daughters = Daughter::where('customer_id', '=', $id)->get();
+        foreach($daughters as $daughter){
+            $last = $daughter['id'];
+            $data = Daughter::findOrFail($last);
+            $data->status = 'Trash';
+            $data->save();
+        }
+        $documents = Document::where('customer_id', '=', $id)->get();
+        foreach($documents as $document){
+            $last = $document['document_id'];
+            $data = Document::findOrFail($last);
+            $data->status = 'Trash';
+            $data->save();
+        }
         Session::flash('message', 'Deleted Sucessfully!');
         Session::flash('alert-class', 'success');
         return \Redirect::route('customers.personal_index', []);
