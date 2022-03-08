@@ -17,18 +17,22 @@ use App\Block;
 use App\Flatnumber;
 use App\Flattype;
 use App\Floor;
-
-
 class CostsController extends Controller {
     
-    public function index() {       
-         $sessionadmin = Parent::checkadmin();
-       
-       
-        
+    public function index()
+    {
+        $sessionadmin = Parent::checkadmin();
+        $result = Cost::where('status', '<>', 'Trash')->orderBy('cost_id', 'desc');
+        if (!empty($_REQUEST['s'])) {
+            $s = $_REQUEST['s'];
+            $result->where(function ($query) use ($s) {
+                $query->where('applicant_name', 'LIKE', "%$s%");
+            });
+        }
+        $result = $result->paginate(10);
         return view('/costs/index', [
-           
-        ]);      
+            'results' => $result
+        ]);
     }
     
     public function add() {
@@ -199,14 +203,12 @@ class CostsController extends Controller {
             Session::flash('alert-class', 'success');
                 return \Redirect::route('packages.index', []);
         }
-          public function updateStatus(Request $request)
+         
+
+    public function view($id = null)
     {
-    		// dd($request->all());
-            $data = Package::findOrFail($request->package_id);
-            $data->status = $request->status;
-            $data->save();
-            Session::flash('message', 'Status Updated Sucessfully!');
-            Session::flash('alert-class', 'success');
-            return Redirect::back();
+        $sessionadmin = Parent::checkadmin();
+        $detail = Cost::where('cost_id', '=', $id)->first();
+        return view('costs/view', ['detail' => $detail]);
     }
 }

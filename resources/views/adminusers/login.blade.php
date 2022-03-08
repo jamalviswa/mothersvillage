@@ -14,13 +14,13 @@
                                 <div class="row">
                                     <div class="col-md-3 offset-md-1    ">
                                         <div class="text-left profile">
-                                            <img src="<?php echo asset("/admin/img/image1.png") ?>" class="pic-w">
+                                            <img src="<?php echo asset("/admin/img/image2.png") ?>" class="pic-w">
                                         </div>
                                     </div>
                                     <div class="col-md-6 offset-md-1">
 
                                         <div class="text-right profile">
-                                            <img src="<?php echo asset("/admin/img/image2.png") ?>" class="pic-w">
+                                            <img src="<?php echo asset("/admin/img/image1.png") ?>" class="pic-w">
                                         </div>
                                     </div>
                                 </div>
@@ -180,4 +180,6 @@
     .social i {
         margin-right: 4px;
     } 
+   
+  
 </style>

@@ -124,19 +124,19 @@
 
                                                 <div class="row">
                                                     <div class="col-3">
-                                                    <select class="form-control"  name="application_number">
+                                                    <!-- <select class="form-control"  name="application_number">
                                                     <option>Select Country</option>
                                                     <?php
-                                                    $phases = App\Country::where('status', 'Active')->get();
-                                                    foreach ($phases as $phase) {
+                                                    //$phases = App\Country::where('status', 'Active')->get();
+                                                   // foreach ($phases as $phase) {
                                                     ?>
-                                                        <option value="<?php echo $phase->country_code ?>"><?php echo $phase->country ?></option>
+                                                        <option value="<?php //echo $phase->country_code ?>"><?php //echo $phase->country ?></option>
                                                       
-                                                    <?php }
+                                                    <?php //}
                                                     ?>  
                                                  
                                                     
-                                                </select>
+                                                </select> -->
                                                         <input value="{{ old('phone_code') }}+91" type="tel" autocomplete="off" class="form-control" name="phone_code" style="width:72%" maxlength="4" />
                                                     </div>
                                                     <div class="col-9">
