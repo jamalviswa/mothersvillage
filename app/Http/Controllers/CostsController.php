@@ -49,6 +49,7 @@ class CostsController extends Controller {
             'amenities_charges' => ['required'],
             'maintenance' => ['required'],
             'rate_sqft' => ['required'],
+            'corpus_fund' => ['required'],
            
         ]);
         $data = new Cost();
@@ -88,6 +89,8 @@ class CostsController extends Controller {
         $data->corpus_fund= $request->corpus_fund;
         $gst = round(($gross_amount * 1) / 100);
         $data->gst= $gst;
+        $total = $gross_amount + $stamp +  $registration + $construction + $request->corpus_fund + $gst;
+        $data->total_amount= $total;
         $data->created_date = date('Y-m-d H:i:s');
         $data->save();
          Session::flash('message', 'Cost Details Added!');

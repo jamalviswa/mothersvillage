@@ -31,11 +31,8 @@ class BlocksController extends Controller
       $id = $_REQUEST['phase'];
       $blocks = Block::where('block_name', $id)->first();
       $flats = Flatnumber::where('block', $blocks['block_id'])->orderBy('flatnumber', 'asc')->get();
-
       foreach ($flats as $flat) {
-        //print_r($flat['flatnumber_id']);exit;
         $flattype = Flattype::where('flattype_id', $flat['flattype'])->first();
-
         $document = Document::where('flatnumber', $flat['flatnumber_id'])->first();
         // print_r($document);
         // exit;
@@ -43,6 +40,8 @@ class BlocksController extends Controller
           echo '<div class="col-md-2 j-box lab-' . $flattype->flattype . ' sales">
         <div class="j-numb sales">' . $flat->flatnumber . '<br>
           <span>' . $flattype->flattype . '
+          </span>
+          <span>' . $document->applicant_name . '
           </span>
         </div>
       </div>';

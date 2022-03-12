@@ -32,11 +32,6 @@
                                 <a class="btn btn-danger m-btn m-btn--air m-btn--custom" href="{{route('costs.index')}}"><i class="fa fa-times"></i></a>
                             <?php } ?>
                         </div>
-                        <!-- <div class="btnright">
-                       
-                            <button type="button" class="btn m-1 btn-warning endbtn ">CSV</button>
-                            <button type="button" class="btn  m-1 btn-success    endbtn">Print</button>
-                        </div> -->
                     </form>
                 </div>
             </div>
@@ -62,12 +57,13 @@
                                             <th>Land Cost</th>
                                             <th>Construction Cost</th>
                                             <th>Gross Amount</th>
+                                            <th>Total Amount</th>
                                             <th class="text-center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        //$i = ($results->currentPage() > 1) ? $results->currentPage() * $results->perpage() : $results->currentPage();
+                                       
                                         $i = ($results->currentpage() - 1) * $results->perpage() + 1;
                                         foreach ($results as $result) {
                                         ?>
@@ -79,19 +75,18 @@
                                                 <td>{{ $result->sal_area }}</td>
                                                 <td>{{ $result->uds_area }}</td>
                                                 <td>{{ $result->guideline_value }}</td>
-                                                <td>&#x20b9; {{ $result->land_cost }}</td>
-                                                <td>&#x20b9; {{ $result->construction_cost }}</td>
-                                                <td>&#x20b9; {{ $result->gross_amount }}</td>
-
-
-
+                                                <td>{{"Rs. "}}{{ $result->land_cost }}</td>
+                                                <td>{{"Rs. "}}{{ $result->construction_cost }}</td>
+                                                <td>{{"Rs. "}}{{ $result->gross_amount }}</td>
+                                                <td>{{"Rs. "}}{{ $result->total_amount }}</td>
                                                 <td class="text-center">
                                                     <div class="btn-group">
                                                         <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="View" href="{{ route("costs.view", $result->cost_id) }}">
                                                             <i class="fa fa-eye"></i>
                                                         </a>
-
-
+                                                        <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="Edit" href="{{ route("costs.edit", $result->cost_id) }}">
+                                                            <i class="fa fa-pencil"></i>
+                                                        </a>
                                                     </div>
                                                 </td>
                                             </tr>

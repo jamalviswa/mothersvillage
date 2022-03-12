@@ -31,7 +31,7 @@
                                 <div class="m-login__signin  ">
                                     <?php echo csrf_field(); ?>
                                     <div class="form-group m-form__group ">
-                                        <input class="form-control m-input  validate[required]" type="text" placeholder="Email" autocomplete="off" name="email" />
+                                        <input class="form-control m-input  validate[required]" type="text" placeholder="Username" autocomplete="off" name="username" />
                                     </div>
                                     <div class="form-group m-form__group ">
                                         <input class="form-control m-input  m-login__form-input--last validate[required]" type="password" placeholder="Password" name="password" />

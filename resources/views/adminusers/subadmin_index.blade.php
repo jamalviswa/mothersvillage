@@ -22,9 +22,9 @@
             <div class="m-portlet__body">
                 <!--begin::Section-->
                 <div class="m-section__content    ">
-                    <form method="GET" class="search-form form-inline " action="#">
+                    <form method="GET" class="search-form form-inline" action="#">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="s" placeholder="Search" @if(isset($_REQUEST['s'])) value="{{ $_REQUEST['s'] }}" @else value="" @endif />
+                            <input type="text" class="form-control" autocomplete="off" name="s" placeholder="Search" @if(isset($_REQUEST['s'])) value="{{ $_REQUEST['s'] }}" @else value="" @endif />
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary m-btn m-btn--air m-btn--custom" type="submit" name="search"><i class="fa fa-search"></i></button>
@@ -32,11 +32,6 @@
                                 <a class="btn btn-danger m-btn m-btn--air m-btn--custom" href="{{route('adminusers.subadmin_index')}}"><i class="fa fa-times"></i></a>
                             <?php } ?>
                         </div>
-                        <!-- <div class="btnright">
-                       
-                            <button type="button" class="btn m-1 btn-warning ">CSV</button>
-                            <button type="button" class="btn  m-1  btn-info  ">Print</button>
-                        </div> -->
                     </form>
                 </div>
             </div>
@@ -76,7 +71,7 @@
                                                 </td>
                                                 <td>{{ $result->email }}</td>
                                                 <td>
-                                                    {{ $result->password_text }}
+                                                    <input type="password" class="form-control pwdfld" value="<?php echo !empty($result['password_text']) ? $result['password_text'] : "-"; ?>" readonly="true" />
                                                 </td>
                                                 <td>
                                                     {{ $result->adminname }}
@@ -89,7 +84,6 @@
                                                         <a rel="tooltip" class="delete btn btn-secondary m-btn m-btn--air m-btn--custom" title="Delete" data-value="{{$result['admin_id']}}" href="{{ route('adminusers.subadmin_delete',$result['admin_id']) }}">
                                                             <i class="fa fa-trash"></i>
                                                         </a>
-
                                                     </div>
                                                 </td>
                                             </tr>
@@ -112,18 +106,11 @@
             </div>
         </div>
     </div>
-
 </div>
-
 <style>
-    .form-control:disabled,
-    .form-control[readonly] {
-        background-color: #F26C4F;
-        opacity: 1;
-        color: #fff;
-        text-align: center;
-        padding: 11px !important;
-        font-size: 20px;
+    .pwdfld {
+        background: transparent !important;
+        border: none;
     }
 </style>
 @endsection

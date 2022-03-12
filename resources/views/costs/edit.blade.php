@@ -14,7 +14,7 @@ $requestdatas = (!empty(old())) ? old() : $detail;
                 </h3>
             </div>
             <div>
-                <a href="{{route('packages.index')}}" rel="tooltip" title="" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle" data-original-title="Back to Pack List">
+                <a href="{{route('costs.index')}}" rel="tooltip" title="" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle" data-original-title="Back to Pack List">
                 <i class="fa fa-long-arrow-left"></i>
                 </a>
             </div>

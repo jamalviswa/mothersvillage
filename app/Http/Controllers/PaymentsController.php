@@ -14,6 +14,7 @@ use DB;
 use Redirect;
 use App\Payment;
 use App\Customer;
+use App\Cost;
 
 class PaymentsController extends Controller
 {
@@ -146,6 +147,13 @@ class PaymentsController extends Controller
             $dates = Customer::where('customer_id', $id)->get();
             foreach ($dates as $date) {
                 echo ' <input type="text" disabled class="form-control" name="appln_date" value="' . $date->date_of_application . '"> ';
+            }
+            exit;
+        } else  if (!empty($_REQUEST['gross_amount'])) {
+            $id = $_REQUEST['gross_amount'];
+            $dates = Cost::where('customer_id', $id)->get();
+            foreach ($dates as $date) {
+                echo ' <input type="text" disabled class="form-control" name="gross_amount" value="' . $date->gross_amount . '"> ';
             }
             exit;
         }

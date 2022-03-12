@@ -96,11 +96,11 @@ WebFont.load({
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p>Are You Sure, Do you want Delete this detail ?</p>
+                        <p>Are You Sure, Do you want Delete this Record ?</p>
                     </div>
                     <div class="modal-footer">
                         <a type="button" class="btn btn-secondary m-btn m-btn--air m-btn--custom" data-dismiss="modal">No</a>
-                        <a type="button" class="btn btn-accent m-btn m-btn--air m-btn--custom delete" href="">Yes</a>
+                        <a type="button" class="btn btn-accent m-btn m-btn--air m-btn--custom delete" href="">Yes 12</a>
                     </div>
                 </div>
             </div>

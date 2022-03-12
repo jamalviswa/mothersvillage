@@ -70,7 +70,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel">Are You Sure, Do you want Delete this detail ?</h4>
+                <h4 class="modal-title" id="exampleModalLabel">Are You Sure, Do you want Delete this Record?</h4>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true"><i class="fa fa-times"></i></span>
                 </button>

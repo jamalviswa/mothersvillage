@@ -247,7 +247,7 @@ div.datepicker {
     object-fit: cover;
 }
 td select {
-    height: 15px !important;
+    /* height: 15px !important; */
     width: 87px !important;
     padding: 10px 10px !important;
 }

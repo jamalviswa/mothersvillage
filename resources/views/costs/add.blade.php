@@ -40,9 +40,17 @@
                                                         <?php
                                                         //$phases = App\Customer::where('status', 'Active')->get();
                                                         $phases = App\Document::where('status', 'Active')->get();
+                                                        
                                                         foreach ($phases as $phase) {
+                                                            $costs = App\Cost::where('status','!=','Trash')->where('customer_id',$phase['customer_id'])->where('application_number',$phase['application_number'])->first();
+                                                            if(empty($costs)){
+                                                                $disable ="";
+                                                            }else{
+                                                                $disable ="disabled";
+                                                            }
+                                                            
                                                         ?>
-                                                            <option value="<?php echo $phase->customer_id ?>"><?php echo $phase->application_number ?></option>
+                                                            <option value="<?php echo $phase->customer_id ?>" <?php echo $disable;?>><?php echo $phase->application_number ?></option>
                                                         <?php } ?>
                                                     </select>
                                                     @error('application_number')
@@ -308,7 +316,7 @@
                                                 Corpus fund
                                             </label>
                                             <div class="col-md-4">
-                                                <input value="{{ old('corpus_fund')}}" type="number" autocomplete="off" class="form-control" name="corpus_fund" />
+                                                <input value="{{ old('corpus_fund')}}" type="number" id="corpus" autocomplete="off" class="form-control" name="corpus_fund" />
                                                 @error('corpus_fund')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
@@ -323,6 +331,19 @@
                                             <div class="col-md-4">
                                                 <input value="{{ old('gst') }}" id="gst" type="text" disabled autocomplete="off" class="form-control" name="gst" />
                                                 @error('gst')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-8 stronglabel">
+                                                Total Amount
+                                            </label>
+                                            <div class="col-md-4">
+                                                <input value="{{ old('total_amount') }}" disabled type="text" id="total" autocomplete="off" class="form-control" name="total_amount" />
+                                                @error('total_amount')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
@@ -500,6 +521,16 @@
             var agreement = (((parseFloat($("#txtres").val()) + parseFloat($("#electricity").val()) + parseFloat($("#water").val()) + parseFloat($("#car").val()) + parseFloat($("#amenities").val()) + parseFloat($("#maintenance").val())) * 2) / 100);
             var agreements = Math.round(agreement);
             $("#construction").val((isNaN(agreements) ? '' : agreements));
+
+            var total = parseFloat($("#result").val()) + parseFloat($("#stamp").val()) + parseFloat($("#registration").val()) + parseFloat($("#construction").val()) + parseFloat($("#corpus").val()) + parseFloat($("#gst").val());
+            var totals = Math.round(total);
+            $("#total").val((isNaN(totals) ? '' : totals));
+        }
+    );
+    $('#corpus').on("paste keyup",
+        function() {
+            var total = parseFloat($("#result").val()) + parseFloat($("#stamp").val()) + parseFloat($("#registration").val()) + parseFloat($("#construction").val()) + parseFloat($("#corpus").val()) + parseFloat($("#gst").val());
+            $("#total").val((isNaN(total) ? '' : total));
         }
     );
 </script>
