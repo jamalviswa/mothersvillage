@@ -304,7 +304,7 @@ class CustomersController extends Controller
     public function official_index()
     {
         $sessionadmin = Parent::checkadmin();
-        $result = Customer::where('status', '<>', 'Trash')->orderBy('customer_id', 'desc');
+        $result = Document::where('status', '<>', 'Trash')->orderBy('document_id', 'desc');
         if (!empty($_REQUEST['s'])) {
             $s = $_REQUEST['s'];
             $result->where(function ($query) use ($s) {

@@ -6,7 +6,7 @@
         <div class="d-flex align-items-center">
             <div class="mr-auto">
                 <h3 class="m-subheader__title m-subheader__title--separator">
-                    Customer Official List
+                    Customer Documents
                 </h3>
             </div>
             <div>
@@ -32,62 +32,65 @@
                                 <a class="btn btn-danger m-btn m-btn--air m-btn--custom" href="{{route('customers.official_index')}}"><i class="fa fa-times"></i></a>
                             <?php } ?>
                         </div>
-                        <!-- <div class="btnright">
-                       
-                            <button type="button" class="btn m-1 btn-warning ">CSV</button>
-                            <button type="button" class="btn  m-1  btn-info  ">Print</button>
-                        </div> -->
+
                     </form>
                 </div>
             </div>
         </div>
 
 
-        
+
         <div class="m-portlet">
             <div class="m-portlet__body">
                 <!--begin::Section-->
                 <div class="m-section">
                     <div class="m-section__content">
                         <?php if ($results->count() > '0') { ?>
-                        <div class="table-responsive">
-                            <table class="table m-table m-table--head-bg-brand">
-                                <thead>
-                                    <tr>
-                                        <th> # </th>
-                                        <th>Profile</th>
-                                        <th>Applicant Name</th>
-                                        <th>Father/Spouse Name</th>
-                                        <th>Age</th>
-                                        <th>email</th>
-                                        <th>Gender</th>
-                                        <th>Mobile Number</th>
-                                        <th>Occupation</th>
-                                        <th class="text-center">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                        $i = ($results->currentPage() > 1) ? $results->currentPage() * $results->perpage() : $results->currentPage();
+                            <div class="table-responsive">
+                                <table class="table m-table m-table--head-bg-brand">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Profile</th>
+                                            <th>Application Number</th>
+                                            <th>Applicant Name</th>
+                                            <th>Phase Name</th>
+                                            <th>Block</th>
+                                            <th>Floor</th>
+                                            <th>Flat Type</th>
+                                            <th>Flat Number</th>
+                                            <th>Facing</th>
+                                            <th>Saleable Area</th>
+                                            <th>Plinth Area</th>
+                                            <th>UDS Area</th>
+                                            <th>Comn Area</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        // $i = ($results->currentPage() > 1) ? $results->currentPage() * $results->perpage() : $results->currentPage();
+                                        $i = ($results->currentpage() - 1) * $results->perpage() + 1;
                                         foreach ($results as $result) {
-                                    ?>
-                                    <tr>
-                                        <td width="5%">{{ $i }}</td>
-                                        <td class="text-center">
-                                            @if(!empty($result['photo']))
-                                                <a href="{{URL::to('/files/customers/'.$result['photo'].'')}}"  target="_blank" ><img src="{{URL::to('/files/customers/'.$result['photo'].'')}}" width="50" height="50"/>
-                                                </a>
-                                                @endif
+                                            $phase = App\Phase::where('phase_id', $result['phase'])->first();
+                                        ?>
+                                            <tr>
+                                                <td width="5%">{{ $i }}</td>
+                                                <td class="text-center">
+                                                    @if(!empty($result['photo']))
+                                                    <a href="{{URL::to('/files/customers/'.$result['photo'].'')}}" target="_blank"><img src="{{URL::to('/files/customers/'.$result['photo'].'')}}" width="50" height="50" style="border-radius: 50%;object-fit: cover;"/>
+                                                    </a>
+                                                    @endif
                                                 </td>
-                                        <td>{{ $result->name }}</td>
-                                        <td>{{ $result->fathers_name }}</td>
-                                        <td>{{ $result->age }}</td>
-                                        <td>{{ $result->email }}</td>
-                                        <td>{{ $result->gender }}</td>
-                                        <td>{{ $result->phone }}</td>
-                                        <td>{{ $result->occupation }}</td>
+                                                <td class="text-center">{{ $result->application_number }}</td>
+                                                <td>{{ $result->applicant_name }}</td>
+                                                <td>{{ $phase->phase_name }}</td>
+                                                <td>{{ $result->email }}</td>
+                                                <td>{{ $result->gender }}</td>
+                                                <td>{{ $result->phone }}</td>
+                                                <td>{{ $result->occupation }}</td>
 
-                                               
+
                                                 <td class="text-center">
                                                     <div class="btn-group">
                                                         <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="Edit" href="{{ route("customers.official_edit", $result->customer_id) }}">
@@ -119,24 +122,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
     </div>
-    
 </div>
-
-<style>
-    .form-control:disabled,
-    .form-control[readonly] {
-        background-color: #F26C4F;
-        opacity: 1;
-        color: #fff;
-        text-align: center;
-        padding: 11px !important;
-        font-size: 20px;
-    }
-</style>
 @endsection
