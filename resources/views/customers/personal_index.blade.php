@@ -6,7 +6,7 @@
         <div class="d-flex align-items-center">
             <div class="mr-auto">
                 <h3 class="m-subheader__title m-subheader__title--separator">
-                    Customers List
+                    Customers Personal Details
                 </h3>
             </div>
             <div>
@@ -24,7 +24,14 @@
                 <div class="m-section__content    ">
                     <form method="GET" class="search-form form-inline " action="#">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="s" placeholder="Search" @if(isset($_REQUEST['s'])) value="{{ $_REQUEST['s'] }}" @else value="" @endif />
+                            <input type="text" class="form-control" name="s" placeholder="Search" autocomplete="off" @if(isset($_REQUEST['s'])) value="{{ $_REQUEST['s'] }}" @else value="" @endif />
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" name="gender">
+                                <option value="">Select</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary m-btn m-btn--air m-btn--custom" type="submit" name="search"><i class="fa fa-search"></i></button>
@@ -32,11 +39,6 @@
                                 <a class="btn btn-danger m-btn m-btn--air m-btn--custom" href="{{route('customers.personal_index')}}"><i class="fa fa-times"></i></a>
                             <?php } ?>
                         </div>
-                        <!-- <div class="btnright">
-                       
-                            <button type="button" class="btn m-1 btn-warning ">CSV</button>
-                            <button type="button" class="btn  m-1  btn-info  ">Print</button>
-                        </div> -->
                     </form>
                 </div>
             </div>
@@ -66,7 +68,6 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                        //$i = ($results->currentPage() > 1) ? $results->currentPage() * $results->perpage() : $results->currentPage();
                                         $i = ($results->currentpage() - 1) * $results->perpage() + 1;
                                         foreach ($results as $result) {
                                         ?>
@@ -74,22 +75,22 @@
                                                 <td width="5%">{{ $i }}</td>
                                                 <td class="text-center">
                                                     @if(!empty($result['photo']))
-                                                    <a href="{{URL::to('/files/customers/'.$result['photo'].'')}}" target="_blank"><img src="{{URL::to('/files/customers/'.$result['photo'].'')}}" width="50" height="50" />
+                                                    <a href="{{URL::to('/files/customers/'.$result['photo'].'')}}" target="_blank"><img src="{{URL::to('/files/customers/'.$result['photo'].'')}}" width="50" height="50" style="border-radius:50%;object-fit:cover;" />
                                                     </a>
                                                     @endif
                                                 </td>
                                                 <td>{{ $result->applicant_name }}</td>
-                                                <td>{{ $result->application_number }}</td>
+                                                <td class="text-center">{{ $result->application_number }}</td>
                                                 <td>{{ $result->date_of_application }}</td>
-                                                <td>{{ $result->fathers_name }}</td>
+                                                <td class="text-center">{{ $result->fathers_name }}</td>
                                                 <td>{{ $result->age }}</td>
                                                 <td>{{ $result->gender }}</td>
-                                                <td width=><?php echo $result->phone_code . " " . $result->phone; ?></td>
+                                                <td>{{ $result->phone }}</td>
                                                 <td>{{ $result->email }}</td>
 
                                                 <td class="text-center">
                                                     <div class="btn-group">
-                                                    <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="View" href="{{ route("customers.personal_view", $result->customer_id) }}">
+                                                        <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="View" href="{{ route("customers.personal_view", $result->customer_id) }}">
                                                             <i class="fa fa-eye"></i>
                                                         </a>
                                                         <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="Edit" href="{{ route("customers.personal_edit", $result->customer_id) }}">

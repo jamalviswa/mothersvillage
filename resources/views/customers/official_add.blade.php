@@ -40,8 +40,7 @@
                                                     <?php
                                                     $phases = App\Customer::where('status', 'Active')->get();
                                                     foreach ($phases as $phase) {
-                                                        // $customers = App\Document::where('status','!=', 'Trash')->where('application_number', $phase['application_number'])->first();
-                                                        // print_r($phase['application_number']);exit;
+                                                       
                                                         $costs = App\Document::where('status','!=','Trash')->where('customer_id',$phase['customer_id'])->where('application_number',$phase['application_number'])->first();
                                                         if(empty($costs)){
                                                             $disable ="";
@@ -146,7 +145,7 @@
                                             <div class="col-md-7">
                                                 <div class="row">
                                                     <div class="col-3">
-                                                        <input value="{{ old('coapp_phone_code') }}+91" type="tel" autocomplete="off" class="form-control" name="coapp_phone_code" style="width:72%" maxlength="4" />
+                                                        <input value="{{ old('coapp_phone_code') }}" type="tel" autocomplete="off" class="form-control" name="coapp_phone_code" style="width:72%" maxlength="4" />
                                                     </div>
                                                     <div class="col-9">
                                                         <input value="{{ old('coapp_phone') }}" id="phone" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="10" autocomplete="off" class="form-control" name="coapp_phone" />
@@ -168,7 +167,7 @@
                                                 Co-Applicant Aadhar Details
                                             </label>
                                             <div class="col-md-7">
-                                                <input value="{{ old('coaadhar_number') }}" id="aadhar_number" type="text" autocomplete="off" placeholder="Enter Aadhar Number" class="form-control" name="coaadhar_number" maxlength="14" style="margin-bottom: 8px;" />
+                                                <input value="{{ old('coaadhar_number') }}" id="aadhar_number2" type="text" autocomplete="off" placeholder="Enter Aadhar Number" class="form-control" name="coaadhar_number" maxlength="14" style="margin-bottom: 8px;" />
                                                 <input type="file" accept="application/pdf,image/jpeg" class="form-control" name="coaadhar" autocomplete="off" />
                                                
                                             </div>
@@ -503,6 +502,18 @@
     $('#aadhar_number').on('copy cut paste', function() {
         setTimeout(function() {
             $('#aadhar_number').trigger("change");
+        });
+    });
+
+    $('#aadhar_number2').on('keypress change blur', function() {
+        $(this).val(function(index, value) {
+            return value.replace(/[^a-z0-9]+/gi, '').replace(/(.{4})/g, '$1 ');
+        });
+    });
+
+    $('#aadhar_number2').on('copy cut paste', function() {
+        setTimeout(function() {
+            $('#aadhar_number2').trigger("change");
         });
     });
 </script>

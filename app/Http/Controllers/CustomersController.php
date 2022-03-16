@@ -21,11 +21,11 @@ use App\Flatnumber;
 use App\Document;
 use App\Son;
 use App\Daughter;
+use App\Cost;
 
 class CustomersController extends Controller
 {
-
-    //Customers Details add function
+    //---------------Customers Personal Details---------------//
 
     public function personal_index()
     {
@@ -34,13 +34,13 @@ class CustomersController extends Controller
         if (!empty($_REQUEST['s'])) {
             $s = $_REQUEST['s'];
             $result->where(function ($query) use ($s) {
-                $query->where('name', 'LIKE', "%$s%");
+                $query->where('applicant_name', 'LIKE', "%$s%");
             });
         }
-        if (!empty($_REQUEST['customer'])) {
-            $category = $_REQUEST['customer'];
+        if (!empty($_REQUEST['gender'])) {
+            $category = $_REQUEST['gender'];
             $result->where(function ($query) use ($category) {
-                $query->where('customer', 'LIKE', "%$category%");
+                $query->where('gender', 'LIKE', "%$category%");
             });
         }
         $result = $result->paginate(10);
@@ -258,38 +258,33 @@ class CustomersController extends Controller
         Session::flash('alert-class', 'success');
         return \Redirect::route('customers.personal_index', []);
     }
-
-
     public function personal_view($id = null)
     {
         $sessionadmin = Parent::checkadmin();
         $detail = Customer::where('customer_id', '=', $id)->first();
         return view('customers/personal_view', ['detail' => $detail]);
     }
-
-    //Customers Details delete function
-
     public function personal_delete(Request $request, $id = null)
     {
         $data = Customer::findOrFail($id);
         $data->status = 'Trash';
         $data->save();
         $sons = Son::where('customer_id', '=', $id)->get();
-        foreach($sons as $son){
+        foreach ($sons as $son) {
             $last = $son['id'];
             $data = Son::findOrFail($last);
             $data->status = 'Trash';
             $data->save();
         }
         $daughters = Daughter::where('customer_id', '=', $id)->get();
-        foreach($daughters as $daughter){
+        foreach ($daughters as $daughter) {
             $last = $daughter['id'];
             $data = Daughter::findOrFail($last);
             $data->status = 'Trash';
             $data->save();
         }
         $documents = Document::where('customer_id', '=', $id)->get();
-        foreach($documents as $document){
+        foreach ($documents as $document) {
             $last = $document['document_id'];
             $data = Document::findOrFail($last);
             $data->status = 'Trash';
@@ -305,16 +300,16 @@ class CustomersController extends Controller
     {
         $sessionadmin = Parent::checkadmin();
         $result = Document::where('status', '<>', 'Trash')->orderBy('document_id', 'desc');
-        if (!empty($_REQUEST['s'])) {
-            $s = $_REQUEST['s'];
-            $result->where(function ($query) use ($s) {
-                $query->where('name', 'LIKE', "%$s%");
+        if (!empty($_REQUEST['applicant_name'])) {
+            $customer = $_REQUEST['applicant_name'];
+            $result->where(function ($query) use ($customer) {
+                $query->where('applicant_name', 'LIKE', "%$customer%");
             });
         }
-        if (!empty($_REQUEST['customer'])) {
-            $category = $_REQUEST['customer'];
-            $result->where(function ($query) use ($category) {
-                $query->where('customer', 'LIKE', "%$category%");
+        if (!empty($_REQUEST['application_number'])) {
+            $customer = $_REQUEST['application_number'];
+            $result->where(function ($query) use ($customer) {
+                $query->where('application_number', 'LIKE', "%$customer%");
             });
         }
         $result = $result->paginate(10);
@@ -330,7 +325,6 @@ class CustomersController extends Controller
     }
     public function official_store(Request $request)
     {
-        
         $check = $this->validate($request, [
             'phase' => ['required'],
             'block' => ['required'],
@@ -342,22 +336,15 @@ class CustomersController extends Controller
             'plinth_area' => ['required'],
             'uds_area' => ['required'],
             'comn_area' => ['required'],
-
-           
         ]);
-       // print_r($request->aadhar_number);exit;
         $data = new Document();
         $data->customer_id = $request->application_number;
         $names = Customer::where('customer_id', $request->application_number)->first();
-        
-         
-         $data->application_number = $names->application_number;
-          $data->date_of_application = $names->date_of_application;
-         $data->applicant_name = $names->applicant_name;
-         $data->phone = $names->phone;
+        $data->application_number = $names->application_number;
+        $data->date_of_application = $names->date_of_application;
+        $data->applicant_name = $names->applicant_name;
+        $data->phone = $names->phone;
         $data->phone_code = $names->phone_code;
-        
-        //$data->date_of_application = $request->date_of_application;
         $data->phase = $request->phase;
         $data->block = $request->block;
         $data->floor = $request->floor;
@@ -369,10 +356,8 @@ class CustomersController extends Controller
         $data->uds_area = $request->uds_area;
         $data->comn_area = $request->comn_area;
         $data->aadhar_number = $request->aadhar_number;
-        
         $data->pan_number = $request->pan_number;
         $data->passport_number = $request->passport_number;
-        
         $data->coapp_phone = $request->coapp_phone;
         $data->coapp_phone_code = $request->coapp_phone_code;
         $data->co_applicant_name = $request->co_applicant_name;
@@ -394,28 +379,28 @@ class CustomersController extends Controller
             $destinationPath = public_path('/files/forms/');
             $chck = $pan->move($destinationPath, $pan_struc);
             $data->pan  = $pan_struc;
-        }      
+        }
         if (!empty($request->file('passport'))) {
             $passport = $request->file('passport');
             $passport_struc = uniqid() . '.' . $passport->getClientOriginalExtension();
             $destinationPath = public_path('/files/forms/');
             $chck = $passport->move($destinationPath, $passport_struc);
             $data->passport  = $passport_struc;
-        }      
+        }
         if (!empty($request->file('coaadhar'))) {
             $coaadhar = $request->file('coaadhar');
             $coaadhar_struc = uniqid() . '.' . $coaadhar->getClientOriginalExtension();
             $destinationPath = public_path('/files/forms/');
             $chck = $coaadhar->move($destinationPath, $coaadhar_struc);
             $data->coaadhar  = $coaadhar_struc;
-        }      
+        }
         if (!empty($request->file('copan'))) {
             $copan = $request->file('copan');
             $copan_struc = uniqid() . '.' . $copan->getClientOriginalExtension();
             $destinationPath = public_path('/files/forms/');
             $chck = $copan->move($destinationPath, $copan_struc);
             $data->copan  = $copan_struc;
-        }    
+        }
         if (!empty($request->file('copassport'))) {
             $copassport = $request->file('copassport');
             $copassport_struc = uniqid() . '.' . $copassport->getClientOriginalExtension();
@@ -425,13 +410,81 @@ class CustomersController extends Controller
         }
         $data->created_date = date('Y-m-d H:i:s');
         $data->status = "Active";
-       
         $data->save();
         Session::flash('message', 'Customer Document Details Added!');
         Session::flash('alert-class', 'success');
         return \Redirect::route('customers.official_index', []);
     }
 
+    public function official_edit($id = null)
+    {
+        $sessionadmin = Parent::checkadmin();
+        $detail = Customer::where('customer_id', '=', $id)->first();
+        return view('customers/personal_edit', ['detail' => $detail]);
+    }
+    public function official_update(Request $request, $id = null)
+    {
+
+        $check = $this->validate($request, [
+            'fathers_name' => ['required'],
+            'age' => ['required'],
+            'gender' => ['required'],
+            'phone' => ['required'],
+            'name' => ['required'],
+            'occupation' => ['required'],
+            'address' => ['required'],
+            'income' => ['required'],
+            'experience' => ['required'],
+            'email' => ['required', Rule::unique('customers')->where(function ($query) use ($request, $id) {
+                return $query->where('email', $request->email)->where('customer_id', '<>', $id)->where('status', '<>', 'Trash');
+            })],
+        ]);
+        $data = Customer::findOrFail($id);
+        $data->name = $request->name;
+        $data->fathers_name = $request->fathers_name;
+        $data->age = $request->age;
+        $data->gender = $request->gender;
+        $data->phone = $request->phone;
+        $data->address = $request->address;
+        $data->income = $request->income;
+        $data->email = $request->email;
+        $data->occupation = $request->occupation;
+        $data->experience = $request->experience;
+        if (!empty($request->file('photo'))) {
+            $image = $request->file('photo');
+            $imagename = uniqid() . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('/files/customers/');
+            $chck = $image->move($destinationPath, $imagename);
+            $data->photo = $imagename;
+        }
+        $data->modified_date = date('Y-m-d H:i:s');
+        $data->save();
+        Session::flash('message', 'Customer Details Updated!');
+        Session::flash('alert-class', 'success');
+        return \Redirect::route('customers.official_index', []);
+    }
+    public function official_view($id = null)
+    {
+        $sessionadmin = Parent::checkadmin();
+        $detail = Document::where('document_id', '=', $id)->first();
+        return view('customers/official_view', ['detail' => $detail]);
+    }
+    public function official_delete(Request $request, $id = null)
+    {
+        $data = Document::findOrFail($id);
+        $data->status = 'Trash';
+        $data->save();
+        $costs = Cost::where('document_id', '=', $id)->get();
+        foreach ($costs as $cost) {
+            $last = $cost['cost_id'];
+            $data = Cost::findOrFail($last);
+            $data->status = 'Trash';
+            $data->save();
+        }
+        Session::flash('message', 'Deleted Sucessfully!');
+        Session::flash('alert-class', 'success');
+        return \Redirect::route('customers.official_index', []);
+    }
     public function map(Request $request)
     {
         if (!empty($_REQUEST['phase'])) {
@@ -463,12 +516,17 @@ class CustomersController extends Controller
             $flatnumbers = Flatnumber::where('flattype', $id)->get();
             echo '<option value="">Select Flat Number</option>';
             foreach ($flatnumbers as $flatnumber) {
-                echo '<option value="' . $flatnumber->flatnumber_id . '">' . $flatnumber->flatnumber . '</option>';
+                $costs = Document::where('status', '!=', 'Trash')->where('flatnumber', $flatnumber['flatnumber_id'])->where('flatnumber', $flatnumber['flatnumber_id'])->first();
+                if (empty($costs)) {
+                    $disable = "";
+                } else {
+                    $disable = "disabled";
+                }
+                echo '<option value="' . $flatnumber->flatnumber_id . '" '.$disable.'>'  . $flatnumber->flatnumber . '</option>';
             }
             exit;
-        } 
+        }
     }
-   
     public function maps(Request $request)
     {
         if (!empty($_REQUEST['application_name'])) {
@@ -492,8 +550,7 @@ class CustomersController extends Controller
                 echo ' <input type="text" disabled class="form-control"  value="' . $date->phone_code . '"> ';
             }
             exit;
-        }
-        else  if (!empty($_REQUEST['phone'])) {
+        } else  if (!empty($_REQUEST['phone'])) {
             $id = $_REQUEST['phone'];
             $dates = Customer::where('customer_id', $id)->get();
             foreach ($dates as $date) {

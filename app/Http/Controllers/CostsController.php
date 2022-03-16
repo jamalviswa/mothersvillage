@@ -23,10 +23,16 @@ class CostsController extends Controller {
     {
         $sessionadmin = Parent::checkadmin();
         $result = Cost::where('status', '<>', 'Trash')->orderBy('cost_id', 'desc');
-        if (!empty($_REQUEST['s'])) {
-            $s = $_REQUEST['s'];
-            $result->where(function ($query) use ($s) {
-                $query->where('applicant_name', 'LIKE', "%$s%");
+        if (!empty($_REQUEST['applicant_name'])) {
+            $customer = $_REQUEST['applicant_name'];
+            $result->where(function ($query) use ($customer) {
+                $query->where('applicant_name', 'LIKE', "%$customer%");
+            });
+        }
+        if (!empty($_REQUEST['application_number'])) {
+            $customer = $_REQUEST['application_number'];
+            $result->where(function ($query) use ($customer) {
+                $query->where('application_number', 'LIKE', "%$customer%");
             });
         }
         $result = $result->paginate(10);
@@ -58,6 +64,7 @@ class CostsController extends Controller {
         $data->application_number = $names->application_number;
         $data->applicant_name = $names->applicant_name;
         $documents = Document::where('customer_id', $request->application_number)->first();
+        $data->document_id= $documents->document_id;
         $data->sal_area= $documents->salable_area;
         $data->uds_area = $documents->uds_area;
         $data->block = $documents->block;
