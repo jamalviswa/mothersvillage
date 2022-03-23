@@ -153,7 +153,7 @@ class PaymentsController extends Controller
             $id = $_REQUEST['gross_amount'];
             $dates = Cost::where('customer_id', $id)->get();
             foreach ($dates as $date) {
-                echo ' <input type="text" disabled class="form-control" name="gross_amount" value="' . $date->gross_amount . '"> ';
+                echo ' <input type="text" disabled class="form-control" id="purchase_price" name="gross_amount" value="' . $date->gross_amount . '"> ';
             }
             exit;
         }
