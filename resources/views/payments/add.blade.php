@@ -72,24 +72,7 @@
                                         <input value="{{ old('gross_amount') }}" type="text" disabled autocomplete="off" class="form-control" name="gross_amount" />
                                     </div>
                                 </div>
-
                                 <div class="form-group row">
-                                    <label class="col-md-5">
-                                        Transaction Type <span class="red">*</span>
-                                    </label>
-                                    <div class="col-md-7 radio-sec">
-                                        <label><input type="radio" class="types" name="type" value="Own Fund"> <span> Own Fund</span></label><br>
-                                        <label><input type="radio" class="types" name="type" value="Bank"> <span> Bank</span></label><br>
-                                    </div>
-                                    <div class="col-md-8 offset-md-4">
-                                        @error('type')
-                                        <span class="invalid-feedback" role="alert">
-                                            {{ $message }}
-                                        </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row ownfund">
                                     <label class="col-md-5">
                                         Payment Schedule<span class="red">*</span>
                                     </label>
@@ -108,6 +91,7 @@
                                         @enderror
                                     </div>
                                 </div>
+                              
                             </div>
                         </div>
                         <!-- Begin :: 10 Percentage payment type Details -->
@@ -126,6 +110,7 @@
                                                         <th>Received Amount</th>
                                                         <th>Balance Amount</th>
                                                         <th>Payment Date</th>
+                                                        <th>Transaction Type</th>
                                                         <th>Payment Type</th>
                                                         <th>Transaction Number</th>
                                                     </tr>
@@ -149,6 +134,13 @@
                                                         </td>
                                                         <td>
                                                             <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="date_onbook10per" />
+                                                        </td>
+                                                        <td>
+                                                            <select class="form-control" name="transaction_type">
+                                                                <option value=''>--Select--</option>
+                                                                <option value="Ownfund">OwnFund</option>
+                                                                <option value="Bank">Bank</option>
+                                                            </select>
                                                         </td>
                                                         <td>
                                                             <select class="form-control onbook" name="payment_type">
@@ -188,6 +180,13 @@
                                                             <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
                                                         </td>
                                                         <td>
+                                                            <select class="form-control" name="transaction_type">
+                                                                <option value=''>--Select--</option>
+                                                                <option value="Ownfund">OwnFund</option>
+                                                                <option value="Bank">Bank</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
                                                             <select class="form-control agreements" name="payment_type">
                                                                 <option value=''>--Select--</option>
                                                                 <option value="Cheque">Cheque</option>
@@ -223,6 +222,13 @@
                                                         </td>
                                                         <td>
                                                             <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
+                                                        </td>
+                                                        <td>
+                                                            <select class="form-control" name="transaction_type">
+                                                                <option value=''>--Select--</option>
+                                                                <option value="Ownfund">OwnFund</option>
+                                                                <option value="Bank">Bank</option>
+                                                            </select>
                                                         </td>
                                                         <td>
                                                             <select class="form-control 1stfloor" name="payment_type">
@@ -262,6 +268,13 @@
                                                             <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
                                                         </td>
                                                         <td>
+                                                            <select class="form-control" name="transaction_type">
+                                                                <option value=''>--Select--</option>
+                                                                <option value="Ownfund">OwnFund</option>
+                                                                <option value="Bank">Bank</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
                                                             <select class="form-control 2ndfloor" name="payment_type">
                                                                 <option value=''>--Select--</option>
                                                                 <option value="Cheque">Cheque</option>
@@ -297,6 +310,13 @@
                                                         </td>
                                                         <td>
                                                             <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
+                                                        </td>
+                                                        <td>
+                                                            <select class="form-control" name="transaction_type">
+                                                                <option value=''>--Select--</option>
+                                                                <option value="Ownfund">OwnFund</option>
+                                                                <option value="Bank">Bank</option>
+                                                            </select>
                                                         </td>
                                                         <td>
                                                             <select class="form-control 3rdfloor" name="payment_type">
@@ -336,6 +356,13 @@
                                                             <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
                                                         </td>
                                                         <td>
+                                                            <select class="form-control" name="transaction_type">
+                                                                <option value=''>--Select--</option>
+                                                                <option value="Ownfund">OwnFund</option>
+                                                                <option value="Bank">Bank</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
                                                             <select class="form-control 4thfloor" name="payment_type">
                                                                 <option value=''>--Select--</option>
                                                                 <option value="Cheque">Cheque</option>
@@ -373,6 +400,13 @@
                                                             <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
                                                         </td>
                                                         <td>
+                                                            <select class="form-control" name="transaction_type">
+                                                                <option value=''>--Select--</option>
+                                                                <option value="Ownfund">OwnFund</option>
+                                                                <option value="Bank">Bank</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
                                                             <select class="form-control 5thfloor" name="payment_type">
                                                                 <option value=''>--Select--</option>
                                                                 <option value="Cheque">Cheque</option>
@@ -408,6 +442,13 @@
                                                         </td>
                                                         <td>
                                                             <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
+                                                        </td>
+                                                        <td>
+                                                            <select class="form-control" name="transaction_type">
+                                                                <option value=''>--Select--</option>
+                                                                <option value="Ownfund">OwnFund</option>
+                                                                <option value="Bank">Bank</option>
+                                                            </select>
                                                         </td>
                                                         <td>
                                                             <select class="form-control handover" name="payment_type">
@@ -452,6 +493,7 @@
                                                         <th>Received Amount</th>
                                                         <th>Balance Amount</th>
                                                         <th>Payment Date</th>
+                                                        <th>Transaction Type</th>
                                                         <th>Payment Type</th>
                                                         <th>Transaction Number</th>
                                                     </tr>
@@ -475,6 +517,13 @@
                                                         </td>
                                                         <td>
                                                             <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="date_onbook10per" />
+                                                        </td>
+                                                        <td>
+                                                            <select class="form-control" name="transaction_type">
+                                                                <option value=''>--Select--</option>
+                                                                <option value="Ownfund">OwnFund</option>
+                                                                <option value="Bank">Bank</option>
+                                                            </select>
                                                         </td>
                                                         <td>
                                                             <select class="form-control onbook15per" name="payment_type">
@@ -514,6 +563,13 @@
                                                             <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
                                                         </td>
                                                         <td>
+                                                            <select class="form-control" name="transaction_type">
+                                                                <option value=''>--Select--</option>
+                                                                <option value="Ownfund">OwnFund</option>
+                                                                <option value="Bank">Bank</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
                                                             <select class="form-control agreements15per" name="payment_type">
                                                                 <option value=''>--Select--</option>
                                                                 <option value="Cheque">Cheque</option>
@@ -549,6 +605,13 @@
                                                         </td>
                                                         <td>
                                                             <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
+                                                        </td>
+                                                        <td>
+                                                            <select class="form-control" name="transaction_type">
+                                                                <option value=''>--Select--</option>
+                                                                <option value="Ownfund">OwnFund</option>
+                                                                <option value="Bank">Bank</option>
+                                                            </select>
                                                         </td>
                                                         <td>
                                                             <select class="form-control 1stfloor15per" name="payment_type">
@@ -588,6 +651,13 @@
                                                             <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
                                                         </td>
                                                         <td>
+                                                            <select class="form-control" name="transaction_type">
+                                                                <option value=''>--Select--</option>
+                                                                <option value="Ownfund">OwnFund</option>
+                                                                <option value="Bank">Bank</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
                                                             <select class="form-control 2ndfloor15per" name="payment_type">
                                                                 <option value=''>--Select--</option>
                                                                 <option value="Cheque">Cheque</option>
@@ -623,6 +693,13 @@
                                                         </td>
                                                         <td>
                                                             <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
+                                                        </td>
+                                                        <td>
+                                                            <select class="form-control" name="transaction_type">
+                                                                <option value=''>--Select--</option>
+                                                                <option value="Ownfund">OwnFund</option>
+                                                                <option value="Bank">Bank</option>
+                                                            </select>
                                                         </td>
                                                         <td>
                                                             <select class="form-control 3rdfloor15per" name="payment_type">
@@ -662,6 +739,13 @@
                                                             <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
                                                         </td>
                                                         <td>
+                                                            <select class="form-control" name="transaction_type">
+                                                                <option value=''>--Select--</option>
+                                                                <option value="Ownfund">OwnFund</option>
+                                                                <option value="Bank">Bank</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
                                                             <select class="form-control 4thfloor15per" name="payment_type">
                                                                 <option value=''>--Select--</option>
                                                                 <option value="Cheque">Cheque</option>
@@ -697,6 +781,13 @@
                                                         </td>
                                                         <td>
                                                             <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
+                                                        </td>
+                                                        <td>
+                                                            <select class="form-control" name="transaction_type">
+                                                                <option value=''>--Select--</option>
+                                                                <option value="Ownfund">OwnFund</option>
+                                                                <option value="Bank">Bank</option>
+                                                            </select>
                                                         </td>
                                                         <td>
                                                             <select class="form-control 5thfloor15per" name="payment_type">
@@ -736,6 +827,13 @@
                                                             <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
                                                         </td>
                                                         <td>
+                                                            <select class="form-control" name="transaction_type">
+                                                                <option value=''>--Select--</option>
+                                                                <option value="Ownfund">OwnFund</option>
+                                                                <option value="Bank">Bank</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
                                                             <select class="form-control handover15per" name="payment_type">
                                                                 <option value=''>--Select--</option>
                                                                 <option value="Cheque">Cheque</option>
@@ -762,7 +860,7 @@
                         </div>
                         <!-- End :: 15 Percentage payment type Details -->
 
-                        <!-- Begin :: 15 Percentage payment type Details -->
+                        <!-- Begin :: 20 Percentage payment type Details -->
                         <div class="m-portlet" id="payment3" style="display: none;">
                             <div class="m-portlet__body">
                                 <!--begin::Section-->
@@ -778,6 +876,7 @@
                                                         <th>Received Amount</th>
                                                         <th>Balance Amount</th>
                                                         <th>Payment Date</th>
+                                                        <th>Transaction Type</th>
                                                         <th>Payment Type</th>
                                                         <th>Transaction Number</th>
                                                     </tr>
@@ -801,6 +900,13 @@
                                                         </td>
                                                         <td>
                                                             <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="date_onbook10per" />
+                                                        </td>
+                                                        <td>
+                                                            <select class="form-control" name="transaction_type">
+                                                                <option value=''>--Select--</option>
+                                                                <option value="Ownfund">OwnFund</option>
+                                                                <option value="Bank">Bank</option>
+                                                            </select>
                                                         </td>
                                                         <td>
                                                             <select class="form-control onbook20per" name="payment_type">
@@ -840,6 +946,13 @@
                                                             <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
                                                         </td>
                                                         <td>
+                                                            <select class="form-control" name="transaction_type">
+                                                                <option value=''>--Select--</option>
+                                                                <option value="Ownfund">OwnFund</option>
+                                                                <option value="Bank">Bank</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
                                                             <select class="form-control agreements20per" name="payment_type">
                                                                 <option value=''>--Select--</option>
                                                                 <option value="Cheque">Cheque</option>
@@ -875,6 +988,13 @@
                                                         </td>
                                                         <td>
                                                             <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
+                                                        </td>
+                                                        <td>
+                                                            <select class="form-control" name="transaction_type">
+                                                                <option value=''>--Select--</option>
+                                                                <option value="Ownfund">OwnFund</option>
+                                                                <option value="Bank">Bank</option>
+                                                            </select>
                                                         </td>
                                                         <td>
                                                             <select class="form-control 1stfloor20per" name="payment_type">
@@ -914,6 +1034,13 @@
                                                             <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
                                                         </td>
                                                         <td>
+                                                            <select class="form-control" name="transaction_type">
+                                                                <option value=''>--Select--</option>
+                                                                <option value="Ownfund">OwnFund</option>
+                                                                <option value="Bank">Bank</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
                                                             <select class="form-control 2ndfloor20per" name="payment_type">
                                                                 <option value=''>--Select--</option>
                                                                 <option value="Cheque">Cheque</option>
@@ -949,6 +1076,13 @@
                                                         </td>
                                                         <td>
                                                             <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
+                                                        </td>
+                                                        <td>
+                                                            <select class="form-control" name="transaction_type">
+                                                                <option value=''>--Select--</option>
+                                                                <option value="Ownfund">OwnFund</option>
+                                                                <option value="Bank">Bank</option>
+                                                            </select>
                                                         </td>
                                                         <td>
                                                             <select class="form-control 3rdfloor20per" name="payment_type">
@@ -988,6 +1122,13 @@
                                                             <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
                                                         </td>
                                                         <td>
+                                                            <select class="form-control" name="transaction_type">
+                                                                <option value=''>--Select--</option>
+                                                                <option value="Ownfund">OwnFund</option>
+                                                                <option value="Bank">Bank</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
                                                             <select class="form-control 4thfloor20per" name="payment_type">
                                                                 <option value=''>--Select--</option>
                                                                 <option value="Cheque">Cheque</option>
@@ -1023,6 +1164,13 @@
                                                         </td>
                                                         <td>
                                                             <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
+                                                        </td>
+                                                        <td>
+                                                            <select class="form-control" name="transaction_type">
+                                                                <option value=''>--Select--</option>
+                                                                <option value="Ownfund">OwnFund</option>
+                                                                <option value="Bank">Bank</option>
+                                                            </select>
                                                         </td>
                                                         <td>
                                                             <select class="form-control 5thfloor20per" name="payment_type">
@@ -1062,6 +1210,13 @@
                                                             <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
                                                         </td>
                                                         <td>
+                                                            <select class="form-control" name="transaction_type">
+                                                                <option value=''>--Select--</option>
+                                                                <option value="Ownfund">OwnFund</option>
+                                                                <option value="Bank">Bank</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
                                                             <select class="form-control handover20per" name="payment_type">
                                                                 <option value=''>--Select--</option>
                                                                 <option value="Cheque">Cheque</option>
@@ -1086,7 +1241,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- End :: 15 Percentage payment type Details -->
+                        <!-- End :: 20 Percentage payment type Details -->
 
                         <div class="form-group text-right">
                             <button type="submit" name="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
@@ -1104,56 +1259,28 @@
 
 </div>
 <script>
-    $('.ownfund').hide();
-    $('.bank').hide();
-    $(document).on('click', '.types', function() {
-        if ($(this).val() == 'Own Fund' && $(this).is(':checked')) {
-
-            $('.bank').hide();
-            $('.ownfund').show();
-            $('.cheque').hide();
-            $('.cash').hide();
-            $('.bank input').val('');
-            $('.ownfund input').val('');
-            $('.types[value="Bank"]').prop("checked", false);
-        } else if ($(this).val() == 'Bank' && $(this).is(':checked')) {
-
-            $('.bank').show();
-            $('.ownfund').hide();
-            $('.cheque').hide();
-            $('.cash').hide();
-            $('.bank input').val('');
-            $('.ownfund input').val('');
-            $('.types[value="Own Fund"]').prop("checked", false);
-        } else {
-
-            $('.bank').hide();
-            $('.ownfund').hide();
-            $('.bank input').val('');
-            $('.ownfund input').val('');
-            $('.types[value="Own Fund"]').prop("checked", false);
-            $('.types[value="Bank"]').prop("checked", false);
-        }
-    });
-
     jQuery(document).ready(function() {
         jQuery('.payment').change(function() {
             if (jQuery(this).val() === "10") {
                 jQuery('#payment1').show();
                 jQuery('#payment2').hide();
                 jQuery('#payment3').hide();
+
             } else if (jQuery(this).val() === "15") {
                 jQuery('#payment1').hide();
                 jQuery('#payment2').show();
                 jQuery('#payment3').hide();
-            } else {
+            } else if (jQuery(this).val() === "20") {
                 jQuery('#payment1').hide();
                 jQuery('#payment2').hide();
                 jQuery('#payment3').show();
+            } else  {
+                jQuery('#payment1').hide();
+                jQuery('#payment2').hide();
+                jQuery('#payment3').hide();
             }
         });
     });
-
     jQuery(document).ready(function() {
         jQuery('.onbook').change(function() {
             if (jQuery(this).val() === "Cheque") {
@@ -1588,6 +1715,10 @@
 
     $("#percentage").change(function() {
         var perc = parseFloat($("#purchase_price").val());
+        var percs="";
+        if(isNaN(perc)){
+            percs=" ";
+           }else{
         $("#menu_price").val(((10 * perc) / 100).toFixed());
         $("#menu_price1").val(((40 * perc) / 100).toFixed());
         $("#menu_price2").val(((10 * perc) / 100).toFixed());
@@ -1596,10 +1727,15 @@
         $("#menu_price5").val(((10 * perc) / 100).toFixed());
         $("#menu_price6").val(((5 * perc) / 100).toFixed());
         $("#menu_price7").val(((5 * perc) / 100).toFixed());
+           }
     });
 
     $("#percentage").change(function() {
         var perc = parseFloat($("#purchase_price").val());
+        var percs="";
+        if(isNaN(perc)){
+            percs=" ";
+           }else{
         $("#menu_price15per").val(((15 * perc) / 100).toFixed());
         $("#menu_price115per").val(((40 * perc) / 100).toFixed());
         $("#menu_price215per").val(((10 * perc) / 100).toFixed());
@@ -1608,10 +1744,15 @@
         $("#menu_price515per").val(((5 * perc) / 100).toFixed());
         $("#menu_price615per").val(((5 * perc) / 100).toFixed());
         $("#menu_price715per").val(((5 * perc) / 100).toFixed());
+           }
     });
 
     $("#percentage").change(function() {
         var perc = parseFloat($("#purchase_price").val());
+        var percs="";
+        if(isNaN(perc)){
+            percs=" ";
+           }else{
         $("#menu_price20per").val(((20 * perc) / 100).toFixed());
         $("#menu_price120per").val(((40 * perc) / 100).toFixed());
         $("#menu_price220per").val(((10 * perc) / 100).toFixed());
@@ -1620,6 +1761,7 @@
         $("#menu_price520per").val(((5 * perc) / 100).toFixed());
         $("#menu_price620per").val(((5 * perc) / 100).toFixed());
         $("#menu_price720per").val(((5 * perc) / 100).toFixed());
+           }
     });
 
     $('#recamount').on("paste keyup",
@@ -1837,13 +1979,7 @@
     });
 </script>
 <style>
-    .radio-sec input {
-        position: relative;
-        top: 0px;
-        margin-right: 5px;
-        margin-left: 0px;
-    }
-
+   
     .m-table.m-table--head-bg-brand.pay thead th {
         background: #61317a;
     }
