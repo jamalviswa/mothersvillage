@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -17,8 +19,11 @@ use App\Block;
 use App\Flatnumber;
 use App\Flattype;
 use App\Floor;
-class CostsController extends Controller {
-    
+use App\Payment;
+
+class CostsController extends Controller
+{
+
     public function index()
     {
         $sessionadmin = Parent::checkadmin();
@@ -40,14 +45,15 @@ class CostsController extends Controller {
             'results' => $result
         ]);
     }
-    
-    public function add() {
-         $sessionadmin = Parent::checkadmin();
+
+    public function add()
+    {
+        $sessionadmin = Parent::checkadmin();
         return view('costs/add', []);
     }
-     public function store(Request $request)
+    public function store(Request $request)
     {
-         $check= $this->validate($request, [
+        $check = $this->validate($request, [
             'guideline_value' => ['required'],
             'electricity_charges' => ['required'],
             'water_supply' => ['required'],
@@ -56,7 +62,7 @@ class CostsController extends Controller {
             'maintenance' => ['required'],
             'rate_sqft' => ['required'],
             'corpus_fund' => ['required'],
-           
+
         ]);
         $data = new Cost();
         $data->customer_id = $request->application_number;
@@ -64,47 +70,103 @@ class CostsController extends Controller {
         $data->application_number = $names->application_number;
         $data->applicant_name = $names->applicant_name;
         $documents = Document::where('customer_id', $request->application_number)->first();
-        $data->document_id= $documents->document_id;
-        $data->sal_area= $documents->salable_area;
+        $data->document_id = $documents->document_id;
+        $data->sal_area = $documents->salable_area;
         $data->uds_area = $documents->uds_area;
         $data->block = $documents->block;
         $data->flatnumber = $documents->flatnumber;
         $data->flattype = $documents->flattype;
         $data->floor = $documents->floor;
         $data->facing = $documents->facing;
-        $data->rate_sqft= $request->rate_sqft;
+        $data->rate_sqft = $request->rate_sqft;
         $salable_value = $request->rate_sqft * $documents->salable_area;
-        $data->salable_value= $salable_value;
-        $data->guideline_value= $request->guideline_value;
+        $data->salable_value = $salable_value;
+        $data->guideline_value = $request->guideline_value;
         $land_cost = $documents->uds_area * $request->guideline_value;
-        $data->land_cost= $land_cost;
+        $data->land_cost = $land_cost;
         $construction_cost = $salable_value - $land_cost;
-        $data->construction_cost= $construction_cost;
-        $data->electricity_charges= $request->electricity_charges;
-        $data->water_supply= $request->water_supply;
-        $data->car_park= $request->car_park;
-        $data->amenities_charges= $request->amenities_charges;
-        $data->maintenance= $request->maintenance;
+        $data->construction_cost = $construction_cost;
+        $data->electricity_charges = $request->electricity_charges;
+        $data->water_supply = $request->water_supply;
+        $data->car_park = $request->car_park;
+        $data->amenities_charges = $request->amenities_charges;
+        $data->maintenance = $request->maintenance;
         $gross_amount = $land_cost + $construction_cost + $request->electricity_charges + $request->water_supply + $request->car_park + $request->amenities_charges + $request->maintenance;
-        $data->gross_amount= $gross_amount;
+        $data->gross_amount = $gross_amount;
         $stamp = round(($land_cost * 7) / 100);
-        $data->stamp= $stamp;
+        $data->stamp = $stamp;
         $registration = round(($land_cost * 4) / 100);
-        $data->registration= $registration;
+        $data->registration = $registration;
         $construction = round((($construction_cost + $request->electricity_charges + $request->water_supply + $request->car_park + $request->amenities_charges + $request->maintenance) * 2) / 100);
-        $data->construction= $construction;
-        $data->corpus_fund= $request->corpus_fund;
+        $data->construction = $construction;
+        $data->corpus_fund = $request->corpus_fund;
         $gst = round(($gross_amount * 1) / 100);
-        $data->gst= $gst;
+        $data->gst = $gst;
         $total = $gross_amount + $stamp +  $registration + $construction + $request->corpus_fund + $gst;
-        $data->total_amount= $total;
+        $data->total_amount = $total;
         $data->created_date = date('Y-m-d H:i:s');
         $data->save();
-         Session::flash('message', 'Cost Details Added!');
-                Session::flash('alert-class', 'success');
+        Session::flash('message', 'Cost Details Added!');
+        Session::flash('alert-class', 'success');
         return \Redirect::route('costs.index', []);
-        
     }
+
+    public function edit($id = null)
+    {
+        $sessionadmin = Parent::checkadmin();
+        $detail = Cost::where('cost_id', '=', $id)->first();
+        return view('costs/edit', ['detail' => $detail]);
+    }
+    public function update(Request $request, $id = null)
+    {
+
+        $check = $this->validate($request, [
+          
+        ]);
+        $data = Cost::findOrFail($id);
+        $data->name = $request->name;
+        $data->pack = $request->pack;
+        $data->num_cards = $request->num_cards;
+        $data->category = $request->category;
+        $data->price = ($request->pack == "Premium") ? $request->price : "";
+        $data->duration = $request->duration;
+        $data->status = $request->status;
+        $data->save();
+        Session::flash('message', 'Package Updated!');
+        Session::flash('alert-class', 'success');
+        return \Redirect::route('packages.index', []);
+    }
+
+    // --------------Cost Delete---------------
+
+    public function delete(Request $request, $id = null)
+    {
+        $data = Cost::findOrFail($id);
+        $data->status = 'Trash';
+        $data->save();
+        $payments = Payment::where('customer_id', '=', $id)->get();
+        foreach ($payments as $payment) {
+            $last = $payment['id'];
+            $data = Payment::findOrFail($last);
+            $data->status = 'Trash';
+            $data->save();
+        }
+        Session::flash('message', 'Deleted Sucessfully!');
+        Session::flash('alert-class', 'success');
+        return \Redirect::route('costs.index', []);
+    }
+
+    // --------------Cost View---------------
+
+    public function view($id = null)
+    {
+        $sessionadmin = Parent::checkadmin();
+        $detail = Cost::where('cost_id', '=', $id)->first();
+        return view('costs/view', ['detail' => $detail]);
+    }
+
+    // ----------------Ajax Function Map--------------------
+
     public function map(Request $request)
     {
         if (!empty($_REQUEST['application_name'])) {
@@ -121,14 +183,14 @@ class CostsController extends Controller {
                 echo '<input type="text" disabled class="form-control" name="sal_area" id="Text2" value="' . $name->salable_area . '"> ';
             }
             exit;
-        }  else if (!empty($_REQUEST['uds_area'])) {
+        } else if (!empty($_REQUEST['uds_area'])) {
             $id = $_REQUEST['uds_area'];
             $names = Document::where('customer_id', $id)->get();
             foreach ($names as $name) {
                 echo '<input type="text" disabled class="form-control" name="uds_area" id="Text3" value="' . $name->uds_area . '"> ';
             }
             exit;
-        }  else if (!empty($_REQUEST['block'])) {
+        } else if (!empty($_REQUEST['block'])) {
             $id = $_REQUEST['block'];
             $names = Document::where('customer_id', $id)->get();
             foreach ($names as $name) {
@@ -136,7 +198,7 @@ class CostsController extends Controller {
                 echo '<input type="text" disabled class="form-control" name="block"  value="' . $block->block_name . '"> ';
             }
             exit;
-        }  else if (!empty($_REQUEST['flatnumber'])) {
+        } else if (!empty($_REQUEST['flatnumber'])) {
             $id = $_REQUEST['flatnumber'];
             $names = Document::where('customer_id', $id)->get();
             foreach ($names as $name) {
@@ -144,7 +206,7 @@ class CostsController extends Controller {
                 echo '<input type="text" disabled class="form-control" name="flatnumber"  value="' . $block->flatnumber . '"> ';
             }
             exit;
-        }  else if (!empty($_REQUEST['flattype'])) {
+        } else if (!empty($_REQUEST['flattype'])) {
             $id = $_REQUEST['flattype'];
             $names = Document::where('customer_id', $id)->get();
             foreach ($names as $name) {
@@ -168,57 +230,5 @@ class CostsController extends Controller {
             }
             exit;
         }
-    }
-     public function edit($id = null)
-    {
-        $sessionadmin = Parent::checkadmin();
-        $detail = Package::where('package_id', '=', $id)->first();
-        return view('packages/edit', ['detail' => $detail]);
-    }
-      public function update(Request $request, $id = null)
-    {
-    
-        $check= $this->validate($request, [
-            'category' => ['required'],
-            'num_cards' => ['required'],
-              'pack' => ['required'],
-             'price' => ['required'],
-            'name' => ['required',
-                     Rule::unique('packages')->where(function ($query) use($request,$id) {
-                         return $query->where('name', $request->name)->where('package_id','<>', $id)->where('status','<>', 'Trash');
-                     })],
-                     'status' => ['required'],
-            'duration' => ['required'],
-        ]);
-        $data = Package::findOrFail($id);
-        $data->name = $request->name;
-        $data->pack = $request->pack;
-        $data->num_cards = $request->num_cards;
-         $data->category = $request->category;
-         $data->price = ($request->pack=="Premium") ? $request->price : "";
-           $data->duration = $request->duration; 
-            $data->status = $request->status; 
-        $data->save();
-         Session::flash('message', 'Package Updated!');
-                Session::flash('alert-class', 'success');
-        return \Redirect::route('packages.index', []);
-        
-    }
-      public function delete(Request $request, $id = null)
-    {        
-            $data = Package::findOrFail($id);
-            $data->status = 'Trash';
-            $data->save();
-            Session::flash('message', 'Deleted Sucessfully!');
-            Session::flash('alert-class', 'success');
-                return \Redirect::route('packages.index', []);
-        }
-         
-
-    public function view($id = null)
-    {
-        $sessionadmin = Parent::checkadmin();
-        $detail = Cost::where('cost_id', '=', $id)->first();
-        return view('costs/view', ['detail' => $detail]);
     }
 }
