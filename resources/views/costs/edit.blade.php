@@ -28,7 +28,7 @@ $requestdatas = (!empty(old())) ? old() : $detail;
                     <div class="m-portlet__body">
                         <!--begin::Section-->
                         <div class="m-section">
-                                 <form method="post" action="{{ route('packages.update',$detail['package_id']) }}" class="validation_form" id="upload" enctype="multipart/form-data">
+                                 <form method="post" action="{{ route('costs.update',$detail['cost_id']) }}" class="validation_form" id="upload" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                             <div class="col-md-6">
@@ -118,13 +118,8 @@ $requestdatas = (!empty(old())) ? old() : $detail;
                                         </label>
                                         <div class="col-md-8">
                                             <select class="form-control" name="category">
-                                                  @php
-                                            $categories = App\Category::where('status','Active')->get();
-                                            @endphp
-                                                <option value=""> Select Category</option>
-                                                @foreach($categories as $category)
-                                            <option {{ $requestdatas['category'] == $category['category_id'] ? "selected" : "" }} value="{{ $category['category_id'] }}">{{ $category['name'] }}</option>
-                                              @endforeach
+                                             
+                                             
                                             </select>
                                             @error('category')
                                               <span class="invalid-feedback" role="alert">

@@ -119,13 +119,3 @@ Route::get('countries/edit/{id}', 'CountriesController@edit')->name('countries.e
 Route::post('countries/update/{id}', 'CountriesController@update')->name('countries.update');
 Route::get('countries/delete/{id}', 'CountriesController@delete')->name('countries.delete');
 Route::get('countries/view/{id}', 'CountriesController@view')->name('countries.view');
-
-
-
-
-
-// Route::any('posts/index', 'PostsController@index')->name('posts.index');
-// Route::get('posts/add', 'PostsController@add')->name('posts.add');
-
-// Route::any('payments/index', 'PaymentsController@index')->name('payments.index');
-// Route::get('payments/add', 'PaymentsController@add')->name('payments.add');
