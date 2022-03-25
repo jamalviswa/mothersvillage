@@ -138,10 +138,10 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-md-5">
+                                            <label class="col-md-1">
                                                 drawn on <span class="red">*</span>
                                             </label>
-                                            <div class="col-md-7">
+                                            <div class="col-md-5">
 
                                                 <input value="{{old('date_of_application') }}" autocomplete="off" type="text" class="form-control datepicker" name="date_of_application" />
 
@@ -152,10 +152,10 @@
                                                 @enderror
                                             </div>
 
-                                            <label class="col-md-5">
-                                                Bank towards <span class="red">*</span>
+                                            <label class="col-md-1">
+                                                Bank towards
                                             </label>
-                                            <div class="col-md-7">
+                                            <div class="col-md-5">
 
                                                 <input value="{{old('date_of_application') }}" autocomplete="off" type="text" class="form-control datepicker" name="date_of_application" />
 
@@ -165,7 +165,7 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div><br>
+                                        </div><br><br>
                                         <div class="form-group row">
                                             <label class="col-md-1">
                                                 Referred by <span class="red">*</span>
