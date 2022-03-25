@@ -22,21 +22,31 @@
     <div class="m-content">
         <div class="row">
             <div class="col-md-12">
-                <div class="m-portlet">
-                    <div class="m-portlet__body">
+                <div class="m-portlet borderr">
+                    <div class="m-portlet__body ">
                         <!--begin::Section-->
-                        <div class="m-section">
+                        <div class="m-section ">
                             <form method="post" action="{{ route('customers.personal_store') }}" id="upload" class="validation_form" enctype="multipart/form-data">
                                 @csrf
                                 <div class="col-md-12 ">
                                     <div class="m-section__content">
-                                        <pre>
-            Mother's Village
-            Nesavalar Colony Road,
-            (Before Ondipudur flyover)
-            Singanallur, Coimbatore - 641 005
-            Ph: 0422-4599328
-        </pre>
+                                    
+                                        <div class="form-group row">  <div class="col-md-4"> <img width="100" height="100" src="<?php echo  asset('files/logopay.jpeg') ?>" alt="logo" >
+                                          <h2 >
+                                          
+                                                Mounted Kailash Properties.
+                                            </h2> </div>
+                                            <div class="col-md-2 offset-md-5">
+                                                <h5>
+                                                    Mother's Village <br>
+                                                    Nesavalar Colony Road,<br>
+                                                    (Before Ondipudur flyover)<br>
+                                                    Singanallur,<br> Coimbatore - 641 005<br>
+                                                    Ph: 0422-4599328
+</h5>
+                                            </div>
+                                        </div>
+                                        <hr>
                                         <div class="form-group row">
                                             <label class="col-md-1">
                                                 No <span class="red">*</span>
@@ -63,10 +73,10 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-md-5">
+                                            <label class="col-md-3">
                                                 Received with thanks from <span class="red">*</span>
                                             </label>
-                                            <div class="col-md-7">
+                                            <div class="col-md-3">
 
                                                 <input value="{{old('date_of_application') }}" autocomplete="off" type="text" class="form-control datepicker" name="date_of_application" />
 
@@ -76,12 +86,11 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-5">
+
+                                            <label class="col-md-3">
                                                 Application No <span class="red">*</span>
                                             </label>
-                                            <div class="col-md-7">
+                                            <div class="col-md-3">
 
                                                 <input value="{{old('date_of_application') }}" autocomplete="off" type="text" class="form-control datepicker" name="date_of_application" />
 
@@ -93,10 +102,10 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-md-5">
+                                            <label class="col-md-2">
                                                 a sum of Rupees <span class="red">*</span>
                                             </label>
-                                            <div class="col-md-7">
+                                            <div class="col-md-10">
 
                                                 <input value="{{old('date_of_application') }}" autocomplete="off" type="text" class="form-control datepicker" name="date_of_application" />
 
@@ -108,10 +117,10 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-md-5">
+                                            <label class="col-md-2">
                                                 by Cheque/DD No <span class="red">*</span>
                                             </label>
-                                            <div class="col-md-7">
+                                            <div class="col-md-4">
 
                                                 <input value="{{old('date_of_application') }}" autocomplete="off" type="text" class="form-control datepicker" name="date_of_application" />
 
@@ -121,12 +130,11 @@
                                                 </span>
                                                 @enderror
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-5">
+
+                                            <label class="col-md-2">
                                                 Dated <span class="red">*</span>
                                             </label>
-                                            <div class="col-md-7">
+                                            <div class="col-md-2">
 
                                                 <input value="{{old('date_of_application') }}" autocomplete="off" type="text" class="form-control datepicker" name="date_of_application" />
 
@@ -190,7 +198,8 @@
 
                                             <div class="col-md-2">
 
-                                                <input value="{{old('date_of_application') }}" autocomplete="off" type="text" class="form-control " name="date_of_application" />
+                                                <!-- <input value="{{old('date_of_application') }}" autocomplete="off" type="text" class="form-control " name="date_of_application" /> -->
+                                                <span class="currencyinput">$<input type="text" name="currency"></span>
 
                                                 @error('date_of_application')
                                                 <span class="invalid-feedback" role="alert">
@@ -247,6 +256,13 @@
         margin-left: 0px;
     }
 
+    .borderr {
+        box-sizing: content-box;
+
+        border: 10px solid grey;
+        border-radius: 40px;
+    }
+
     .btn.btn-success.btn-green {
         background-color: green !important;
         padding: 14px 8px !important;
@@ -256,6 +272,10 @@
         color: #fff !important;
     }
 
+    hr {
+        border-top: 2px solid #8c8b8b;
+    }
+
     .btn.btn-success.btn-danger {
         background-color: red !important;
         padding: 14px 8px !important;
@@ -263,6 +283,14 @@
         text-align: center !important;
         margin: 8px 0 9px 6px !important;
         color: #fff !important;
+    }
+
+    .currencyinput {
+        border: 0px inset #ccc;
+    }
+
+    .currencyinput input {
+        border: 0;
     }
 
     a.btn.btn-danger.removebtn {
