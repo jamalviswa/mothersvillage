@@ -10,11 +10,11 @@
                     Payment Details
                 </h3>
             </div>
-            <!-- <div>
-                <a href="{{route('payments.index')}}" rel="tooltip" title="" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle" data-original-title="Back to  List">
+            <div>
+                <a href="{{route('payments.index')}}" rel="tooltip" title="" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle" data-original-title="Back to List">
                     <i class="fa fa-long-arrow-left"></i>
                 </a>
-            </div> -->
+            </div>
         </div>
     </div>
     <div class="m-content">
@@ -22,1233 +22,1238 @@
             <div class="col-md-12">
                 <div class="m-portlet">
                     <div class="m-portlet__body">
-                        <div class="col-md-8 offset-md-2">
-                            <div class="m-section__content">
-
-                                <div class="form-group row">
-                                    <label class="col-md-5">
-                                        Application number<span class="red">*</span>
-                                    </label>
-                                    <div class="col-md-7">
-                                        <select class="form-control m-select2" id="country" name="phase">
-                                            <option>Select Application Number</option>
-                                            <?php
-                                            $phases = App\Cost::where('status', 'Active')->get();
-                                            foreach ($phases as $phase) {
-                                            ?>
-                                                <option value="<?php echo $phase->customer_id ?>"><?php echo $phase->application_number ?></option>
-
-                                            <?php }
-                                            ?>
-                                        </select>
-                                        @error('phase')
-                                        <span class="invalid-feedback" role="alert">
-                                            {{ $message }}
-                                        </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-md-5">
-                                        Applicant Name <span class="red">*</span>
-                                    </label>
-                                    <div class="col-md-7 state" id="state1">
-                                        <input value="{{ old('appln_name') }}" type="text" disabled autocomplete="off" class="form-control" name="appln_name" />
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-md-5">
-                                        Applicant Date <span class="red">*</span>
-                                    </label>
-                                    <div class="col-md-7 states" id="state2">
-                                        <input value="{{ old('appln_name') }}" type="text" disabled autocomplete="off" class="form-control" name="appln_name" />
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-md-5">
-                                        Gross Amount <span class="red">*</span>
-                                    </label>
-                                    <div class="col-md-7" id="state3">
-                                        <input value="{{ old('gross_amount') }}" type="text" disabled autocomplete="off" class="form-control" name="gross_amount" />
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-md-5">
-                                        Payment Schedule<span class="red">*</span>
-                                    </label>
-                                    <div class="col-md-7">
-                                        <select class="form-control payment" name="payment_schedule" id="percentage">
-                                            <option value=''>--Select--</option>
-                                            <option value="10">10%</option>
-                                            <option value="15">15%</option>
-                                            <option value="20">20%</option>
-
-                                        </select>
-                                        @error('fund_date')
-                                        <span class="invalid-feedback" role="alert">
-                                            {{ $message }}
-                                        </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                              
-                            </div>
-                        </div>
-                        <!-- Begin :: 10 Percentage payment type Details -->
-                        <div class="m-portlet" id="payment1" style="display: none;">
-                            <div class="m-portlet__body">
-                                <!--begin::Section-->
-                                <div class="m-section">
+                        <div class="m-section">
+                            <form method="post" action="{{ route('payments.store') }}" id="upload" class="validation_form" enctype="multipart/form-data">
+                                @csrf
+                                <div class="col-md-8 offset-md-2">
                                     <div class="m-section__content">
-                                        <div class="table-responsive">
-                                            <table class="table m-table m-table--head-bg-brand">
-                                                <thead>
-                                                    <tr>
-                                                        <th>#</th>
-                                                        <th>Payment Schedule</th>
-                                                        <th>Total Amount</th>
-                                                        <th>Received Amount</th>
-                                                        <th>Balance Amount</th>
-                                                        <th>Payment Date</th>
-                                                        <th>Transaction Type</th>
-                                                        <th>Payment Type</th>
-                                                        <th>Transaction Number</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td width="5%">
-                                                            1.
-                                                        </td>
-                                                        <td>
-                                                            On Booking 10%
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="onbook_10per" id="menu_price" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('received_onbook') }}" type="number" class="form-control" id="recamount" name="received_onbook10per" />
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="balance_onbook10per" id="balamount" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="date_onbook10per" />
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control" name="transaction_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Ownfund">OwnFund</option>
-                                                                <option value="Bank">Bank</option>
-                                                            </select>
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control onbook" name="payment_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Cheque">Cheque</option>
-                                                                <option value="Cash">Cash</option>
-                                                                <option value="NEFT">NEFT</option>
-                                                            </select>
-                                                        </td>
-                                                        <td id="onchequetd" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="oncashtd">
-                                                            <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="onnefttd" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="5%">
-                                                            2.
-                                                        </td>
-                                                        <td>
-                                                            Payment for Agreements 40%
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="menu_price1" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="number" class="form-control" name="" id="recamount1" />
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="balamount1" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control" name="transaction_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Ownfund">OwnFund</option>
-                                                                <option value="Bank">Bank</option>
-                                                            </select>
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control agreements" name="payment_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Cheque">Cheque</option>
-                                                                <option value="Cash">Cash</option>
-                                                                <option value="NEFT">NEFT</option>
-                                                            </select>
-                                                        </td>
-                                                        <td id="agreementschequetd" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="agreementscashtd">
-                                                            <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="agreementsnefttd" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="5%">
-                                                            3.
-                                                        </td>
-                                                        <td>
-                                                            Completion of stilt + First Floor 10%
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="menu_price2" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="number" class="form-control" name="" id="recamount2" />
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="balamount2" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control" name="transaction_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Ownfund">OwnFund</option>
-                                                                <option value="Bank">Bank</option>
-                                                            </select>
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control 1stfloor" name="payment_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Cheque">Cheque</option>
-                                                                <option value="Cash">Cash</option>
-                                                                <option value="NEFT">NEFT</option>
-                                                            </select>
-                                                        </td>
-                                                        <td id="1stfloorchequetd" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="1stfloorcashtd">
-                                                            <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="1stfloornefttd" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="5%">
-                                                            4.
-                                                        </td>
-                                                        <td>
-                                                            Completion of Second Floor 10%
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="menu_price3" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="number" class="form-control" name="" id="recamount3" />
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="balamount3" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control" name="transaction_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Ownfund">OwnFund</option>
-                                                                <option value="Bank">Bank</option>
-                                                            </select>
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control 2ndfloor" name="payment_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Cheque">Cheque</option>
-                                                                <option value="Cash">Cash</option>
-                                                                <option value="NEFT">NEFT</option>
-                                                            </select>
-                                                        </td>
-                                                        <td id="2ndfloorchequetd" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="2ndfloorcashtd">
-                                                            <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="2ndfloornefttd" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="5%">
-                                                            5.
-                                                        </td>
-                                                        <td>
-                                                            Completion of Third Floor 10%
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="menu_price4" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="number" class="form-control" name="" id="recamount4" />
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="balamount4" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control" name="transaction_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Ownfund">OwnFund</option>
-                                                                <option value="Bank">Bank</option>
-                                                            </select>
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control 3rdfloor" name="payment_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Cheque">Cheque</option>
-                                                                <option value="Cash">Cash</option>
-                                                                <option value="NEFT">NEFT</option>
-                                                            </select>
-                                                        </td>
-                                                        <td id="3rdfloorchequetd" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="3rdfloorcashtd">
-                                                            <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="3rdfloornefttd" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="5%">
-                                                            6.
-                                                        </td>
-                                                        <td>
-                                                            Completion of Fourth Floor 10%
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="menu_price5" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="number" class="form-control" name="" id="recamount5" />
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="balamount5" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control" name="transaction_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Ownfund">OwnFund</option>
-                                                                <option value="Bank">Bank</option>
-                                                            </select>
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control 4thfloor" name="payment_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Cheque">Cheque</option>
-                                                                <option value="Cash">Cash</option>
-                                                                <option value="NEFT">NEFT</option>
-                                                            </select>
-                                                        </td>
-                                                        <td id="4thfloorchequetd" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="4thfloorcashtd">
-                                                            <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="4thfloornefttd" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="5%">
-                                                            7.
-                                                        </td>
-                                                        <td>
-                                                            Completion of Fifth Floor 5%
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="menu_price6" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="number" class="form-control" name="" id="recamount6" />
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="balamount6" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control" name="transaction_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Ownfund">OwnFund</option>
-                                                                <option value="Bank">Bank</option>
-                                                            </select>
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control 5thfloor" name="payment_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Cheque">Cheque</option>
-                                                                <option value="Cash">Cash</option>
-                                                                <option value="NEFT">NEFT</option>
-                                                            </select>
-                                                        </td>
-                                                        <td id="5thfloorchequetd" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="5thfloorcashtd">
-                                                            <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="5thfloornefttd" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="5%">
-                                                            8.
-                                                        </td>
-                                                        <td>
-                                                            Handovering 5%
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="menu_price7" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="number" class="form-control" name="" id="recamount7" />
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="balamount7" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control" name="transaction_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Ownfund">OwnFund</option>
-                                                                <option value="Bank">Bank</option>
-                                                            </select>
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control handover" name="payment_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Cheque">Cheque</option>
-                                                                <option value="Cash">Cash</option>
-                                                                <option value="NEFT">NEFT</option>
-                                                            </select>
-                                                        </td>
-                                                        <td id="handoverchequetd" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="handovercashtd">
-                                                            <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="handovernefttd" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-5">
+                                                Application number<span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-7">
+                                                <select class="form-control m-select2" id="country" name="application_number">
+                                                    <option>Select Application Number</option>
+                                                    <?php
+                                                    $phases = App\Cost::where('status', 'Active')->get();
+                                                    foreach ($phases as $phase) {
+                                                    ?>
+                                                        <option value="<?php echo $phase->customer_id ?>"><?php echo $phase->application_number ?></option>
+
+                                                    <?php }
+                                                    ?>
+                                                </select>
+                                                @error('application_number')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-5">
+                                                Applicant Name <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-7 state" id="state1">
+                                                <input type="text" disabled autocomplete="off" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-5">
+                                                Applicant Date <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-7 states" id="state2">
+                                                <input type="text" disabled autocomplete="off" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-5">
+                                                Gross Amount <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-7" id="state3">
+                                                <input type="text" disabled autocomplete="off" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-5">
+                                                Payment Schedule<span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-7">
+                                                <select class="form-control payment" name="payment_schedule" id="percentage">
+                                                    <option value="">--Select--</option>
+                                                    <option value="10">10%</option>
+                                                    <option value="15">15%</option>
+                                                    <option value="20">20%</option>
+
+                                                </select>
+                                                @error('payment_schedule')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- Begin :: 10 Percentage payment type Details -->
+                                <div class="m-portlet" id="payment1" style="display: none;">
+                                    <div class="m-portlet__body">
+                                        <!--begin::Section-->
+                                        <div class="m-section">
+                                            <div class="m-section__content">
+                                                <div class="table-responsive">
+                                                    <table class="table m-table m-table--head-bg-brand">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th>Payment Schedule</th>
+                                                                <th>Total Amount</th>
+                                                                <th>Received Amount</th>
+                                                                <th>Balance Amount</th>
+                                                                <th>Payment Date</th>
+                                                                <th>Transaction Type</th>
+                                                                <th>Payment Type</th>
+                                                                <th>Transaction Number</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td width="5%">
+                                                                    1.
+                                                                </td>
+                                                                <td>
+                                                                    On Booking 10%
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('onbook10per') }}" class="form-control" type="text" disabled name="onbook10per" id="menu_price" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('onbook_received10per') }}" type="number" class="form-control" id="recamount" name="onbook_received10per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('onbook_balance10per') }}" class="form-control" type="text" disabled name="onbook_balance10per" id="balamount" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('onbook_paymentdate10per') }}" type="text" class="form-control datepicker" name="onbook_paymentdate10per" />
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control" name="onbook_transactiontype10per">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Ownfund">OwnFund</option>
+                                                                        <option value="Bank">Bank</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control onbook" name="onbook_paymenttype10per">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Cheque">Cheque</option>
+                                                                        <option value="Cash">Cash</option>
+                                                                        <option value="NEFT">NEFT</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td id="onchequetd" style="display:none;">
+                                                                    <input value="{{ old('onbook_chequenumber10per') }}" type="text" placeholder="Cheque No" class="form-control" name="onbook_chequenumber10per" />
+                                                                </td>
+                                                                <td id="oncashtd">
+                                                                    <input value="" disabled type="text" class="form-control" />
+                                                                </td>
+                                                                <td id="onnefttd" style="display:none;">
+                                                                    <input value="{{ old('onbook_neftid10per') }}" type="text" placeholder="NEFT ID" class="form-control" name="onbook_neftid10per" />
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="5%">
+                                                                    2.
+                                                                </td>
+                                                                <td>
+                                                                    Payment for Agreements 40%
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('payments10per') }}" class="form-control" type="text" disabled name="payments10per" id="menu_price1" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('payments_received10per') }}" type="number" class="form-control" name="payments_received10per" id="recamount1" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('payments_balance10per') }}" class="form-control" type="text" disabled name="payments_balance10per" id="balamount1" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('payments_paymentdate10per') }}" type="text" class="form-control datepicker" name="payments_paymentdate10per" />
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control" name="payments_transactiontype10per">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Ownfund">OwnFund</option>
+                                                                        <option value="Bank">Bank</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control agreements" name="payments_paymenttype10per">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Cheque">Cheque</option>
+                                                                        <option value="Cash">Cash</option>
+                                                                        <option value="NEFT">NEFT</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td id="agreementschequetd" style="display:none;">
+                                                                    <input value="{{ old('payments_chequenumber10per') }}" type="text" placeholder="Cheque No" class="form-control" name="payments_chequenumber10per" />
+                                                                </td>
+                                                                <td id="agreementscashtd">
+                                                                    <input value="" disabled type="text" class="form-control" name="" />
+                                                                </td>
+                                                                <td id="agreementsnefttd" style="display:none;">
+                                                                    <input value="{{ old('payments_neftid10per') }}" type="text" placeholder="NEFT ID" class="form-control" name="payments_neftid10per" />
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="5%">
+                                                                    3.
+                                                                </td>
+                                                                <td>
+                                                                    Completion of stilt + First Floor 10%
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('first10per') }}" class="form-control" type="text" disabled name="first10per" id="menu_price2" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('first_received10per') }}" type="number" class="form-control" name="first_received10per" id="recamount2" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('first_balance10per') }}" class="form-control" type="text" disabled name="first_balance10per" id="balamount2" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('first_paymentdate10per') }}" type="text" class="form-control datepicker" name="first_paymentdate10per" />
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control" name="first_transactiontype10per">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Ownfund">OwnFund</option>
+                                                                        <option value="Bank">Bank</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control 1stfloor" name="first_paymenttype10per">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Cheque">Cheque</option>
+                                                                        <option value="Cash">Cash</option>
+                                                                        <option value="NEFT">NEFT</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td id="1stfloorchequetd" style="display:none;">
+                                                                    <input value="{{ old('first_chequenumber10per') }}" type="text" placeholder="Cheque No" class="form-control" name="first_chequenumber10per" />
+                                                                </td>
+                                                                <td id="1stfloorcashtd">
+                                                                    <input value="" disabled type="text" class="form-control" name="" />
+                                                                </td>
+                                                                <td id="1stfloornefttd" style="display:none;">
+                                                                    <input value="{{ old('first_neftid10per') }}" type="text" placeholder="NEFT ID" class="form-control" name="first_neftid10per" />
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="5%">
+                                                                    4.
+                                                                </td>
+                                                                <td>
+                                                                    Completion of Second Floor 10%
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('second10per') }}" class="form-control" type="text" disabled name="second10per" id="menu_price3" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('second_received10per') }}" type="number" class="form-control" name="second_received10per" id="recamount3" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('second_balance10per') }}" class="form-control" type="text" disabled name="second_balance10per" id="balamount3" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('second_paymentdate10per') }}" type="text" class="form-control datepicker" name="second_paymentdate10per" />
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control" name="second_transactiontype10per">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Ownfund">OwnFund</option>
+                                                                        <option value="Bank">Bank</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control 2ndfloor" name="second_paymenttype10per">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Cheque">Cheque</option>
+                                                                        <option value="Cash">Cash</option>
+                                                                        <option value="NEFT">NEFT</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td id="2ndfloorchequetd" style="display:none;">
+                                                                    <input value="{{ old('second_chequenumber10per') }}" type="text" placeholder="Cheque No" class="form-control" name="second_chequenumber10per" />
+                                                                </td>
+                                                                <td id="2ndfloorcashtd">
+                                                                    <input value="" disabled type="text" class="form-control" name="" />
+                                                                </td>
+                                                                <td id="2ndfloornefttd" style="display:none;">
+                                                                    <input value="{{ old('second_neftid10per') }}" type="text" placeholder="NEFT ID" class="form-control" name="second_neftid10per" />
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="5%">
+                                                                    5.
+                                                                </td>
+                                                                <td>
+                                                                    Completion of Third Floor 10%
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('third10per') }}" class="form-control" type="text" disabled name="third10per" id="menu_price4" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('third_received10per') }}" type="number" class="form-control" name="third_received10per" id="recamount4" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('third_balance10per') }}" class="form-control" type="text" disabled name="third_balance10per" id="balamount4" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('third_paymentdate10per') }}" type="text" class="form-control datepicker" name="third_paymentdate10per" />
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control" name="third_transactiontype10per">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Ownfund">OwnFund</option>
+                                                                        <option value="Bank">Bank</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control 3rdfloor" name="third_paymenttype10per">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Cheque">Cheque</option>
+                                                                        <option value="Cash">Cash</option>
+                                                                        <option value="NEFT">NEFT</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td id="3rdfloorchequetd" style="display:none;">
+                                                                    <input value="{{ old('third_chequenumber10per') }}" type="text" placeholder="Cheque No" class="form-control" name="third_chequenumber10per" />
+                                                                </td>
+                                                                <td id="3rdfloorcashtd">
+                                                                    <input value="" disabled type="text" class="form-control" name="" />
+                                                                </td>
+                                                                <td id="3rdfloornefttd" style="display:none;">
+                                                                    <input value="{{ old('third_neftid10per') }}" type="text" placeholder="NEFT ID" class="form-control" name="third_neftid10per" />
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="5%">
+                                                                    6.
+                                                                </td>
+                                                                <td>
+                                                                    Completion of Fourth Floor 10%
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fourth10per') }}" class="form-control" type="text" disabled name="fourth10per" id="menu_price5" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fourth_received10per') }}" type="number" class="form-control" name="fourth_received10per" id="recamount5" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fourth_balance10per') }}" class="form-control" type="text" disabled name="fourth_balance10per" id="balamount5" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fourth_paymentdate10per') }}" type="text" class="form-control datepicker" name="fourth_paymentdate10per" />
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control" name="fourth_transactiontype10per">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Ownfund">OwnFund</option>
+                                                                        <option value="Bank">Bank</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control 4thfloor" name="fourth_paymenttype10per">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Cheque">Cheque</option>
+                                                                        <option value="Cash">Cash</option>
+                                                                        <option value="NEFT">NEFT</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td id="4thfloorchequetd" style="display:none;">
+                                                                    <input value="{{ old('fourth_chequenumber10per') }}" type="text" placeholder="Cheque No" class="form-control" name="fourth_chequenumber10per" />
+                                                                </td>
+                                                                <td id="4thfloorcashtd">
+                                                                    <input value="" disabled type="text" class="form-control" name="" />
+                                                                </td>
+                                                                <td id="4thfloornefttd" style="display:none;">
+                                                                    <input value="{{ old('fourth_neftid10per') }}" type="text" placeholder="NEFT ID" class="form-control" name="fourth_neftid10per" />
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="5%">
+                                                                    7.
+                                                                </td>
+                                                                <td>
+                                                                    Completion of Fifth Floor 5%
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fifth10per') }}" class="form-control" type="text" disabled name="fifth10per" id="menu_price6" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fifth_received10per') }}" type="number" class="form-control" name="fifth_received10per" id="recamount6" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fifth_balance10per') }}" class="form-control" type="text" disabled name="fifth_balance10per" id="balamount6" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fifth_paymentdate10per') }}" type="text" class="form-control datepicker" name="fifth_paymentdate10per" />
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control" name="fifth_transactiontype10per">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Ownfund">OwnFund</option>
+                                                                        <option value="Bank">Bank</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control 5thfloor" name="fifth_paymenttype10per">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Cheque">Cheque</option>
+                                                                        <option value="Cash">Cash</option>
+                                                                        <option value="NEFT">NEFT</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td id="5thfloorchequetd" style="display:none;">
+                                                                    <input value="{{ old('fifth_chequenumber10per') }}" type="text" placeholder="Cheque No" class="form-control" name="fifth_chequenumber10per" />
+                                                                </td>
+                                                                <td id="5thfloorcashtd">
+                                                                    <input value="" disabled type="text" class="form-control" name="" />
+                                                                </td>
+                                                                <td id="5thfloornefttd" style="display:none;">
+                                                                    <input value="{{ old('fifth_neftid10per') }}" type="text" placeholder="NEFT ID" class="form-control" name="fifth_neftid10per" />
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="5%">
+                                                                    8.
+                                                                </td>
+                                                                <td>
+                                                                    Handovering 5%
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('handover10per') }}" class="form-control" type="text" disabled name="handover10per" id="menu_price7" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('handover_received10per') }}" type="number" class="form-control" name="handover_received10per" id="recamount7" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('handover_balance10per') }}" class="form-control" type="text" disabled name="handover_balance10per" id="balamount7" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('handover_paymentdate10per') }}" type="text" class="form-control datepicker" name="handover_paymentdate10per" />
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control" name="handover_transactiontype10per">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Ownfund">OwnFund</option>
+                                                                        <option value="Bank">Bank</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control handover" name="handover_paymenttype10per">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Cheque">Cheque</option>
+                                                                        <option value="Cash">Cash</option>
+                                                                        <option value="NEFT">NEFT</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td id="handoverchequetd" style="display:none;">
+                                                                    <input value="{{ old('handover_chequenumber10per') }}" type="text" placeholder="Cheque No" class="form-control" name="handover_chequenumber10per" />
+                                                                </td>
+                                                                <td id="handovercashtd">
+                                                                    <input value="" disabled type="text" class="form-control" name="" />
+                                                                </td>
+                                                                <td id="handovernefttd" style="display:none;">
+                                                                    <input value="{{ old('handover_neftid10per') }}" type="text" placeholder="NEFT ID" class="form-control" name="handover_neftid10per" />
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <!-- End :: 10 Percentage payment type Details -->
+                                <!-- End :: 10 Percentage payment type Details -->
 
-                        <!-- Begin :: 15 Percentage payment type Details -->
-                        <div class="m-portlet" id="payment2" style="display: none;">
-                            <div class="m-portlet__body">
-                                <!--begin::Section-->
-                                <div class="m-section">
-                                    <div class="m-section__content">
-                                        <div class="table-responsive">
-                                            <table class="table m-table m-table--head-bg-brand ment">
-                                                <thead>
-                                                    <tr>
-                                                        <th>#</th>
-                                                        <th>Payment Schedule</th>
-                                                        <th>Total Amount</th>
-                                                        <th>Received Amount</th>
-                                                        <th>Balance Amount</th>
-                                                        <th>Payment Date</th>
-                                                        <th>Transaction Type</th>
-                                                        <th>Payment Type</th>
-                                                        <th>Transaction Number</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td width="5%">
-                                                            1.
-                                                        </td>
-                                                        <td>
-                                                            On Booking 15%
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="onbook_10per" id="menu_price15per" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('received_onbook') }}" type="number" class="form-control" id="recamount15per" name="received_onbook10per" />
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="balance_onbook10per" id="balamount15per" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="date_onbook10per" />
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control" name="transaction_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Ownfund">OwnFund</option>
-                                                                <option value="Bank">Bank</option>
-                                                            </select>
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control onbook15per" name="payment_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Cheque">Cheque</option>
-                                                                <option value="Cash">Cash</option>
-                                                                <option value="NEFT">NEFT</option>
-                                                            </select>
-                                                        </td>
-                                                        <td id="onchequetd15per" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="oncashtd15per">
-                                                            <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="onnefttd15per" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="5%">
-                                                            2.
-                                                        </td>
-                                                        <td>
-                                                            Payment for Agreements 40%
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="menu_price115per" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="number" class="form-control" name="" id="recamount115per" />
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="balamount115per" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control" name="transaction_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Ownfund">OwnFund</option>
-                                                                <option value="Bank">Bank</option>
-                                                            </select>
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control agreements15per" name="payment_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Cheque">Cheque</option>
-                                                                <option value="Cash">Cash</option>
-                                                                <option value="NEFT">NEFT</option>
-                                                            </select>
-                                                        </td>
-                                                        <td id="agreementschequetd15per" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="agreementscashtd15per">
-                                                            <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="agreementsnefttd15per" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="5%">
-                                                            3.
-                                                        </td>
-                                                        <td>
-                                                            Completion of stilt + First Floor 10%
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="menu_price215per" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="number" class="form-control" name="" id="recamount215per" />
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="balamount215per" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control" name="transaction_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Ownfund">OwnFund</option>
-                                                                <option value="Bank">Bank</option>
-                                                            </select>
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control 1stfloor15per" name="payment_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Cheque">Cheque</option>
-                                                                <option value="Cash">Cash</option>
-                                                                <option value="NEFT">NEFT</option>
-                                                            </select>
-                                                        </td>
-                                                        <td id="1stfloorchequetd15per" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="1stfloorcashtd15per">
-                                                            <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="1stfloornefttd15per" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="5%">
-                                                            4.
-                                                        </td>
-                                                        <td>
-                                                            Completion of Second Floor 10%
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="menu_price315per" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="number" class="form-control" name="" id="recamount315per" />
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="balamount315per" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control" name="transaction_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Ownfund">OwnFund</option>
-                                                                <option value="Bank">Bank</option>
-                                                            </select>
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control 2ndfloor15per" name="payment_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Cheque">Cheque</option>
-                                                                <option value="Cash">Cash</option>
-                                                                <option value="NEFT">NEFT</option>
-                                                            </select>
-                                                        </td>
-                                                        <td id="2ndfloorchequetd15per" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="2ndfloorcashtd15per">
-                                                            <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="2ndfloornefttd15per" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="5%">
-                                                            5.
-                                                        </td>
-                                                        <td>
-                                                            Completion of Third Floor 10%
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="menu_price415per" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="number" class="form-control" name="" id="recamount415per" />
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="balamount415per" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control" name="transaction_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Ownfund">OwnFund</option>
-                                                                <option value="Bank">Bank</option>
-                                                            </select>
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control 3rdfloor15per" name="payment_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Cheque">Cheque</option>
-                                                                <option value="Cash">Cash</option>
-                                                                <option value="NEFT">NEFT</option>
-                                                            </select>
-                                                        </td>
-                                                        <td id="3rdfloorchequetd15per" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="3rdfloorcashtd15per">
-                                                            <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="3rdfloornefttd15per" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="5%">
-                                                            6.
-                                                        </td>
-                                                        <td>
-                                                            Completion of Fourth Floor 5%
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="menu_price515per" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="number" class="form-control" name="" id="recamount515per" />
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="balamount515per" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control" name="transaction_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Ownfund">OwnFund</option>
-                                                                <option value="Bank">Bank</option>
-                                                            </select>
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control 4thfloor15per" name="payment_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Cheque">Cheque</option>
-                                                                <option value="Cash">Cash</option>
-                                                                <option value="NEFT">NEFT</option>
-                                                            </select>
-                                                        </td>
-                                                        <td id="4thfloorchequetd15per" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="4thfloorcashtd15per">
-                                                            <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="4thfloornefttd15per" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="5%">
-                                                            7.
-                                                        </td>
-                                                        <td>
-                                                            Completion of Fifth Floor 5%
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="menu_price615per" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="number" class="form-control" name="" id="recamount615per" />
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="balamount615per" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control" name="transaction_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Ownfund">OwnFund</option>
-                                                                <option value="Bank">Bank</option>
-                                                            </select>
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control 5thfloor15per" name="payment_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Cheque">Cheque</option>
-                                                                <option value="Cash">Cash</option>
-                                                                <option value="NEFT">NEFT</option>
-                                                            </select>
-                                                        </td>
-                                                        <td id="5thfloorchequetd15per" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="5thfloorcashtd15per">
-                                                            <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="5thfloornefttd15per" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="5%">
-                                                            8.
-                                                        </td>
-                                                        <td>
-                                                            Handovering 5%
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="menu_price715per" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="number" class="form-control" name="" id="recamount715per" />
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="balamount715per" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control" name="transaction_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Ownfund">OwnFund</option>
-                                                                <option value="Bank">Bank</option>
-                                                            </select>
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control handover15per" name="payment_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Cheque">Cheque</option>
-                                                                <option value="Cash">Cash</option>
-                                                                <option value="NEFT">NEFT</option>
-                                                            </select>
-                                                        </td>
-                                                        <td id="handoverchequetd15per" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="handovercashtd15per">
-                                                            <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="handovernefttd15per" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                <!-- Begin :: 15 Percentage payment type Details -->
+                                <div class="m-portlet" id="payment2" style="display: none;">
+                                    <div class="m-portlet__body">
+                                        <!--begin::Section-->
+                                        <div class="m-section">
+                                            <div class="m-section__content">
+                                                <div class="table-responsive">
+                                                    <table class="table m-table m-table--head-bg-brand ment">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th>Payment Schedule</th>
+                                                                <th>Total Amount</th>
+                                                                <th>Received Amount</th>
+                                                                <th>Balance Amount</th>
+                                                                <th>Payment Date</th>
+                                                                <th>Transaction Type</th>
+                                                                <th>Payment Type</th>
+                                                                <th>Transaction Number</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td width="5%">
+                                                                    1.
+                                                                </td>
+                                                                <td>
+                                                                    On Booking 15%
+                                                                </td>
+                                                                <td>
+                                                                    <input class="form-control" type="text" disabled name="onbook_10per" id="menu_price15per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('received_onbook') }}" type="number" class="form-control" id="recamount15per" name="received_onbook10per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input class="form-control" type="text" disabled name="balance_onbook10per" id="balamount15per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="date_onbook10per" />
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control" name="transaction_type">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Ownfund">OwnFund</option>
+                                                                        <option value="Bank">Bank</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control onbook15per" name="payment_type">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Cheque">Cheque</option>
+                                                                        <option value="Cash">Cash</option>
+                                                                        <option value="NEFT">NEFT</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td id="onchequetd15per" style="display:none;">
+                                                                    <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
+                                                                </td>
+                                                                <td id="oncashtd15per">
+                                                                    <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
+                                                                </td>
+                                                                <td id="onnefttd15per" style="display:none;">
+                                                                    <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="5%">
+                                                                    2.
+                                                                </td>
+                                                                <td>
+                                                                    Payment for Agreements 40%
+                                                                </td>
+                                                                <td>
+                                                                    <input class="form-control" type="text" disabled name="" id="menu_price115per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fund_date') }}" type="number" class="form-control" name="" id="recamount115per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input class="form-control" type="text" disabled name="" id="balamount115per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control" name="transaction_type">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Ownfund">OwnFund</option>
+                                                                        <option value="Bank">Bank</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control agreements15per" name="payment_type">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Cheque">Cheque</option>
+                                                                        <option value="Cash">Cash</option>
+                                                                        <option value="NEFT">NEFT</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td id="agreementschequetd15per" style="display:none;">
+                                                                    <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
+                                                                </td>
+                                                                <td id="agreementscashtd15per">
+                                                                    <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
+                                                                </td>
+                                                                <td id="agreementsnefttd15per" style="display:none;">
+                                                                    <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="5%">
+                                                                    3.
+                                                                </td>
+                                                                <td>
+                                                                    Completion of stilt + First Floor 10%
+                                                                </td>
+                                                                <td>
+                                                                    <input class="form-control" type="text" disabled name="" id="menu_price215per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fund_date') }}" type="number" class="form-control" name="" id="recamount215per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input class="form-control" type="text" disabled name="" id="balamount215per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control" name="transaction_type">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Ownfund">OwnFund</option>
+                                                                        <option value="Bank">Bank</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control 1stfloor15per" name="payment_type">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Cheque">Cheque</option>
+                                                                        <option value="Cash">Cash</option>
+                                                                        <option value="NEFT">NEFT</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td id="1stfloorchequetd15per" style="display:none;">
+                                                                    <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
+                                                                </td>
+                                                                <td id="1stfloorcashtd15per">
+                                                                    <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
+                                                                </td>
+                                                                <td id="1stfloornefttd15per" style="display:none;">
+                                                                    <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="5%">
+                                                                    4.
+                                                                </td>
+                                                                <td>
+                                                                    Completion of Second Floor 10%
+                                                                </td>
+                                                                <td>
+                                                                    <input class="form-control" type="text" disabled name="" id="menu_price315per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fund_date') }}" type="number" class="form-control" name="" id="recamount315per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input class="form-control" type="text" disabled name="" id="balamount315per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control" name="transaction_type">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Ownfund">OwnFund</option>
+                                                                        <option value="Bank">Bank</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control 2ndfloor15per" name="payment_type">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Cheque">Cheque</option>
+                                                                        <option value="Cash">Cash</option>
+                                                                        <option value="NEFT">NEFT</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td id="2ndfloorchequetd15per" style="display:none;">
+                                                                    <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
+                                                                </td>
+                                                                <td id="2ndfloorcashtd15per">
+                                                                    <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
+                                                                </td>
+                                                                <td id="2ndfloornefttd15per" style="display:none;">
+                                                                    <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="5%">
+                                                                    5.
+                                                                </td>
+                                                                <td>
+                                                                    Completion of Third Floor 10%
+                                                                </td>
+                                                                <td>
+                                                                    <input class="form-control" type="text" disabled name="" id="menu_price415per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fund_date') }}" type="number" class="form-control" name="" id="recamount415per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input class="form-control" type="text" disabled name="" id="balamount415per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control" name="transaction_type">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Ownfund">OwnFund</option>
+                                                                        <option value="Bank">Bank</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control 3rdfloor15per" name="payment_type">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Cheque">Cheque</option>
+                                                                        <option value="Cash">Cash</option>
+                                                                        <option value="NEFT">NEFT</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td id="3rdfloorchequetd15per" style="display:none;">
+                                                                    <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
+                                                                </td>
+                                                                <td id="3rdfloorcashtd15per">
+                                                                    <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
+                                                                </td>
+                                                                <td id="3rdfloornefttd15per" style="display:none;">
+                                                                    <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="5%">
+                                                                    6.
+                                                                </td>
+                                                                <td>
+                                                                    Completion of Fourth Floor 5%
+                                                                </td>
+                                                                <td>
+                                                                    <input class="form-control" type="text" disabled name="" id="menu_price515per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fund_date') }}" type="number" class="form-control" name="" id="recamount515per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input class="form-control" type="text" disabled name="" id="balamount515per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control" name="transaction_type">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Ownfund">OwnFund</option>
+                                                                        <option value="Bank">Bank</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control 4thfloor15per" name="payment_type">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Cheque">Cheque</option>
+                                                                        <option value="Cash">Cash</option>
+                                                                        <option value="NEFT">NEFT</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td id="4thfloorchequetd15per" style="display:none;">
+                                                                    <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
+                                                                </td>
+                                                                <td id="4thfloorcashtd15per">
+                                                                    <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
+                                                                </td>
+                                                                <td id="4thfloornefttd15per" style="display:none;">
+                                                                    <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="5%">
+                                                                    7.
+                                                                </td>
+                                                                <td>
+                                                                    Completion of Fifth Floor 5%
+                                                                </td>
+                                                                <td>
+                                                                    <input class="form-control" type="text" disabled name="" id="menu_price615per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fund_date') }}" type="number" class="form-control" name="" id="recamount615per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input class="form-control" type="text" disabled name="" id="balamount615per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control" name="transaction_type">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Ownfund">OwnFund</option>
+                                                                        <option value="Bank">Bank</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control 5thfloor15per" name="payment_type">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Cheque">Cheque</option>
+                                                                        <option value="Cash">Cash</option>
+                                                                        <option value="NEFT">NEFT</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td id="5thfloorchequetd15per" style="display:none;">
+                                                                    <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
+                                                                </td>
+                                                                <td id="5thfloorcashtd15per">
+                                                                    <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
+                                                                </td>
+                                                                <td id="5thfloornefttd15per" style="display:none;">
+                                                                    <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="5%">
+                                                                    8.
+                                                                </td>
+                                                                <td>
+                                                                    Handovering 5%
+                                                                </td>
+                                                                <td>
+                                                                    <input class="form-control" type="text" disabled name="" id="menu_price715per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fund_date') }}" type="number" class="form-control" name="" id="recamount715per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input class="form-control" type="text" disabled name="" id="balamount715per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control" name="transaction_type">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Ownfund">OwnFund</option>
+                                                                        <option value="Bank">Bank</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control handover15per" name="payment_type">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Cheque">Cheque</option>
+                                                                        <option value="Cash">Cash</option>
+                                                                        <option value="NEFT">NEFT</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td id="handoverchequetd15per" style="display:none;">
+                                                                    <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
+                                                                </td>
+                                                                <td id="handovercashtd15per">
+                                                                    <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
+                                                                </td>
+                                                                <td id="handovernefttd15per" style="display:none;">
+                                                                    <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <!-- End :: 15 Percentage payment type Details -->
+                                <!-- End :: 15 Percentage payment type Details -->
 
-                        <!-- Begin :: 20 Percentage payment type Details -->
-                        <div class="m-portlet" id="payment3" style="display: none;">
-                            <div class="m-portlet__body">
-                                <!--begin::Section-->
-                                <div class="m-section">
-                                    <div class="m-section__content">
-                                        <div class="table-responsive">
-                                            <table class="table m-table m-table--head-bg-brand pay">
-                                                <thead>
-                                                    <tr>
-                                                        <th>#</th>
-                                                        <th>Payment Schedule</th>
-                                                        <th>Total Amount</th>
-                                                        <th>Received Amount</th>
-                                                        <th>Balance Amount</th>
-                                                        <th>Payment Date</th>
-                                                        <th>Transaction Type</th>
-                                                        <th>Payment Type</th>
-                                                        <th>Transaction Number</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td width="5%">
-                                                            1.
-                                                        </td>
-                                                        <td>
-                                                            On Booking 20%
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="onbook_10per" id="menu_price20per" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('received_onbook') }}" type="number" class="form-control" id="recamount20per" name="received_onbook10per" />
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="balance_onbook10per" id="balamount20per" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="date_onbook10per" />
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control" name="transaction_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Ownfund">OwnFund</option>
-                                                                <option value="Bank">Bank</option>
-                                                            </select>
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control onbook20per" name="payment_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Cheque">Cheque</option>
-                                                                <option value="Cash">Cash</option>
-                                                                <option value="NEFT">NEFT</option>
-                                                            </select>
-                                                        </td>
-                                                        <td id="onchequetd20per" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="oncashtd20per">
-                                                            <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="onnefttd20per" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="5%">
-                                                            2.
-                                                        </td>
-                                                        <td>
-                                                            Payment for Agreements 40%
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="menu_price120per" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="number" class="form-control" name="" id="recamount120per" />
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="balamount120per" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control" name="transaction_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Ownfund">OwnFund</option>
-                                                                <option value="Bank">Bank</option>
-                                                            </select>
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control agreements20per" name="payment_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Cheque">Cheque</option>
-                                                                <option value="Cash">Cash</option>
-                                                                <option value="NEFT">NEFT</option>
-                                                            </select>
-                                                        </td>
-                                                        <td id="agreementschequetd20per" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="agreementscashtd20per">
-                                                            <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="agreementsnefttd20per" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="5%">
-                                                            3.
-                                                        </td>
-                                                        <td>
-                                                            Completion of stilt + First Floor 10%
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="menu_price220per" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="number" class="form-control" name="" id="recamount220per" />
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="balamount220per" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control" name="transaction_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Ownfund">OwnFund</option>
-                                                                <option value="Bank">Bank</option>
-                                                            </select>
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control 1stfloor20per" name="payment_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Cheque">Cheque</option>
-                                                                <option value="Cash">Cash</option>
-                                                                <option value="NEFT">NEFT</option>
-                                                            </select>
-                                                        </td>
-                                                        <td id="1stfloorchequetd20per" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="1stfloorcashtd20per">
-                                                            <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="1stfloornefttd20per" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="5%">
-                                                            4.
-                                                        </td>
-                                                        <td>
-                                                            Completion of Second Floor 10%
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="menu_price320per" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="number" class="form-control" name="" id="recamount320per" />
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="balamount320per" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control" name="transaction_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Ownfund">OwnFund</option>
-                                                                <option value="Bank">Bank</option>
-                                                            </select>
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control 2ndfloor20per" name="payment_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Cheque">Cheque</option>
-                                                                <option value="Cash">Cash</option>
-                                                                <option value="NEFT">NEFT</option>
-                                                            </select>
-                                                        </td>
-                                                        <td id="2ndfloorchequetd20per" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="2ndfloorcashtd20per">
-                                                            <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="2ndfloornefttd20per" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="5%">
-                                                            5.
-                                                        </td>
-                                                        <td>
-                                                            Completion of Third Floor 10%
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="menu_price420per" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="number" class="form-control" name="" id="recamount420per" />
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="balamount420per" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control" name="transaction_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Ownfund">OwnFund</option>
-                                                                <option value="Bank">Bank</option>
-                                                            </select>
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control 3rdfloor20per" name="payment_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Cheque">Cheque</option>
-                                                                <option value="Cash">Cash</option>
-                                                                <option value="NEFT">NEFT</option>
-                                                            </select>
-                                                        </td>
-                                                        <td id="3rdfloorchequetd20per" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="3rdfloorcashtd20per">
-                                                            <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="3rdfloornefttd20per" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="5%">
-                                                            6.
-                                                        </td>
-                                                        <td>
-                                                            Completion of Fourth Floor 5%
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="menu_price520per" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="number" class="form-control" name="" id="recamount520per" />
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="balamount520per" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control" name="transaction_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Ownfund">OwnFund</option>
-                                                                <option value="Bank">Bank</option>
-                                                            </select>
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control 4thfloor20per" name="payment_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Cheque">Cheque</option>
-                                                                <option value="Cash">Cash</option>
-                                                                <option value="NEFT">NEFT</option>
-                                                            </select>
-                                                        </td>
-                                                        <td id="4thfloorchequetd20per" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="4thfloorcashtd20per">
-                                                            <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="4thfloornefttd20per" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="5%">
-                                                            7.
-                                                        </td>
-                                                        <td>
-                                                            Completion of Fifth Floor 5%
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="menu_price620per" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="number" class="form-control" name="" id="recamount620per" />
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="balamount620per" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control" name="transaction_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Ownfund">OwnFund</option>
-                                                                <option value="Bank">Bank</option>
-                                                            </select>
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control 5thfloor20per" name="payment_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Cheque">Cheque</option>
-                                                                <option value="Cash">Cash</option>
-                                                                <option value="NEFT">NEFT</option>
-                                                            </select>
-                                                        </td>
-                                                        <td id="5thfloorchequetd20per" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="5thfloorcashtd20per">
-                                                            <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="5thfloornefttd20per" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="5%">
-                                                            8.
-                                                        </td>
-                                                        <td>
-                                                            Handovering 5%
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="menu_price720per" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="number" class="form-control" name="" id="recamount720per" />
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" disabled name="" id="balamount720per" />
-                                                        </td>
-                                                        <td>
-                                                            <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control" name="transaction_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Ownfund">OwnFund</option>
-                                                                <option value="Bank">Bank</option>
-                                                            </select>
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control handover20per" name="payment_type">
-                                                                <option value=''>--Select--</option>
-                                                                <option value="Cheque">Cheque</option>
-                                                                <option value="Cash">Cash</option>
-                                                                <option value="NEFT">NEFT</option>
-                                                            </select>
-                                                        </td>
-                                                        <td id="handoverchequetd20per" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="handovercashtd20per">
-                                                            <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
-                                                        </td>
-                                                        <td id="handovernefttd20per" style="display:none;">
-                                                            <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                <!-- Begin :: 20 Percentage payment type Details -->
+                                <div class="m-portlet" id="payment3" style="display: none;">
+                                    <div class="m-portlet__body">
+                                        <!--begin::Section-->
+                                        <div class="m-section">
+                                            <div class="m-section__content">
+                                                <div class="table-responsive">
+                                                    <table class="table m-table m-table--head-bg-brand pay">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th>Payment Schedule</th>
+                                                                <th>Total Amount</th>
+                                                                <th>Received Amount</th>
+                                                                <th>Balance Amount</th>
+                                                                <th>Payment Date</th>
+                                                                <th>Transaction Type</th>
+                                                                <th>Payment Type</th>
+                                                                <th>Transaction Number</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td width="5%">
+                                                                    1.
+                                                                </td>
+                                                                <td>
+                                                                    On Booking 20%
+                                                                </td>
+                                                                <td>
+                                                                    <input class="form-control" type="text" disabled name="onbook_10per" id="menu_price20per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('received_onbook') }}" type="number" class="form-control" id="recamount20per" name="received_onbook10per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input class="form-control" type="text" disabled name="balance_onbook10per" id="balamount20per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="date_onbook10per" />
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control" name="transaction_type">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Ownfund">OwnFund</option>
+                                                                        <option value="Bank">Bank</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control onbook20per" name="payment_type">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Cheque">Cheque</option>
+                                                                        <option value="Cash">Cash</option>
+                                                                        <option value="NEFT">NEFT</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td id="onchequetd20per" style="display:none;">
+                                                                    <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
+                                                                </td>
+                                                                <td id="oncashtd20per">
+                                                                    <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
+                                                                </td>
+                                                                <td id="onnefttd20per" style="display:none;">
+                                                                    <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="5%">
+                                                                    2.
+                                                                </td>
+                                                                <td>
+                                                                    Payment for Agreements 40%
+                                                                </td>
+                                                                <td>
+                                                                    <input class="form-control" type="text" disabled name="" id="menu_price120per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fund_date') }}" type="number" class="form-control" name="" id="recamount120per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input class="form-control" type="text" disabled name="" id="balamount120per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control" name="transaction_type">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Ownfund">OwnFund</option>
+                                                                        <option value="Bank">Bank</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control agreements20per" name="payment_type">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Cheque">Cheque</option>
+                                                                        <option value="Cash">Cash</option>
+                                                                        <option value="NEFT">NEFT</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td id="agreementschequetd20per" style="display:none;">
+                                                                    <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
+                                                                </td>
+                                                                <td id="agreementscashtd20per">
+                                                                    <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
+                                                                </td>
+                                                                <td id="agreementsnefttd20per" style="display:none;">
+                                                                    <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="5%">
+                                                                    3.
+                                                                </td>
+                                                                <td>
+                                                                    Completion of stilt + First Floor 10%
+                                                                </td>
+                                                                <td>
+                                                                    <input class="form-control" type="text" disabled name="" id="menu_price220per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fund_date') }}" type="number" class="form-control" name="" id="recamount220per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input class="form-control" type="text" disabled name="" id="balamount220per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control" name="transaction_type">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Ownfund">OwnFund</option>
+                                                                        <option value="Bank">Bank</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control 1stfloor20per" name="payment_type">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Cheque">Cheque</option>
+                                                                        <option value="Cash">Cash</option>
+                                                                        <option value="NEFT">NEFT</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td id="1stfloorchequetd20per" style="display:none;">
+                                                                    <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
+                                                                </td>
+                                                                <td id="1stfloorcashtd20per">
+                                                                    <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
+                                                                </td>
+                                                                <td id="1stfloornefttd20per" style="display:none;">
+                                                                    <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="5%">
+                                                                    4.
+                                                                </td>
+                                                                <td>
+                                                                    Completion of Second Floor 10%
+                                                                </td>
+                                                                <td>
+                                                                    <input class="form-control" type="text" disabled name="" id="menu_price320per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fund_date') }}" type="number" class="form-control" name="" id="recamount320per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input class="form-control" type="text" disabled name="" id="balamount320per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control" name="transaction_type">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Ownfund">OwnFund</option>
+                                                                        <option value="Bank">Bank</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control 2ndfloor20per" name="payment_type">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Cheque">Cheque</option>
+                                                                        <option value="Cash">Cash</option>
+                                                                        <option value="NEFT">NEFT</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td id="2ndfloorchequetd20per" style="display:none;">
+                                                                    <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
+                                                                </td>
+                                                                <td id="2ndfloorcashtd20per">
+                                                                    <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
+                                                                </td>
+                                                                <td id="2ndfloornefttd20per" style="display:none;">
+                                                                    <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="5%">
+                                                                    5.
+                                                                </td>
+                                                                <td>
+                                                                    Completion of Third Floor 10%
+                                                                </td>
+                                                                <td>
+                                                                    <input class="form-control" type="text" disabled name="" id="menu_price420per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fund_date') }}" type="number" class="form-control" name="" id="recamount420per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input class="form-control" type="text" disabled name="" id="balamount420per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control" name="transaction_type">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Ownfund">OwnFund</option>
+                                                                        <option value="Bank">Bank</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control 3rdfloor20per" name="payment_type">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Cheque">Cheque</option>
+                                                                        <option value="Cash">Cash</option>
+                                                                        <option value="NEFT">NEFT</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td id="3rdfloorchequetd20per" style="display:none;">
+                                                                    <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
+                                                                </td>
+                                                                <td id="3rdfloorcashtd20per">
+                                                                    <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
+                                                                </td>
+                                                                <td id="3rdfloornefttd20per" style="display:none;">
+                                                                    <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="5%">
+                                                                    6.
+                                                                </td>
+                                                                <td>
+                                                                    Completion of Fourth Floor 5%
+                                                                </td>
+                                                                <td>
+                                                                    <input class="form-control" type="text" disabled name="" id="menu_price520per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fund_date') }}" type="number" class="form-control" name="" id="recamount520per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input class="form-control" type="text" disabled name="" id="balamount520per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control" name="transaction_type">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Ownfund">OwnFund</option>
+                                                                        <option value="Bank">Bank</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control 4thfloor20per" name="payment_type">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Cheque">Cheque</option>
+                                                                        <option value="Cash">Cash</option>
+                                                                        <option value="NEFT">NEFT</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td id="4thfloorchequetd20per" style="display:none;">
+                                                                    <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
+                                                                </td>
+                                                                <td id="4thfloorcashtd20per">
+                                                                    <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
+                                                                </td>
+                                                                <td id="4thfloornefttd20per" style="display:none;">
+                                                                    <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="5%">
+                                                                    7.
+                                                                </td>
+                                                                <td>
+                                                                    Completion of Fifth Floor 5%
+                                                                </td>
+                                                                <td>
+                                                                    <input class="form-control" type="text" disabled name="" id="menu_price620per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fund_date') }}" type="number" class="form-control" name="" id="recamount620per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input class="form-control" type="text" disabled name="" id="balamount620per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control" name="transaction_type">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Ownfund">OwnFund</option>
+                                                                        <option value="Bank">Bank</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control 5thfloor20per" name="payment_type">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Cheque">Cheque</option>
+                                                                        <option value="Cash">Cash</option>
+                                                                        <option value="NEFT">NEFT</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td id="5thfloorchequetd20per" style="display:none;">
+                                                                    <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
+                                                                </td>
+                                                                <td id="5thfloorcashtd20per">
+                                                                    <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
+                                                                </td>
+                                                                <td id="5thfloornefttd20per" style="display:none;">
+                                                                    <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="5%">
+                                                                    8.
+                                                                </td>
+                                                                <td>
+                                                                    Handovering 5%
+                                                                </td>
+                                                                <td>
+                                                                    <input class="form-control" type="text" disabled name="" id="menu_price720per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fund_date') }}" type="number" class="form-control" name="" id="recamount720per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input class="form-control" type="text" disabled name="" id="balamount720per" />
+                                                                </td>
+                                                                <td>
+                                                                    <input value="{{ old('fund_date') }}" type="text" class="form-control datepicker" name="fund_date" />
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control" name="transaction_type">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Ownfund">OwnFund</option>
+                                                                        <option value="Bank">Bank</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control handover20per" name="payment_type">
+                                                                        <option value=''>--Select--</option>
+                                                                        <option value="Cheque">Cheque</option>
+                                                                        <option value="Cash">Cash</option>
+                                                                        <option value="NEFT">NEFT</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td id="handoverchequetd20per" style="display:none;">
+                                                                    <input value="{{ old('fund_date') }}" type="text" placeholder="Cheque No" class="form-control" name="fund_date" />
+                                                                </td>
+                                                                <td id="handovercashtd20per">
+                                                                    <input value="{{ old('fund_date') }}" disabled type="text" class="form-control" name="fund_date" />
+                                                                </td>
+                                                                <td id="handovernefttd20per" style="display:none;">
+                                                                    <input value="{{ old('fund_date') }}" type="text" placeholder="NEFT ID" class="form-control" name="fund_date" />
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <!-- End :: 20 Percentage payment type Details -->
+                                <!-- End :: 20 Percentage payment type Details -->
 
-                        <div class="form-group text-right">
-                            <button type="submit" name="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
-                                Submit
-                            </button>
-                        </div>
+                                <div class="form-group text-right">
+                                    <button type="submit" name="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
+                                        Submit
+                                    </button>
+                                </div>
 
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1257,7 +1262,7 @@
 </div>
 <!-- END: Subheader -->
 
-</div>
+
 <script>
     jQuery(document).ready(function() {
         jQuery('.payment').change(function() {
@@ -1274,7 +1279,7 @@
                 jQuery('#payment1').hide();
                 jQuery('#payment2').hide();
                 jQuery('#payment3').show();
-            } else  {
+            } else {
                 jQuery('#payment1').hide();
                 jQuery('#payment2').hide();
                 jQuery('#payment3').hide();
@@ -1715,53 +1720,53 @@
 
     $("#percentage").change(function() {
         var perc = parseFloat($("#purchase_price").val());
-        var percs="";
-        if(isNaN(perc)){
-            percs=" ";
-           }else{
-        $("#menu_price").val(((10 * perc) / 100).toFixed());
-        $("#menu_price1").val(((40 * perc) / 100).toFixed());
-        $("#menu_price2").val(((10 * perc) / 100).toFixed());
-        $("#menu_price3").val(((10 * perc) / 100).toFixed());
-        $("#menu_price4").val(((10 * perc) / 100).toFixed());
-        $("#menu_price5").val(((10 * perc) / 100).toFixed());
-        $("#menu_price6").val(((5 * perc) / 100).toFixed());
-        $("#menu_price7").val(((5 * perc) / 100).toFixed());
-           }
+        var percs = "";
+        if (isNaN(perc)) {
+            percs = " ";
+        } else {
+            $("#menu_price").val(((10 * perc) / 100).toFixed());
+            $("#menu_price1").val(((40 * perc) / 100).toFixed());
+            $("#menu_price2").val(((10 * perc) / 100).toFixed());
+            $("#menu_price3").val(((10 * perc) / 100).toFixed());
+            $("#menu_price4").val(((10 * perc) / 100).toFixed());
+            $("#menu_price5").val(((10 * perc) / 100).toFixed());
+            $("#menu_price6").val(((5 * perc) / 100).toFixed());
+            $("#menu_price7").val(((5 * perc) / 100).toFixed());
+        }
     });
 
     $("#percentage").change(function() {
         var perc = parseFloat($("#purchase_price").val());
-        var percs="";
-        if(isNaN(perc)){
-            percs=" ";
-           }else{
-        $("#menu_price15per").val(((15 * perc) / 100).toFixed());
-        $("#menu_price115per").val(((40 * perc) / 100).toFixed());
-        $("#menu_price215per").val(((10 * perc) / 100).toFixed());
-        $("#menu_price315per").val(((10 * perc) / 100).toFixed());
-        $("#menu_price415per").val(((10 * perc) / 100).toFixed());
-        $("#menu_price515per").val(((5 * perc) / 100).toFixed());
-        $("#menu_price615per").val(((5 * perc) / 100).toFixed());
-        $("#menu_price715per").val(((5 * perc) / 100).toFixed());
-           }
+        var percs = "";
+        if (isNaN(perc)) {
+            percs = " ";
+        } else {
+            $("#menu_price15per").val(((15 * perc) / 100).toFixed());
+            $("#menu_price115per").val(((40 * perc) / 100).toFixed());
+            $("#menu_price215per").val(((10 * perc) / 100).toFixed());
+            $("#menu_price315per").val(((10 * perc) / 100).toFixed());
+            $("#menu_price415per").val(((10 * perc) / 100).toFixed());
+            $("#menu_price515per").val(((5 * perc) / 100).toFixed());
+            $("#menu_price615per").val(((5 * perc) / 100).toFixed());
+            $("#menu_price715per").val(((5 * perc) / 100).toFixed());
+        }
     });
 
     $("#percentage").change(function() {
         var perc = parseFloat($("#purchase_price").val());
-        var percs="";
-        if(isNaN(perc)){
-            percs=" ";
-           }else{
-        $("#menu_price20per").val(((20 * perc) / 100).toFixed());
-        $("#menu_price120per").val(((40 * perc) / 100).toFixed());
-        $("#menu_price220per").val(((10 * perc) / 100).toFixed());
-        $("#menu_price320per").val(((10 * perc) / 100).toFixed());
-        $("#menu_price420per").val(((5 * perc) / 100).toFixed());
-        $("#menu_price520per").val(((5 * perc) / 100).toFixed());
-        $("#menu_price620per").val(((5 * perc) / 100).toFixed());
-        $("#menu_price720per").val(((5 * perc) / 100).toFixed());
-           }
+        var percs = "";
+        if (isNaN(perc)) {
+            percs = " ";
+        } else {
+            $("#menu_price20per").val(((20 * perc) / 100).toFixed());
+            $("#menu_price120per").val(((40 * perc) / 100).toFixed());
+            $("#menu_price220per").val(((10 * perc) / 100).toFixed());
+            $("#menu_price320per").val(((10 * perc) / 100).toFixed());
+            $("#menu_price420per").val(((5 * perc) / 100).toFixed());
+            $("#menu_price520per").val(((5 * perc) / 100).toFixed());
+            $("#menu_price620per").val(((5 * perc) / 100).toFixed());
+            $("#menu_price720per").val(((5 * perc) / 100).toFixed());
+        }
     });
 
     $('#recamount').on("paste keyup",
@@ -1979,7 +1984,6 @@
     });
 </script>
 <style>
-   
     .m-table.m-table--head-bg-brand.pay thead th {
         background: #61317a;
     }
