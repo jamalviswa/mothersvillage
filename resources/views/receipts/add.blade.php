@@ -53,28 +53,27 @@
                                             <label class="col-md-2 offset-md-5 j_receipt">
                                                 RECEIPT
                                             </label>
-                                            
+
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-md-1">
                                                 No
                                             </label>
+                                            <?php
+                                            $customer = App\Receipt::count();
+                                            $customers = $customer + 1;
+                                            ?>
                                             <div class="col-md-2">
-                                                <input value="{{ old('applicant_name') }}" type="text" style="text-transform: capitalize;" autocomplete="off" class="form-control" name="applicant_name" />
-                                                @error('applicant_name')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
+                                                <?php echo $customers; ?>
                                             </div>
 
                                             <label class="col-md-1 offset-md-6">
                                                 Date
                                             </label>
                                             <div class="col-md-2">
-                                                <input value="{{ old('application_number') }}" type="text" autocomplete="off" class="form-control" name="application_number" />
-                                                @error('application_number')
+                                                <input value="{{ old('receipt_date') }}" type="text" autocomplete="off" class="form-control datepicker" name="receipt_date" />
+                                                @error('receipt_date')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
@@ -87,9 +86,9 @@
                                             </label>
                                             <div class="col-md-4">
 
-                                                <input value="{{old('date_of_application') }}" autocomplete="off" type="text" class="form-control " name="date_of_application" />
+                                                <input value="{{old('received') }}" autocomplete="off" type="text" class="form-control " name="received" />
 
-                                                @error('date_of_application')
+                                                @error('received')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
@@ -101,9 +100,9 @@
                                             </label>
                                             <div class="col-md-3">
 
-                                                <input value="{{old('date_of_application') }}" autocomplete="off" type="text" class="form-control " name="date_of_application" />
+                                                <input value="{{old('application_number') }}" autocomplete="off" type="text" class="form-control " name="application_number" />
 
-                                                @error('date_of_application')
+                                                @error('application_number')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
@@ -116,13 +115,9 @@
                                             </label>
                                             <div class="col-md-10">
 
-                                                <input value="{{old('date_of_application') }}" autocomplete="off" type="text" class="form-control " name="date_of_application" />
+                                                <input value="{{old('sum_rupees') }}" autocomplete="off" type="text" class="form-control" name="sum_rupees" />
 
-                                                @error('date_of_application')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
+                                               
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -131,13 +126,9 @@
                                             </label>
                                             <div class="col-md-6">
 
-                                                <input value="{{old('date_of_application') }}" autocomplete="off" type="text" class="form-control " name="date_of_application" />
+                                                <input value="{{old('cheque_no') }}" autocomplete="off" type="text" class="form-control " name="cheque_no" />
 
-                                                @error('date_of_application')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
+                                               
                                             </div>
 
                                             <label class="col-md-1">
@@ -145,13 +136,9 @@
                                             </label>
                                             <div class="col-md-3">
 
-                                                <input value="{{old('date_of_application') }}" autocomplete="off" type="text" class="form-control " name="date_of_application" />
+                                                <input value="{{old('dated') }}" autocomplete="off" type="text" class="form-control datepicker" name="dated" />
 
-                                                @error('date_of_application')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
+                                               
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -160,13 +147,9 @@
                                             </label>
                                             <div class="col-md-4">
 
-                                                <input value="{{old('date_of_application') }}" autocomplete="off" type="text" class="form-control " name="date_of_application" />
+                                                <input value="{{old('drawn_on') }}" autocomplete="off" type="text" class="form-control " name="drawn_on" />
 
-                                                @error('date_of_application')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
+                                              
                                             </div>
 
                                             <label class="col-md-2">
@@ -174,13 +157,9 @@
                                             </label>
                                             <div class="col-md-4">
 
-                                                <input value="{{old('date_of_application') }}" autocomplete="off" type="text" class="form-control " name="date_of_application" />
+                                                <input value="{{old('bank_towards') }}" autocomplete="off" type="text" class="form-control " name="bank_towards" />
 
-                                                @error('date_of_application')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
+                                              
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -189,13 +168,9 @@
                                             </label>
                                             <div class="col-md-3">
 
-                                                <input value="{{old('date_of_application') }}" autocomplete="off" type="text" class="form-control " name="date_of_application" />
+                                                <input value="{{old('referred_by') }}" autocomplete="off" type="text" class="form-control " name="referred_by" />
 
-                                                @error('date_of_application')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
+                                              
                                             </div>
                                             <label class="col-md-4 offset-md-3">
 
@@ -207,21 +182,19 @@
 
                                             <div class="col-md-3">
                                                 <div class="input-group"> <span class="input-group-text">₹</span>
-                                                    <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
-                                                </div>
-                                                <!-- <input value="{{old('date_of_application') }}" autocomplete="off" type="text" class="form-control " name="date_of_application" /> -->
-
-
-                                                @error('date_of_application')
+                                                    <input type="text" value="{{old('final_amount') }}"class="form-control" name="final_amount">
+                                               
+                                                @error('final_amount')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
                                                 @enderror
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-md-3">
-                                                <span class="red">* </span>Cheques subject to realisation.
+                                                <span class="red">* </span>Cheque subject to realisation.
                                             </label>
                                             <label class="col-md-2 offset-md-7">
                                                 Authorised Signatory
@@ -270,11 +243,11 @@
         font-weight: 600;
     }
 
-    .j_receipt{
+    .j_receipt {
         border: 2px solid #000;
-    border-radius: 40px;
-    max-width: 84px;
-    font-weight: 800;
+        border-radius: 40px;
+        max-width: 84px;
+        font-weight: 800;
     }
 
     ul {
@@ -282,10 +255,10 @@
         margin-left: 0px;
     }
 
-    .j_title{
+    .j_title {
         font-style: italic;
-    font-family: 'Flaticon';
-    font-size: 41px;
+        font-family: 'Flaticon';
+        font-size: 41px;
     }
 
     .j_para {
