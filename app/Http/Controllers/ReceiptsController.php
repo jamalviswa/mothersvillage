@@ -16,7 +16,7 @@ use App\Payment;
 use App\Customer;
 use App\Cost;
 
-class PaymentsController extends Controller
+class ReceiptsController extends Controller
 {
 
     public function index()
@@ -39,14 +39,14 @@ class PaymentsController extends Controller
 
         $result = $result->paginate(10);
 
-        return view('/payments/index', [
+        return view('/receipts/index', [
             'results' => $result
         ]);
     }
     public function add()
     {
         $sessionadmin = Parent::checkadmin();
-        return view('payments/add', []);
+        return view('receipts/add', []);
     }
     public function store(Request $request)
     {

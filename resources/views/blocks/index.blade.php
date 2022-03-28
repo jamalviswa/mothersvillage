@@ -137,9 +137,9 @@
     }
     .j-numb.sales{
         color: #fff;
-        font-size: 20px;
+        font-size: 13px;
         text-align: center;
-        padding-top: 30px;
+        padding-top: 14px;
         cursor: pointer;
         font-weight: 600;
     }

@@ -93,6 +93,21 @@
                 </a>
             </li>
             <li class="m-menu__item " aria-haspopup="true" >
+                <a  href="{{route('receipts.add')}}" class="m-menu__link @if(($controller=='ReceiptsController' && $action=='index') || 
+                    ($controller=='ReceiptsController' &&$action=='view') || 
+                    ($controller=='ReceiptsController' &&$action=='edit') || 
+                    ($controller=='ReceiptsController' && $action=='add') )  active @endif">
+                    <i class="m-menu__link-icon flaticon-file"></i>
+                    <span class="m-menu__link-title">
+                        <span class="m-menu__link-wrap">
+                            <span class="m-menu__link-text">
+                                RECEIPT
+                            </span>
+                        </span>
+                    </span>
+                </a>
+            </li>
+            <li class="m-menu__item " aria-haspopup="true" >
                 <a  href="{{route('blocks.index')}}" class="m-menu__link @if(($controller=='BlocksController' && $action=='index') || 
                     ($controller=='BlocksController' &&$action=='view') || 
                     ($controller=='BlocksController' &&$action=='edit') || 
@@ -123,6 +138,8 @@
                     </span>
                 </a>
             </li>
+
+           
            
 <!-- /*Masters*/ -->
             <li class="m-menu__item  m-menu__item--submenu m-menu__item--rel"  data-menu-submenu-toggle="click" aria-haspopup="true">
@@ -229,22 +246,73 @@
                         </ul>
                 </div>
             </li>
-            @endif
-            <!-- <li class="m-menu__item " aria-haspopup="true" >
-                <a  href="{{route('countries.index')}}" class="m-menu__link @if(($controller=='CountriesController' && $action=='index') || 
-                    ($controller=='CountriesController' &&$action=='view') || 
-                    ($controller=='CountriesController' &&$action=='edit') || 
-                    ($controller=='CountriesController' && $action=='add') )  active @endif">
+
+            <li class="m-menu__item  m-menu__item--submenu m-menu__item--rel"  data-menu-submenu-toggle="click" aria-haspopup="true">
+                <a href="" class="m-menu__link @if(($controller=='DeletesController' && $action=='personal_index') || 
+                    ($controller=='DeletesController' && $action=='personal_view') )   active @endif  m-menu__toggle">
                     <i class="m-menu__link-icon flaticon-file"></i>
                     <span class="m-menu__link-title">
                         <span class="m-menu__link-wrap">
                             <span class="m-menu__link-text">
-                                Country
+                              TRASH RECORDS
                             </span>
                         </span>
                     </span>
                 </a>
-            </li> -->
+                <div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--left m-menu__submenu--pull">
+                    <span class="m-menu__arrow m-menu__arrow--adjust"></span>
+                        <ul class="m-menu__subnav"  href="{{route('deletes.personal_index')}}" class="m-menu__link @if(($controller=='DeletesController' && $action=='personal_index') || 
+                                    ($controller=='DeletesController' && $action=='personal_view') )  active @endif">
+                            <li class="m-menu__item " aria-haspopup="true" >
+                                <a  href="{{route('deletes.personal_index')}}" class="m-menu__link @if(($controller=='DeletesController' && $action=='personal_index') || 
+                                    ($controller=='DeletesController' && $action=='personal_view')  )  active @endif">
+                                    <i class="m-menu__link-icon flaticon-users"></i>
+                                    <span class="m-menu__link-title">
+                                        <span class="m-menu__link-wrap">
+                                            <span class="m-menu__link-text">
+                                                PERSONAL DETAILS
+                                            </span>
+                                        </span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="m-menu__item " aria-haspopup="true" >
+                                <a  href="{{route('deletes.official_index')}}" class="m-menu__link @if(($controller=='DeletesController' && $action=='official_index') || 
+                                    ($controller=='DeletesController' && $action=='official_view')  )  active @endif">
+                                    <i class="m-menu__link-icon flaticon-users"></i>
+                                    <span class="m-menu__link-title">
+                                        <span class="m-menu__link-wrap">
+                                            <span class="m-menu__link-text">
+                                                DOCUMENT DETAILS
+                                            </span>
+                                        </span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="m-menu__item " aria-haspopup="true" >
+                                <a  href="{{route('deletes.cost_index')}}" class="m-menu__link @if(($controller=='DeletesController' && $action=='cost_index') || 
+                                    ($controller=='DeletesController' && $action=='cost_view')  )  active @endif">
+                                    <i class="m-menu__link-icon flaticon-file"></i>
+                                    <span class="m-menu__link-title">
+                                        <span class="m-menu__link-wrap">
+                                            <span class="m-menu__link-text">
+                                                COST DETAILS
+                                            </span>
+                                        </span>
+                                    </span>
+                                </a>
+                            </li>
+                          
+                           
+                           
+                         
+                                         
+                        </ul>
+                </div>
+            </li>
+
+            @endif
+         
 
             
             <li class="m-menu__item " aria-haspopup="true" >

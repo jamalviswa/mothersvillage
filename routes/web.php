@@ -63,6 +63,22 @@ Route::get('payments/delete/{id}', 'PaymentsController@delete')->name('payments.
 Route::get('payments/view/{id}', 'PaymentsController@view')->name('payments.view');
 Route::post('payments/map/', 'PaymentsController@map')->name('payments.map');
 
+Route::any('receipts/index', 'ReceiptsController@index')->name('receipts.index');
+Route::get('receipts/add', 'ReceiptsController@add')->name('receipts.add');
+Route::post('receipts/store', 'ReceiptsController@store')->name('receipts.store');
+Route::get('receipts/edit/{id}', 'ReceiptsController@edit')->name('receipts.edit');
+Route::post('receipts/update/{id}', 'ReceiptsController@update')->name('receipts.update');
+Route::get('receipts/delete/{id}', 'ReceiptsController@delete')->name('receipts.delete');
+Route::get('receipts/view/{id}', 'ReceiptsController@view')->name('receipts.view');
+
+Route::any('deletes/personal/index', 'DeletesController@personal_index')->name('deletes.personal_index');
+Route::get('deletes/personal/view/{id}', 'DeletesController@personal_view')->name('deletes.personal_view');
+Route::any('deletes/official/index', 'DeletesController@official_index')->name('deletes.official_index');
+Route::get('deletes/official/view/{id}', 'DeletesController@official_view')->name('deletes.official_view');
+Route::any('deletes/cost/index', 'DeletesController@cost_index')->name('deletes.cost_index');
+Route::get('deletes/cost/view/{id}', 'DeletesController@cost_view')->name('deletes.cost_view');
+
+
 Route::any('costs/index', 'CostsController@index')->name('costs.index');
 Route::get('costs/add', 'CostsController@add')->name('costs.add');
 Route::post('costs/store', 'CostsController@store')->name('costs.store');

@@ -124,20 +124,7 @@
 
                                                 <div class="row">
                                                     <div class="col-3">
-                                                    <!-- <select class="form-control"  name="application_number">
-                                                    <option>Select Country</option>
-                                                    <?php
-                                                    //$phases = App\Country::where('status', 'Active')->get();
-                                                   // foreach ($phases as $phase) {
-                                                    ?>
-                                                        <option value="<?php //echo $phase->country_code ?>"><?php //echo $phase->country ?></option>
-                                                      
-                                                    <?php //}
-                                                    ?>  
-                                                 
-                                                    
-                                                </select> -->
-                                                        <input value="{{ old('phone_code') }}+91" type="tel" autocomplete="off" class="form-control" name="phone_code" style="width:72%" maxlength="4" />
+                                                        <input value="{{ old('phone_code') }}" type="tel" autocomplete="off" class="form-control" name="phone_code" style="width:72%" maxlength="4" />
                                                     </div>
                                                     <div class="col-9">
                                                         <input value="{{ old('phone') }}"  id="phone" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="10" autocomplete="off" class="form-control" name="phone" />
@@ -165,7 +152,7 @@
 
                                                 <div class="row">
                                                     <div class="col-3">
-                                                        <input value="{{ old('altphone_code') }}+91" type="tel" autocomplete="off" class="form-control" name="altphone_code" style="width:72%" maxlength="4" />
+                                                        <input value="{{ old('altphone_code') }}" type="tel" autocomplete="off" class="form-control" name="altphone_code" style="width:72%" maxlength="4" />
                                                     </div>
                                                     <div class="col-9">
                                                         <input value="{{ old('altphone') }}" id="phone"  type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="10" autocomplete="off" class="form-control" name="altphone" />

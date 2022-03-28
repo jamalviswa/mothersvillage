@@ -13,15 +13,13 @@ use Session;
 use DB;
 use Redirect;
 use App\Customer;
-use App\Family_detail;
 use App\Block;
 use App\Floor;
 use App\Flattype;
 use App\Flatnumber;
 use App\Document;
-use App\Son;
-use App\Daughter;
 use App\Cost;
+use App\Family;
 
 class CustomersController extends Controller
 {
@@ -121,15 +119,17 @@ class CustomersController extends Controller
                             $son_school = $request->son_school;
                             $son_class = $request->son_class;
                             $son_age = $request->son_age;
-                            for ($i = 0; $i < $n; $i++) {
-                                $data = new Son();
+                            for ($i=0; $i<$n; $i++) {
+                                $data = new Family();
                                 $data->customer_id = $last_id;
-                                $data->son_class = $son_class[$i];
-                                $data->son_school = $son_school[$i];
-                                $data->son_profession = $son_profession[$i];
-                                $data->son_age = $son_age[$i];
-                                $data->son_name = $son_name[$i];
+                                $data->relation = "Son";
+                                $data->class = $son_class[$i] ? $son_class[$i]:"-";
+                                $data->school = $son_school[$i] ? $son_school[$i]:"-";
+                                $data->profession = $son_profession[$i] ? $son_profession[$i]:"-";
+                                $data->age = $son_age[$i] ? $son_age[$i]:"-";
+                                $data->name = $son_name[$i] ? $son_name[$i]:"-";
                                 $data->status = "Active";
+                                $data->created_date = date('Y-m-d H:i:s');
                                 $data->save();
                             }
                         }
@@ -149,14 +149,16 @@ class CustomersController extends Controller
                             $daughter_profession = $request->daughter_profession;
                             $daughter_age = $request->daughter_age;
                             for ($i = 0; $i < $n; $i++) {
-                                $data = new Daughter();
+                                $data = new Family();
                                 $data->customer_id = $last_id;
-                                $data->daughter_class = $daughter_class[$i];
-                                $data->daughter_school = $daughter_school[$i];
-                                $data->daughter_profession = $daughter_profession[$i];
-                                $data->daughter_age = $daughter_age[$i];
-                                $data->daughter_name = $daughter_name[$i];
+                                $data->relation = "Daughter";
+                                $data->class = $daughter_class[$i] ? $daughter_class[$i]:"-";
+                                $data->school = $daughter_school[$i] ? $daughter_school[$i]:"-";
+                                $data->profession = $daughter_profession[$i] ? $daughter_profession[$i]:"-";
+                                $data->age = $daughter_age[$i] ? $daughter_age[$i]:"-";
+                                $data->name = $daughter_name[$i] ? $daughter_name[$i]:"-";
                                 $data->status = "Active";
+                                $data->created_date = date('Y-m-d H:i:s');
                                 $data->save();
                             }
                         }
@@ -223,7 +225,7 @@ class CustomersController extends Controller
                     $son_profession = $request->son_profession;
                     $son_age = $request->son_age;
                     for ($i = 0; $i < $n; $i++) {
-                        $data = new Son();
+                        $data = new Family();
                         $data->customer_id = $id;
                         $data->son_profession = $son_profession[$i];
                         $data->son_age = $son_age[$i];
@@ -269,17 +271,10 @@ class CustomersController extends Controller
         $data = Customer::findOrFail($id);
         $data->status = 'Trash';
         $data->save();
-        $sons = Son::where('customer_id', '=', $id)->get();
+        $sons = Family::where('customer_id', '=', $id)->get();
         foreach ($sons as $son) {
-            $last = $son['id'];
-            $data = Son::findOrFail($last);
-            $data->status = 'Trash';
-            $data->save();
-        }
-        $daughters = Daughter::where('customer_id', '=', $id)->get();
-        foreach ($daughters as $daughter) {
-            $last = $daughter['id'];
-            $data = Daughter::findOrFail($last);
+            $last = $son['family_id'];
+            $data = Family::findOrFail($last);
             $data->status = 'Trash';
             $data->save();
         }
