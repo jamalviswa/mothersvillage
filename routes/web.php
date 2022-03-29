@@ -71,6 +71,8 @@ Route::post('receipts/update/{id}', 'ReceiptsController@update')->name('receipts
 Route::get('receipts/delete/{id}', 'ReceiptsController@delete')->name('receipts.delete');
 Route::get('receipts/view/{id}', 'ReceiptsController@view')->name('receipts.view');
 Route::post('receipts/map/', 'ReceiptsController@map')->name('receipts.map');
+Route::get('receipts/invoicepdf/{id}', 'ReceiptsController@invoicepdf')->name('receipts.invoicepdf');
+Route::get('receipts/receiptform/{id}', 'ReceiptsController@receiptform')->name('receipts.receiptform');
 
 Route::any('deletes/personal/index', 'DeletesController@personal_index')->name('deletes.personal_index');
 Route::get('deletes/personal/view/{id}', 'DeletesController@personal_view')->name('deletes.personal_view');
@@ -95,6 +97,7 @@ Route::post('blocks/store', 'BlocksController@store')->name('blocks.store');
 Route::get('blocks/edit/{id}', 'BlocksController@edit')->name('blocks.edit');
 Route::post('blocks/update/{id}', 'BlocksController@update')->name('blocks.update');
 Route::get('blocks/delete/{id}', 'BlocksController@delete')->name('blocks.delete');
+Route::get('blocks/view/{id}', 'BlocksController@view')->name('blocks.view');
 Route::post('blocks/map/', 'BlocksController@map')->name('blocks.map');
 //Master
 

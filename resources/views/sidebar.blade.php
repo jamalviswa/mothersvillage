@@ -78,7 +78,7 @@
                 </a>
             </li>
             <li class="m-menu__item " aria-haspopup="true" >
-                <a  href="{{route('payments.add')}}" class="m-menu__link @if(($controller=='PaymentsController' && $action=='index') || 
+                <a  href="{{route('payments.index')}}" class="m-menu__link @if(($controller=='PaymentsController' && $action=='index') || 
                     ($controller=='PaymentsController' &&$action=='view') || 
                     ($controller=='PaymentsController' &&$action=='edit') || 
                     ($controller=='PaymentsController' && $action=='add') )  active @endif">

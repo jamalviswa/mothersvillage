@@ -152,5 +152,8 @@
         cursor: pointer;
         font-weight: 600;
     }
+    .j_url{
+        text-decoration: none !important;
+    }
 </style>
 @endsection

@@ -16,7 +16,7 @@ use App\Flatnumber;
 use App\Block;
 use App\Flattype;
 use App\Document;
-use App\Floor;
+use App\Customer;
 
 class BlocksController extends Controller
 {
@@ -31,19 +31,22 @@ class BlocksController extends Controller
     if (!empty($_REQUEST['phase'])) {
       $id = $_REQUEST['phase'];
       $blocks = Block::where('block_name', $id)->first();
-      $flats = Flatnumber::where('block', $blocks['block_id'])->orderBy('flatnumber', 'asc')->get();   
+      $flats = Flatnumber::where('block', $blocks['block_id'])->orderBy('flatnumber', 'asc')->get();
       foreach ($flats as $flat) {
         $flattype = Flattype::where('flattype_id', $flat['flattype'])->first();
         $document = Document::where('flatnumber', $flat['flatnumber_id'])->where('status', 'Active')->first();
         
         if (!empty($document)) {
+          $url = url("/blocks/view/{$document->customer_id}");
           echo '<div class="col-md-2 j-box lab-' . $flattype->flattype . ' sales">
+          <a class="j_url" href='.$url.'>
         <div class="j-numb sales">' . $flat->flatnumber . '<br>
           <span>' . $flattype->flattype . '
           </span><br>
           <span>' . $document->applicant_name . '
           </span>
         </div>
+        </a>
       </div>';
         } else {
           echo '<div class="col-md-2 j-box lab-' . $flattype->flattype . '">
@@ -54,8 +57,14 @@ class BlocksController extends Controller
       </div>';
         }
       }
-    
       exit;
     }
+  }
+
+  public function view($id = null)
+  {
+    $sessionadmin = Parent::checkadmin();
+    $detail = Customer::where('customer_id', '=', $id)->first();
+    return view('blocks/view', ['detail' => $detail]);
   }
 }

@@ -14,7 +14,7 @@ use DB;
 use Redirect;
 use App\Receipt;
 use App\Customer;
-
+use PDF;
 
 class ReceiptsController extends Controller
 {
@@ -24,18 +24,18 @@ class ReceiptsController extends Controller
         $sessionadmin = Parent::checkadmin();
         $result = Receipt::where('status', '<>', 'Trash')
             ->orderBy('receipt_id', 'desc');
-            if (!empty($_REQUEST['applicant_name'])) {
-                $customer = $_REQUEST['applicant_name'];
-                $result->where(function ($query) use ($customer) {
-                    $query->where('applicant_name', 'LIKE', "%$customer%");
-                });
-            }
-            if (!empty($_REQUEST['application_number'])) {
-                $customer = $_REQUEST['application_number'];
-                $result->where(function ($query) use ($customer) {
-                    $query->where('application_number', 'LIKE', "%$customer%");
-                });
-            }
+        if (!empty($_REQUEST['applicant_name'])) {
+            $customer = $_REQUEST['applicant_name'];
+            $result->where(function ($query) use ($customer) {
+                $query->where('applicant_name', 'LIKE', "%$customer%");
+            });
+        }
+        if (!empty($_REQUEST['application_number'])) {
+            $customer = $_REQUEST['application_number'];
+            $result->where(function ($query) use ($customer) {
+                $query->where('application_number', 'LIKE', "%$customer%");
+            });
+        }
 
         $result = $result->paginate(10);
 
@@ -64,12 +64,12 @@ class ReceiptsController extends Controller
         $names = Customer::where('customer_id', $request->application_number)->first();
         $data->application_number = $names->application_number;
         $data->received = $names->applicant_name;
-        $data->sum_rupees = $request->sum_rupees ? $request->sum_rupees:"-";
-        $data->cheque_no = $request->cheque_no ? $request->cheque_no:"-";
-        $data->dated = $request->dated ? $request->dated:"-";
-        $data->drawn_on = $request->drawn_on ? $request->drawn_on:"-";
-        $data->bank_towards = $request->bank_towards ? $request->bank_towards:"-";
-        $data->referred_by = $request->referred_by ? $request->referred_by:"-";
+        $data->sum_rupees = $request->sum_rupees ? $request->sum_rupees : "-";
+        $data->cheque_no = $request->cheque_no ? $request->cheque_no : "-";
+        $data->dated = $request->dated ? $request->dated : "-";
+        $data->drawn_on = $request->drawn_on ? $request->drawn_on : "-";
+        $data->bank_towards = $request->bank_towards ? $request->bank_towards : "-";
+        $data->referred_by = $request->referred_by ? $request->referred_by : "-";
         $data->final_amount = $request->final_amount;
         $data->status = "Active";
         $data->created_date = date('Y-m-d H:i:s');
@@ -88,7 +88,7 @@ class ReceiptsController extends Controller
                 echo '<input type="text" disabled class="form-control"  value="' . $name->applicant_name . '"> ';
             }
             exit;
-        } 
+        }
     }
 
     public function view($id = null)
@@ -98,7 +98,7 @@ class ReceiptsController extends Controller
         return view('receipts/view', ['detail' => $detail]);
     }
 
-   
+
     public function delete(Request $request, $id = null)
     {
         $data = Package::findOrFail($id);
@@ -107,5 +107,20 @@ class ReceiptsController extends Controller
         Session::flash('message', 'Deleted Sucessfully!');
         Session::flash('alert-class', 'success');
         return \Redirect::route('packages.index', []);
+    }
+
+    public function invoicepdf($id = null)
+    {
+       
+        $sessionadmin = Parent::checkadmin();
+        $pdf = PDF::loadView('receipts/receiptform', ['customer_id' => $id]);
+        $file_name =  'receipt_' . date('ymd') . $id;
+        return $pdf->download($file_name . '.pdf');
+    }
+
+    public function receiptform($id = null)
+    {
+        $sessionadmin = Parent::checkadmin();
+        return view('receipts/receiptform',['receipt_id' => $id]);   
     }
 }

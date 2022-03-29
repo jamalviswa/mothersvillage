@@ -154,6 +154,11 @@
                                         </div>
 
                                     </div>
+                                    <div class="download_pdf">
+                                        <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="Download Invoice" href="{{ route('receipts.invoicepdf',$detail['customer_id']) }}" target="_blank" download>
+                                            Download PDF<i style="color: white;font-size: 18px !important;" class="fa fa-download"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -164,6 +169,12 @@
     </div>
 </div>
 <style>
+    .btn.btn-secondary.m-btn.m-btn--air.m-btn--custom {
+    padding: 17px;
+    background: #0054ac;
+    color:white;
+    border-radius: 0px;
+}
     .input-group-text {
         font-weight: 600 !important;
         border-radius: unset !important;
@@ -225,6 +236,11 @@
     .j_amount {
         padding-top: 7px;
         padding-left: 7px;
+    }
+
+    .download_pdf {
+        margin-top: 24px;
+        text-align: right;
     }
 </style>
 @endsection

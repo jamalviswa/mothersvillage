@@ -1,309 +1,131 @@
 @extends('layouts.admin')
 @section('content')
-<?php $requestdata = request(); ?>
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
     <!-- BEGIN: Subheader -->
     <div class="m-subheader ">
         <div class="d-flex align-items-center">
             <div class="mr-auto">
                 <h3 class="m-subheader__title m-subheader__title--separator">
-                    Payment Receipt
+                    Payment Details List
                 </h3>
             </div>
-            <!-- <div>
-                <a href="{{route('customers.personal_index')}}" rel="tooltip" title="" class="m-portlet__nav-link btn btn-lg btn-secondary  
-                         m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle" data-original-title="Back to List">
-                    <i class="fa fa-long-arrow-left"></i>
+            <div>
+                <a href="{{route('payments.add')}}" rel="tooltip" title="" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle" data-original-title="Add Payment Details">
+                    <i class="la la-plus"></i>
                 </a>
-            </div> -->
+            </div>
         </div>
     </div>
     <!-- END: Subheader -->
     <div class="m-content">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="m-portlet borderr">
-                    <div class="m-portlet__body ">
-                        <!--begin::Section-->
-                        <div class="m-section ">
-                            <form method="post" action="{{ route('customers.personal_store') }}" id="upload" class="validation_form" enctype="multipart/form-data">
-                                @csrf
-                                <div class="col-md-12 ">
-                                    <div class="m-section__content">
-                                    
-                                        <div class="form-group row">  <div class="col-md-4"> <img width="100" height="100" src="<?php echo  asset('files/logopay.jpeg') ?>" alt="logo" >
-                                          <h2 >
-                                          
-                                                Mounted Kailash Properties.
-                                            </h2> </div>
-                                            <div class="col-md-2 offset-md-5">
-                                                <h5>
-                                                    Mother's Village <br>
-                                                    Nesavalar Colony Road,<br>
-                                                    (Before Ondipudur flyover)<br>
-                                                    Singanallur,<br> Coimbatore - 641 005<br>
-                                                    Ph: 0422-4599328
-</h5>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="form-group row">
-                                            <label class="col-md-1">
-                                                No <span class="red">*</span>
-                                            </label>
-                                            <div class="col-md-2">
-                                                <input value="{{ old('applicant_name') }}" type="text" style="text-transform: capitalize;" autocomplete="off" class="form-control" name="applicant_name" />
-                                                @error('applicant_name')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                            </div>
-
-                                            <label class="col-md-1 offset-md-6">
-                                                Date <span class="red">*</span>
-                                            </label>
-                                            <div class="col-md-2">
-                                                <input value="{{ old('application_number') }}" type="text" autocomplete="off" class="form-control" name="application_number" />
-                                                @error('application_number')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-3">
-                                                Received with thanks from <span class="red">*</span>
-                                            </label>
-                                            <div class="col-md-3">
-
-                                                <input value="{{old('date_of_application') }}" autocomplete="off" type="text" class="form-control datepicker" name="date_of_application" />
-
-                                                @error('date_of_application')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                            </div>
-
-                                            <label class="col-md-3">
-                                                Application No <span class="red">*</span>
-                                            </label>
-                                            <div class="col-md-3">
-
-                                                <input value="{{old('date_of_application') }}" autocomplete="off" type="text" class="form-control datepicker" name="date_of_application" />
-
-                                                @error('date_of_application')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-2">
-                                                a sum of Rupees <span class="red">*</span>
-                                            </label>
-                                            <div class="col-md-10">
-
-                                                <input value="{{old('date_of_application') }}" autocomplete="off" type="text" class="form-control datepicker" name="date_of_application" />
-
-                                                @error('date_of_application')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-2">
-                                                by Cheque/DD No <span class="red">*</span>
-                                            </label>
-                                            <div class="col-md-4">
-
-                                                <input value="{{old('date_of_application') }}" autocomplete="off" type="text" class="form-control datepicker" name="date_of_application" />
-
-                                                @error('date_of_application')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                            </div>
-
-                                            <label class="col-md-2">
-                                                Dated <span class="red">*</span>
-                                            </label>
-                                            <div class="col-md-2">
-
-                                                <input value="{{old('date_of_application') }}" autocomplete="off" type="text" class="form-control datepicker" name="date_of_application" />
-
-                                                @error('date_of_application')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-1">
-                                                drawn on <span class="red">*</span>
-                                            </label>
-                                            <div class="col-md-5">
-
-                                                <input value="{{old('date_of_application') }}" autocomplete="off" type="text" class="form-control datepicker" name="date_of_application" />
-
-                                                @error('date_of_application')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                            </div>
-
-                                            <label class="col-md-1">
-                                                Bank towards
-                                            </label>
-                                            <div class="col-md-5">
-
-                                                <input value="{{old('date_of_application') }}" autocomplete="off" type="text" class="form-control datepicker" name="date_of_application" />
-
-                                                @error('date_of_application')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                            </div>
-                                        </div><br><br>
-                                        <div class="form-group row">
-                                            <label class="col-md-1">
-                                                Referred by <span class="red">*</span>
-                                            </label>
-                                            <div class="col-md-2">
-
-                                                <input value="{{old('date_of_application') }}" autocomplete="off" type="text" class="form-control datepicker" name="date_of_application" />
-
-                                                @error('date_of_application')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                            </div>
-
-                                            <h4 class="col-md-3 offset-md-6">
-                                                for Mounted Kailash Properties.
-                                            </h4>
-
-                                        </div><br>
-                                        <div class="form-group row">
-
-                                            <div class="col-md-2">
-
-                                                <!-- <input value="{{old('date_of_application') }}" autocomplete="off" type="text" class="form-control " name="date_of_application" /> -->
-                                                <span class="currencyinput">$<input type="text" name="currency"></span>
-
-                                                @error('date_of_application')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-2">
-                                                Cheque object to realisation.
-                                            </label>
-
-
-                                            <label class="col-md-2 offset-md-7">
-                                                Authorised Signatory
-                                            </label>
-
-                                        </div>
-
-
-
-                                        <div class="form-group text-right">
-                                            <button type="submit" name="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
-                                                Submit
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
+        <div class="m-portlet">
+            <div class="m-portlet__body">
+                <!--begin::Section-->
+                <div class="m-section__content    ">
+                    <form method="GET" class="search-form form-inline " action="#">
+                    <div class="form-group">
+                            <select class="form-control" name="application_number">
+                                @php
+                                $customers = App\Document::where('status','Active')->orderby('application_number','asc')->get();
+                                @endphp
+                                <option value="">Select Application Number</option>
+                                @foreach($customers as $customer)
+                                <option @if(isset($_REQUEST['application_number']) && $_REQUEST['application_number']==$customer['application_number']) selected @endif value="{{ $customer['application_number'] }}">{{ $customer['application_number'] }}</option>
+                                @endforeach
+                            </select>
                         </div>
+                        <div class="form-group">
+                            <select class="form-control" name="applicant_name">
+                                @php
+                                $customers = App\Document::where('status','Active')->orderby('applicant_name','asc')->get();
+                                @endphp
+                                <option value="">Select Applicant Name</option>
+                                @foreach($customers as $customer)
+                                <option @if(isset($_REQUEST['applicant_name']) && $_REQUEST['applicant_name']==$customer['applicant_name']) selected @endif value="{{ $customer['applicant_name'] }}">{{ $customer['applicant_name'] }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary m-btn m-btn--air m-btn--custom" type="submit" name="search"><i class="fa fa-search"></i></button>
+                            <?php if (isset($_REQUEST['search'])) { ?>
+                                <a class="btn btn-danger m-btn m-btn--air m-btn--custom" href="{{route('payments.index')}}"><i class="fa fa-times"></i></a>
+                            <?php } ?>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="m-portlet">
+            <div class="m-portlet__body">
+                <!--begin::Section-->
+                <div class="m-section">
+                    <div class="m-section__content">
+                        <?php if ($results->count() > '0') {
+                        ?>
+                            <div class="table-responsive">
+                                <table class="table m-table m-table--head-bg-brand">
+                                    <thead>
+                                        <tr>
+                                            <th> # </th>
+                                            <th>Profile</th>
+                                            <th>Application Number</th>
+                                            <th>Applicant Name</th>
+                                            <th>Application Date</th>
+                                            <th>Gross Amount</th>
+                                            <th>Payment Schedule</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                       
+                                        $i = ($results->currentpage() - 1) * $results->perpage() + 1;
+                                        foreach ($results as $result) {
+                                            $customer = App\Customer::where('customer_id', $result['customer_id'])->first();
+                                        ?>
+                                            <tr>
+                                                <td width="5%">{{ $i }}</td>
+                                                <td class="text-center">
+                                                    @if(!empty($customer['photo']))
+                                                    <a href="{{URL::to('/files/customers/'.$customer['photo'].'')}}" target="_blank"><img src="{{URL::to('/files/customers/'.$customer['photo'].'')}}" width="50" height="50" style="border-radius: 50%;object-fit: cover;" />
+                                                    </a>
+                                                    @endif
+                                                </td>
+                                                <td class="text-center">{{ $result->application_number }}</td>
+                                                <td>{{ $result->applicant_name }}</td>
+                                                <td>{{ $result->date_of_application }}</td>
+                                                <td>{{"Rs. "}}{{ $result->gross_amount }}</td>
+                                                <td class="text-center">{{ $result->payment_schedule }}{{" %"}}</td>
+                                                <td class="text-center">
+                                                    <div class="btn-group">
+                                                        <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="View" href="{{ route("payments.view", $result->payment_id) }}">
+                                                            <i class="fa fa-eye"></i>
+                                                        </a>
+                                                        <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="Add more" href="{{ route("payments.edit", $result->payment_id) }}">
+                                                            <i class="fa fa-pencil"></i>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                            $i++;
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            {!! $results->appends(\Request::except('page'))->render() !!}
+                            <!--@include('pagination.default', ['paginator' => $results])-->
+                        <?php } else { ?>
+                            <div class="text-center">
+                                <img src="{{ asset('admin/img/no-record.png') }}">
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
-<style>
-    .radio-sec input {
-        position: relative;
-        top: 0px;
-        margin-right: 5px;
-        margin-left: 0px;
-    }
-
-    .course-div {
-        box-shadow: 0 0 5px 2px #ddd;
-        padding: 18px;
-        margin: 15px 0;
-    }
-
-    ul {
-        list-style: none;
-        margin-left: 0px;
-    }
-
-    .borderr {
-        box-sizing: content-box;
-
-        border: 10px solid grey;
-        border-radius: 40px;
-    }
-
-    .btn.btn-success.btn-green {
-        background-color: green !important;
-        padding: 14px 8px !important;
-        height: 33px !important;
-        text-align: center !important;
-        margin: 8px 0 9px 6px !important;
-        color: #fff !important;
-    }
-
-    hr {
-        border-top: 2px solid #8c8b8b;
-    }
-
-    .btn.btn-success.btn-danger {
-        background-color: red !important;
-        padding: 14px 8px !important;
-        height: 33px !important;
-        text-align: center !important;
-        margin: 8px 0 9px 6px !important;
-        color: #fff !important;
-    }
-
-    .currencyinput {
-        border: 0px inset #ccc;
-    }
-
-    .currencyinput input {
-        border: 0;
-    }
-
-    a.btn.btn-danger.removebtn {
-        padding: 7px 11px;
-        height: 33px;
-        text-align: center;
-        margin: 8px 0 9px 6px;
-        color: #fff;
-    }
-
-    .inptwo {
-        width: 53px;
-    }
-</style>
-
 @endsection
