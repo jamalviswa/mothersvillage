@@ -335,38 +335,21 @@ class PaymentsController extends Controller
     public function edit($id = null)
     {
         $sessionadmin = Parent::checkadmin();
-        $detail = Package::where('package_id', '=', $id)->first();
-        return view('packages/edit', ['detail' => $detail]);
+        $detail = Payment::where('payment_id', '=', $id)->first();
+        return view('payments/edit', ['detail' => $detail]);
     }
-    public function update(Request $request, $id = null)
+    public function update(Request $request)
     {
 
         $check = $this->validate($request, [
-            'category' => ['required'],
-            'num_cards' => ['required'],
-            'pack' => ['required'],
-            'price' => ['required'],
-            'name' => [
-                'required',
-                Rule::unique('packages')->where(function ($query) use ($request, $id) {
-                    return $query->where('name', $request->name)->where('package_id', '<>', $id)->where('status', '<>', 'Trash');
-                })
-            ],
-            'status' => ['required'],
-            'duration' => ['required'],
+           
         ]);
-        $data = Package::findOrFail($id);
-        $data->name = $request->name;
-        $data->pack = $request->pack;
-        $data->num_cards = $request->num_cards;
-        $data->category = $request->category;
-        $data->price = ($request->pack == "Premium") ? $request->price : "";
-        $data->duration = $request->duration;
-        $data->status = $request->status;
+        $data = new Payment();
+       
         $data->save();
-        Session::flash('message', 'Package Updated!');
+        Session::flash('message', 'Payment Details Added!');
         Session::flash('alert-class', 'success');
-        return \Redirect::route('packages.index', []);
+        return \Redirect::route('payments.index', []);
     }
     public function delete(Request $request, $id = null)
     {

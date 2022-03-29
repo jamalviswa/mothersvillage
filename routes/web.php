@@ -58,7 +58,7 @@ Route::any('payments/index', 'PaymentsController@index')->name('payments.index')
 Route::get('payments/add', 'PaymentsController@add')->name('payments.add');
 Route::post('payments/store', 'PaymentsController@store')->name('payments.store');
 Route::get('payments/edit/{id}', 'PaymentsController@edit')->name('payments.edit');
-Route::post('payments/update/{id}', 'PaymentsController@update')->name('payments.update');
+Route::post('payments/update', 'PaymentsController@update')->name('payments.update');
 Route::get('payments/delete/{id}', 'PaymentsController@delete')->name('payments.delete');
 Route::get('payments/view/{id}', 'PaymentsController@view')->name('payments.view');
 Route::post('payments/map/', 'PaymentsController@map')->name('payments.map');
