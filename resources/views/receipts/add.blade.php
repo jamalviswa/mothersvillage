@@ -10,12 +10,12 @@
                     Payment Receipt
                 </h3>
             </div>
-            <!-- <div>
-                <a href="{{route('customers.personal_index')}}" rel="tooltip" title="" class="m-portlet__nav-link btn btn-lg btn-secondary  
+            <div>
+                <a href="{{route('receipts.index')}}" rel="tooltip" title="" class="m-portlet__nav-link btn btn-lg btn-secondary  
                          m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle" data-original-title="Back to List">
                     <i class="fa fa-long-arrow-left"></i>
                 </a>
-            </div> -->
+            </div>
         </div>
     </div>
     <!-- END: Subheader -->
@@ -26,7 +26,7 @@
                     <div class="m-portlet__body ">
                         <!--begin::Section-->
                         <div class="m-section ">
-                            <form method="post" action="{{ route('customers.personal_store') }}" id="upload" class="validation_form" enctype="multipart/form-data">
+                            <form method="post" action="{{ route('receipts.store') }}" id="upload" class="validation_form" enctype="multipart/form-data">
                                 @csrf
                                 <div class="col-md-12 ">
                                     <div class="m-section__content borderr">
@@ -81,33 +81,35 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-md-3">
-                                                Received with thanks from
-                                            </label>
-                                            <div class="col-md-4">
-
-                                                <input value="{{old('received') }}" autocomplete="off" type="text" class="form-control " name="received" />
-
-                                                @error('received')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                            </div>
-
                                             <label class="col-md-2">
                                                 Application No
                                             </label>
                                             <div class="col-md-3">
-
-                                                <input value="{{old('application_number') }}" autocomplete="off" type="text" class="form-control " name="application_number" />
-
+                                                <select class="form-control m-select2" id="country" name="application_number">
+                                                    <option>Select Application Number</option>
+                                                    <?php
+                                                    $phases = App\Customer::where('status', 'Active')->get();
+                                                    foreach ($phases as $phase) {
+                                                    ?>
+                                                        <option value="<?php echo $phase->customer_id ?>"><?php echo $phase->application_number ?></option>
+                                                    <?php }
+                                                    ?>
+                                                </select>
                                                 @error('application_number')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
                                                 @enderror
                                             </div>
+                                            <label class="col-md-3">
+                                                Received with thanks from
+                                            </label>
+                                            <div class="col-md-4" id="state1">
+
+                                                <input autocomplete="off" type="text" class="form-control " disabled />
+                                            </div>
+
+
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-md-2">
@@ -117,7 +119,7 @@
 
                                                 <input value="{{old('sum_rupees') }}" autocomplete="off" type="text" class="form-control" name="sum_rupees" />
 
-                                               
+
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -128,7 +130,7 @@
 
                                                 <input value="{{old('cheque_no') }}" autocomplete="off" type="text" class="form-control " name="cheque_no" />
 
-                                               
+
                                             </div>
 
                                             <label class="col-md-1">
@@ -138,7 +140,7 @@
 
                                                 <input value="{{old('dated') }}" autocomplete="off" type="text" class="form-control datepicker" name="dated" />
 
-                                               
+
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -149,7 +151,7 @@
 
                                                 <input value="{{old('drawn_on') }}" autocomplete="off" type="text" class="form-control " name="drawn_on" />
 
-                                              
+
                                             </div>
 
                                             <label class="col-md-2">
@@ -159,7 +161,7 @@
 
                                                 <input value="{{old('bank_towards') }}" autocomplete="off" type="text" class="form-control " name="bank_towards" />
 
-                                              
+
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -170,7 +172,7 @@
 
                                                 <input value="{{old('referred_by') }}" autocomplete="off" type="text" class="form-control " name="referred_by" />
 
-                                              
+
                                             </div>
                                             <label class="col-md-4 offset-md-3">
 
@@ -182,13 +184,13 @@
 
                                             <div class="col-md-3">
                                                 <div class="input-group"> <span class="input-group-text">₹</span>
-                                                    <input type="text" value="{{old('final_amount') }}"class="form-control" name="final_amount">
-                                               
-                                                @error('final_amount')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
+                                                    <input type="text" value="{{old('final_amount') }}" class="form-control" name="final_amount">
+
+                                                    @error('final_amount')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        {{ $message }}
+                                                    </span>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
@@ -216,20 +218,24 @@
         </div>
     </div>
 </div>
+<script>
+    $('#country').change(function() {
+        var country = $(this).val();
+        $.ajax({
+            url: "{{route('receipts.map')}}",
+            type: 'POST',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "application_name": country
+            },
+            dataType: 'html',
+            success: function(data) {
+                $("#state1").html(data);
+            }
+        });
+    });
+</script>
 <style>
-    .radio-sec input {
-        position: relative;
-        top: 0px;
-        margin-right: 5px;
-        margin-left: 0px;
-    }
-
-    .course-div {
-        box-shadow: 0 0 5px 2px #ddd;
-        padding: 18px;
-        margin: 15px 0;
-    }
-
     .input-group-text {
         font-weight: 600 !important;
         border-radius: unset !important;
@@ -250,10 +256,7 @@
         font-weight: 800;
     }
 
-    ul {
-        list-style: none;
-        margin-left: 0px;
-    }
+
 
     .j_title {
         font-style: italic;
@@ -274,46 +277,8 @@
         padding: 0px 15px 0px 15px;
     }
 
-    .btn.btn-success.btn-green {
-        background-color: green !important;
-        padding: 14px 8px !important;
-        height: 33px !important;
-        text-align: center !important;
-        margin: 8px 0 9px 6px !important;
-        color: #fff !important;
-    }
-
     hr {
         border-top: 2px solid #8c8b8b;
-    }
-
-    .btn.btn-success.btn-danger {
-        background-color: red !important;
-        padding: 14px 8px !important;
-        height: 33px !important;
-        text-align: center !important;
-        margin: 8px 0 9px 6px !important;
-        color: #fff !important;
-    }
-
-    .currencyinput {
-        border: 0px inset #ccc;
-    }
-
-    .currencyinput input {
-        border: 0;
-    }
-
-    a.btn.btn-danger.removebtn {
-        padding: 7px 11px;
-        height: 33px;
-        text-align: center;
-        margin: 8px 0 9px 6px;
-        color: #fff;
-    }
-
-    .inptwo {
-        width: 53px;
     }
 </style>
 

@@ -70,6 +70,7 @@ Route::get('receipts/edit/{id}', 'ReceiptsController@edit')->name('receipts.edit
 Route::post('receipts/update/{id}', 'ReceiptsController@update')->name('receipts.update');
 Route::get('receipts/delete/{id}', 'ReceiptsController@delete')->name('receipts.delete');
 Route::get('receipts/view/{id}', 'ReceiptsController@view')->name('receipts.view');
+Route::post('receipts/map/', 'ReceiptsController@map')->name('receipts.map');
 
 Route::any('deletes/personal/index', 'DeletesController@personal_index')->name('deletes.personal_index');
 Route::get('deletes/personal/view/{id}', 'DeletesController@personal_view')->name('deletes.personal_view');

@@ -93,7 +93,7 @@
                 </a>
             </li>
             <li class="m-menu__item " aria-haspopup="true" >
-                <a  href="{{route('receipts.add')}}" class="m-menu__link @if(($controller=='ReceiptsController' && $action=='index') || 
+                <a  href="{{route('receipts.index')}}" class="m-menu__link @if(($controller=='ReceiptsController' && $action=='index') || 
                     ($controller=='ReceiptsController' &&$action=='view') || 
                     ($controller=='ReceiptsController' &&$action=='edit') || 
                     ($controller=='ReceiptsController' && $action=='add') )  active @endif">
