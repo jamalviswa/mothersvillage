@@ -102,7 +102,7 @@
                                                             <i class="fa fa-eye"></i>
                                                         </a>
                                                         <?php 
-                                                        if($result->addmore == 0){
+                                                        if($result->addmore == 1){
                                                             $add = "hide";
                                                         } else {
                                                             $add = "";

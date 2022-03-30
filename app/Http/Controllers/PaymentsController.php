@@ -593,10 +593,12 @@ class PaymentsController extends Controller
         $data->handover_paymenttype20per = $request->handover_paymenttype20per ? $request->handover_paymenttype20per : "-";
         $data->handover_chequenumber20per = ($request->handover_paymenttype20per == "Cheque") ? $request->handover_chequenumber20per : "-";
         $data->handover_neftid20per = ($request->handover_paymenttype20per == "NEFT") ? $request->handover_neftid20per : "-";
-       
-        
+
         $data->created_date = date('Y-m-d H:i:s');
         $data->save();
+        $data = Payment::where('payment_id',$id)->update(['addmore'=>1]);
+
+
         Session::flash('message', 'Payment Details Added!');
         Session::flash('alert-class', 'success');
         return \Redirect::route('payments.index', []);
