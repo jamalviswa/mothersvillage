@@ -111,9 +111,9 @@
                                                         <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="View" href="{{ route("costs.view", $result->cost_id) }}">
                                                             <i class="fa fa-eye"></i>
                                                         </a>
-                                                        <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="Edit" href="{{ route("costs.edit", $result->cost_id) }}">
+                                                        <!-- <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="Edit" href="{{ route("costs.edit", $result->cost_id) }}">
                                                             <i class="fa fa-pencil"></i>
-                                                        </a>
+                                                        </a> -->
                                                     </div>
                                                 </td>
                                             </tr>

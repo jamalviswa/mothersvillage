@@ -10,7 +10,7 @@
                 </h3>
             </div>
             <div>
-                <a href="" rel="tooltip" title="" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle" data-original-title="Back to Application List">
+                <a href="{{route('blocks.index')}}" rel="tooltip" title="" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle" data-original-title="Back to List">
                     <i class="fa fa-long-arrow-left"></i>
                 </a>
             </div>
@@ -23,8 +23,10 @@
                 <div class="m-portlet">
                     <div class="m-portlet__body">
                         <?php
-                        $data['document'] = App\Document::where('customer_id', $detail->customer_id)->get();
-
+                        $data['document'] = App\Document::where('customer_id', $detail->customer_id)->where('status', 'Active')->get();
+                        $data['cost'] = App\Cost::where('customer_id', $detail->customer_id)->where('status', 'Active')->get();
+                        $data['receipt'] = App\Receipt::where('customer_id', $detail->customer_id)->where('status', 'Active')->get();
+                        $data['payment'] = App\Payment::where('customer_id', $detail->customer_id)->where('status', 'Active')->get();
                         ?>
                         <div class="accordion">
                             <h4 class="accordion-toggle">Personal Info</h4>
@@ -170,7 +172,7 @@
                                                 CO-APPLICANT NAME
                                             </label>
                                             <div class="col-md-8">
-                                            <?php echo !empty($doc->co_applicant_name) ? $doc->co_applicant_name : "-" ?>
+                                                <?php echo !empty($doc->co_applicant_name) ? $doc->co_applicant_name : "-" ?>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -178,7 +180,7 @@
                                                 CO-APPLICANT MAIL ID
                                             </label>
                                             <div class="col-md-8">
-                                            <?php echo !empty($doc->coapp_email) ? $doc->coapp_email : "-" ?>
+                                                <?php echo !empty($doc->coapp_email) ? $doc->coapp_email : "-" ?>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -186,7 +188,7 @@
                                                 CO-APPLICANT ADDRESS
                                             </label>
                                             <div class="col-md-8">
-                                            <?php echo !empty($doc->coapp_address) ? $doc->coapp_address : "-" ?>
+                                                <?php echo !empty($doc->coapp_address) ? $doc->coapp_address : "-" ?>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -194,11 +196,11 @@
                                                 CO-APPLICANT MOBILE NUMBER
                                             </label>
                                             <div class="col-md-8">
-                                            <span>
-                                                <?php
-                                                echo $doc['coapp_phone_code'] . ' ';
-                                                ?></span>
-                                            <?php echo $doc['coapp_phone']; ?>
+                                                <span>
+                                                    <?php
+                                                    echo $doc['coapp_phone_code'] . ' ';
+                                                    ?></span>
+                                                <?php echo $doc['coapp_phone']; ?>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -206,7 +208,7 @@
                                                 APPLICANT AADHAR NUMBER
                                             </label>
                                             <div class="col-md-8">
-                                            <?php echo !empty($doc->aadhar_number) ? $doc->aadhar_number : "-" ?>
+                                                <?php echo !empty($doc->aadhar_number) ? $doc->aadhar_number : "-" ?>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -214,7 +216,7 @@
                                                 APPLICANT PAN NUMBER
                                             </label>
                                             <div class="col-md-8">
-                                            <?php echo !empty($doc->pan_number) ? $doc->pan_number : "-" ?>
+                                                <?php echo !empty($doc->pan_number) ? $doc->pan_number : "-" ?>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -222,7 +224,7 @@
                                                 APPLICANT PASSPORT NUMBER
                                             </label>
                                             <div class="col-md-8">
-                                            <?php echo !empty($doc->passport_number) ? $doc->passport_number : "-" ?>
+                                                <?php echo !empty($doc->passport_number) ? $doc->passport_number : "-" ?>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -230,7 +232,7 @@
                                                 CO-APPLICANT AADHAR NUMBER
                                             </label>
                                             <div class="col-md-8">
-                                            <?php echo !empty($doc->coaadhar_number) ? $doc->coaadhar_number : "-" ?>
+                                                <?php echo !empty($doc->coaadhar_number) ? $doc->coaadhar_number : "-" ?>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -238,7 +240,7 @@
                                                 CO-APPLICANT PAN NUMBER
                                             </label>
                                             <div class="col-md-8">
-                                            <?php echo !empty($doc->copan_number) ? $doc->copan_number : "-" ?>
+                                                <?php echo !empty($doc->copan_number) ? $doc->copan_number : "-" ?>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -246,22 +248,22 @@
                                                 CO-APPLICANT PASSPORT NUMBER
                                             </label>
                                             <div class="col-md-8">
-                                            <?php echo !empty($doc->copassport_number) ? $doc->copassport_number : "-" ?>
+                                                <?php echo !empty($doc->copassport_number) ? $doc->copassport_number : "-" ?>
                                             </div>
                                         </div>
                                         <?php
-                                         $phase = App\Phase::where('phase_id', $doc['phase'])->first();
-                                         $block = App\Block::where('block_id', $doc['block'])->first();
-                                         $floor = App\Floor::where('floor_id', $doc['floor'])->first();
-                                         $flattype = App\Flattype::where('flattype_id', $doc['flattype'])->first();
-                                         $flatnumber = App\Flatnumber::where('flatnumber_id', $doc['flatnumber'])->first();
+                                        $phase = App\Phase::where('phase_id', $doc['phase'])->first();
+                                        $block = App\Block::where('block_id', $doc['block'])->first();
+                                        $floor = App\Floor::where('floor_id', $doc['floor'])->first();
+                                        $flattype = App\Flattype::where('flattype_id', $doc['flattype'])->first();
+                                        $flatnumber = App\Flatnumber::where('flatnumber_id', $doc['flatnumber'])->first();
                                         ?>
                                         <div class="form-group row">
                                             <label class="col-md-4">
                                                 PHASE
                                             </label>
                                             <div class="col-md-8">
-                                            <?php echo $phase->phase_name  ?>
+                                                <?php echo $phase->phase_name  ?>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -269,7 +271,7 @@
                                                 BLOCK
                                             </label>
                                             <div class="col-md-8">
-                                            <?php echo $block->block_name  ?>
+                                                <?php echo $block->block_name  ?>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -277,7 +279,7 @@
                                                 FLOOR
                                             </label>
                                             <div class="col-md-8">
-                                            <?php echo $floor->floor_name  ?>
+                                                <?php echo $floor->floor_name  ?>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -285,7 +287,7 @@
                                                 FLAT TYPE
                                             </label>
                                             <div class="col-md-8">
-                                            <?php echo $flattype->flattype  ?>
+                                                <?php echo $flattype->flattype  ?>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -293,7 +295,7 @@
                                                 FLAT NUMBER
                                             </label>
                                             <div class="col-md-8">
-                                            <?php echo $flatnumber->flatnumber  ?>
+                                                <?php echo $flatnumber->flatnumber  ?>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -301,7 +303,7 @@
                                                 FLAT FACING
                                             </label>
                                             <div class="col-md-8">
-                                            <?php echo $doc->facing  ?>
+                                                <?php echo $doc->facing  ?>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -309,7 +311,7 @@
                                                 SALEABLE AREA
                                             </label>
                                             <div class="col-md-8">
-                                            <?php echo $doc->salable_area  ?>
+                                                <?php echo $doc->salable_area  ?>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -317,7 +319,7 @@
                                                 PLINTH AREA
                                             </label>
                                             <div class="col-md-8">
-                                            <?php echo $doc->plinth_area  ?>
+                                                <?php echo $doc->plinth_area  ?>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -325,7 +327,7 @@
                                                 UDS AREA
                                             </label>
                                             <div class="col-md-8">
-                                            <?php echo $doc->uds_area  ?>
+                                                <?php echo $doc->uds_area  ?>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -333,7 +335,7 @@
                                                 COMN AREA
                                             </label>
                                             <div class="col-md-8">
-                                            <?php echo $doc->comn_area  ?>
+                                                <?php echo $doc->comn_area  ?>
                                             </div>
                                         </div>
                                     </div>
@@ -342,193 +344,241 @@
 
                             <h4 class="accordion-toggle">Cost Info</h4>
                             <div class="accordion-content" style="margin-top: 15px;">
-                                <?php //foreach($data['application_employment'] as $emp){
+                                <?php foreach ($data['cost'] as $cos) {
                                 ?>
-                                <div class="col-md-8">
-                                    <div class="form-group row">
-                                        <label class="col-md-4">
-                                            Name Of Company
-                                        </label>
-                                        <div class="col-md-8">
-
+                                    <div class="col-md-8">
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                                RATE PER SQFT
+                                            </label>
+                                            <div class="col-md-8">
+                                            <?php echo 'Rs.' .$cos->rate_sqft  ?>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                                SALABLE VALUE
+                                            </label>
+                                            <div class="col-md-8">
+                                            <?php echo 'Rs.' .$cos->salable_value  ?>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                                GUIDELINE VALUE
+                                            </label>
+                                            <div class="col-md-8">
+                                            <?php echo 'Rs.' .$cos->guideline_value  ?>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                                LAND COST
+                                            </label>
+                                            <div class="col-md-8">
+                                            <?php echo 'Rs.' .$cos->land_cost  ?>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                                CONSTRUCTION COST
+                                            </label>
+                                            <div class="col-md-8">
+                                            <?php echo 'Rs.' .$cos->construction_cost  ?>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                                ELECTRICTY CHARGES
+                                            </label>
+                                            <div class="col-md-8">
+                                            <?php echo 'Rs.' .$cos->electricity_charges  ?>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                                METRO WATER SUPPLY
+                                            </label>
+                                            <div class="col-md-8">
+                                            <?php echo 'Rs.' .$cos->water_supply  ?>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                                CAR PARK
+                                            </label>
+                                            <div class="col-md-8">
+                                            <?php echo 'Rs.' .$cos->car_park  ?>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                                AMENITIES CHARGES
+                                            </label>
+                                            <div class="col-md-8">
+                                            <?php echo 'Rs.' .$cos->amenities_charges  ?>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                                MAINTENANCE CHARGES
+                                            </label>
+                                            <div class="col-md-8">
+                                            <?php echo 'Rs.' .$cos->maintenance  ?>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                                GROSS AMOUNT
+                                            </label>
+                                            <div class="col-md-8">
+                                            <?php echo 'Rs.' .$cos->gross_amount  ?>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                                STAMP DUTY CHARGES
+                                            </label>
+                                            <div class="col-md-8">
+                                            <?php echo 'Rs.' .$cos->stamp  ?>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                                REGISTRATION CHARGES
+                                            </label>
+                                            <div class="col-md-8">
+                                            <?php echo 'Rs.' .$cos->registration  ?>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                                REGISTRATION CHARGES FOR CONSTRUCTION AGREEMENT
+                                            </label>
+                                            <div class="col-md-8">
+                                            <?php echo 'Rs.' .$cos->construction  ?>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                                CORPUS FUND
+                                            </label>
+                                            <div class="col-md-8">
+                                            <?php echo 'Rs.' .$cos->corpus_fund  ?>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                                GST
+                                            </label>
+                                            <div class="col-md-8">
+                                            <?php echo 'Rs.' .$cos->gst  ?>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-4">
+                                                TOTAL AMOUNT
+                                            </label>
+                                            <div class="col-md-8">
+                                            <?php echo 'Rs.' .$cos->total_amount  ?>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-md-4">
-                                            Country
-                                        </label>
-                                        <div class="col-md-8">
-
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-md-4">
-                                            Position held
-                                        </label>
-                                        <div class="col-md-8">
-
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-md-4">
-                                            Nature Of Duties
-                                        </label>
-                                        <div class="col-md-8">
-
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-md-4">
-                                            From - To period of working
-                                        </label>
-                                        <div class="col-md-8">
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <?php //} 
+                                <?php }
                                 ?>
                             </div>
                             <h4 class="accordion-toggle">Payment Info</h4>
                             <div class="accordion-content" style="margin-top: 15px;">
-                                <?php //foreach($data['application_relation'] as $rela){
-                                ?>
-                                <div class="col-md-8">
-                                    <div class="form-group row">
-                                        <label class="col-md-4">
-                                            Full Name
-                                        </label>
-                                        <div class="col-md-8">
-
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-md-4">
-                                            Relationship
-                                        </label>
-                                        <div class="col-md-8">
-
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-md-4">
-                                            DOB
-                                        </label>
-                                        <div class="col-md-8">
-
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-md-4">
-                                            Place of Birth
-                                        </label>
-                                        <div class="col-md-8">
-
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-md-4">
-                                            Nationality
-                                        </label>
-                                        <div class="col-md-8">
-
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-md-4">
-                                            NRIC No
-                                        </label>
-                                        <div class="col-md-8">
-
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-md-4">
-                                            FIN no
-                                        </label>
-                                        <div class="col-md-8">
-
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-md-4">
-                                            Occupation
-                                        </label>
-                                        <div class="col-md-8">
-
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-md-4">
-                                            Residential Status
-                                        </label>
-                                        <div class="col-md-8">
-
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-md-4">
-                                            Parent Siblings
-                                        </label>
-                                        <div class="col-md-8">
-
-                                        </div>
-                                    </div>
+                          
+                                <div class="table-responsive">
+                                    <table class="table m-table m-table--head-bg-brand">
+                                        <thead>
+                                            <tr>
+                                                <th>Payment Schedule</th>
+                                                <th>Total Amount</th>
+                                                <th>Received Amount</th>
+                                                <th>Balance Amount</th>
+                                                <th>Payment Date</th>
+                                                <th>Transaction Type</th>
+                                                <th>Payment Type</th>
+                                                <th>Cheque Number</th>
+                                                <th>NEFT ID</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($data['payment'] as $pay) {  ?>
+                                                <tr>
+                                                    <td><?php echo $pay->receipt_no  ?></td>
+                                                    <td><?php echo $pay->receipt_date  ?></td>
+                                                    <td><?php echo 'Rs.' . $pay->final_amount  ?></td>
+                                                    <td><?php echo !empty($pay->cheque_no) ? $pay->cheque_no : "-" ?></td>
+                                                    <td><?php echo !empty($pay->dated) ? $pay->dated : "-" ?></td>
+                                                    <td><?php echo !empty($pay->drawn_on) ? $pay->drawn_on : "-" ?></td>
+                                                    <td><?php echo !empty($pay->bank_towards) ? $pay->bank_towards : "-" ?></td>
+                                                    <td><?php echo !empty($pay->referred_by) ? $pay->referred_by : "-" ?></td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
                                 </div>
-                                <?php //} 
-                                ?>
+                              
+                               
+                                
                             </div>
                             <h4 class="accordion-toggle">Receipt Info</h4>
                             <div class="accordion-content" style="margin-top: 15px;">
-                                <?php //foreach($data['application_finance'] as $finance){
-                                ?>
-                                <div class="col-md-8">
-                                    <div class="form-group row">
-                                        <label class="col-md-4">
-                                            Member Type
-                                        </label>
-                                        <div class="col-md-8">
-
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-md-4">
-                                            Monthly Income
-                                        </label>
-                                        <div class="col-md-8">
-
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-md-4">
-                                            Current Saving
-                                        </label>
-                                        <div class="col-md-8">
-
-                                        </div>
-                                    </div>
-
+                            <?php if ($data['receipt']->count() > '0') {
+                        ?>
+                                <div class="table-responsive">
+                                    <table class="table m-table m-table--head-bg-brand">
+                                        <thead>
+                                            <tr>
+                                                <th>Receipt No</th>
+                                                <th>Receipt Date</th>
+                                                <th>Receipt Amount</th>
+                                                <th>Cheque/DD No</th>
+                                                <th>Cheque Date</th>
+                                                <th>Drawn On</th>
+                                                <th>Bank Towards</th>
+                                                <th>Referred By</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($data['receipt'] as $rec) {  
+                                                 
+                                                ?>
+                                                <tr>
+                                                    <td><?php echo $rec->receipt_no  ?></td>
+                                                    <td><?php echo $rec->receipt_date  ?></td>
+                                                    <td><?php echo 'Rs.' . $rec->final_amount  ?></td>
+                                                    <td><?php echo !empty($rec->cheque_no) ? $rec->cheque_no : "-" ?></td>
+                                                    <td><?php echo !empty($rec->dated) ? $rec->dated : "-" ?></td>
+                                                    <td><?php echo !empty($rec->drawn_on) ? $rec->drawn_on : "-" ?></td>
+                                                    <td><?php echo !empty($rec->bank_towards) ? $rec->bank_towards : "-" ?></td>
+                                                    <td><?php echo !empty($rec->referred_by) ? $rec->referred_by : "-" ?></td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
                                 </div>
-                                <?php //} 
-                                ?>
+                                <?php } else { ?>
+                            <div class="text-center">
+                                <img src="{{ asset('admin/img/no-record.png') }}">
                             </div>
-
-
+                        <?php } ?>
+                            </div>
                         </div>
-                        <div class="download_pdf">
+                        <!-- <div class="download_pdf">
                             <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="Download Invoice" href="" target="_blank" download>
                                 Download PDF<i style="color: white;font-size: 18px !important;" class="fa fa-download"></i>
                             </a>
-                        </div>
-
-
-
+                        </div> -->
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
+</div>
     <style>
         .application a.btn.btn-secondary.m-btn.m-btn--air.m-btn--custom {
             padding: 17px;

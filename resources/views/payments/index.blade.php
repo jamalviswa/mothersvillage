@@ -101,8 +101,15 @@
                                                         <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="View" href="{{ route("payments.view", $result->payment_id) }}">
                                                             <i class="fa fa-eye"></i>
                                                         </a>
-                                                        <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="Add more" href="{{ route("payments.edit", $result->payment_id) }}">
-                                                            <i class="fa fa-pencil"></i>
+                                                        <?php 
+                                                        if($result->addmore == 0){
+                                                            $add = "hide";
+                                                        } else {
+                                                            $add = "";
+                                                        }
+                                                        ?>
+                                                        <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom <?php echo $add ?>" title="Add more" href="{{ route("payments.edit", $result->payment_id) }}">
+                                                            <i class="fa fa-plus-square"></i>
                                                         </a>
                                                     </div>
                                                 </td>

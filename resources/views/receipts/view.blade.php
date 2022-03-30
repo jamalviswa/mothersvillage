@@ -154,11 +154,11 @@
                                         </div>
 
                                     </div>
-                                    <div class="download_pdf">
+                                    <!-- <div class="download_pdf">
                                         <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="Download Invoice" href="{{ route('receipts.invoicepdf',$detail['customer_id']) }}" target="_blank" download>
                                             Download PDF<i style="color: white;font-size: 18px !important;" class="fa fa-download"></i>
                                         </a>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>

@@ -26,7 +26,7 @@
                     <div class="form-group">
                             <select class="form-control" name="application_number">
                                 @php
-                                $customers = App\Document::where('status','Active')->orderby('application_number','asc')->get();
+                                $customers = App\Customer::where('status','Active')->orderby('application_number','asc')->get();
                                 @endphp
                                 <option value="">Select Application Number</option>
                                 @foreach($customers as $customer)
@@ -37,7 +37,7 @@
                         <div class="form-group">
                             <select class="form-control" name="applicant_name">
                                 @php
-                                $customers = App\Document::where('status','Active')->orderby('applicant_name','asc')->get();
+                                $customers = App\Customer::where('status','Active')->orderby('applicant_name','asc')->get();
                                 @endphp
                                 <option value="">Select Applicant Name</option>
                                 @foreach($customers as $customer)
@@ -102,6 +102,9 @@
                                                     <div class="btn-group">
                                                         <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="View" href="{{ route("receipts.view", $result->receipt_id) }}">
                                                             <i class="fa fa-eye"></i>
+                                                        </a>
+                                                        <a rel="tooltip" class="delete btn btn-secondary m-btn m-btn--air m-btn--custom" title="Delete" data-value="{{$result['receipt_id']}}" href="{{ route('receipts.delete',$result['receipt_id']) }}">
+                                                            <i class="fa fa-trash"></i>
                                                         </a>
                                                        
                                                     </div>

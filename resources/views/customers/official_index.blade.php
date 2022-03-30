@@ -123,9 +123,9 @@
                                                             <i class="fa fa-eye"></i>
                                                         </a>
                                                         @if($sessionadmin->adminname == "Admin")
-                                                        <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="Edit" href="{{ route("customers.official_edit", $result->document_id) }}">
+                                                        <!-- <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="Edit" href="{{ route("customers.official_edit", $result->document_id) }}">
                                                             <i class="fa fa-pencil"></i>
-                                                        </a>
+                                                        </a> -->
                                                         <a rel="tooltip" class="delete btn btn-secondary m-btn m-btn--air m-btn--custom" title="Delete" data-value="{{$result['document_id']}}" href="{{ route('customers.official_delete',$result['document_id']) }}">
                                                             <i class="fa fa-trash"></i>
                                                         </a>

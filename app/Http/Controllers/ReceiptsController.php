@@ -27,7 +27,7 @@ class ReceiptsController extends Controller
         if (!empty($_REQUEST['applicant_name'])) {
             $customer = $_REQUEST['applicant_name'];
             $result->where(function ($query) use ($customer) {
-                $query->where('applicant_name', 'LIKE', "%$customer%");
+                $query->where('received', 'LIKE', "%$customer%");
             });
         }
         if (!empty($_REQUEST['application_number'])) {
@@ -64,12 +64,12 @@ class ReceiptsController extends Controller
         $names = Customer::where('customer_id', $request->application_number)->first();
         $data->application_number = $names->application_number;
         $data->received = $names->applicant_name;
-        $data->sum_rupees = $request->sum_rupees ? $request->sum_rupees : "-";
-        $data->cheque_no = $request->cheque_no ? $request->cheque_no : "-";
-        $data->dated = $request->dated ? $request->dated : "-";
-        $data->drawn_on = $request->drawn_on ? $request->drawn_on : "-";
-        $data->bank_towards = $request->bank_towards ? $request->bank_towards : "-";
-        $data->referred_by = $request->referred_by ? $request->referred_by : "-";
+        $data->sum_rupees = $request->sum_rupees;
+        $data->cheque_no = $request->cheque_no;
+        $data->dated = $request->dated;
+        $data->drawn_on = $request->drawn_on;
+        $data->bank_towards = $request->bank_towards;
+        $data->referred_by = $request->referred_by;
         $data->final_amount = $request->final_amount;
         $data->status = "Active";
         $data->created_date = date('Y-m-d H:i:s');
@@ -101,12 +101,12 @@ class ReceiptsController extends Controller
 
     public function delete(Request $request, $id = null)
     {
-        $data = Package::findOrFail($id);
+        $data = Receipt::findOrFail($id);
         $data->status = 'Trash';
         $data->save();
         Session::flash('message', 'Deleted Sucessfully!');
         Session::flash('alert-class', 'success');
-        return \Redirect::route('packages.index', []);
+        return \Redirect::route('receipts.index', []);
     }
 
     public function invoicepdf($id = null)
