@@ -80,6 +80,8 @@ Route::any('deletes/official/index', 'DeletesController@official_index')->name('
 Route::get('deletes/official/view/{id}', 'DeletesController@official_view')->name('deletes.official_view');
 Route::any('deletes/cost/index', 'DeletesController@cost_index')->name('deletes.cost_index');
 Route::get('deletes/cost/view/{id}', 'DeletesController@cost_view')->name('deletes.cost_view');
+Route::any('deletes/receipt/index', 'DeletesController@receipt_index')->name('deletes.receipt_index');
+Route::get('deletes/receipt/view/{id}', 'DeletesController@receipt_view')->name('deletes.receipt_view');
 
 
 Route::any('costs/index', 'CostsController@index')->name('costs.index');

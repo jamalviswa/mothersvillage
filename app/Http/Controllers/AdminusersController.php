@@ -86,7 +86,7 @@ class AdminusersController extends Controller
     public function subadmin_index()
     {
         $sessionadmin = Parent::checkadmin();
-        $result = Adminuser::where('status', '<>', 'Trash')->orderBy('admin_id', 'desc');
+        $result = Adminuser::where('status', '<>', 'Trash')->where('adminname','Subadmin')->orderBy('admin_id', 'desc');
         if (!empty($_REQUEST['s'])) {
             $s = $_REQUEST['s'];
             $result->where(function ($query) use ($s) {

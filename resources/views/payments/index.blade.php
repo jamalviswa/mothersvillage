@@ -23,10 +23,10 @@
                 <!--begin::Section-->
                 <div class="m-section__content    ">
                     <form method="GET" class="search-form form-inline " action="#">
-                    <div class="form-group">
+                        <div class="form-group">
                             <select class="form-control" name="application_number">
                                 @php
-                                $customers = App\Document::where('status','Active')->orderby('application_number','asc')->get();
+                                $customers = App\Customer::where('status','Active')->orderby('application_number','asc')->get();
                                 @endphp
                                 <option value="">Select Application Number</option>
                                 @foreach($customers as $customer)
@@ -34,10 +34,10 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group">    
                             <select class="form-control" name="applicant_name">
                                 @php
-                                $customers = App\Document::where('status','Active')->orderby('applicant_name','asc')->get();
+                                $customers = App\Customer::where('status','Active')->orderby('applicant_name','asc')->get();
                                 @endphp
                                 <option value="">Select Applicant Name</option>
                                 @foreach($customers as $customer)
@@ -78,7 +78,7 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                       
+
                                         $i = ($results->currentpage() - 1) * $results->perpage() + 1;
                                         foreach ($results as $result) {
                                             $customer = App\Customer::where('customer_id', $result['customer_id'])->first();
@@ -98,19 +98,70 @@
                                                 <td class="text-center">{{ $result->payment_schedule }}{{" %"}}</td>
                                                 <td class="text-center">
                                                     <div class="btn-group">
-                                                        <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="View" href="{{ route("payments.view", $result->payment_id) }}">
-                                                            <i class="fa fa-eye"></i>
-                                                        </a>
-                                                        <?php 
-                                                        if($result->addmore == 1){
+                                                        
+                                                        <?php
+                                                        if ($result->addmore == 1) {
                                                             $add = "hide";
                                                         } else {
                                                             $add = "";
                                                         }
                                                         ?>
-                                                        <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom <?php echo $add ?>" title="Add more" href="{{ route("payments.edit", $result->payment_id) }}">
+                                                        <?php
+                                                        if ($result->payment_schedule == 10) {
+                                                            if (($result->onbook_balance10per == 0) &&
+                                                                ($result->payments_balance10per == 0) &&
+                                                                ($result->first_balance10per == 0) &&
+                                                                ($result->second_balance10per == 0) &&
+                                                                ($result->third_balance10per == 0) &&
+                                                                ($result->fourth_balance10per == 0) &&
+                                                                ($result->fifth_balance10per == 0) &&
+                                                                ($result->handover_balance10per == 0)
+                                                            ) {
+                                                                $pay = "hide";
+                                                            } else {
+                                                                $pay = "";
+                                                            }
+                                                        } else if ($result->payment_schedule == 15) {
+                                                            if (($result->onbook_balance15per == 0) &&
+                                                                ($result->payments_balance15per == 0) &&
+                                                                ($result->first_balance15per == 0) &&
+                                                                ($result->second_balance15per == 0) &&
+                                                                ($result->third_balance15per == 0) &&
+                                                                ($result->fourth_balance15per == 0) &&
+                                                                ($result->fifth_balance15per == 0) &&
+                                                                ($result->handover_balance15per == 0)
+                                                            ) {
+                                                                $pay = "hide";
+                                                            } else {
+                                                                $pay = "";
+                                                            }
+                                                        } else if ($result->payment_schedule == 20) {
+                                                            if (($result->onbook_balance20per == 0) &&
+                                                                ($result->payments_balance20per == 0) &&
+                                                                ($result->first_balance20per == 0) &&
+                                                                ($result->second_balance20per == 0) &&
+                                                                ($result->third_balance20per == 0) &&
+                                                                ($result->fourth_balance20per == 0) &&
+                                                                ($result->fifth_balance20per == 0) &&
+                                                                ($result->handover_balance20per == 0)
+                                                            ) {
+                                                                $pay = "hide";
+                                                            } else {
+                                                                $pay = "";
+                                                            }
+                                                        }
+                                                        ?>
+                                                        <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom <?php echo $add ?> <?php echo $pay ?>" title="Add more" href="{{ route("payments.edit", $result->payment_id) }}">
                                                             <i class="fa fa-plus-square"></i>
                                                         </a>
+                                                        <!-- <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="View" href="{{ route("payments.view", $result->payment_id) }}">
+                                                            <i class="fa fa-eye"></i>
+                                                        </a> -->
+                                                        @if($sessionadmin->adminname == "Admin")
+                                                        <a rel="tooltip" class="delete btn btn-secondary m-btn m-btn--air m-btn--custom" title="Delete" data-value="{{$result['cost_id']}}" href="{{ route('payments.delete',$result['cost_id']) }}">
+                                                            <i class="fa fa-trash"></i>
+                                                        </a>
+                                                        @endif
                                                     </div>
                                                 </td>
                                             </tr>

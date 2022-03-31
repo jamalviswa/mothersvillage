@@ -144,7 +144,7 @@
 
     button {
         margin-top: 50px;
-        width: 50%;
+        /* width: 50%; */
         background-color: #ffffff;
         color: #080710;
         padding: 15px 0;

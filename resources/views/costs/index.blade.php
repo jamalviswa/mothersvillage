@@ -114,6 +114,11 @@
                                                         <!-- <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="Edit" href="{{ route("costs.edit", $result->cost_id) }}">
                                                             <i class="fa fa-pencil"></i>
                                                         </a> -->
+                                                        @if($sessionadmin->adminname == "Admin")
+                                                        <a rel="tooltip" class="delete btn btn-secondary m-btn m-btn--air m-btn--custom" title="Delete" data-value="{{$result['cost_id']}}" href="{{ route('costs.delete',$result['cost_id']) }}">
+                                                            <i class="fa fa-trash"></i>
+                                                        </a>
+                                                        @endif
                                                     </div>
                                                 </td>
                                             </tr>

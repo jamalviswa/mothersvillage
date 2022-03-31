@@ -10,7 +10,7 @@
                 </h3>
             </div>
             <div>
-                <a href="{{route('receipts.index')}}" rel="tooltip" title="" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle" data-original-title="Back to List">
+                <a href="{{route('deletes.receipt_index')}}" rel="tooltip" title="" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle" data-original-title="Back to List">
                     <i class="fa fa-long-arrow-left"></i>
                 </a>
             </div>

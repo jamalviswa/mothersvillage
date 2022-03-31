@@ -487,7 +487,7 @@
                                 <?php }
                                 ?>
                             </div>
-                            <h4 class="accordion-toggle">Payment Info</h4>
+                            <!-- <h4 class="accordion-toggle">Payment Info</h4>
                             <div class="accordion-content" style="margin-top: 15px;">
                           
                                 <div class="table-responsive">
@@ -508,10 +508,10 @@
                                         <tbody>
                                             <?php foreach ($data['payment'] as $pay) {  ?>
                                                 <tr>
-                                                    <td><?php echo $pay->receipt_no  ?></td>
-                                                    <td><?php echo $pay->receipt_date  ?></td>
-                                                    <td><?php echo 'Rs.' . $pay->final_amount  ?></td>
-                                                    <td><?php echo !empty($pay->cheque_no) ? $pay->cheque_no : "-" ?></td>
+                                                    <td><?php echo $pay->payment_schedule  ?></td>
+                                                    <td><?php echo $pay->onbook10per  ?></td>
+                                                    <td><?php echo 'Rs.' . $pay->onbook_received10per  ?></td>
+                                                    <td><?php echo $pay->onbook_balance10per ?></td>
                                                     <td><?php echo !empty($pay->dated) ? $pay->dated : "-" ?></td>
                                                     <td><?php echo !empty($pay->drawn_on) ? $pay->drawn_on : "-" ?></td>
                                                     <td><?php echo !empty($pay->bank_towards) ? $pay->bank_towards : "-" ?></td>
@@ -524,7 +524,7 @@
                               
                                
                                 
-                            </div>
+                            </div> -->
                             <h4 class="accordion-toggle">Receipt Info</h4>
                             <div class="accordion-content" style="margin-top: 15px;">
                             <?php if ($data['receipt']->count() > '0') {

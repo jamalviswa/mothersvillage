@@ -13,15 +13,9 @@ use Session;
 use DB;
 use Redirect;
 use App\Customer;
-use App\Family_detail;
-use App\Block;
-use App\Floor;
-use App\Flattype;
-use App\Flatnumber;
 use App\Document;
-use App\Son;
-use App\Daughter;
 use App\Cost;
+use App\Receipt;
 
 class DeletesController extends Controller
 {
@@ -114,5 +108,37 @@ class DeletesController extends Controller
         $sessionadmin = Parent::checkadmin();
         $detail = Cost::where('cost_id', '=', $id)->first();
         return view('deletes/cost_view', ['detail' => $detail]);
+    }
+
+    public function receipt_index()
+    {
+        $sessionadmin = Parent::checkadmin();
+        $result = Receipt::where('status', '<>', 'Active')
+            ->orderBy('receipt_id', 'desc');
+        if (!empty($_REQUEST['applicant_name'])) {
+            $customer = $_REQUEST['applicant_name'];
+            $result->where(function ($query) use ($customer) {
+                $query->where('received', 'LIKE', "%$customer%");
+            });
+        }
+        if (!empty($_REQUEST['application_number'])) {
+            $customer = $_REQUEST['application_number'];
+            $result->where(function ($query) use ($customer) {
+                $query->where('application_number', 'LIKE', "%$customer%");
+            });
+        }
+
+        $result = $result->paginate(10);
+
+        return view('/deletes/receipt_index', [
+            'results' => $result
+        ]);
+    }
+
+    public function receipt_view($id = null)
+    {
+        $sessionadmin = Parent::checkadmin();
+        $detail = Receipt::where('receipt_id', '=', $id)->first();
+        return view('deletes/receipt_view', ['detail' => $detail]);
     }
 }

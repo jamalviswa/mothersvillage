@@ -103,10 +103,11 @@
                                                         <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="View" href="{{ route("receipts.view", $result->receipt_id) }}">
                                                             <i class="fa fa-eye"></i>
                                                         </a>
+                                                        @if($sessionadmin->adminname == "Admin")
                                                         <a rel="tooltip" class="delete btn btn-secondary m-btn m-btn--air m-btn--custom" title="Delete" data-value="{{$result['receipt_id']}}" href="{{ route('receipts.delete',$result['receipt_id']) }}">
                                                             <i class="fa fa-trash"></i>
                                                         </a>
-                                                       
+                                                        @endif
                                                     </div>
                                                 </td>
                                             </tr>

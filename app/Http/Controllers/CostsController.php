@@ -144,12 +144,10 @@ class CostsController extends Controller
         $data = Cost::findOrFail($id);
         $data->status = 'Trash';
         $data->save();
-        $payments = Payment::where('customer_id', '=', $id)->get();
+        $payments = Payment::where('cost_id', '=', $id)->get();  
         foreach ($payments as $payment) {
-            $last = $payment['id'];
-            $data = Payment::findOrFail($last);
-            $data->status = 'Trash';
-            $data->save();
+            $last = $payment['payment_id'];
+            $data = Payment::where('payment_id',$last)->update(['status'=>"Trash"]);
         }
         Session::flash('message', 'Deleted Sucessfully!');
         Session::flash('alert-class', 'success');

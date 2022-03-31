@@ -246,7 +246,7 @@
                         </ul>
                 </div>
             </li>
-
+            @endif
             <li class="m-menu__item  m-menu__item--submenu m-menu__item--rel"  data-menu-submenu-toggle="click" aria-haspopup="true">
                 <a href="" class="m-menu__link @if(($controller=='DeletesController' && $action=='personal_index') || 
                     ($controller=='DeletesController' && $action=='personal_view') )   active @endif  m-menu__toggle">
@@ -302,7 +302,19 @@
                                     </span>
                                 </a>
                             </li>
-                          
+                            <li class="m-menu__item " aria-haspopup="true" >
+                                <a  href="{{route('deletes.receipt_index')}}" class="m-menu__link @if(($controller=='DeletesController' && $action=='receipt_index') || 
+                                    ($controller=='DeletesController' && $action=='receipt_view')  )  active @endif">
+                                    <i class="m-menu__link-icon flaticon-file"></i>
+                                    <span class="m-menu__link-title">
+                                        <span class="m-menu__link-wrap">
+                                            <span class="m-menu__link-text">
+                                               RECEIPT
+                                            </span>
+                                        </span>
+                                    </span>
+                                </a>
+                            </li>
                            
                            
                          
@@ -311,7 +323,7 @@
                 </div>
             </li>
 
-            @endif
+           
          
 
             

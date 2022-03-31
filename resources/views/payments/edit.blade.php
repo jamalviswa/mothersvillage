@@ -114,7 +114,14 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr>
+                                                                <?php 
+                                                                if($detail['onbook_balance10per'] == 0) {
+                                                                    $onbook = "hide";
+                                                                } else {
+                                                                    $onbook = "";
+                                                                }
+                                                                ?>
+                                                                <tr class="<?php echo  $onbook; ?>">
                                                                     <td width="5%">
                                                                         1.
                                                                     </td>
@@ -131,17 +138,17 @@
                                                                         <input value="{{ old('onbook_balance10per') }}" class="form-control" type="text" disabled name="onbook_balance10per" id="balamount" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('onbook_paymentdate10per') }}" type="text" class="form-control datepicker" name="onbook_paymentdate10per" />
+                                                                        <input value="{{ old('onbook_paymentdate10per') }}" autocomplete="off" type="text" class="form-control datepicker" name="onbook_paymentdate10per" />
                                                                     </td>
                                                                     <td>
-                                                                        <select class="form-control" name="onbook_transactiontype10per">
+                                                                        <select class="form-control" autocomplete="off" name="onbook_transactiontype10per">
                                                                             <option value=''>--Select--</option>
                                                                             <option value="Ownfund">OwnFund</option>
                                                                             <option value="Bank">Bank</option>
                                                                         </select>
                                                                     </td>
                                                                     <td>
-                                                                        <select class="form-control onbook" name="onbook_paymenttype10per">
+                                                                        <select class="form-control onbook" autocomplete="off" name="onbook_paymenttype10per">
                                                                             <option value=''>--Select--</option>
                                                                             <option value="Cheque">Cheque</option>
                                                                             <option value="Cash">Cash</option>
@@ -149,16 +156,23 @@
                                                                         </select>
                                                                     </td>
                                                                     <td id="onchequetd" style="display:none;">
-                                                                        <input value="{{ old('onbook_chequenumber10per') }}" type="text" placeholder="Cheque No" class="form-control" name="onbook_chequenumber10per" />
+                                                                        <input value="{{ old('onbook_chequenumber10per') }}" autocomplete="off" type="text" placeholder="Cheque No" class="form-control" name="onbook_chequenumber10per" />
                                                                     </td>
                                                                     <td id="oncashtd">
                                                                         <input value="" disabled type="text" class="form-control" />
                                                                     </td>
                                                                     <td id="onnefttd" style="display:none;">
-                                                                        <input value="{{ old('onbook_neftid10per') }}" type="text" placeholder="NEFT ID" class="form-control" name="onbook_neftid10per" />
+                                                                        <input value="{{ old('onbook_neftid10per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="onbook_neftid10per" />
                                                                     </td>
                                                                 </tr>
-                                                                <tr>
+                                                                <?php 
+                                                                if($detail['payments_balance10per'] == 0) {
+                                                                    $payments = "hide";
+                                                                } else {
+                                                                    $payments = "";
+                                                                }
+                                                                ?>
+                                                                <tr class="<?php echo  $payments; ?>">
                                                                     <td width="5%">
                                                                         2.
                                                                     </td>
@@ -175,17 +189,17 @@
                                                                         <input value="{{ old('payments_balance10per') }}" class="form-control" type="text" disabled name="payments_balance10per" id="balamount1" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('payments_paymentdate10per') }}" type="text" class="form-control datepicker" name="payments_paymentdate10per" />
+                                                                        <input value="{{ old('payments_paymentdate10per') }}" autocomplete="off" type="text" class="form-control datepicker" name="payments_paymentdate10per" />
                                                                     </td>
                                                                     <td>
-                                                                        <select class="form-control" name="payments_transactiontype10per">
+                                                                        <select class="form-control" autocomplete="off" name="payments_transactiontype10per">
                                                                             <option value=''>--Select--</option>
                                                                             <option value="Ownfund">OwnFund</option>
                                                                             <option value="Bank">Bank</option>
                                                                         </select>
                                                                     </td>
                                                                     <td>
-                                                                        <select class="form-control agreements" name="payments_paymenttype10per">
+                                                                        <select class="form-control agreements" autocomplete="off" name="payments_paymenttype10per">
                                                                             <option value=''>--Select--</option>
                                                                             <option value="Cheque">Cheque</option>
                                                                             <option value="Cash">Cash</option>
@@ -193,16 +207,24 @@
                                                                         </select>
                                                                     </td>
                                                                     <td id="agreementschequetd" style="display:none;">
-                                                                        <input value="{{ old('payments_chequenumber10per') }}" type="text" placeholder="Cheque No" class="form-control" name="payments_chequenumber10per" />
+                                                                        <input value="{{ old('payments_chequenumber10per') }}" autocomplete="off" type="text" placeholder="Cheque No" class="form-control" name="payments_chequenumber10per" />
                                                                     </td>
                                                                     <td id="agreementscashtd">
                                                                         <input value="" disabled type="text" class="form-control" name="" />
                                                                     </td>
                                                                     <td id="agreementsnefttd" style="display:none;">
-                                                                        <input value="{{ old('payments_neftid10per') }}" type="text" placeholder="NEFT ID" class="form-control" name="payments_neftid10per" />
+                                                                        <input value="{{ old('payments_neftid10per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="payments_neftid10per" />
                                                                     </td>
                                                                 </tr>
-                                                                <tr>
+                                                                <?php 
+                                                                if($detail['first_balance10per'] == 0) {
+                                                                    $first = "hide";
+                                                                } else {
+                                                                    $first = "";
+                                                                }
+                                                                ?>
+                                                                <tr class="<?php echo  $first; ?>">
+                                                               
                                                                     <td width="5%">
                                                                         3.
                                                                     </td>
@@ -219,17 +241,17 @@
                                                                         <input value="{{ old('first_balance10per') }}" class="form-control" type="text" disabled name="first_balance10per" id="balamount2" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('first_paymentdate10per') }}" type="text" class="form-control datepicker" name="first_paymentdate10per" />
+                                                                        <input value="{{ old('first_paymentdate10per') }}" autocomplete="off" type="text" class="form-control datepicker" name="first_paymentdate10per" />
                                                                     </td>
                                                                     <td>
-                                                                        <select class="form-control" name="first_transactiontype10per">
+                                                                        <select class="form-control" autocomplete="off" name="first_transactiontype10per">
                                                                             <option value=''>--Select--</option>
                                                                             <option value="Ownfund">OwnFund</option>
                                                                             <option value="Bank">Bank</option>
                                                                         </select>
                                                                     </td>
                                                                     <td>
-                                                                        <select class="form-control 1stfloor" name="first_paymenttype10per">
+                                                                        <select class="form-control 1stfloor" autocomplete="off" name="first_paymenttype10per">
                                                                             <option value=''>--Select--</option>
                                                                             <option value="Cheque">Cheque</option>
                                                                             <option value="Cash">Cash</option>
@@ -237,16 +259,23 @@
                                                                         </select>
                                                                     </td>
                                                                     <td id="1stfloorchequetd" style="display:none;">
-                                                                        <input value="{{ old('first_chequenumber10per') }}" type="text" placeholder="Cheque No" class="form-control" name="first_chequenumber10per" />
+                                                                        <input value="{{ old('first_chequenumber10per') }}" autocomplete="off" type="text" placeholder="Cheque No" class="form-control" name="first_chequenumber10per" />
                                                                     </td>
                                                                     <td id="1stfloorcashtd">
                                                                         <input value="" disabled type="text" class="form-control" name="" />
                                                                     </td>
                                                                     <td id="1stfloornefttd" style="display:none;">
-                                                                        <input value="{{ old('first_neftid10per') }}" type="text" placeholder="NEFT ID" class="form-control" name="first_neftid10per" />
+                                                                        <input value="{{ old('first_neftid10per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="first_neftid10per" />
                                                                     </td>
                                                                 </tr>
-                                                                <tr>
+                                                                <?php 
+                                                                if($detail['second_balance10per'] == 0) {
+                                                                    $second = "hide";
+                                                                } else {
+                                                                    $second = "";
+                                                                }
+                                                                ?>
+                                                                <tr class="<?php echo  $second; ?>">
                                                                     <td width="5%">
                                                                         4.
                                                                     </td>
@@ -263,17 +292,17 @@
                                                                         <input value="{{ old('second_balance10per') }}" class="form-control" type="text" disabled name="second_balance10per" id="balamount3" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('second_paymentdate10per') }}" type="text" class="form-control datepicker" name="second_paymentdate10per" />
+                                                                        <input value="{{ old('second_paymentdate10per') }}" autocomplete="off" type="text" class="form-control datepicker" name="second_paymentdate10per" />
                                                                     </td>
                                                                     <td>
-                                                                        <select class="form-control" name="second_transactiontype10per">
+                                                                        <select class="form-control" autocomplete="off" name="second_transactiontype10per">
                                                                             <option value=''>--Select--</option>
                                                                             <option value="Ownfund">OwnFund</option>
                                                                             <option value="Bank">Bank</option>
                                                                         </select>
                                                                     </td>
                                                                     <td>
-                                                                        <select class="form-control 2ndfloor" name="second_paymenttype10per">
+                                                                        <select class="form-control 2ndfloor" autocomplete="off" name="second_paymenttype10per">
                                                                             <option value=''>--Select--</option>
                                                                             <option value="Cheque">Cheque</option>
                                                                             <option value="Cash">Cash</option>
@@ -281,16 +310,24 @@
                                                                         </select>
                                                                     </td>
                                                                     <td id="2ndfloorchequetd" style="display:none;">
-                                                                        <input value="{{ old('second_chequenumber10per') }}" type="text" placeholder="Cheque No" class="form-control" name="second_chequenumber10per" />
+                                                                        <input value="{{ old('second_chequenumber10per') }}" autocomplete="off" type="text" placeholder="Cheque No" class="form-control" name="second_chequenumber10per" />
                                                                     </td>
                                                                     <td id="2ndfloorcashtd">
                                                                         <input value="" disabled type="text" class="form-control" name="" />
                                                                     </td>
                                                                     <td id="2ndfloornefttd" style="display:none;">
-                                                                        <input value="{{ old('second_neftid10per') }}" type="text" placeholder="NEFT ID" class="form-control" name="second_neftid10per" />
+                                                                        <input value="{{ old('second_neftid10per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="second_neftid10per" />
                                                                     </td>
                                                                 </tr>
-                                                                <tr>
+
+                                                                 <?php 
+                                                                if($detail['third_balance10per'] == 0) {
+                                                                    $third = "hide";
+                                                                } else {
+                                                                    $third = "";
+                                                                }
+                                                                ?>
+                                                                <tr class="<?php echo  $third; ?>">
                                                                     <td width="5%">
                                                                         5.
                                                                     </td>
@@ -307,17 +344,17 @@
                                                                         <input value="{{ old('third_balance10per') }}" class="form-control" type="text" disabled name="third_balance10per" id="balamount4" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('third_paymentdate10per') }}" type="text" class="form-control datepicker" name="third_paymentdate10per" />
+                                                                        <input value="{{ old('third_paymentdate10per') }}" autocomplete="off" type="text" class="form-control datepicker" name="third_paymentdate10per" />
                                                                     </td>
                                                                     <td>
-                                                                        <select class="form-control" name="third_transactiontype10per">
+                                                                        <select class="form-control" autocomplete="off" name="third_transactiontype10per">
                                                                             <option value=''>--Select--</option>
                                                                             <option value="Ownfund">OwnFund</option>
                                                                             <option value="Bank">Bank</option>
                                                                         </select>
                                                                     </td>
                                                                     <td>
-                                                                        <select class="form-control 3rdfloor" name="third_paymenttype10per">
+                                                                        <select class="form-control 3rdfloor" autocomplete="off" name="third_paymenttype10per">
                                                                             <option value=''>--Select--</option>
                                                                             <option value="Cheque">Cheque</option>
                                                                             <option value="Cash">Cash</option>
@@ -325,16 +362,23 @@
                                                                         </select>
                                                                     </td>
                                                                     <td id="3rdfloorchequetd" style="display:none;">
-                                                                        <input value="{{ old('third_chequenumber10per') }}" type="text" placeholder="Cheque No" class="form-control" name="third_chequenumber10per" />
+                                                                        <input value="{{ old('third_chequenumber10per') }}" autocomplete="off" type="text" placeholder="Cheque No" class="form-control" name="third_chequenumber10per" />
                                                                     </td>
                                                                     <td id="3rdfloorcashtd">
                                                                         <input value="" disabled type="text" class="form-control" name="" />
                                                                     </td>
                                                                     <td id="3rdfloornefttd" style="display:none;">
-                                                                        <input value="{{ old('third_neftid10per') }}" type="text" placeholder="NEFT ID" class="form-control" name="third_neftid10per" />
+                                                                        <input value="{{ old('third_neftid10per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="third_neftid10per" />
                                                                     </td>
                                                                 </tr>
-                                                                <tr>
+                                                                <?php 
+                                                                if($detail['fourth_balance10per'] == 0) {
+                                                                    $fourth = "hide";
+                                                                } else {
+                                                                    $fourth = "";
+                                                                }
+                                                                ?>
+                                                                <tr class="<?php echo  $fourth; ?>">
                                                                     <td width="5%">
                                                                         6.
                                                                     </td>
@@ -351,17 +395,17 @@
                                                                         <input value="{{ old('fourth_balance10per') }}" class="form-control" type="text" disabled name="fourth_balance10per" id="balamount5" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('fourth_paymentdate10per') }}" type="text" class="form-control datepicker" name="fourth_paymentdate10per" />
+                                                                        <input value="{{ old('fourth_paymentdate10per') }}" autocomplete="off" type="text" class="form-control datepicker" name="fourth_paymentdate10per" />
                                                                     </td>
                                                                     <td>
-                                                                        <select class="form-control" name="fourth_transactiontype10per">
+                                                                        <select class="form-control" autocomplete="off" name="fourth_transactiontype10per">
                                                                             <option value=''>--Select--</option>
                                                                             <option value="Ownfund">OwnFund</option>
                                                                             <option value="Bank">Bank</option>
                                                                         </select>
                                                                     </td>
                                                                     <td>
-                                                                        <select class="form-control 4thfloor" name="fourth_paymenttype10per">
+                                                                        <select class="form-control 4thfloor" autocomplete="off" name="fourth_paymenttype10per">
                                                                             <option value=''>--Select--</option>
                                                                             <option value="Cheque">Cheque</option>
                                                                             <option value="Cash">Cash</option>
@@ -369,16 +413,23 @@
                                                                         </select>
                                                                     </td>
                                                                     <td id="4thfloorchequetd" style="display:none;">
-                                                                        <input value="{{ old('fourth_chequenumber10per') }}" type="text" placeholder="Cheque No" class="form-control" name="fourth_chequenumber10per" />
+                                                                        <input value="{{ old('fourth_chequenumber10per') }}" autocomplete="off" type="text" placeholder="Cheque No" class="form-control" name="fourth_chequenumber10per" />
                                                                     </td>
                                                                     <td id="4thfloorcashtd">
                                                                         <input value="" disabled type="text" class="form-control" name="" />
                                                                     </td>
                                                                     <td id="4thfloornefttd" style="display:none;">
-                                                                        <input value="{{ old('fourth_neftid10per') }}" type="text" placeholder="NEFT ID" class="form-control" name="fourth_neftid10per" />
+                                                                        <input value="{{ old('fourth_neftid10per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="fourth_neftid10per" />
                                                                     </td>
                                                                 </tr>
-                                                                <tr>
+                                                                <?php 
+                                                                if($detail['fifth_balance10per'] == 0) {
+                                                                    $fifth = "hide";
+                                                                } else {
+                                                                    $fifth = "";
+                                                                }
+                                                                ?>
+                                                                <tr class="<?php echo  $fifth; ?>">
                                                                     <td width="5%">
                                                                         7.
                                                                     </td>
@@ -386,7 +437,7 @@
                                                                         Completion of Fifth Floor 5%
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ $detail['fifth_balance10per'] }}" class="form-control" type="text" disabled name="fifth10per" id="menu_price6" />
+                                                                        <input value="{{ $detail['fifth_balance10per'] }}"  class="form-control" type="text" disabled name="fifth10per" id="menu_price6" />
                                                                     </td>
                                                                     <td>
                                                                         <input value="{{ old('fifth_received10per') }}" type="number" class="form-control" name="fifth_received10per" id="recamount6" />
@@ -395,7 +446,7 @@
                                                                         <input value="{{ old('fifth_balance10per') }}" class="form-control" type="text" disabled name="fifth_balance10per" id="balamount6" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('fifth_paymentdate10per') }}" type="text" class="form-control datepicker" name="fifth_paymentdate10per" />
+                                                                        <input value="{{ old('fifth_paymentdate10per') }}" autocomplete="off" type="text" class="form-control datepicker" name="fifth_paymentdate10per" />
                                                                     </td>
                                                                     <td>
                                                                         <select class="form-control" name="fifth_transactiontype10per">
@@ -413,16 +464,23 @@
                                                                         </select>
                                                                     </td>
                                                                     <td id="5thfloorchequetd" style="display:none;">
-                                                                        <input value="{{ old('fifth_chequenumber10per') }}" type="text" placeholder="Cheque No" class="form-control" name="fifth_chequenumber10per" />
+                                                                        <input value="{{ old('fifth_chequenumber10per') }}" autocomplete="off" type="text" placeholder="Cheque No" class="form-control" name="fifth_chequenumber10per" />
                                                                     </td>
                                                                     <td id="5thfloorcashtd">
                                                                         <input value="" disabled type="text" class="form-control" name="" />
                                                                     </td>
                                                                     <td id="5thfloornefttd" style="display:none;">
-                                                                        <input value="{{ old('fifth_neftid10per') }}" type="text" placeholder="NEFT ID" class="form-control" name="fifth_neftid10per" />
+                                                                        <input value="{{ old('fifth_neftid10per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="fifth_neftid10per" />
                                                                     </td>
                                                                 </tr>
-                                                                <tr>
+                                                                <?php 
+                                                                if($detail['handover_balance10per'] == 0) {
+                                                                    $handover = "hide";
+                                                                } else {
+                                                                    $handover = "";
+                                                                }
+                                                                ?>
+                                                                <tr class="<?php echo  $handover; ?>">
                                                                     <td width="5%">
                                                                         8.
                                                                     </td>
@@ -439,7 +497,7 @@
                                                                         <input value="{{ old('handover_balance10per') }}" class="form-control" type="text" disabled name="handover_balance10per" id="balamount7" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('handover_paymentdate10per') }}" type="text" class="form-control datepicker" name="handover_paymentdate10per" />
+                                                                        <input value="{{ old('handover_paymentdate10per') }}" autocomplete="off" type="text" class="form-control datepicker" name="handover_paymentdate10per" />
                                                                     </td>
                                                                     <td>
                                                                         <select class="form-control" name="handover_transactiontype10per">
@@ -457,13 +515,13 @@
                                                                         </select>
                                                                     </td>
                                                                     <td id="handoverchequetd" style="display:none;">
-                                                                        <input value="{{ old('handover_chequenumber10per') }}" type="text" placeholder="Cheque No" class="form-control" name="handover_chequenumber10per" />
+                                                                        <input value="{{ old('handover_chequenumber10per') }}" autocomplete="off" type="text" placeholder="Cheque No" class="form-control" name="handover_chequenumber10per" />
                                                                     </td>
                                                                     <td id="handovercashtd">
                                                                         <input value="" disabled type="text" class="form-control" name="" />
                                                                     </td>
                                                                     <td id="handovernefttd" style="display:none;">
-                                                                        <input value="{{ old('handover_neftid10per') }}" type="text" placeholder="NEFT ID" class="form-control" name="handover_neftid10per" />
+                                                                        <input value="{{ old('handover_neftid10per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="handover_neftid10per" />
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
@@ -498,7 +556,14 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr>
+                                                            <?php 
+                                                                if($detail['onbook_balance15per'] == 0) {
+                                                                    $onbook15 = "hide";
+                                                                } else {
+                                                                    $onbook15 = "";
+                                                                }
+                                                                ?>
+                                                                <tr class="<?php echo  $onbook15; ?>">
                                                                     <td width="5%">
                                                                         1.
                                                                     </td>
@@ -515,7 +580,7 @@
                                                                         <input value="{{ old('onbook_balance15per') }}" class="form-control" type="text" disabled name="onbook_balance15per" id="balamount15per" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('onbook_paymentdate15per') }}" type="text" class="form-control datepicker" name="onbook_paymentdate15per" />
+                                                                        <input value="{{ old('onbook_paymentdate15per') }}" autocomplete="off" type="text" class="form-control datepicker" name="onbook_paymentdate15per" />
                                                                     </td>
                                                                     <td>
                                                                         <select class="form-control" name="onbook_transactiontype15per">
@@ -533,16 +598,23 @@
                                                                         </select>
                                                                     </td>
                                                                     <td id="onchequetd15per" style="display:none;">
-                                                                        <input value="{{ old('onbook_chequenumber15per') }}" type="text" placeholder="Cheque No" class="form-control" name="onbook_chequenumber15per" />
+                                                                        <input value="{{ old('onbook_chequenumber15per') }}" autocomplete="off" type="text" placeholder="Cheque No" class="form-control" name="onbook_chequenumber15per" />
                                                                     </td>
                                                                     <td id="oncashtd15per">
                                                                         <input value="" disabled type="text" class="form-control" name="" />
                                                                     </td>
                                                                     <td id="onnefttd15per" style="display:none;">
-                                                                        <input value="{{ old('onbook_neftid15per') }}" type="text" placeholder="NEFT ID" class="form-control" name="onbook_neftid15per" />
+                                                                        <input value="{{ old('onbook_neftid15per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="onbook_neftid15per" />
                                                                     </td>
                                                                 </tr>
-                                                                <tr>
+                                                                <?php 
+                                                                if($detail['payments_balance15per'] == 0) {
+                                                                    $payments15 = "hide";
+                                                                } else {
+                                                                    $payments15 = "";
+                                                                }
+                                                                ?>
+                                                                <tr class="<?php echo  $payments15; ?>">
                                                                     <td width="5%">
                                                                         2.
                                                                     </td>
@@ -559,7 +631,7 @@
                                                                         <input value="{{ old('payments_balance15per') }}" class="form-control" type="text" disabled name="payments_balance15per" id="balamount115per" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('payments_paymentdate15per') }}" type="text" class="form-control datepicker" name="payments_paymentdate15per" />
+                                                                        <input value="{{ old('payments_paymentdate15per') }}" autocomplete="off" type="text" class="form-control datepicker" name="payments_paymentdate15per" />
                                                                     </td>
                                                                     <td>
                                                                         <select class="form-control" name="payments_transactiontype15per">
@@ -577,16 +649,23 @@
                                                                         </select>
                                                                     </td>
                                                                     <td id="agreementschequetd15per" style="display:none;">
-                                                                        <input value="{{ old('payments_chequenumber15per') }}" type="text" placeholder="Cheque No" class="form-control" name="payments_chequenumber15per" />
+                                                                        <input value="{{ old('payments_chequenumber15per') }}" autocomplete="off" type="text" placeholder="Cheque No" class="form-control" name="payments_chequenumber15per" />
                                                                     </td>
                                                                     <td id="agreementscashtd15per">
                                                                         <input value="" disabled type="text" class="form-control" name="" />
                                                                     </td>
                                                                     <td id="agreementsnefttd15per" style="display:none;">
-                                                                        <input value="{{ old('payments_neftid15per') }}" type="text" placeholder="NEFT ID" class="form-control" name="payments_neftid15per" />
+                                                                        <input value="{{ old('payments_neftid15per') }}" type="text" autocomplete="off" placeholder="NEFT ID" class="form-control" name="payments_neftid15per" />
                                                                     </td>
                                                                 </tr>
-                                                                <tr>
+                                                                <?php 
+                                                                if($detail['first_balance15per'] == 0) {
+                                                                    $first15 = "hide";
+                                                                } else {
+                                                                    $first15 = "";
+                                                                }
+                                                                ?>
+                                                                <tr class="<?php echo  $first15; ?>">
                                                                     <td width="5%">
                                                                         3.
                                                                     </td>
@@ -603,7 +682,7 @@
                                                                         <input value="{{ old('first_balance15per') }}" class="form-control" type="text" disabled name="first_balance15per" id="balamount215per" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('first_paymentdate15per') }}" type="text" class="form-control datepicker" name="first_paymentdate15per" />
+                                                                        <input value="{{ old('first_paymentdate15per') }}" autocomplete="off" type="text" class="form-control datepicker" name="first_paymentdate15per" />
                                                                     </td>
                                                                     <td>
                                                                         <select class="form-control" name="first_transactiontype15per">
@@ -621,16 +700,23 @@
                                                                         </select>
                                                                     </td>
                                                                     <td id="1stfloorchequetd15per" style="display:none;">
-                                                                        <input value="{{ old('first_chequenumber15per') }}" type="text" placeholder="Cheque No" class="form-control" name="first_chequenumber15per" />
+                                                                        <input value="{{ old('first_chequenumber15per') }}" type="text" autocomplete="off" placeholder="Cheque No" class="form-control" name="first_chequenumber15per" />
                                                                     </td>
                                                                     <td id="1stfloorcashtd15per">
                                                                         <input value="" disabled type="text" class="form-control" name="" />
                                                                     </td>
                                                                     <td id="1stfloornefttd15per" style="display:none;">
-                                                                        <input value="{{ old('first_neftid15per') }}" type="text" placeholder="NEFT ID" class="form-control" name="first_neftid15per" />
+                                                                        <input value="{{ old('first_neftid15per') }}" type="text" autocomplete="off" placeholder="NEFT ID" class="form-control" name="first_neftid15per" />
                                                                     </td>
                                                                 </tr>
-                                                                <tr>
+                                                                <?php 
+                                                                if($detail['second_balance15per'] == 0) {
+                                                                    $second15 = "hide";
+                                                                } else {
+                                                                    $second15 = "";
+                                                                }
+                                                                ?>
+                                                                <tr class="<?php echo  $second15; ?>">
                                                                     <td width="5%">
                                                                         4.
                                                                     </td>
@@ -647,7 +733,7 @@
                                                                         <input value="{{ old('second_balance15per') }}" class="form-control" type="text" disabled name="second_balance15per" id="balamount315per" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('second_paymentdate15per') }}" type="text" class="form-control datepicker" name="second_paymentdate15per" />
+                                                                        <input value="{{ old('second_paymentdate15per') }}" autocomplete="off" type="text" class="form-control datepicker" name="second_paymentdate15per" />
                                                                     </td>
                                                                     <td>
                                                                         <select class="form-control" name="second_transactiontype15per">
@@ -665,16 +751,23 @@
                                                                         </select>
                                                                     </td>
                                                                     <td id="2ndfloorchequetd15per" style="display:none;">
-                                                                        <input value="{{ old('second_chequenumber15per') }}" type="text" placeholder="Cheque No" class="form-control" name="second_chequenumber15per" />
+                                                                        <input value="{{ old('second_chequenumber15per') }}" autocomplete="off" type="text" placeholder="Cheque No" class="form-control" name="second_chequenumber15per" />
                                                                     </td>
                                                                     <td id="2ndfloorcashtd15per">
                                                                         <input value="" disabled type="text" class="form-control" name="" />
                                                                     </td>
                                                                     <td id="2ndfloornefttd15per" style="display:none;">
-                                                                        <input value="{{ old('second_neftid15per') }}" type="text" placeholder="NEFT ID" class="form-control" name="second_neftid15per" />
+                                                                        <input value="{{ old('second_neftid15per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="second_neftid15per" />
                                                                     </td>
                                                                 </tr>
-                                                                <tr>
+                                                                <?php 
+                                                                if($detail['third_balance15per'] == 0) {
+                                                                    $third15 = "hide";
+                                                                } else {
+                                                                    $third15 = "";
+                                                                }
+                                                                ?>
+                                                                <tr class="<?php echo  $third15; ?>">
                                                                     <td width="5%">
                                                                         5.
                                                                     </td>
@@ -691,7 +784,7 @@
                                                                         <input value="{{ old('third_balance15per') }}" class="form-control" type="text" disabled name="third_balance15per" id="balamount415per" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('third_paymentdate15per') }}" type="text" class="form-control datepicker" name="third_paymentdate15per" />
+                                                                        <input value="{{ old('third_paymentdate15per') }}" autocomplete="off" type="text" class="form-control datepicker" name="third_paymentdate15per" />
                                                                     </td>
                                                                     <td>
                                                                         <select class="form-control" name="third_transactiontype15per">
@@ -709,16 +802,23 @@
                                                                         </select>
                                                                     </td>
                                                                     <td id="3rdfloorchequetd15per" style="display:none;">
-                                                                        <input value="{{ old('third_chequenumber15per') }}" type="text" placeholder="Cheque No" class="form-control" name="third_chequenumber15per" />
+                                                                        <input value="{{ old('third_chequenumber15per') }}" autocomplete="off" type="text" placeholder="Cheque No" class="form-control" name="third_chequenumber15per" />
                                                                     </td>
                                                                     <td id="3rdfloorcashtd15per">
                                                                         <input value="" disabled type="text" class="form-control" name="" />
                                                                     </td>
                                                                     <td id="3rdfloornefttd15per" style="display:none;">
-                                                                        <input value="{{ old('third_neftid15per') }}" type="text" placeholder="NEFT ID" class="form-control" name="third_neftid15per" />
+                                                                        <input value="{{ old('third_neftid15per') }}" type="text" autocomplete="off" placeholder="NEFT ID" class="form-control" name="third_neftid15per" />
                                                                     </td>
                                                                 </tr>
-                                                                <tr>
+                                                                <?php 
+                                                                if($detail['fourth_balance15per'] == 0) {
+                                                                    $fourth15 = "hide";
+                                                                } else {
+                                                                    $fourth15 = "";
+                                                                }
+                                                                ?>
+                                                                <tr class="<?php echo  $fourth15; ?>">
                                                                     <td width="5%">
                                                                         6.
                                                                     </td>
@@ -735,7 +835,7 @@
                                                                         <input value="{{ old('fourth_balance15per') }}" class="form-control" type="text" disabled name="fourth_balance15per" id="balamount515per" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('fourth_paymentdate15per') }}" type="text" class="form-control datepicker" name="fourth_paymentdate15per" />
+                                                                        <input value="{{ old('fourth_paymentdate15per') }}" autocomplete="off" type="text" class="form-control datepicker" name="fourth_paymentdate15per" />
                                                                     </td>
                                                                     <td>
                                                                         <select class="form-control" name="fourth_transactiontype15per">
@@ -753,16 +853,23 @@
                                                                         </select>
                                                                     </td>
                                                                     <td id="4thfloorchequetd15per" style="display:none;">
-                                                                        <input value="{{ old('fourth_chequenumber15per') }}" type="text" placeholder="Cheque No" class="form-control" name="fourth_chequenumber15per" />
+                                                                        <input value="{{ old('fourth_chequenumber15per') }}" autocomplete="off" type="text" placeholder="Cheque No" class="form-control" name="fourth_chequenumber15per" />
                                                                     </td>
                                                                     <td id="4thfloorcashtd15per">
                                                                         <input value="" disabled type="text" class="form-control" name="" />
                                                                     </td>
                                                                     <td id="4thfloornefttd15per" style="display:none;">
-                                                                        <input value="{{ old('fourth_neftid15per') }}" type="text" placeholder="NEFT ID" class="form-control" name="fourth_neftid15per" />
+                                                                        <input value="{{ old('fourth_neftid15per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="fourth_neftid15per" />
                                                                     </td>
                                                                 </tr>
-                                                                <tr>
+                                                                <?php 
+                                                                if($detail['fifth_balance15per'] == 0) {
+                                                                    $fifth15 = "hide";
+                                                                } else {
+                                                                    $fifth15 = "";
+                                                                }
+                                                                ?>
+                                                                <tr class="<?php echo  $fifth15; ?>">
                                                                     <td width="5%">
                                                                         7.
                                                                     </td>
@@ -779,7 +886,7 @@
                                                                         <input value="{{ old('fifth_balance15per') }}" class="form-control" type="text" disabled name="fifth_balance15per" id="balamount615per" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('fifth_paymentdate15per') }}" type="text" class="form-control datepicker" name="fifth_paymentdate15per" />
+                                                                        <input value="{{ old('fifth_paymentdate15per') }}" autocomplete="off" type="text" class="form-control datepicker" name="fifth_paymentdate15per" />
                                                                     </td>
                                                                     <td>
                                                                         <select class="form-control" name="fifth_transactiontype15per">
@@ -797,16 +904,23 @@
                                                                         </select>
                                                                     </td>
                                                                     <td id="5thfloorchequetd15per" style="display:none;">
-                                                                        <input value="{{ old('fifth_chequenumber15per') }}" type="text" placeholder="Cheque No" class="form-control" name="fifth_chequenumber15per" />
+                                                                        <input value="{{ old('fifth_chequenumber15per') }}" autocomplete="off" type="text" placeholder="Cheque No" class="form-control" name="fifth_chequenumber15per" />
                                                                     </td>
                                                                     <td id="5thfloorcashtd15per">
                                                                         <input value="" disabled type="text" class="form-control" name="" />
                                                                     </td>
                                                                     <td id="5thfloornefttd15per" style="display:none;">
-                                                                        <input value="{{ old('fifth_neftid15per') }}" type="text" placeholder="NEFT ID" class="form-control" name="fifth_neftid15per" />
+                                                                        <input value="{{ old('fifth_neftid15per') }}" type="text" autocomplete="off" placeholder="NEFT ID" class="form-control" name="fifth_neftid15per" />
                                                                     </td>
                                                                 </tr>
-                                                                <tr>
+                                                                <?php 
+                                                                if($detail['handover_balance15per'] == 0) {
+                                                                    $handover15 = "hide";
+                                                                } else {
+                                                                    $handover15 = "";
+                                                                }
+                                                                ?>
+                                                                <tr class="<?php echo  $handover15; ?>">
                                                                     <td width="5%">
                                                                         8.
                                                                     </td>
@@ -823,7 +937,7 @@
                                                                         <input value="{{ old('handover_balance15per') }}" class="form-control" type="text" disabled name="handover_balance15per" id="balamount715per" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('handover_paymentdate15per') }}" type="text" class="form-control datepicker" name="handover_paymentdate15per" />
+                                                                        <input value="{{ old('handover_paymentdate15per') }}" autocomplete="off" type="text" class="form-control datepicker" name="handover_paymentdate15per" />
                                                                     </td>
                                                                     <td>
                                                                         <select class="form-control" name="handover_transactiontype15per">
@@ -841,13 +955,13 @@
                                                                         </select>
                                                                     </td>
                                                                     <td id="handoverchequetd15per" style="display:none;">
-                                                                        <input value="{{ old('handover_chequenumber15per') }}" type="text" placeholder="Cheque No" class="form-control" name="handover_chequenumber15per" />
+                                                                        <input value="{{ old('handover_chequenumber15per') }}" autocomplete="off" type="text" placeholder="Cheque No" class="form-control" name="handover_chequenumber15per" />
                                                                     </td>
                                                                     <td id="handovercashtd15per">
                                                                         <input value="" disabled type="text" class="form-control" name="" />
                                                                     </td>
                                                                     <td id="handovernefttd15per" style="display:none;">
-                                                                        <input value="{{ old('handover_neftid15per') }}" type="text" placeholder="NEFT ID" class="form-control" name="handover_neftid15per" />
+                                                                        <input value="{{ old('handover_neftid15per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="handover_neftid15per" />
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
@@ -882,7 +996,14 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr>
+                                                            <?php 
+                                                                if($detail['onbook_balance20per'] == 0) {
+                                                                    $onbook20 = "hide";
+                                                                } else {
+                                                                    $onbook20 = "";
+                                                                }
+                                                                ?>
+                                                                <tr class="<?php echo  $onbook20; ?>">
                                                                     <td width="5%">
                                                                         1.
                                                                     </td>
@@ -899,7 +1020,7 @@
                                                                         <input value="{{ old('onbook_balance20per') }}" class="form-control" type="text" disabled name="onbook_balance20per" id="balamount20per" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('onbook_paymentdate20per') }}" type="text" class="form-control datepicker" name="onbook_paymentdate20per" />
+                                                                        <input value="{{ old('onbook_paymentdate20per') }}" autocomplete="off" type="text" class="form-control datepicker" name="onbook_paymentdate20per" />
                                                                     </td>
                                                                     <td>
                                                                         <select class="form-control" name="onbook_transactiontype20per">
@@ -917,16 +1038,23 @@
                                                                         </select>
                                                                     </td>
                                                                     <td id="onchequetd20per" style="display:none;">
-                                                                        <input value="{{ old('onbook_chequenumber20per') }}" type="text" placeholder="Cheque No" class="form-control" name="onbook_chequenumber20per" />
+                                                                        <input value="{{ old('onbook_chequenumber20per') }}" autocomplete="off" type="text" placeholder="Cheque No" class="form-control" name="onbook_chequenumber20per" />
                                                                     </td>
                                                                     <td id="oncashtd20per">
                                                                         <input value="" disabled type="text" class="form-control" name="" />
                                                                     </td>
                                                                     <td id="onnefttd20per" style="display:none;">
-                                                                        <input value="{{ old('onbook_neftid20per') }}" type="text" placeholder="NEFT ID" class="form-control" name="onbook_neftid20per" />
+                                                                        <input value="{{ old('onbook_neftid20per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="onbook_neftid20per" />
                                                                     </td>
                                                                 </tr>
-                                                                <tr>
+                                                                <?php 
+                                                                if($detail['payments_balance20per'] == 0) {
+                                                                    $payments20 = "hide";
+                                                                } else {
+                                                                    $payments20 = "";
+                                                                }
+                                                                ?>
+                                                                <tr class="<?php echo  $payments20; ?>">
                                                                     <td width="5%">
                                                                         2.
                                                                     </td>
@@ -943,7 +1071,7 @@
                                                                         <input value="{{ old('payments_balance20per') }}" class="form-control" type="text" disabled name="payments_balance20per" id="balamount120per" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('payments_paymentdate20per') }}" type="text" class="form-control datepicker" name="payments_paymentdate20per" />
+                                                                        <input value="{{ old('payments_paymentdate20per') }}" autocomplete="off" type="text" class="form-control datepicker" name="payments_paymentdate20per" />
                                                                     </td>
                                                                     <td>
                                                                         <select class="form-control" name="payments_transactiontype20per">
@@ -961,16 +1089,23 @@
                                                                         </select>
                                                                     </td>
                                                                     <td id="agreementschequetd20per" style="display:none;">
-                                                                        <input value="{{ old('payments_chequenumber20per') }}" type="text" placeholder="Cheque No" class="form-control" name="payments_chequenumber20per" />
+                                                                        <input value="{{ old('payments_chequenumber20per') }}" autocomplete="off" type="text" placeholder="Cheque No" class="form-control" name="payments_chequenumber20per" />
                                                                     </td>
                                                                     <td id="agreementscashtd20per">
                                                                         <input value="" disabled type="text" class="form-control" name="" />
                                                                     </td>
                                                                     <td id="agreementsnefttd20per" style="display:none;">
-                                                                        <input value="{{ old('payments_neftid20per') }}" type="text" placeholder="NEFT ID" class="form-control" name="payments_neftid20per" />
+                                                                        <input value="{{ old('payments_neftid20per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="payments_neftid20per" />
                                                                     </td>
                                                                 </tr>
-                                                                <tr>
+                                                                <?php 
+                                                                if($detail['first_balance20per'] == 0) {
+                                                                    $first20 = "hide";
+                                                                } else {
+                                                                    $first20 = "";
+                                                                }
+                                                                ?>
+                                                                <tr class="<?php echo  $first20; ?>">
                                                                     <td width="5%">
                                                                         3.
                                                                     </td>
@@ -987,7 +1122,7 @@
                                                                         <input value="{{ old('first_balance20per') }}" class="form-control" type="text" disabled name="first_balance20per" id="balamount220per" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('first_paymentdate20per') }}" type="text" class="form-control datepicker" name="first_paymentdate20per" />
+                                                                        <input value="{{ old('first_paymentdate20per') }}" autocomplete="off" type="text" class="form-control datepicker" name="first_paymentdate20per" />
                                                                     </td>
                                                                     <td>
                                                                         <select class="form-control" name="first_transactiontype20per">
@@ -1005,16 +1140,23 @@
                                                                         </select>
                                                                     </td>
                                                                     <td id="1stfloorchequetd20per" style="display:none;">
-                                                                        <input value="{{ old('first_chequenumber20per') }}" type="text" placeholder="Cheque No" class="form-control" name="first_chequenumber20per" />
+                                                                        <input value="{{ old('first_chequenumber20per') }}" autocomplete="off" type="text" placeholder="Cheque No" class="form-control" name="first_chequenumber20per" />
                                                                     </td>
                                                                     <td id="1stfloorcashtd20per">
                                                                         <input value="" disabled type="text" class="form-control" name="" />
                                                                     </td>
                                                                     <td id="1stfloornefttd20per" style="display:none;">
-                                                                        <input value="{{ old('first_neftid20per') }}" type="text" placeholder="NEFT ID" class="form-control" name="first_neftid20per" />
+                                                                        <input value="{{ old('first_neftid20per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="first_neftid20per" />
                                                                     </td>
                                                                 </tr>
-                                                                <tr>
+                                                                <?php 
+                                                                if($detail['second_balance20per'] == 0) {
+                                                                    $second20 = "hide";
+                                                                } else {
+                                                                    $second20 = "";
+                                                                }
+                                                                ?>
+                                                                <tr class="<?php echo  $second20; ?>">
                                                                     <td width="5%">
                                                                         4.
                                                                     </td>
@@ -1031,7 +1173,7 @@
                                                                         <input value="{{ old('second_balance20per') }}" class="form-control" type="text" disabled name="second_balance20per" id="balamount320per" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('second_paymentdate20per') }}" type="text" class="form-control datepicker" name="second_paymentdate20per" />
+                                                                        <input value="{{ old('second_paymentdate20per') }}" autocomplete="off" type="text" class="form-control datepicker" name="second_paymentdate20per" />
                                                                     </td>
                                                                     <td>
                                                                         <select class="form-control" name="second_transactiontype20per">
@@ -1049,16 +1191,23 @@
                                                                         </select>
                                                                     </td>
                                                                     <td id="2ndfloorchequetd20per" style="display:none;">
-                                                                        <input value="{{ old('second_chequenumber20per') }}" type="text" placeholder="Cheque No" class="form-control" name="second_chequenumber20per" />
+                                                                        <input value="{{ old('second_chequenumber20per') }}" autocomplete="off" type="text" placeholder="Cheque No" class="form-control" name="second_chequenumber20per" />
                                                                     </td>
                                                                     <td id="2ndfloorcashtd20per">
                                                                         <input value="" disabled type="text" class="form-control" name="" />
                                                                     </td>
                                                                     <td id="2ndfloornefttd20per" style="display:none;">
-                                                                        <input value="{{ old('second_neftid20per') }}" type="text" placeholder="NEFT ID" class="form-control" name="second_neftid20per" />
+                                                                        <input value="{{ old('second_neftid20per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="second_neftid20per" />
                                                                     </td>
                                                                 </tr>
-                                                                <tr>
+                                                                <?php 
+                                                                if($detail['third_balance20per'] == 0) {
+                                                                    $third20 = "hide";
+                                                                } else {
+                                                                    $third20 = "";
+                                                                }
+                                                                ?>
+                                                                <tr class="<?php echo  $third20; ?>">
                                                                     <td width="5%">
                                                                         5.
                                                                     </td>
@@ -1075,7 +1224,7 @@
                                                                         <input value="{{ old('third_balance20per') }}" class="form-control" type="text" disabled name="third_balance20per" id="balamount420per" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('third_paymentdate20per') }}" type="text" class="form-control datepicker" name="third_paymentdate20per" />
+                                                                        <input value="{{ old('third_paymentdate20per') }}" autocomplete="off" type="text" class="form-control datepicker" name="third_paymentdate20per" />
                                                                     </td>
                                                                     <td>
                                                                         <select class="form-control" name="third_transactiontype20per">
@@ -1093,16 +1242,23 @@
                                                                         </select>
                                                                     </td>
                                                                     <td id="3rdfloorchequetd20per" style="display:none;">
-                                                                        <input value="{{ old('third_chequenumber20per') }}" type="text" placeholder="Cheque No" class="form-control" name="third_chequenumber20per" />
+                                                                        <input value="{{ old('third_chequenumber20per') }}" autocomplete="off" type="text" placeholder="Cheque No" class="form-control" name="third_chequenumber20per" />
                                                                     </td>
                                                                     <td id="3rdfloorcashtd20per">
                                                                         <input value="" disabled type="text" class="form-control" name="" />
                                                                     </td>
                                                                     <td id="3rdfloornefttd20per" style="display:none;">
-                                                                        <input value="{{ old('third_neftid20per') }}" type="text" placeholder="NEFT ID" class="form-control" name="third_neftid20per" />
+                                                                        <input value="{{ old('third_neftid20per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="third_neftid20per" />
                                                                     </td>
                                                                 </tr>
-                                                                <tr>
+                                                                <?php 
+                                                                if($detail['fourth_balance20per'] == 0) {
+                                                                    $fourth20 = "hide";
+                                                                } else {
+                                                                    $fourth20 = "";
+                                                                }
+                                                                ?>
+                                                                <tr class="<?php echo  $fourth20; ?>">
                                                                     <td width="5%">
                                                                         6.
                                                                     </td>
@@ -1119,7 +1275,7 @@
                                                                         <input value="{{ old('fourth_balance20per') }}" class="form-control" type="text" disabled name="fourth_balance20per" id="balamount520per" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('fourth_paymentdate20per') }}" type="text" class="form-control datepicker" name="fourth_paymentdate20per" />
+                                                                        <input value="{{ old('fourth_paymentdate20per') }}" autocomplete="off" type="text" class="form-control datepicker" name="fourth_paymentdate20per" />
                                                                     </td>
                                                                     <td>
                                                                         <select class="form-control" name="fourth_transactiontype20per">
@@ -1137,16 +1293,23 @@
                                                                         </select>
                                                                     </td>
                                                                     <td id="4thfloorchequetd20per" style="display:none;">
-                                                                        <input value="{{ old('fourth_chequenumber20per') }}" type="text" placeholder="Cheque No" class="form-control" name="fourth_chequenumber20per" />
+                                                                        <input value="{{ old('fourth_chequenumber20per') }}" autocomplete="off" type="text" placeholder="Cheque No" class="form-control" name="fourth_chequenumber20per" />
                                                                     </td>
                                                                     <td id="4thfloorcashtd20per">
                                                                         <input value="" disabled type="text" class="form-control" name="" />
                                                                     </td>
                                                                     <td id="4thfloornefttd20per" style="display:none;">
-                                                                        <input value="{{ old('fourth_neftid20per') }}" type="text" placeholder="NEFT ID" class="form-control" name="fourth_neftid20per" />
+                                                                        <input value="{{ old('fourth_neftid20per') }}" type="text" autocomplete="off" placeholder="NEFT ID" class="form-control" name="fourth_neftid20per" />
                                                                     </td>
                                                                 </tr>
-                                                                <tr>
+                                                                <?php 
+                                                                if($detail['fifth_balance20per'] == 0) {
+                                                                    $fifth20 = "hide";
+                                                                } else {
+                                                                    $fifth20 = "";
+                                                                }
+                                                                ?>
+                                                                <tr class="<?php echo  $fifth20; ?>">
                                                                     <td width="5%">
                                                                         7.
                                                                     </td>
@@ -1163,7 +1326,7 @@
                                                                         <input value="{{ old('fifth_balance20per') }}" class="form-control" type="text" disabled name="fifth_balance20per" id="balamount620per" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('fifth_paymentdate20per') }}" type="text" class="form-control datepicker" name="fifth_paymentdate20per" />
+                                                                        <input value="{{ old('fifth_paymentdate20per') }}" autocomplete="off" type="text" class="form-control datepicker" name="fifth_paymentdate20per" />
                                                                     </td>
                                                                     <td>
                                                                         <select class="form-control" name="fifth_transactiontype20per">
@@ -1181,16 +1344,23 @@
                                                                         </select>
                                                                     </td>
                                                                     <td id="5thfloorchequetd20per" style="display:none;">
-                                                                        <input value="{{ old('fifth_chequenumber20per') }}" type="text" placeholder="Cheque No" class="form-control" name="fifth_chequenumber20per" />
+                                                                        <input value="{{ old('fifth_chequenumber20per') }}" autocomplete="off" type="text" placeholder="Cheque No" class="form-control" name="fifth_chequenumber20per" />
                                                                     </td>
                                                                     <td id="5thfloorcashtd20per">
                                                                         <input value="" disabled type="text" class="form-control" name="" />
                                                                     </td>
                                                                     <td id="5thfloornefttd20per" style="display:none;">
-                                                                        <input value="{{ old('fifth_neftid20per') }}" type="text" placeholder="NEFT ID" class="form-control" name="fifth_neftid20per" />
+                                                                        <input value="{{ old('fifth_neftid20per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="fifth_neftid20per" />
                                                                     </td>
                                                                 </tr>
-                                                                <tr>
+                                                                <?php 
+                                                                if($detail['handover_balance20per'] == 0) {
+                                                                    $handover20 = "hide";
+                                                                } else {
+                                                                    $handover20 = "";
+                                                                }
+                                                                ?>
+                                                                <tr class="<?php echo  $handover20; ?>">
                                                                     <td width="5%">
                                                                         8.
                                                                     </td>
@@ -1207,7 +1377,7 @@
                                                                         <input value="{{ old('handover_balance20per') }}" class="form-control" type="text" disabled name="handover_balance20per" id="balamount720per" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('handover_paymentdate20per') }}" type="text" class="form-control datepicker" name="handover_paymentdate20per" />
+                                                                        <input value="{{ old('handover_paymentdate20per') }}" autocomplete="off" type="text" class="form-control datepicker" name="handover_paymentdate20per" />
                                                                     </td>
                                                                     <td>
                                                                         <select class="form-control" name="handover_transactiontype20per">
@@ -1225,13 +1395,13 @@
                                                                         </select>
                                                                     </td>
                                                                     <td id="handoverchequetd20per" style="display:none;">
-                                                                        <input value="{{ old('handover_chequenumber20per') }}" type="text" placeholder="Cheque No" class="form-control" name="handover_chequenumber20per" />
+                                                                        <input value="{{ old('handover_chequenumber20per') }}" autocomplete="off" type="text" placeholder="Cheque No" class="form-control" name="handover_chequenumber20per" />
                                                                     </td>
                                                                     <td id="handovercashtd20per">
                                                                         <input value="" disabled type="text" class="form-control" name="" />
                                                                     </td>
                                                                     <td id="handovernefttd20per" style="display:none;">
-                                                                        <input value="{{ old('handover_neftid20per') }}" type="text" placeholder="NEFT ID" class="form-control" name="handover_neftid20per" />
+                                                                        <input value="{{ old('handover_neftid20per') }}" autocomplete="off" type="text" placeholder="NEFT ID" class="form-control" name="handover_neftid20per" />
                                                                     </td>
                                                                 </tr>
                                                             </tbody>

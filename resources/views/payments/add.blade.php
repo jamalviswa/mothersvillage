@@ -38,8 +38,14 @@
                                                     <?php
                                                     $phases = App\Cost::where('status', 'Active')->get();
                                                     foreach ($phases as $phase) {
+                                                        $costs = App\Payment::where('status','!=','Trash')->where('customer_id',$phase['customer_id'])->where('application_number',$phase['application_number'])->first();
+                                                        if(empty($costs)){
+                                                            $disable ="";
+                                                        }else{
+                                                            $disable ="disabled";
+                                                        }
                                                     ?>
-                                                        <option value="<?php echo $phase->customer_id ?>"><?php echo $phase->application_number ?></option>
+                                                        <option value="<?php echo $phase->customer_id ?>" <?php echo $disable;?>><?php echo $phase->application_number ?></option>
 
                                                     <?php }
                                                     ?>

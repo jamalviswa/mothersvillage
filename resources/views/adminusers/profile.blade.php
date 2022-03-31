@@ -75,7 +75,7 @@
                                             User Name
                                         </label>
                                         <div class="col-7">
-                                            <input class="form-control m-input validate[required]" name="username" type="text" value="<?php echo $sessionadmin->username; ?>">
+                                            <input class="form-control m-input validate[required]"  autocomplete="off" name="username" type="text" value="<?php echo $sessionadmin->username; ?>">
                                             <?php echo csrf_field(); ?>
                                         </div>
                                     </div>
@@ -85,7 +85,7 @@
                                             Email Address
                                         </label>
                                         <div class="col-7">
-                                            <input class="form-control m-input validate[required,custom[email]]" type="text" name="email" value="<?php echo $sessionadmin->email; ?>">
+                                            <input class="form-control m-input validate[required,custom[email]]" autocomplete="off" type="text" name="email" value="<?php echo $sessionadmin->email; ?>">
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -101,13 +101,11 @@
                                     <div class="m-form__actions">
                                         <div class="row">
                                             <div class="col-2"></div>
-                                            <div class="col-7">
+                                            <div class="col-8">
                                                 <button type="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
                                                     Save changes
                                                 </button>
-                                                <button type="reset" class="btn btn-secondary m-btn m-btn--air m-btn--custom">
-                                                    Reset
-                                                </button>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -139,13 +137,11 @@
                                     <div class="m-form__actions">
                                         <div class="row">
                                             <div class="col-2"></div>
-                                            <div class="col-7">
+                                            <div class="col-8">
                                                 <button type="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
                                                     Save changes
                                                 </button>
-                                                <button type="reset" class="btn btn-secondary m-btn m-btn--air m-btn--custom">
-                                                    Reset
-                                                </button>
+                                               
                                             </div>
                                         </div>
                                     </div>
