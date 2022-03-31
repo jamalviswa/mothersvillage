@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 30, 2022 at 06:43 PM
+-- Generation Time: Mar 31, 2022 at 01:53 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -36,19 +36,17 @@ CREATE TABLE `adminusers` (
   `password_text` varchar(255) DEFAULT NULL,
   `profile` varchar(255) DEFAULT NULL,
   `status` enum('Active','Trash') NOT NULL DEFAULT 'Active',
-  `created_date` datetime DEFAULT NULL,
-  `modified_date` datetime DEFAULT NULL
+  `created_date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `adminusers`
 --
 
-INSERT INTO `adminusers` (`admin_id`, `adminname`, `username`, `email`, `password`, `password_text`, `profile`, `status`, `created_date`, `modified_date`) VALUES
-(1, 'Admin', 'admin', 'testuserlt1@gmail.com', 'cc03e747a6afbbcbf8be7668acfebee5', 'test123', '61f3925846fab.jpg', 'Active', '2022-01-25 12:31:23', '2022-01-25 12:31:23'),
-(2, 'Subadmin', 'viswatech', 'test@gmail.com', 'cc03e747a6afbbcbf8be7668acfebee5', 'test123', '61f38e84ec021.jpg', 'Active', '2022-01-25 12:31:41', '2022-01-25 12:31:41'),
-(6, 'Subadmin', 'priyanka M', 'yt@gmail.com', '1fd96777aedeadb325c66f3780054765', 'priyanka', '622864663c115.png', 'Active', '2022-03-09 13:53:46', NULL),
-(11, 'Subadmin', 'nivy', 'nivy@gmail.com', 'd5c961bb8416c9cc849b27f505c34f2c', 'nivy123', '623bf8e057e1d.jpg', 'Active', '2022-03-24 10:21:44', NULL);
+INSERT INTO `adminusers` (`admin_id`, `adminname`, `username`, `email`, `password`, `password_text`, `profile`, `status`, `created_date`) VALUES
+(1, 'Admin', 'admin', 'admin@gmail.com', '0192023a7bbd73250516f069df18b500', 'admin123', '62455a6243f73.jpg', 'Active', '2022-03-31 09:27:13'),
+(13, 'Subadmin', 'mothersvillage', 'mothers@gmail.com', '25d55ad283aa400af464c76d713c07ad', '12345678', '624558e5a912f.jpg', 'Trash', '2022-03-31 13:01:49'),
+(14, 'Subadmin', 'mothersvillage', 'mothers@gmail.com', '25d55ad283aa400af464c76d713c07ad', '12345678', '624559c806781.jpg', 'Active', '2022-03-31 13:05:36');
 
 -- --------------------------------------------------------
 
@@ -117,304 +115,6 @@ CREATE TABLE `costs` (
   `modified_date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `costs`
---
-
-INSERT INTO `costs` (`cost_id`, `customer_id`, `document_id`, `application_number`, `applicant_name`, `block`, `flatnumber`, `flattype`, `floor`, `facing`, `rate_sqft`, `sal_area`, `salable_value`, `uds_area`, `guideline_value`, `land_cost`, `construction_cost`, `electricity_charges`, `water_supply`, `car_park`, `amenities_charges`, `maintenance`, `gross_amount`, `stamp`, `registration`, `construction`, `corpus_fund`, `gst`, `total_amount`, `status`, `created_date`, `modified_date`) VALUES
-(16, 30, 19, '103', 'Arunkumar pT', 16, 377, 16, 18, 'North', '4150', '838', '3477700', '256', '150', '38400', '3439300', '0', '0', '5', '2', '5', '3477712', '2688', '1536', '68786', '100', '34777', '3585599', 'Trash', '2022-03-16 11:29:48', NULL),
-(17, 39, 26, '0001', 'jamal', 16, 373, 15, 18, 'East', '4150', '858', '3560700', '940', '250', '235000', '3325700', '0', '0', '0', '0', '0', '3560700', '16450', '9400', '66514', '0', '35607', '3688671', 'Active', '2022-03-16 17:00:12', NULL),
-(18, 28, 17, '102', 'Nithishha & Sajith', 16, 376, 16, 18, 'North', '4150', '838', '3477700', '254', '950', '241300', '3236400', '0', '0', '0', '0', '0', '3477700', '16891', '9652', '64728', '0', '34777', '3603748', 'Active', '2022-03-24 10:30:29', NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `countries`
---
-
-CREATE TABLE `countries` (
-  `id` int(11) NOT NULL,
-  `sortname` varchar(255) NOT NULL,
-  `country` varchar(255) NOT NULL,
-  `country_code` varchar(255) NOT NULL,
-  `order_data` varchar(255) NOT NULL DEFAULT '0',
-  `status` enum('Active','Inactive','','') NOT NULL DEFAULT 'Active'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `countries`
---
-
-INSERT INTO `countries` (`id`, `sortname`, `country`, `country_code`, `order_data`, `status`) VALUES
-(1, 'AF', 'Afghanistan', '93', '0', 'Active'),
-(2, 'AL', 'Albania', '355', '0', 'Active'),
-(3, 'DZ', 'Algeria', '213', '0', 'Active'),
-(4, 'AS', 'American Samoa', '1684', '0', 'Active'),
-(5, 'AD', 'Andorra', '376', '0', 'Active'),
-(6, 'AO', 'Angola', '244', '0', 'Active'),
-(7, 'AI', 'Anguilla', '1264', '0', 'Active'),
-(8, 'AQ', 'Antarctica', '0', '0', 'Active'),
-(9, 'AG', 'Antigua And Barbuda', '1268', '0', 'Active'),
-(10, 'AR', 'Argentina', '54', '0', 'Active'),
-(11, 'AM', 'Armenia', '374', '0', 'Active'),
-(12, 'AW', 'Aruba', '297', '0', 'Active'),
-(13, 'AU', 'Australia', '61', '0', 'Active'),
-(14, 'AT', 'Austria', '43', '0', 'Active'),
-(15, 'AZ', 'Azerbaijan', '994', '0', 'Active'),
-(16, 'BS', 'Bahamas The', '1242', '0', 'Active'),
-(17, 'BH', 'Bahrain', '973', '0', 'Active'),
-(18, 'BD', 'Bangladesh', '880', '0', 'Active'),
-(19, 'BB', 'Barbados', '1246', '0', 'Active'),
-(20, 'BY', 'Belarus', '375', '0', 'Active'),
-(21, 'BE', 'Belgium', '32', '0', 'Active'),
-(22, 'BZ', 'Belize', '501', '0', 'Active'),
-(23, 'BJ', 'Benin', '229', '0', 'Active'),
-(24, 'BM', 'Bermuda', '1441', '0', 'Active'),
-(25, 'BT', 'Bhutan', '975', '0', 'Active'),
-(26, 'BO', 'Bolivia', '591', '0', 'Active'),
-(27, 'BA', 'Bosnia and Herzegovina', '387', '0', 'Active'),
-(28, 'BW', 'Botswana', '267', '0', 'Active'),
-(29, 'BV', 'Bouvet Island', '0', '0', 'Inactive'),
-(30, 'BR', 'Brazil', '55', '0', 'Active'),
-(31, 'IO', 'British Indian Ocean Territory', '246', '0', 'Active'),
-(32, 'BN', 'Brunei', '673', '0', 'Active'),
-(33, 'BG', 'Bulgaria', '359', '0', 'Active'),
-(34, 'BF', 'Burkina Faso', '226', '0', 'Active'),
-(35, 'BI', 'Burundi', '257', '0', 'Active'),
-(36, 'KH', 'Cambodia', '855', '0', 'Active'),
-(37, 'CM', 'Cameroon', '237', '0', 'Active'),
-(38, 'CA', 'Canada', '1', '0', 'Active'),
-(39, 'CV', 'Cape Verde', '238', '0', 'Active'),
-(40, 'KY', 'Cayman Islands', '1345', '0', 'Active'),
-(41, 'CF', 'Central African Republic', '236', '0', 'Active'),
-(42, 'TD', 'Chad', '235', '0', 'Active'),
-(43, 'CL', 'Chile', '56', '0', 'Active'),
-(44, 'CN', 'China', '86', '1', 'Active'),
-(45, 'CX', 'Christmas Island', '61', '0', 'Active'),
-(46, 'CC', 'Cocos (Keeling) Islands', '672', '0', 'Active'),
-(47, 'CO', 'Colombia', '57', '0', 'Active'),
-(48, 'KM', 'Comoros', '269', '0', 'Active'),
-(49, 'CG', 'Republic Of The Congo', '242', '0', 'Active'),
-(50, 'CD', 'Democratic Republic Of The Congo', '242', '0', 'Inactive'),
-(51, 'CK', 'Cook Islands', '682', '0', 'Active'),
-(52, 'CR', 'Costa Rica', '506', '0', 'Active'),
-(53, 'CI', 'Cote D\'Ivoire (Ivory Coast)', '225', '0', 'Inactive'),
-(54, 'HR', 'Croatia (Hrvatska)', '385', '0', 'Active'),
-(55, 'CU', 'Cuba', '53', '0', 'Active'),
-(56, 'CY', 'Cyprus', '357', '0', 'Active'),
-(57, 'CZ', 'Czech Republic', '420', '0', 'Active'),
-(58, 'DK', 'Denmark', '45', '0', 'Active'),
-(59, 'DJ', 'Djibouti', '253', '0', 'Active'),
-(60, 'DM', 'Dominica', '1767', '0', 'Active'),
-(61, 'DO', 'Dominican Republic', '1809', '0', 'Active'),
-(62, 'TP', 'East Timor', '670', '0', 'Active'),
-(63, 'EC', 'Ecuador', '593', '0', 'Active'),
-(64, 'EG', 'Egypt', '20', '0', 'Active'),
-(65, 'SV', 'El Salvador', '503', '0', 'Active'),
-(66, 'GQ', 'Equatorial Guinea', '240', '0', 'Active'),
-(67, 'ER', 'Eritrea', '291', '0', 'Active'),
-(68, 'EE', 'Estonia', '372', '0', 'Active'),
-(69, 'ET', 'Ethiopia', '251', '0', 'Active'),
-(70, 'XA', 'External Territories of Australia', '61', '0', 'Inactive'),
-(71, 'FK', 'Falkland Islands', '500', '0', 'Active'),
-(72, 'FO', 'Faroe Islands', '298', '0', 'Active'),
-(73, 'FJ', 'Fiji Islands', '679', '0', 'Active'),
-(74, 'FI', 'Finland', '358', '0', 'Active'),
-(75, 'FR', 'France', '33', '0', 'Active'),
-(76, 'GF', 'French Guiana', '594', '0', 'Active'),
-(77, 'PF', 'French Polynesia', '689', '0', 'Active'),
-(78, 'TF', 'French Southern Territories', '0', '0', 'Active'),
-(79, 'GA', 'Gabon', '241', '0', 'Active'),
-(80, 'GM', 'Gambia', '220', '0', 'Active'),
-(81, 'GE', 'Georgia', '995', '0', 'Active'),
-(82, 'DE', 'Germany', '49', '0', 'Active'),
-(83, 'GH', 'Ghana', '233', '0', 'Active'),
-(84, 'GI', 'Gibraltar', '350', '0', 'Active'),
-(85, 'GR', 'Greece', '30', '0', 'Active'),
-(86, 'GL', 'Greenland', '299', '0', 'Active'),
-(87, 'GD', 'Grenada', '1473', '0', 'Active'),
-(88, 'GP', 'Guadeloupe', '590', '0', 'Active'),
-(89, 'GU', 'Guam', '1671', '0', 'Active'),
-(90, 'GT', 'Guatemala', '502', '0', 'Active'),
-(91, 'XU', 'Guernsey and Alderney', '44', '0', 'Active'),
-(92, 'GN', 'Guinea', '224', '0', 'Active'),
-(93, 'GW', 'Guinea-Bissau', '245', '0', 'Active'),
-(94, 'GY', 'Guyana', '592', '0', 'Active'),
-(95, 'HT', 'Haiti', '509', '0', 'Active'),
-(96, 'HM', 'Heard and McDonald Islands', '0', '0', 'Active'),
-(97, 'HN', 'Honduras', '504', '0', 'Active'),
-(98, 'HK', 'Hong Kong S.A.R.', '852', '1', 'Active'),
-(99, 'HU', 'Hungary', '36', '0', 'Active'),
-(100, 'IS', 'Iceland', '354', '0', 'Active'),
-(101, 'IN', 'India', '91', '1', 'Active'),
-(102, 'ID', 'Indonesia', '62', '1', 'Active'),
-(103, 'IR', 'Iran', '98', '0', 'Active'),
-(104, 'IQ', 'Iraq', '964', '0', 'Active'),
-(105, 'IE', 'Ireland', '353', '0', 'Active'),
-(106, 'IL', 'Israel', '972', '0', 'Active'),
-(107, 'IT', 'Italy', '39', '0', 'Active'),
-(108, 'JM', 'Jamaica', '1876', '0', 'Active'),
-(109, 'JP', 'Japan', '81', '0', 'Active'),
-(110, 'XJ', 'Jersey', '44', '0', 'Inactive'),
-(111, 'JO', 'Jordan', '962', '0', 'Active'),
-(112, 'KZ', 'Kazakhstan', '7', '0', 'Active'),
-(113, 'KE', 'Kenya', '254', '0', 'Active'),
-(114, 'KI', 'Kiribati', '686', '0', 'Active'),
-(115, 'KP', 'Korea North', '850', '1', 'Inactive'),
-(116, 'KR', 'Korea South', '82', '1', 'Active'),
-(117, 'KW', 'Kuwait', '965', '0', 'Active'),
-(118, 'KG', 'Kyrgyzstan', '996', '0', 'Active'),
-(119, 'LA', 'Laos', '856', '0', 'Active'),
-(120, 'LV', 'Latvia', '371', '0', 'Active'),
-(121, 'LB', 'Lebanon', '961', '0', 'Active'),
-(122, 'LS', 'Lesotho', '266', '0', 'Active'),
-(123, 'LR', 'Liberia', '231', '0', 'Active'),
-(124, 'LY', 'Libya', '218', '0', 'Active'),
-(125, 'LI', 'Liechtenstein', '423', '0', 'Active'),
-(126, 'LT', 'Lithuania', '370', '0', 'Active'),
-(127, 'LU', 'Luxembourg', '352', '0', 'Active'),
-(128, 'MO', 'Macau S.A.R.', '853', '1', 'Active'),
-(129, 'MK', 'Macedonia', '389', '0', 'Active'),
-(130, 'MG', 'Madagascar', '261', '0', 'Active'),
-(131, 'MW', 'Malawi', '265', '0', 'Active'),
-(132, 'MY', 'Malaysia', '60', '1', 'Active'),
-(133, 'MV', 'Maldives', '960', '0', 'Active'),
-(134, 'ML', 'Mali', '223', '0', 'Active'),
-(135, 'MT', 'Malta', '356', '0', 'Active'),
-(136, 'XM', 'Man (Isle of)', '44', '0', 'Inactive'),
-(137, 'MH', 'Marshall Islands', '692', '0', 'Active'),
-(138, 'MQ', 'Martinique', '596', '0', 'Active'),
-(139, 'MR', 'Mauritania', '222', '0', 'Active'),
-(140, 'MU', 'Mauritius', '230', '0', 'Active'),
-(141, 'YT', 'Mayotte', '269', '0', 'Active'),
-(142, 'MX', 'Mexico', '52', '0', 'Active'),
-(143, 'FM', 'Micronesia', '691', '0', 'Inactive'),
-(144, 'MD', 'Moldova', '373', '0', 'Active'),
-(145, 'MC', 'Monaco', '377', '0', 'Active'),
-(146, 'MN', 'Mongolia', '976', '0', 'Active'),
-(147, 'MS', 'Montserrat', '1664', '0', 'Active'),
-(148, 'MA', 'Morocco', '212', '0', 'Active'),
-(149, 'MZ', 'Mozambique', '258', '0', 'Active'),
-(150, 'MM', 'Myanmar', '95', '0', 'Active'),
-(151, 'NA', 'Namibia', '264', '0', 'Active'),
-(152, 'NR', 'Nauru', '674', '0', 'Active'),
-(153, 'NP', 'Nepal', '977', '0', 'Active'),
-(154, 'AN', 'Netherlands Antilles', '599', '0', 'Active'),
-(155, 'NL', 'Netherlands The', '31', '0', 'Active'),
-(156, 'NC', 'New Caledonia', '687', '0', 'Active'),
-(157, 'NZ', 'New Zealand', '64', '0', 'Active'),
-(158, 'NI', 'Nicaragua', '505', '0', 'Active'),
-(159, 'NE', 'Niger', '227', '0', 'Active'),
-(160, 'NG', 'Nigeria', '234', '0', 'Active'),
-(161, 'NU', 'Niue', '683', '0', 'Active'),
-(162, 'NF', 'Norfolk Island', '672', '0', 'Active'),
-(163, 'MP', 'Northern Mariana Islands', '1670', '0', 'Active'),
-(164, 'NO', 'Norway', '47', '0', 'Active'),
-(165, 'OM', 'Oman', '968', '0', 'Active'),
-(166, 'PK', 'Pakistan', '92', '0', 'Active'),
-(167, 'PW', 'Palau', '680', '0', 'Active'),
-(168, 'PS', 'Palestinian Territory Occupied', '970', '0', 'Active'),
-(169, 'PA', 'Panama', '507', '0', 'Active'),
-(170, 'PG', 'Papua new Guinea', '675', '0', 'Active'),
-(171, 'PY', 'Paraguay', '595', '0', 'Active'),
-(172, 'PE', 'Peru', '51', '0', 'Active'),
-(173, 'PH', 'Philippines', '63', '0', 'Active'),
-(174, 'PN', 'Pitcairn Island', '0', '0', 'Active'),
-(175, 'PL', 'Poland', '48', '0', 'Active'),
-(176, 'PT', 'Portugal', '351', '0', 'Active'),
-(177, 'PR', 'Puerto Rico', '1787', '0', 'Active'),
-(178, 'QA', 'Qatar', '974', '0', 'Active'),
-(179, 'RE', 'Reunion', '262', '0', 'Active'),
-(180, 'RO', 'Romania', '40', '0', 'Active'),
-(181, 'RU', 'Russia', '70', '0', 'Active'),
-(182, 'RW', 'Rwanda', '250', '0', 'Active'),
-(183, 'SH', 'Saint Helena', '290', '0', 'Active'),
-(184, 'KN', 'Saint Kitts And Nevis', '1869', '0', 'Active'),
-(185, 'LC', 'Saint Lucia', '1758', '0', 'Active'),
-(186, 'PM', 'Saint Pierre and Miquelon', '508', '0', 'Active'),
-(187, 'VC', 'Saint Vincent And The Grenadines', '1784', '0', 'Active'),
-(188, 'WS', 'Samoa', '684', '0', 'Active'),
-(189, 'SM', 'San Marino', '378', '0', 'Active'),
-(190, 'ST', 'Sao Tome and Principe', '239', '0', 'Active'),
-(191, 'SA', 'Saudi Arabia', '966', '0', 'Active'),
-(192, 'SN', 'Senegal', '221', '0', 'Active'),
-(193, 'RS', 'Serbia', '381', '0', 'Active'),
-(194, 'SC', 'Seychelles', '248', '0', 'Active'),
-(195, 'SL', 'Sierra Leone', '232', '0', 'Active'),
-(196, 'SG', 'Singapore', '65', '1', 'Active'),
-(197, 'SK', 'Slovakia', '421', '0', 'Active'),
-(198, 'SI', 'Slovenia', '386', '0', 'Active'),
-(199, 'XG', 'Smaller Territories of the UK', '44', '0', 'Active'),
-(200, 'SB', 'Solomon Islands', '677', '0', 'Active'),
-(201, 'SO', 'Somalia', '252', '0', 'Active'),
-(202, 'ZA', 'South Africa', '27', '0', 'Active'),
-(203, 'GS', 'South Georgia', '0', '0', 'Active'),
-(204, 'SS', 'South Sudan', '211', '0', 'Active'),
-(205, 'ES', 'Spain', '34', '0', 'Active'),
-(206, 'LK', 'Sri Lanka', '94', '0', 'Active'),
-(207, 'SD', 'Sudan', '249', '0', 'Active'),
-(208, 'SR', 'Suriname', '597', '0', 'Active'),
-(209, 'SJ', 'Svalbard And Jan Mayen Islands', '47', '0', 'Active'),
-(210, 'SZ', 'Swaziland', '268', '0', 'Active'),
-(211, 'SE', 'Sweden', '46', '0', 'Active'),
-(212, 'CH', 'Switzerland', '41', '0', 'Active'),
-(213, 'SY', 'Syria', '963', '0', 'Active'),
-(214, 'TW', 'Taiwan', '886', '1', 'Active'),
-(215, 'TJ', 'Tajikistan', '992', '0', 'Active'),
-(216, 'TZ', 'Tanzania', '255', '0', 'Active'),
-(217, 'TH', 'Thailand', '66', '1', 'Active'),
-(218, 'TG', 'Togo', '228', '0', 'Active'),
-(219, 'TK', 'Tokelau', '690', '0', 'Active'),
-(220, 'TO', 'Tonga', '676', '0', 'Active'),
-(221, 'TT', 'Trinidad And Tobago', '1868', '0', 'Active'),
-(222, 'TN', 'Tunisia', '216', '0', 'Active'),
-(223, 'TR', 'Turkey', '90', '0', 'Active'),
-(224, 'TM', 'Turkmenistan', '7370', '0', 'Active'),
-(225, 'TC', 'Turks And Caicos Islands', '1649', '0', 'Active'),
-(226, 'TV', 'Tuvalu', '688', '0', 'Active'),
-(227, 'UG', 'Uganda', '256', '0', 'Active'),
-(228, 'UA', 'Ukraine', '380', '0', 'Active'),
-(229, 'AE', 'United Arab Emirates', '971', '0', 'Active'),
-(230, 'GB', 'United Kingdom', '44', '0', 'Active'),
-(231, 'US', 'United States', '1', '0', 'Active'),
-(232, 'UM', 'United States Minor Outlying Islands', '1', '0', 'Active'),
-(233, 'UY', 'Uruguay', '598', '0', 'Active'),
-(234, 'UZ', 'Uzbekistan', '998', '0', 'Active'),
-(235, 'VU', 'Vanuatu', '678', '0', 'Active'),
-(236, 'VA', 'Vatican City State (Holy See)', '39', '0', 'Active'),
-(237, 'VE', 'Venezuela', '58', '0', 'Active'),
-(238, 'VN', 'Vietnam', '84', '1', 'Active'),
-(239, 'VG', 'Virgin Islands (British)', '1284', '0', 'Active'),
-(240, 'VI', 'Virgin Islands (US)', '1340', '0', 'Active'),
-(241, 'WF', 'Wallis And Futuna Islands', '681', '0', 'Active'),
-(242, 'EH', 'Western Sahara', '212', '0', 'Active'),
-(243, 'YE', 'Yemen', '967', '0', 'Active'),
-(244, 'YU', 'Yugoslavia', '38', '0', 'Active'),
-(245, 'ZM', 'Zambia', '260', '0', 'Active'),
-(246, 'ZW', 'Zimbabwe', '263', '0', 'Active'),
-(247, 'BS', 'BAHAMAS', '242', '0', 'Active'),
-(248, 'BQ', 'BRITISH ANTARCTIC TERRITORY', '', '0', 'Active'),
-(249, '', 'CANTON and ENDERBURY ISLANDS', '128', '0', 'Active'),
-(250, 'CD', 'CHANNEL ISLANDS', '', '0', 'Active'),
-(251, 'CG', 'CONGO', '243', '0', 'Active'),
-(252, 'KP', 'D.P.R. KOREA', '850', '0', 'Active'),
-(253, 'GZ', 'GAZA', '970', '0', 'Active'),
-(254, 'MM', 'ISLE OF MAN', '44', '0', 'Active'),
-(255, 'CI', 'IVORY COAST', '225', '0', 'Active'),
-(256, 'JT', 'JOHNSTON ISLAND', '', '0', 'Active'),
-(257, 'KG', 'KIRGHIZIA', '996', '0', 'Active'),
-(258, 'KV', 'KOSOVO', '383', '0', 'Active'),
-(259, 'MI', 'MIDWAY ISLANDS', '808', '0', 'Active'),
-(260, 'MJ', 'MONTENEGRO', '382', '0', 'Active'),
-(261, 'NL', 'NETHERLANDS', '31', '0', 'Active'),
-(262, 'NU', 'NIUE ISLAND', '683', '0', 'Active'),
-(263, 'PC', 'PACIFIC ISLAND TRUST TERRITORY', '', '0', 'Active'),
-(264, 'PS', 'PALESTINE', '970', '0', 'Active'),
-(265, 'PZ', 'PANAMA CANAL ZONE', '507', '0', 'Active'),
-(266, 'HV', 'UPPER VOLTA', '226', '0', 'Active'),
-(267, 'WK', 'WAKE ISLAND', '808', '0', 'Active'),
-(268, 'ZR', 'ZAIRE', '243', '0', 'Active');
-
 -- --------------------------------------------------------
 
 --
@@ -444,29 +144,6 @@ CREATE TABLE `customers` (
   `modified_date` datetime DEFAULT NULL,
   `status` enum('Active','Inactive','Trash') NOT NULL DEFAULT 'Active'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `customers`
---
-
-INSERT INTO `customers` (`customer_id`, `application_number`, `date_of_application`, `applicant_name`, `fathers_name`, `age`, `gender`, `phone_code`, `phone`, `altphone_code`, `altphone`, `email`, `occupation`, `experience`, `income`, `permanent_address`, `present_address`, `photo`, `created_date`, `modified_date`, `status`) VALUES
-(37, '119', '14-03-2022', 'Manoharan', 'Mano', 26, 'Male', '+91', '8489858748', '+91', NULL, 'mano@gmail.com', NULL, NULL, NULL, NULL, NULL, '622f3128ba5e9.png', '2022-03-14 17:42:24', NULL, 'Active'),
-(36, '120', '14-03-2022', 'Dhinakaran', 'dhina', 25, 'Male', '+91', '8495858585', '+91', NULL, 'dhina@gmail.com', NULL, NULL, NULL, NULL, NULL, '622f30f7b9265.png', '2022-03-14 17:41:35', NULL, 'Active'),
-(35, '313', '10-03-2022', 'Praveen kumar', 'kumar', 36, 'Male', '+91+91', '9953382833', '+91+91', NULL, 'kiumar@gmail.com', NULL, NULL, NULL, NULL, NULL, '62299c5ef038c.png', '2022-03-10 12:06:14', NULL, 'Active'),
-(32, '105', '11-03-2022', 'Maria Soosai Adikkalam', 'maria', 40, 'Male', '+91', '6565959549', '+91', NULL, 'maria@gmail.com', NULL, NULL, NULL, NULL, NULL, '62299a87e9850.png', '2022-03-10 11:58:23', NULL, 'Active'),
-(33, '210', '04-03-2022', 'Balaji', 'bala', 32, 'Male', '+91+91', '8645957984', '+91+91', NULL, 'ba@gmail.com', NULL, NULL, NULL, NULL, NULL, '62299b246afe8.png', '2022-03-10 12:01:00', NULL, 'Active'),
-(34, '303', '05-03-2022', 'Packiyaraj', 'raj', 50, 'Male', '+91', '6363545458', '+91', NULL, 'raj@gmail.com', NULL, NULL, NULL, NULL, NULL, '62299bcb74984.png', '2022-03-10 12:03:47', NULL, 'Active'),
-(31, '104', '10-03-2022', 'Arun', 'SARVE', 42, 'Male', '+91', '8684857979', '+91+91', NULL, 'SR@GMAIL.COM', NULL, NULL, NULL, NULL, NULL, '622999e52f861.png', '2022-03-10 11:55:41', NULL, 'Active'),
-(30, '103', '10-03-2022', 'Arunkumar pT', 'praveen', 12, 'Male', '+91', '9635321456', '+91', NULL, 'pr@gmail.com', NULL, NULL, NULL, NULL, NULL, '6229992bdf12c.png', '2022-03-10 11:52:35', NULL, 'Trash'),
-(29, '101', '10-03-2022', 'Ragavendiran', 'arjun', 35, 'Male', '+91+91+91', '9598989797', '+91+91+91', '9895969698', 'arjun@gmail.com', '//', 12, '100000', '//', '//', '6229986e838f7.png', '2022-03-10 11:49:26', NULL, 'Active'),
-(28, '102', '28-02-2022', 'Nithishha & Sajith', 'ak', 47, 'Male', '+91', '9598764646', '+91', '9589989886', 'ak@gmail.com', 'ak', 78, '100000', 'cbe', 'ceb', '6229960e1d57c.png', '2022-03-10 11:39:18', NULL, 'Active'),
-(38, '118', '14-03-2022', 'Sandeep Kumar', 'Kumar', 30, 'Male', '+91', '9874875874', '+91', NULL, 'san@gmail.com', NULL, NULL, NULL, NULL, NULL, '622f315d4dab7.png', '2022-03-14 17:43:17', NULL, 'Active'),
-(39, '0001', '16-03-2022', 'jamal', 'Meeran', 25, 'Male', '+91', '8428937026', '+91', '8667875047', 'jamal.viswatech@gmail.com', 'Web Developer', 2, '180000', '7A,Teachers Colony,\r\nSubramaniapuram,\r\nMadurai - 625011.', '7A,Teachers Colony,\r\nSubramaniapuram,\r\nMadurai - 625011.', '6231bfa644adc.jpg', '2022-03-16 16:14:54', NULL, 'Active'),
-(40, '1501', '28-03-2022', 'Delson', 'Nelson', 25, 'Female', '+91', '8598568585', NULL, NULL, 'delson@gmail.com', NULL, NULL, NULL, NULL, NULL, '6241673e3e97d.jpg', '2022-03-28 13:13:58', NULL, 'Trash'),
-(41, '1001', '21-03-2022', 'hello', 'Hai', 22, 'Male', '+91', '9859856895', NULL, NULL, 'hai@gmail.com', NULL, NULL, NULL, NULL, NULL, '62416c541a0c8.jpg', '2022-03-28 13:35:40', NULL, 'Trash'),
-(42, '1001', '20-03-2022', 'hello', 'hai', 22, 'Male', '+91', '8585887858', NULL, NULL, 'heil@gmail.xom', NULL, NULL, NULL, NULL, NULL, '62416cb9c0fc4.jpg', '2022-03-28 13:37:21', NULL, 'Active'),
-(43, '1520', '22-03-2022', 'hai', 'hai', 25, 'Female', '+91', '6564545454', NULL, NULL, 'hat@hamil.com', NULL, NULL, NULL, NULL, NULL, '62416d5a6b8e9.png', '2022-03-28 13:40:02', NULL, 'Active'),
-(44, '1522', '14-03-2022', 'asraf', 'ali', 25, 'Male', '+91', '9898985689', NULL, NULL, 'ali@gmail.com', NULL, NULL, NULL, NULL, NULL, '62416e4993fde.png', '2022-03-28 13:44:01', NULL, 'Trash');
 
 -- --------------------------------------------------------
 
@@ -514,22 +191,6 @@ CREATE TABLE `documents` (
   `modified_date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `documents`
---
-
-INSERT INTO `documents` (`document_id`, `customer_id`, `application_number`, `date_of_application`, `applicant_name`, `co_applicant_name`, `aadhar_number`, `aadhar`, `pan_number`, `pan`, `passport`, `passport_number`, `coaadhar_number`, `coaadhar`, `copan`, `copan_number`, `copassport`, `copassport_number`, `phone_code`, `phone`, `coapp_phone_code`, `coapp_phone`, `coapp_address`, `coapp_email`, `phase`, `block`, `floor`, `flattype`, `flatnumber`, `facing`, `salable_area`, `plinth_area`, `uds_area`, `comn_area`, `status`, `created_date`, `modified_date`) VALUES
-(17, 28, '102', '28-02-2022', 'Nithishha & Sajith', '//', '1212 1212 12', '62299778c6fd9.png', NULL, '62299778c8bfa.png', NULL, NULL, '65656565665', '62299778c8d55.png', '62299778c8e32.png', '545454545', '62299778c8f0f.png', '656464646', '+91', '9598764646', '+91', '9595959595', '///ok', 'ak@gmail.com', 12, 16, 18, 16, 376, 'North', '838', '838', '254', '100', 'Active', '2022-03-10 11:45:20', NULL),
-(18, 29, '101', '10-03-2022', 'Ragavendiran', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '+91+91+91', '9598989797', '+91', NULL, NULL, NULL, 12, 16, 18, 16, 375, 'North', '838', '838', '255', '65', 'Active', '2022-03-10 11:50:56', NULL),
-(19, 30, '103', '10-03-2022', 'Arunkumar pT', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '+91', '9635321456', '+91', NULL, NULL, NULL, 12, 16, 18, 16, 377, 'North', '838', '283', '256', '66', 'Trash', '2022-03-10 11:53:42', NULL),
-(20, 31, '104', '10-03-2022', 'Arun', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '+91', '8684857979', '+91', NULL, NULL, NULL, 12, 16, 18, 16, 378, 'North', '838', '838', '565', '65', 'Active', '2022-03-10 11:56:48', NULL),
-(21, 32, '105', '11-03-2022', 'Maria Soosai Adikkalam', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '+91', '6565959549', '+91', NULL, NULL, NULL, 12, 16, 18, 18, 379, 'North', '1139', '113', '102', '800', 'Active', '2022-03-10 11:59:42', NULL),
-(22, 33, '210', '04-03-2022', 'Balaji', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '+91+91', '8645957984', '+91', NULL, NULL, NULL, 12, 16, 19, 19, 389, 'North', '557', '50', '500', '5', 'Active', '2022-03-10 12:02:03', NULL),
-(23, 34, '303', '05-03-2022', 'Packiyaraj', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '+91', '6363545458', '+91', NULL, NULL, NULL, 12, 16, 20, 24, 422, 'North', '838', '532', '100', '50', 'Active', '2022-03-10 12:04:51', NULL),
-(24, 35, '313', '10-03-2022', 'Praveen kumar', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '+91+91', '9953382833', '+91', NULL, NULL, NULL, 12, 16, 20, 24, 427, 'North', '838', '89', '879', '65', 'Active', '2022-03-10 12:07:09', NULL),
-(25, 37, '119', '14-03-2022', 'Manoharan', 'Mari', '0125 4858 7458', '6230599e354d0.pdf', '1547858747', '6230599e35b9f.pdf', '6230599e35c6f.pdf', '1258745896', '12548587458748', '6230599e35f9e.pdf', '6230599e36068.pdf', '1254785896', '6230599e36127.pdf', '2589636985', '+91', '8489858748', '+91', '8485896858', 'Trichy', 'mari@gmail.com', 12, 17, 24, 39, 685, 'East', '858', '257', '258', '258', 'Active', '2022-03-15 14:47:18', NULL),
-(26, 39, '0001', '16-03-2022', 'jamal', 'Ahamed', '0145 2585 8585', '6231c98ebe6bc.pdf', 'ABCD154AC4', '6231c98ebf071.pdf', '6231c98ebf1c0.pdf', 'IND1548787', NULL, NULL, NULL, NULL, NULL, NULL, '+91', '8428937026', '+91', '9585826655', '7A,Teachers Colony,\r\nMadurai - 625011.', 'ahamed@gmail.com', 12, 16, 18, 15, 373, 'East', '858', '240', '940', '150', 'Active', '2022-03-16 16:57:10', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -549,18 +210,6 @@ CREATE TABLE `families` (
   `created_date` datetime NOT NULL,
   `modified_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `families`
---
-
-INSERT INTO `families` (`family_id`, `customer_id`, `relation`, `name`, `age`, `profession`, `school`, `class`, `status`, `created_date`, `modified_date`) VALUES
-(1, '42', NULL, 'Hai', '15', 'student', 'MIS', '7th std', 'Active', '2022-03-28 13:37:21', '0000-00-00 00:00:00'),
-(2, '42', NULL, NULL, NULL, NULL, NULL, NULL, 'Active', '2022-03-28 13:37:21', '0000-00-00 00:00:00'),
-(3, '43', 'Son', 'Hai', '25', 'Employee', NULL, NULL, 'Active', '2022-03-28 13:40:02', '0000-00-00 00:00:00'),
-(4, '43', 'Daughter', NULL, NULL, NULL, NULL, '-', 'Active', '2022-03-28 13:40:02', '0000-00-00 00:00:00'),
-(5, '44', 'Son', '-', '-', '-', '-', '-', 'Trash', '2022-03-28 13:44:01', '0000-00-00 00:00:00'),
-(6, '44', 'Daughter', '-', '-', '-', '-', '-', 'Trash', '2022-03-28 13:44:01', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -1348,15 +997,6 @@ CREATE TABLE `payments` (
   `status` enum('Active','Trash') DEFAULT 'Active'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `payments`
---
-
-INSERT INTO `payments` (`payment_id`, `customer_id`, `cost_id`, `application_number`, `applicant_name`, `date_of_application`, `gross_amount`, `payment_schedule`, `onbook10per`, `onbook_received10per`, `onbook_balance10per`, `onbook_paymentdate10per`, `onbook_transactiontype10per`, `onbook_paymenttype10per`, `onbook_chequenumber10per`, `onbook_neftid10per`, `payments10per`, `payments_received10per`, `payments_balance10per`, `payments_paymentdate10per`, `payments_transactiontype10per`, `payments_paymenttype10per`, `payments_chequenumber10per`, `payments_neftid10per`, `first10per`, `first_received10per`, `first_balance10per`, `first_paymentdate10per`, `first_transactiontype10per`, `first_paymenttype10per`, `first_chequenumber10per`, `first_neftid10per`, `second10per`, `second_received10per`, `second_balance10per`, `second_paymentdate10per`, `second_transactiontype10per`, `second_paymenttype10per`, `second_chequenumber10per`, `second_neftid10per`, `third10per`, `third_received10per`, `third_balance10per`, `third_paymentdate10per`, `third_transactiontype10per`, `third_paymenttype10per`, `third_chequenumber10per`, `third_neftid10per`, `fourth10per`, `fourth_received10per`, `fourth_balance10per`, `fourth_paymentdate10per`, `fourth_transactiontype10per`, `fourth_paymenttype10per`, `fourth_chequenumber10per`, `fourth_neftid10per`, `fifth10per`, `fifth_received10per`, `fifth_balance10per`, `fifth_paymentdate10per`, `fifth_transactiontype10per`, `fifth_paymenttype10per`, `fifth_chequenumber10per`, `fifth_neftid10per`, `handover10per`, `handover_received10per`, `handover_balance10per`, `handover_paymentdate10per`, `handover_transactiontype10per`, `handover_paymenttype10per`, `handover_chequenumber10per`, `handover_neftid10per`, `onbook15per`, `onbook_received15per`, `onbook_balance15per`, `onbook_paymentdate15per`, `onbook_transactiontype15per`, `onbook_paymenttype15per`, `onbook_chequenumber15per`, `onbook_neftid15per`, `payments15per`, `payments_received15per`, `payments_balance15per`, `payments_paymentdate15per`, `payments_transactiontype15per`, `payments_paymenttype15per`, `payments_chequenumber15per`, `payments_neftid15per`, `first15per`, `first_received15per`, `first_balance15per`, `first_paymentdate15per`, `first_transactiontype15per`, `first_paymenttype15per`, `first_chequenumber15per`, `first_neftid15per`, `second15per`, `second_received15per`, `second_balance15per`, `second_paymentdate15per`, `second_transactiontype15per`, `second_paymenttype15per`, `second_chequenumber15per`, `second_neftid15per`, `third15per`, `third_received15per`, `third_balance15per`, `third_paymentdate15per`, `third_transactiontype15per`, `third_paymenttype15per`, `third_chequenumber15per`, `third_neftid15per`, `fourth15per`, `fourth_received15per`, `fourth_balance15per`, `fourth_paymentdate15per`, `fourth_transactiontype15per`, `fourth_paymenttype15per`, `fourth_chequenumber15per`, `fourth_neftid15per`, `fifth15per`, `fifth_received15per`, `fifth_balance15per`, `fifth_paymentdate15per`, `fifth_transactiontype15per`, `fifth_paymenttype15per`, `fifth_chequenumber15per`, `fifth_neftid15per`, `handover15per`, `handover_received15per`, `handover_balance15per`, `handover_paymentdate15per`, `handover_transactiontype15per`, `handover_paymenttype15per`, `handover_chequenumber15per`, `handover_neftid15per`, `onbook20per`, `onbook_received20per`, `onbook_balance20per`, `onbook_paymentdate20per`, `onbook_transactiontype20per`, `onbook_paymenttype20per`, `onbook_chequenumber20per`, `onbook_neftid20per`, `payments20per`, `payments_received20per`, `payments_balance20per`, `payments_paymentdate20per`, `payments_transactiontype20per`, `payments_paymenttype20per`, `payments_chequenumber20per`, `payments_neftid20per`, `first20per`, `first_received20per`, `first_balance20per`, `first_paymentdate20per`, `first_transactiontype20per`, `first_paymenttype20per`, `first_chequenumber20per`, `first_neftid20per`, `second20per`, `second_received20per`, `second_balance20per`, `second_paymentdate20per`, `second_transactiontype20per`, `second_paymenttype20per`, `second_chequenumber20per`, `second_neftid20per`, `third20per`, `third_received20per`, `third_balance20per`, `third_paymentdate20per`, `third_transactiontype20per`, `third_paymenttype20per`, `third_chequenumber20per`, `third_neftid20per`, `fourth20per`, `fourth_received20per`, `fourth_balance20per`, `fourth_paymentdate20per`, `fourth_transactiontype20per`, `fourth_paymenttype20per`, `fourth_chequenumber20per`, `fourth_neftid20per`, `fifth20per`, `fifth_received20per`, `fifth_balance20per`, `fifth_paymentdate20per`, `fifth_transactiontype20per`, `fifth_paymenttype20per`, `fifth_chequenumber20per`, `fifth_neftid20per`, `handover20per`, `handover_received20per`, `handover_balance20per`, `handover_paymentdate20per`, `handover_transactiontype20per`, `handover_paymenttype20per`, `handover_chequenumber20per`, `handover_neftid20per`, `addmore`, `created_date`, `status`) VALUES
-(64, 39, 17, '0001', 'jamal', '16-03-2022', '3560700', '10', '54070', '20000', '34070', '28-03-2022', 'Ownfund', 'Cash', '-', '-', '1424280', '0', '1424280', '-', '-', '-', '-', '-', '356070', '0', '356070', '-', '-', '-', '-', '-', '356070', '0', '356070', '-', '-', '-', '-', '-', '356070', '0', '356070', '-', '-', '-', '-', '-', '356070', '0', '356070', '-', '-', '-', '-', '-', '178035', '0', '178035', '-', '-', '-', '-', '-', '178035', '0', '178035', '-', '-', '-', '-', '-', '534105', '0', '534105', '-', '-', '-', '-', '-', '1424280', '0', '1424280', '-', '-', '-', '-', '-', '356070', '0', '356070', '-', '-', '-', '-', '-', '356070', '0', '356070', '-', '-', '-', '-', '-', '356070', '0', '356070', '-', '-', '-', '-', '-', '178035', '0', '178035', '-', '-', '-', '-', '-', '178035', '0', '178035', '-', '-', '-', '-', '-', '178035', '0', '178035', '-', '-', '-', '-', '-', '712140', '0', '712140', '-', '-', '-', '-', '-', '1424280', '0', '1424280', '-', '-', '-', '-', '-', '356070', '0', '356070', '-', '-', '-', '-', '-', '356070', '0', '356070', '-', '-', '-', '-', '-', '178035', '0', '178035', '-', '-', '-', '-', '-', '178035', '0', '178035', '-', '-', '-', '-', '-', '178035', '0', '178035', '-', '-', '-', '-', '-', '178035', '0', '178035', '-', '-', '-', '-', '-', 0, '2022-03-30 21:54:29', 'Active'),
-(63, 39, 17, '0001', 'jamal', '16-03-2022', '3560700', '10', '56070', '2000', '54070', '28-03-2022', 'Ownfund', 'Cash', '-', '-', '1424280', '0', '1424280', '-', '-', '-', '-', '-', '356070', '0', '356070', '-', '-', '-', '-', '-', '356070', '0', '356070', '-', '-', '-', '-', '-', '356070', '0', '356070', '-', '-', '-', '-', '-', '356070', '0', '356070', '-', '-', '-', '-', '-', '178035', '0', '178035', '-', '-', '-', '-', '-', '178035', '0', '178035', '-', '-', '-', '-', '-', '534105', '0', '534105', '-', '-', '-', '-', '-', '1424280', '0', '1424280', '-', '-', '-', '-', '-', '356070', '0', '356070', '-', '-', '-', '-', '-', '356070', '0', '356070', '-', '-', '-', '-', '-', '356070', '0', '356070', '-', '-', '-', '-', '-', '178035', '0', '178035', '-', '-', '-', '-', '-', '178035', '0', '178035', '-', '-', '-', '-', '-', '178035', '0', '178035', '-', '-', '-', '-', '-', '712140', '0', '712140', '-', '-', '-', '-', '-', '1424280', '0', '1424280', '-', '-', '-', '-', '-', '356070', '0', '356070', '-', '-', '-', '-', '-', '356070', '0', '356070', '-', '-', '-', '-', '-', '178035', '0', '178035', '-', '-', '-', '-', '-', '178035', '0', '178035', '-', '-', '-', '-', '-', '178035', '0', '178035', '-', '-', '-', '-', '-', '178035', '0', '178035', '-', '-', '-', '-', '-', 1, '2022-03-30 21:54:14', 'Active'),
-(62, 39, 17, '0001', 'jamal', '16-03-2022', '3560700', '10', '356070', '300000', '56070', '28-03-2022', 'Ownfund', 'Cash', '-', '-', '1424280', '0', '1424280', '-', '-', '-', '-', '-', '356070', '0', '356070', '-', '-', '-', '-', '-', '356070', '0', '356070', '-', '-', '-', '-', '-', '356070', '0', '356070', '-', '-', '-', '-', '-', '356070', '0', '356070', '-', '-', '-', '-', '-', '178035', '0', '178035', '-', '-', '-', '-', '-', '178035', '0', '178035', '-', '-', '-', '-', '-', '534105', '0', '534105', '-', '-', '-', '-', '-', '1424280', '0', '1424280', '-', '-', '-', '-', '-', '356070', '0', '356070', '-', '-', '-', '-', '-', '356070', '0', '356070', '-', '-', '-', '-', '-', '356070', '0', '356070', '-', '-', '-', '-', '-', '178035', '0', '178035', '-', '-', '-', '-', '-', '178035', '0', '178035', '-', '-', '-', '-', '-', '178035', '0', '178035', '-', '-', '-', '-', '-', '712140', '0', '712140', '-', '-', '-', '-', '-', '1424280', '0', '1424280', '-', '-', '-', '-', '-', '356070', '0', '356070', '-', '-', '-', '-', '-', '356070', '0', '356070', '-', '-', '-', '-', '-', '178035', '0', '178035', '-', '-', '-', '-', '-', '178035', '0', '178035', '-', '-', '-', '-', '-', '178035', '0', '178035', '-', '-', '-', '-', '-', '178035', '0', '178035', '-', '-', '-', '-', '-', 1, '2022-03-30 21:53:59', 'Active');
-
 -- --------------------------------------------------------
 
 --
@@ -1403,16 +1043,6 @@ CREATE TABLE `receipts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `receipts`
---
-
-INSERT INTO `receipts` (`receipt_id`, `receipt_no`, `receipt_date`, `customer_id`, `received`, `application_number`, `sum_rupees`, `cheque_no`, `dated`, `drawn_on`, `bank_towards`, `referred_by`, `final_amount`, `status`, `created_date`) VALUES
-(1, '1', '28-03-2022', 37, 'Manoharan', '119', 'Fifth Thousand Rupees', NULL, NULL, NULL, NULL, NULL, '50000', 'Trash', '2022-03-28 20:14:16'),
-(2, '2', '30-03-2022', 39, 'jamal', '0001', 'THIRTY THOUSAND RUPEEES ONLY', '123456789', '01-04-2022', 'IOB', 'COIMBATORE', 'JAMAL', '30000', 'Active', '2022-03-30 15:47:34'),
-(3, '3', '31-03-2022', 39, 'jamal', '0001', 'TWENTY THOUSAND RUPEES ONLY', '-', '-', '-', '-', '-', '20000', 'Trash', '2022-03-30 15:48:40'),
-(4, '4', '31-03-2022', 39, 'jamal', '0001', NULL, NULL, NULL, NULL, NULL, NULL, '10000', 'Active', '2022-03-30 16:38:37');
-
---
 -- Indexes for dumped tables
 --
 
@@ -1433,12 +1063,6 @@ ALTER TABLE `blocks`
 --
 ALTER TABLE `costs`
   ADD PRIMARY KEY (`cost_id`);
-
---
--- Indexes for table `countries`
---
-ALTER TABLE `countries`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `customers`
@@ -1502,7 +1126,7 @@ ALTER TABLE `receipts`
 -- AUTO_INCREMENT for table `adminusers`
 --
 ALTER TABLE `adminusers`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `blocks`
@@ -1514,31 +1138,25 @@ ALTER TABLE `blocks`
 -- AUTO_INCREMENT for table `costs`
 --
 ALTER TABLE `costs`
-  MODIFY `cost_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
---
--- AUTO_INCREMENT for table `countries`
---
-ALTER TABLE `countries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=269;
+  MODIFY `cost_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `documents`
 --
 ALTER TABLE `documents`
-  MODIFY `document_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `document_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `families`
 --
 ALTER TABLE `families`
-  MODIFY `family_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `family_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `flatnumbers`
@@ -1562,7 +1180,7 @@ ALTER TABLE `floors`
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT for table `phases`
@@ -1574,7 +1192,7 @@ ALTER TABLE `phases`
 -- AUTO_INCREMENT for table `receipts`
 --
 ALTER TABLE `receipts`
-  MODIFY `receipt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `receipt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

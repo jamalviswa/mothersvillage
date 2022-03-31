@@ -158,7 +158,7 @@ class PaymentsController extends Controller
         $data->onbook_balance15per = $balance;
         $data->onbook_paymentdate15per = $request->onbook_paymentdate15per ? $request->onbook_paymentdate15per : "-";
         $data->onbook_transactiontype15per = $request->onbook_transactiontype15per ? $request->onbook_transactiontype15per : "-";
-        $data->onbook_paymenttype15per = $request->onbook_paymenttype15per ? $request->onbook_transactiontype15per : "-";
+        $data->onbook_paymenttype15per = $request->onbook_paymenttype15per ? $request->onbook_paymenttype15per : "-";
         $data->onbook_chequenumber15per = ($request->onbook_paymenttype15per == "Cheque") ? $request->onbook_chequenumber15per : "-";
         $data->onbook_neftid15per = ($request->onbook_paymenttype15per == "NEFT") ? $request->onbook_neftid15per : "-";
 
@@ -246,7 +246,7 @@ class PaymentsController extends Controller
         $data->onbook_balance20per = $balance;
         $data->onbook_paymentdate20per = $request->onbook_paymentdate20per ? $request->onbook_paymentdate20per : "-";
         $data->onbook_transactiontype20per = $request->onbook_transactiontype20per ? $request->onbook_transactiontype20per : "-";
-        $data->onbook_paymenttype20per = $request->onbook_paymenttype20per ? $request->onbook_transactiontype20per : "-";
+        $data->onbook_paymenttype20per = $request->onbook_paymenttype20per ? $request->onbook_paymenttype20per : "-";
         $data->onbook_chequenumber20per = ($request->onbook_paymenttype20per == "Cheque") ? $request->onbook_chequenumber20per : "-";
         $data->onbook_neftid20per = ($request->onbook_paymenttype20per == "NEFT") ? $request->onbook_neftid20per : "-";
 
@@ -639,5 +639,12 @@ class PaymentsController extends Controller
             }
             exit;
         }
+    }
+
+    public function view($id = null)
+    {
+        $sessionadmin = Parent::checkadmin();
+        $detail = Payment::where('payment_id', '=', $id)->first();
+        return view('payments/view', ['detail' => $detail]);
     }
 }
