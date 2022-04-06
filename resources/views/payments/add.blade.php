@@ -1733,15 +1733,23 @@
             if (jQuery(this).val() === "Cheque") {
                 jQuery('#agreementschequetd15per').show();
                 jQuery('#agreementsnefttd15per').hide();
+                jQuery('#agreementsrtgstd15per').hide();
                 jQuery('#agreementscashtd15per').hide();
             } else if (jQuery(this).val() === "NEFT") {
                 jQuery('#agreementschequetd15per').hide();
                 jQuery('#agreementsnefttd15per').show();
                 jQuery('#agreementscashtd15per').hide();
+                jQuery('#agreementsrtgstd15per').hide();
+            } else if (jQuery(this).val() === "RTGS") {
+                jQuery('#agreementschequetd15per').hide();
+                jQuery('#agreementsnefttd15per').hide();
+                jQuery('#agreementscashtd15per').hide();
+                jQuery('#agreementsrtgstd15per').show();
             } else {
                 jQuery('#agreementschequetd15per').hide();
                 jQuery('#agreementsnefttd15per').hide();
                 jQuery('#agreementscashtd15per').show();
+                jQuery('#agreementsrtgstd15per').hide();
             }
         });
     });
@@ -1751,15 +1759,23 @@
             if (jQuery(this).val() === "Cheque") {
                 jQuery('#1stfloorchequetd15per').show();
                 jQuery('#1stfloornefttd15per').hide();
+                jQuery('#1stfloorrtgstd15per').hide();
                 jQuery('#1stfloorcashtd15per').hide();
             } else if (jQuery(this).val() === "NEFT") {
                 jQuery('#1stfloorchequetd15per').hide();
                 jQuery('#1stfloornefttd15per').show();
                 jQuery('#1stfloorcashtd15per').hide();
+                jQuery('#1stfloorrtgstd15per').hide();
+            } else if (jQuery(this).val() === "RTGS") {
+                jQuery('#1stfloorchequetd15per').hide();
+                jQuery('#1stfloornefttd15per').hide();
+                jQuery('#1stfloorcashtd15per').hide();
+                jQuery('#1stfloorrtgstd15per').show();
             } else {
                 jQuery('#1stfloorchequetd15per').hide();
                 jQuery('#1stfloornefttd15per').hide();
                 jQuery('#1stfloorcashtd15per').show();
+                jQuery('#1stfloorrtgstd15per').hide();
             }
         });
     });
@@ -1769,15 +1785,23 @@
             if (jQuery(this).val() === "Cheque") {
                 jQuery('#2ndfloorchequetd15per').show();
                 jQuery('#2ndfloornefttd15per').hide();
+                jQuery('#2ndfloorrtgstd15per').hide();
                 jQuery('#2ndfloorcashtd15per').hide();
             } else if (jQuery(this).val() === "NEFT") {
                 jQuery('#2ndfloorchequetd15per').hide();
                 jQuery('#2ndfloornefttd15per').show();
                 jQuery('#2ndfloorcashtd15per').hide();
+                jQuery('#2ndfloorrtgstd15per').hide();
+            } else if (jQuery(this).val() === "RTGS") {
+                jQuery('#2ndfloorchequetd15per').hide();
+                jQuery('#2ndfloornefttd15per').hide();
+                jQuery('#2ndfloorcashtd15per').hide();
+                jQuery('#2ndfloorrtgstd15per').show();
             } else {
                 jQuery('#2ndfloorchequetd15per').hide();
                 jQuery('#2ndfloornefttd15per').hide();
                 jQuery('#2ndfloorcashtd15per').show();
+                jQuery('#2ndfloorrtgstd15per').hide();
             }
         });
     });
@@ -1787,15 +1811,23 @@
             if (jQuery(this).val() === "Cheque") {
                 jQuery('#3rdfloorchequetd15per').show();
                 jQuery('#3rdfloornefttd15per').hide();
+                jQuery('#3rdfloorrtgstd15per').hide();
                 jQuery('#3rdfloorcashtd15per').hide();
             } else if (jQuery(this).val() === "NEFT") {
                 jQuery('#3rdfloorchequetd15per').hide();
                 jQuery('#3rdfloornefttd15per').show();
                 jQuery('#3rdfloorcashtd15per').hide();
+                jQuery('#3rdfloorrtgstd15per').hide();
+            } else if (jQuery(this).val() === "RTGS") {
+                jQuery('#3rdfloorchequetd15per').hide();
+                jQuery('#3rdfloornefttd15per').hide();
+                jQuery('#3rdfloorcashtd15per').hide();
+                jQuery('#3rdfloorrtgstd15per').show();
             } else {
                 jQuery('#3rdfloorchequetd15per').hide();
                 jQuery('#3rdfloornefttd15per').hide();
                 jQuery('#3rdfloorcashtd15per').show();
+                jQuery('#3rdfloorrtgstd15per').hide();
             }
         });
     });
@@ -1805,15 +1837,23 @@
             if (jQuery(this).val() === "Cheque") {
                 jQuery('#4thfloorchequetd15per').show();
                 jQuery('#4thfloornefttd15per').hide();
+                jQuery('#4thfloorrtgstd15per').hide();
                 jQuery('#4thfloorcashtd15per').hide();
             } else if (jQuery(this).val() === "NEFT") {
                 jQuery('#4thfloorchequetd15per').hide();
                 jQuery('#4thfloornefttd15per').show();
                 jQuery('#4thfloorcashtd15per').hide();
+                jQuery('#4thfloorrtgstd15per').hide();
+            } else if (jQuery(this).val() === "RTGS") {
+                jQuery('#4thfloorchequetd15per').hide();
+                jQuery('#4thfloornefttd15per').hide();
+                jQuery('#4thfloorcashtd15per').hide();
+                jQuery('#4thfloorrtgstd15per').show();
             } else {
                 jQuery('#4thfloorchequetd15per').hide();
                 jQuery('#4thfloornefttd15per').hide();
                 jQuery('#4thfloorcashtd15per').show();
+                jQuery('#4thfloorrtgstd15per').hide();
             }
         });
     });
@@ -1823,15 +1863,23 @@
             if (jQuery(this).val() === "Cheque") {
                 jQuery('#5thfloorchequetd15per').show();
                 jQuery('#5thfloornefttd15per').hide();
+                jQuery('#5thfloorrtgstd15per').hide();
                 jQuery('#5thfloorcashtd15per').hide();
             } else if (jQuery(this).val() === "NEFT") {
                 jQuery('#5thfloorchequetd15per').hide();
                 jQuery('#5thfloornefttd15per').show();
                 jQuery('#5thfloorcashtd15per').hide();
+                jQuery('#5thfloorrtgstd15per').hide();
+            } else if (jQuery(this).val() === "RTGS") {
+                jQuery('#5thfloorchequetd15per').hide();
+                jQuery('#5thfloornefttd15per').hide();
+                jQuery('#5thfloorcashtd15per').hide();
+                jQuery('#5thfloorrtgstd15per').show();
             } else {
                 jQuery('#5thfloorchequetd15per').hide();
                 jQuery('#5thfloornefttd15per').hide();
                 jQuery('#5thfloorcashtd15per').show();
+                jQuery('#5thfloorrtgstd15per').hide();
             }
         });
     });
@@ -1841,15 +1889,23 @@
             if (jQuery(this).val() === "Cheque") {
                 jQuery('#handoverchequetd15per').show();
                 jQuery('#handovernefttd15per').hide();
+                jQuery('#handoverrtgstd15per').hide();
                 jQuery('#handovercashtd15per').hide();
             } else if (jQuery(this).val() === "NEFT") {
                 jQuery('#handoverchequetd15per').hide();
                 jQuery('#handovernefttd15per').show();
                 jQuery('#handovercashtd15per').hide();
+                jQuery('#handoverrtgstd15per').hide();
+            } else if (jQuery(this).val() === "RTGS") {
+                jQuery('#handoverchequetd15per').hide();
+                jQuery('#handovernefttd15per').hide();
+                jQuery('#handovercashtd15per').hide();
+                jQuery('#handoverrtgstd15per').show();
             } else {
                 jQuery('#handoverchequetd15per').hide();
                 jQuery('#handovernefttd15per').hide();
                 jQuery('#handovercashtd15per').show();
+                jQuery('#handoverrtgstd15per').hide();
             }
         });
     });
@@ -1859,15 +1915,23 @@
             if (jQuery(this).val() === "Cheque") {
                 jQuery('#onchequetd20per').show();
                 jQuery('#onnefttd20per').hide();
+                jQuery('#onrtgstd20per').hide();
                 jQuery('#oncashtd20per').hide();
             } else if (jQuery(this).val() === "NEFT") {
                 jQuery('#onchequetd20per').hide();
                 jQuery('#onnefttd20per').show();
                 jQuery('#oncashtd20per').hide();
+                jQuery('#onrtgstd20per').hide();
+            } else if (jQuery(this).val() === "RTGS") {
+                jQuery('#onchequetd20per').hide();
+                jQuery('#onnefttd20per').hide();
+                jQuery('#oncashtd20per').hide();
+                jQuery('#onrtgstd20per').show();
             } else {
                 jQuery('#onchequetd20per').hide();
                 jQuery('#onnefttd20per').hide();
                 jQuery('#oncashtd20per').show();
+                jQuery('#onrtgstd20per').hide();
             }
         });
     });
@@ -1877,15 +1941,23 @@
             if (jQuery(this).val() === "Cheque") {
                 jQuery('#agreementschequetd20per').show();
                 jQuery('#agreementsnefttd20per').hide();
+                jQuery('#agreementsrtgstd20per').hide();
                 jQuery('#agreementscashtd20per').hide();
             } else if (jQuery(this).val() === "NEFT") {
                 jQuery('#agreementschequetd20per').hide();
                 jQuery('#agreementsnefttd20per').show();
                 jQuery('#agreementscashtd20per').hide();
+                jQuery('#agreementsrtgstd20per').hide();
+            } else if (jQuery(this).val() === "RTGS") {
+                jQuery('#agreementschequetd20per').hide();
+                jQuery('#agreementsnefttd20per').hide();
+                jQuery('#agreementscashtd20per').hide();
+                jQuery('#agreementsrtgstd20per').show();
             } else {
                 jQuery('#agreementschequetd20per').hide();
                 jQuery('#agreementsnefttd20per').hide();
                 jQuery('#agreementscashtd20per').show();
+                jQuery('#agreementsrtgstd20per').hide();
             }
         });
     });
@@ -1895,15 +1967,23 @@
             if (jQuery(this).val() === "Cheque") {
                 jQuery('#1stfloorchequetd20per').show();
                 jQuery('#1stfloornefttd20per').hide();
+                jQuery('#1stfloorrtgstd20per').hide();
                 jQuery('#1stfloorcashtd20per').hide();
             } else if (jQuery(this).val() === "NEFT") {
                 jQuery('#1stfloorchequetd20per').hide();
                 jQuery('#1stfloornefttd20per').show();
                 jQuery('#1stfloorcashtd20per').hide();
+                jQuery('#1stfloorrtgstd20per').hide();
+            } else if (jQuery(this).val() === "RTGS") {
+                jQuery('#1stfloorchequetd20per').hide();
+                jQuery('#1stfloornefttd20per').hide();
+                jQuery('#1stfloorcashtd20per').hide();
+                jQuery('#1stfloorrtgstd20per').show();
             } else {
                 jQuery('#1stfloorchequetd20per').hide();
                 jQuery('#1stfloornefttd20per').hide();
                 jQuery('#1stfloorcashtd20per').show();
+                jQuery('#1stfloorrtgstd20per').hide();
             }
         });
     });
@@ -1913,15 +1993,23 @@
             if (jQuery(this).val() === "Cheque") {
                 jQuery('#2ndfloorchequetd20per').show();
                 jQuery('#2ndfloornefttd20per').hide();
+                jQuery('#2ndfloorrtgstd20per').hide();
                 jQuery('#2ndfloorcashtd20per').hide();
             } else if (jQuery(this).val() === "NEFT") {
                 jQuery('#2ndfloorchequetd20per').hide();
                 jQuery('#2ndfloornefttd20per').show();
                 jQuery('#2ndfloorcashtd20per').hide();
+                jQuery('#2ndfloorrtgstd20per').hide();
+            } else if (jQuery(this).val() === "RTGS") {
+                jQuery('#2ndfloorchequetd20per').hide();
+                jQuery('#2ndfloornefttd20per').hide();
+                jQuery('#2ndfloorcashtd20per').hide();
+                jQuery('#2ndfloorrtgstd20per').show();
             } else {
                 jQuery('#2ndfloorchequetd20per').hide();
                 jQuery('#2ndfloornefttd20per').hide();
                 jQuery('#2ndfloorcashtd20per').show();
+                jQuery('#2ndfloorrtgstd20per').hide();
             }
         });
     });
@@ -1931,15 +2019,23 @@
             if (jQuery(this).val() === "Cheque") {
                 jQuery('#3rdfloorchequetd20per').show();
                 jQuery('#3rdfloornefttd20per').hide();
+                jQuery('#3rdfloorrtgstd20per').hide();
                 jQuery('#3rdfloorcashtd20per').hide();
             } else if (jQuery(this).val() === "NEFT") {
                 jQuery('#3rdfloorchequetd20per').hide();
                 jQuery('#3rdfloornefttd20per').show();
                 jQuery('#3rdfloorcashtd20per').hide();
+                jQuery('#3rdfloorrtgstd20per').hide();
+            } else if (jQuery(this).val() === "RTGS") {
+                jQuery('#3rdfloorchequetd20per').hide();
+                jQuery('#3rdfloornefttd20per').hide();
+                jQuery('#3rdfloorcashtd20per').hide();
+                jQuery('#3rdfloorrtgstd20per').show();
             } else {
                 jQuery('#3rdfloorchequetd20per').hide();
                 jQuery('#3rdfloornefttd20per').hide();
                 jQuery('#3rdfloorcashtd20per').show();
+                jQuery('#3rdfloorrtgstd20per').hide();
             }
         });
     });
@@ -1949,15 +2045,23 @@
             if (jQuery(this).val() === "Cheque") {
                 jQuery('#4thfloorchequetd20per').show();
                 jQuery('#4thfloornefttd20per').hide();
+                jQuery('#4thfloorrtgstd20per').hide();
                 jQuery('#4thfloorcashtd20per').hide();
             } else if (jQuery(this).val() === "NEFT") {
                 jQuery('#4thfloorchequetd20per').hide();
                 jQuery('#4thfloornefttd20per').show();
                 jQuery('#4thfloorcashtd20per').hide();
+                jQuery('#4thfloorrtgstd20per').hide();
+            } else if (jQuery(this).val() === "RTGS") {
+                jQuery('#4thfloorchequetd20per').hide();
+                jQuery('#4thfloornefttd20per').hide();
+                jQuery('#4thfloorcashtd20per').hide();
+                jQuery('#4thfloorrtgstd20per').show();
             } else {
                 jQuery('#4thfloorchequetd20per').hide();
                 jQuery('#4thfloornefttd20per').hide();
                 jQuery('#4thfloorcashtd20per').show();
+                jQuery('#4thfloorrtgstd20per').hide();
             }
         });
     });
@@ -1967,15 +2071,23 @@
             if (jQuery(this).val() === "Cheque") {
                 jQuery('#5thfloorchequetd20per').show();
                 jQuery('#5thfloornefttd20per').hide();
+                jQuery('#5thfloorrtgstd20per').hide();
                 jQuery('#5thfloorcashtd20per').hide();
             } else if (jQuery(this).val() === "NEFT") {
                 jQuery('#5thfloorchequetd20per').hide();
                 jQuery('#5thfloornefttd20per').show();
                 jQuery('#5thfloorcashtd20per').hide();
+                jQuery('#5thfloorrtgstd20per').hide();
+            } else if (jQuery(this).val() === "RTGS") {
+                jQuery('#5thfloorchequetd20per').hide();
+                jQuery('#5thfloornefttd20per').hide();
+                jQuery('#5thfloorcashtd20per').hide();
+                jQuery('#5thfloorrtgstd20per').show();
             } else {
                 jQuery('#5thfloorchequetd20per').hide();
                 jQuery('#5thfloornefttd20per').hide();
                 jQuery('#5thfloorcashtd20per').show();
+                jQuery('#5thfloorrtgstd20per').hide();
             }
         });
     });
@@ -1985,15 +2097,23 @@
             if (jQuery(this).val() === "Cheque") {
                 jQuery('#handoverchequetd20per').show();
                 jQuery('#handovernefttd20per').hide();
+                jQuery('#handoverrtgstd20per').hide();
                 jQuery('#handovercashtd20per').hide();
             } else if (jQuery(this).val() === "NEFT") {
                 jQuery('#handoverchequetd20per').hide();
                 jQuery('#handovernefttd20per').show();
                 jQuery('#handovercashtd20per').hide();
+                jQuery('#handoverrtgstd20per').hide();
+            } else if (jQuery(this).val() === "RTGS") {
+                jQuery('#handoverchequetd20per').hide();
+                jQuery('#handovernefttd20per').hide();
+                jQuery('#handovercashtd20per').hide();
+                jQuery('#handoverrtgstd20per').show();
             } else {
                 jQuery('#handoverchequetd20per').hide();
                 jQuery('#handovernefttd20per').hide();
                 jQuery('#handovercashtd20per').show();
+                jQuery('#handoverrtgstd20per').hide();
             }
         });
     });
