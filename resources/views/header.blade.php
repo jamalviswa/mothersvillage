@@ -82,6 +82,26 @@
         </div>
     </div>
 </div>
+
+<!-- <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    @csrf
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">Are You Sure, Do you want Add this Record?</h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fa fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">No</button>
+                <button class="btn btn-primary" name="javascript:;" type="button">Yes</button>
+               
+            </div>
+        </div>
+    </div>
+</div> -->
+
 <script>
     $(document).on('click', '.delete', function(e) {
         e.preventDefault();
@@ -89,6 +109,14 @@
         $('#deleteModal').find('.btn-primary').attr('href', $(this).attr('href'));
     });
 </script>
+
+<!-- <script>
+    $(document).on('click', '.add', function(e) {
+        e.preventDefault();
+        $('#addModal').modal('show');
+        $('#addModal').find('.btn-primary').attr('name', $(this).attr('name'));
+    });
+</script> -->
 <style>
     .notify {
         border-radius: 50%;

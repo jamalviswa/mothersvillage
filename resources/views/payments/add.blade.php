@@ -81,6 +81,75 @@
                                                 <input type="text" disabled autocomplete="off" class="form-control" />
                                             </div>
                                         </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-5">
+                                                 Transaction Type <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-7">
+                                                <select class="form-control transaction" name="transaction_type">
+                                                    <option value="">--Select--</option>
+                                                    <option value="Ownfund">Own Fund</option>
+                                                    <option value="Bank">Bank</option>
+                                                </select>
+                                                @error('transaction_type')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row"  style="display: none;" id="banktype">
+                                            <label class="col-md-5">
+                                                 Bank Type <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-7">
+                                                <select class="form-control banks" name="transaction_type">
+                                                    <option value="">--Select--</option>
+                                                    <option value="SBI">SBI</option>
+                                                    <option value="HDFC">HDFC</option>
+                                                    <option value="IOB">IOB</option>
+                                                    <option value="LIC">LIC</option>
+                                                    <option value="CANARA">CANARA</option>
+                                                    <option value="OTHERS">OTHERS</option>
+                                                </select>
+                                                @error('transaction_type')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row"  style="display: none;" id="bankname">
+                                            <label class="col-md-5">
+                                                 Bank Name <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-7">
+                                            <input value="{{ old('bank_name') }}" type="text" autocomplete="off" class="form-control" name="bank_name" />
+                                                @error('bank_name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row"  style="display: none;" id="loan">
+                                            <label class="col-md-5">
+                                                 Loan Sansaction Amount <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-7">
+                                            <input value="{{ old('bank_name') }}" type="text" autocomplete="off" class="form-control" name="bank_name" />
+                                                @error('bank_name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
                                         <div class="form-group row">
                                             <label class="col-md-5">
                                                 Payment Schedule<span class="red">*</span>
@@ -101,6 +170,7 @@
                                             </div>
                                         </div>
 
+                                       
                                     </div>
                                 </div>
                                 <!-- Begin :: 10 Percentage payment type Details -->
@@ -157,6 +227,7 @@
                                                                         <option value="Cheque">Cheque</option>
                                                                         <option value="Cash">Cash</option>
                                                                         <option value="NEFT">NEFT</option>
+                                                                        <option value="RTGS">RTGS</option>
                                                                     </select>
                                                                 </td>
                                                                 <td id="onchequetd" style="display:none;">
@@ -167,6 +238,9 @@
                                                                 </td>
                                                                 <td id="onnefttd" style="display:none;">
                                                                     <input value="{{ old('onbook_neftid10per') }}" type="text" placeholder="NEFT ID" class="form-control" name="onbook_neftid10per" />
+                                                                </td>
+                                                                <td id="onrtgstd" style="display:none;">
+                                                                    <input value="{{ old('onbook_rtgsid10per') }}" type="text" placeholder="RTGS No" class="form-control" name="onbook_rtgsid10per" />
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -201,6 +275,7 @@
                                                                         <option value="Cheque">Cheque</option>
                                                                         <option value="Cash">Cash</option>
                                                                         <option value="NEFT">NEFT</option>
+                                                                        <option value="RTGS">RTGS</option>
                                                                     </select>
                                                                 </td>
                                                                 <td id="agreementschequetd" style="display:none;">
@@ -211,6 +286,9 @@
                                                                 </td>
                                                                 <td id="agreementsnefttd" style="display:none;">
                                                                     <input value="{{ old('payments_neftid10per') }}" type="text" placeholder="NEFT ID" class="form-control" name="payments_neftid10per" />
+                                                                </td>
+                                                                <td id="agreementsrtgstd" style="display:none;">
+                                                                    <input value="{{ old('payments_rtgsid10per') }}" type="text" placeholder="RTGS No" class="form-control" name="payments_rtgsid10per" />
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -245,6 +323,7 @@
                                                                         <option value="Cheque">Cheque</option>
                                                                         <option value="Cash">Cash</option>
                                                                         <option value="NEFT">NEFT</option>
+                                                                        <option value="RTGS">RTGS</option>
                                                                     </select>
                                                                 </td>
                                                                 <td id="1stfloorchequetd" style="display:none;">
@@ -255,6 +334,9 @@
                                                                 </td>
                                                                 <td id="1stfloornefttd" style="display:none;">
                                                                     <input value="{{ old('first_neftid10per') }}" type="text" placeholder="NEFT ID" class="form-control" name="first_neftid10per" />
+                                                                </td>
+                                                                <td id="1stfloorrtgstd" style="display:none;">
+                                                                    <input value="{{ old('first_rtgsid10per') }}" type="text" placeholder="RTGS No" class="form-control" name="first_rtgsid10per" />
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -289,6 +371,7 @@
                                                                         <option value="Cheque">Cheque</option>
                                                                         <option value="Cash">Cash</option>
                                                                         <option value="NEFT">NEFT</option>
+                                                                        <option value="RTGS">RTGS</option>
                                                                     </select>
                                                                 </td>
                                                                 <td id="2ndfloorchequetd" style="display:none;">
@@ -299,6 +382,9 @@
                                                                 </td>
                                                                 <td id="2ndfloornefttd" style="display:none;">
                                                                     <input value="{{ old('second_neftid10per') }}" type="text" placeholder="NEFT ID" class="form-control" name="second_neftid10per" />
+                                                                </td>
+                                                                <td id="2ndfloorrtgstd" style="display:none;">
+                                                                    <input value="{{ old('second_rtgsid10per') }}" type="text" placeholder="RTGS No" class="form-control" name="second_rtgsid10per" />
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -333,6 +419,7 @@
                                                                         <option value="Cheque">Cheque</option>
                                                                         <option value="Cash">Cash</option>
                                                                         <option value="NEFT">NEFT</option>
+                                                                        <option value="RTGS">RTGS</option>
                                                                     </select>
                                                                 </td>
                                                                 <td id="3rdfloorchequetd" style="display:none;">
@@ -343,6 +430,9 @@
                                                                 </td>
                                                                 <td id="3rdfloornefttd" style="display:none;">
                                                                     <input value="{{ old('third_neftid10per') }}" type="text" placeholder="NEFT ID" class="form-control" name="third_neftid10per" />
+                                                                </td>
+                                                                <td id="3rdfloorrtgstd" style="display:none;">
+                                                                    <input value="{{ old('third_rtgsid10per') }}" type="text" placeholder="RTGS No" class="form-control" name="third_rtgsid10per" />
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -377,6 +467,7 @@
                                                                         <option value="Cheque">Cheque</option>
                                                                         <option value="Cash">Cash</option>
                                                                         <option value="NEFT">NEFT</option>
+                                                                        <option value="RTGS">RTGS</option>
                                                                     </select>
                                                                 </td>
                                                                 <td id="4thfloorchequetd" style="display:none;">
@@ -387,6 +478,9 @@
                                                                 </td>
                                                                 <td id="4thfloornefttd" style="display:none;">
                                                                     <input value="{{ old('fourth_neftid10per') }}" type="text" placeholder="NEFT ID" class="form-control" name="fourth_neftid10per" />
+                                                                </td>
+                                                                <td id="4thfloorrtgstd" style="display:none;">
+                                                                    <input value="{{ old('fourth_rtgsid10per') }}" type="text" placeholder="RTGS No" class="form-control" name="fourth_rtgsid10per" />
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -421,6 +515,7 @@
                                                                         <option value="Cheque">Cheque</option>
                                                                         <option value="Cash">Cash</option>
                                                                         <option value="NEFT">NEFT</option>
+                                                                        <option value="RTGS">RTGS</option>
                                                                     </select>
                                                                 </td>
                                                                 <td id="5thfloorchequetd" style="display:none;">
@@ -431,6 +526,9 @@
                                                                 </td>
                                                                 <td id="5thfloornefttd" style="display:none;">
                                                                     <input value="{{ old('fifth_neftid10per') }}" type="text" placeholder="NEFT ID" class="form-control" name="fifth_neftid10per" />
+                                                                </td>
+                                                                <td id="5thfloorrtgstd" style="display:none;">
+                                                                    <input value="{{ old('fifth_rtgsid10per') }}" type="text" placeholder="RTGS No" class="form-control" name="fifth_rtgsid10per" />
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -465,6 +563,7 @@
                                                                         <option value="Cheque">Cheque</option>
                                                                         <option value="Cash">Cash</option>
                                                                         <option value="NEFT">NEFT</option>
+                                                                        <option value="RTGS">RTGS</option>
                                                                     </select>
                                                                 </td>
                                                                 <td id="handoverchequetd" style="display:none;">
@@ -475,6 +574,9 @@
                                                                 </td>
                                                                 <td id="handovernefttd" style="display:none;">
                                                                     <input value="{{ old('handover_neftid10per') }}" type="text" placeholder="NEFT ID" class="form-control" name="handover_neftid10per" />
+                                                                </td>
+                                                                <td id="handoverrtgstd" style="display:none;">
+                                                                    <input value="{{ old('handover_rtgsid10per') }}" type="text" placeholder="RTGS No" class="form-control" name="handover_rtgsid10per" />
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -540,6 +642,7 @@
                                                                         <option value="Cheque">Cheque</option>
                                                                         <option value="Cash">Cash</option>
                                                                         <option value="NEFT">NEFT</option>
+                                                                        <option value="RTGS">RTGS</option>
                                                                     </select>
                                                                 </td>
                                                                 <td id="onchequetd15per" style="display:none;">
@@ -550,6 +653,9 @@
                                                                 </td>
                                                                 <td id="onnefttd15per" style="display:none;">
                                                                     <input value="{{ old('onbook_neftid15per') }}" type="text" placeholder="NEFT ID" class="form-control" name="onbook_neftid15per" />
+                                                                </td>
+                                                                <td id="onrtgstd15per" style="display:none;">
+                                                                    <input value="{{ old('onbook_rtgsid15per') }}" type="text" placeholder="RTGS No" class="form-control" name="onbook_rtgsid15per" />
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -584,6 +690,7 @@
                                                                         <option value="Cheque">Cheque</option>
                                                                         <option value="Cash">Cash</option>
                                                                         <option value="NEFT">NEFT</option>
+                                                                        <option value="RTGS">RTGS</option>
                                                                     </select>
                                                                 </td>
                                                                 <td id="agreementschequetd15per" style="display:none;">
@@ -594,6 +701,9 @@
                                                                 </td>
                                                                 <td id="agreementsnefttd15per" style="display:none;">
                                                                     <input value="{{ old('payments_neftid15per') }}" type="text" placeholder="NEFT ID" class="form-control" name="payments_neftid15per" />
+                                                                </td>
+                                                                <td id="agreementsrtgstd15per" style="display:none;">
+                                                                    <input value="{{ old('payments_rtgsid15per') }}" type="text" placeholder="RTGS No" class="form-control" name="payments_rtgsid15per" />
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -628,6 +738,7 @@
                                                                         <option value="Cheque">Cheque</option>
                                                                         <option value="Cash">Cash</option>
                                                                         <option value="NEFT">NEFT</option>
+                                                                        <option value="RTGS">RTGS</option>
                                                                     </select>
                                                                 </td>
                                                                 <td id="1stfloorchequetd15per" style="display:none;">
@@ -638,6 +749,9 @@
                                                                 </td>
                                                                 <td id="1stfloornefttd15per" style="display:none;">
                                                                     <input value="{{ old('first_neftid15per') }}" type="text" placeholder="NEFT ID" class="form-control" name="first_neftid15per" />
+                                                                </td>
+                                                                <td id="1stfloorrtgstd15per" style="display:none;">
+                                                                    <input value="{{ old('first_rtgsid15per') }}" type="text" placeholder="RTGS No" class="form-control" name="first_rtgsid15per" />
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -672,6 +786,7 @@
                                                                         <option value="Cheque">Cheque</option>
                                                                         <option value="Cash">Cash</option>
                                                                         <option value="NEFT">NEFT</option>
+                                                                        <option value="RTGS">RTGS</option>
                                                                     </select>
                                                                 </td>
                                                                 <td id="2ndfloorchequetd15per" style="display:none;">
@@ -682,6 +797,9 @@
                                                                 </td>
                                                                 <td id="2ndfloornefttd15per" style="display:none;">
                                                                     <input value="{{ old('second_neftid15per') }}" type="text" placeholder="NEFT ID" class="form-control" name="second_neftid15per" />
+                                                                </td>
+                                                                <td id="2ndfloorrtgstd15per" style="display:none;">
+                                                                    <input value="{{ old('second_rtgsid15per') }}" type="text" placeholder="RTGS No" class="form-control" name="second_rtgsid15per" />
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -716,6 +834,7 @@
                                                                         <option value="Cheque">Cheque</option>
                                                                         <option value="Cash">Cash</option>
                                                                         <option value="NEFT">NEFT</option>
+                                                                        <option value="RTGS">RTGS</option>
                                                                     </select>
                                                                 </td>
                                                                 <td id="3rdfloorchequetd15per" style="display:none;">
@@ -726,6 +845,9 @@
                                                                 </td>
                                                                 <td id="3rdfloornefttd15per" style="display:none;">
                                                                     <input value="{{ old('third_neftid15per') }}" type="text" placeholder="NEFT ID" class="form-control" name="third_neftid15per" />
+                                                                </td>
+                                                                <td id="3rdfloorrtgstd15per" style="display:none;">
+                                                                    <input value="{{ old('third_rtgsid15per') }}" type="text" placeholder="RTGS No" class="form-control" name="third_rtgsid15per" />
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -760,6 +882,7 @@
                                                                         <option value="Cheque">Cheque</option>
                                                                         <option value="Cash">Cash</option>
                                                                         <option value="NEFT">NEFT</option>
+                                                                        <option value="RTGS">RTGS</option>
                                                                     </select>
                                                                 </td>
                                                                 <td id="4thfloorchequetd15per" style="display:none;">
@@ -770,6 +893,9 @@
                                                                 </td>
                                                                 <td id="4thfloornefttd15per" style="display:none;">
                                                                     <input value="{{ old('fourth_neftid15per') }}" type="text" placeholder="NEFT ID" class="form-control" name="fourth_neftid15per" />
+                                                                </td>
+                                                                <td id="4thfloorrtgstd15per" style="display:none;">
+                                                                    <input value="{{ old('fourth_rtgsid15per') }}" type="text" placeholder="RTGS No" class="form-control" name="fourth_rtgsid15per" />
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -804,6 +930,7 @@
                                                                         <option value="Cheque">Cheque</option>
                                                                         <option value="Cash">Cash</option>
                                                                         <option value="NEFT">NEFT</option>
+                                                                        <option value="RTGS">RTGS</option>
                                                                     </select>
                                                                 </td>
                                                                 <td id="5thfloorchequetd15per" style="display:none;">
@@ -814,6 +941,9 @@
                                                                 </td>
                                                                 <td id="5thfloornefttd15per" style="display:none;">
                                                                     <input value="{{ old('fifth_neftid15per') }}" type="text" placeholder="NEFT ID" class="form-control" name="fifth_neftid15per" />
+                                                                </td>
+                                                                <td id="5thfloorrtgstd15per" style="display:none;">
+                                                                    <input value="{{ old('fifth_rtgsid15per') }}" type="text" placeholder="RTGS No" class="form-control" name="fifth_rtgsid15per" />
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -848,6 +978,7 @@
                                                                         <option value="Cheque">Cheque</option>
                                                                         <option value="Cash">Cash</option>
                                                                         <option value="NEFT">NEFT</option>
+                                                                        <option value="RTGS">RTGS</option>
                                                                     </select>
                                                                 </td>
                                                                 <td id="handoverchequetd15per" style="display:none;">
@@ -858,6 +989,9 @@
                                                                 </td>
                                                                 <td id="handovernefttd15per" style="display:none;">
                                                                     <input value="{{ old('handover_neftid15per') }}" type="text" placeholder="NEFT ID" class="form-control" name="handover_neftid15per" />
+                                                                </td>
+                                                                <td id="handoverrtgstd15per" style="display:none;">
+                                                                    <input value="{{ old('handover_rtgsid15per') }}" type="text" placeholder="RTGS No" class="form-control" name="handover_rtgsid15per" />
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -923,6 +1057,7 @@
                                                                         <option value="Cheque">Cheque</option>
                                                                         <option value="Cash">Cash</option>
                                                                         <option value="NEFT">NEFT</option>
+                                                                        <option value="RTGS">RTGS</option>
                                                                     </select>
                                                                 </td>
                                                                 <td id="onchequetd20per" style="display:none;">
@@ -933,6 +1068,9 @@
                                                                 </td>
                                                                 <td id="onnefttd20per" style="display:none;">
                                                                     <input value="{{ old('onbook_neftid20per') }}" type="text" placeholder="NEFT ID" class="form-control" name="onbook_neftid20per" />
+                                                                </td>
+                                                                <td id="onrtgstd20per" style="display:none;">
+                                                                    <input value="{{ old('onbook_rtgsid20per') }}" type="text" placeholder="RTGS No" class="form-control" name="onbook_rtgsid20per" />
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -967,6 +1105,7 @@
                                                                         <option value="Cheque">Cheque</option>
                                                                         <option value="Cash">Cash</option>
                                                                         <option value="NEFT">NEFT</option>
+                                                                        <option value="RTGS">RTGS</option>
                                                                     </select>
                                                                 </td>
                                                                 <td id="agreementschequetd20per" style="display:none;">
@@ -977,6 +1116,9 @@
                                                                 </td>
                                                                 <td id="agreementsnefttd20per" style="display:none;">
                                                                     <input value="{{ old('payments_neftid20per') }}" type="text" placeholder="NEFT ID" class="form-control" name="payments_neftid20per" />
+                                                                </td>
+                                                                <td id="agreementsrtgstd20per" style="display:none;">
+                                                                    <input value="{{ old('payments_rtgsid20per') }}" type="text" placeholder="RTGS No" class="form-control" name="payments_rtgsid20per" />
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -1011,6 +1153,7 @@
                                                                         <option value="Cheque">Cheque</option>
                                                                         <option value="Cash">Cash</option>
                                                                         <option value="NEFT">NEFT</option>
+                                                                        <option value="RTGS">RTGS</option>
                                                                     </select>
                                                                 </td>
                                                                 <td id="1stfloorchequetd20per" style="display:none;">
@@ -1021,6 +1164,9 @@
                                                                 </td>
                                                                 <td id="1stfloornefttd20per" style="display:none;">
                                                                     <input value="{{ old('first_neftid20per') }}" type="text" placeholder="NEFT ID" class="form-control" name="first_neftid20per" />
+                                                                </td>
+                                                                <td id="1stfloorrtgstd20per" style="display:none;">
+                                                                    <input value="{{ old('first_rtgsid20per') }}" type="text" placeholder="RTGS No" class="form-control" name="first_rtgsid20per" />
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -1055,6 +1201,7 @@
                                                                         <option value="Cheque">Cheque</option>
                                                                         <option value="Cash">Cash</option>
                                                                         <option value="NEFT">NEFT</option>
+                                                                        <option value="RTGS">RTGS</option>
                                                                     </select>
                                                                 </td>
                                                                 <td id="2ndfloorchequetd20per" style="display:none;">
@@ -1065,6 +1212,9 @@
                                                                 </td>
                                                                 <td id="2ndfloornefttd20per" style="display:none;">
                                                                     <input value="{{ old('second_neftid20per') }}" type="text" placeholder="NEFT ID" class="form-control" name="second_neftid20per" />
+                                                                </td>
+                                                                <td id="2ndfloorrtgstd20per" style="display:none;">
+                                                                    <input value="{{ old('second_rtgsid20per') }}" type="text" placeholder="RTGS No" class="form-control" name="second_rtgsid20per" />
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -1099,6 +1249,7 @@
                                                                         <option value="Cheque">Cheque</option>
                                                                         <option value="Cash">Cash</option>
                                                                         <option value="NEFT">NEFT</option>
+                                                                        <option value="RTGS">RTGS</option>
                                                                     </select>
                                                                 </td>
                                                                 <td id="3rdfloorchequetd20per" style="display:none;">
@@ -1109,6 +1260,9 @@
                                                                 </td>
                                                                 <td id="3rdfloornefttd20per" style="display:none;">
                                                                     <input value="{{ old('third_neftid20per') }}" type="text" placeholder="NEFT ID" class="form-control" name="third_neftid20per" />
+                                                                </td>
+                                                                <td id="3rdfloorrtgstd20per" style="display:none;">
+                                                                    <input value="{{ old('third_rtgsid20per') }}" type="text" placeholder="RTGS No" class="form-control" name="third_rtgsid20per" />
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -1143,6 +1297,7 @@
                                                                         <option value="Cheque">Cheque</option>
                                                                         <option value="Cash">Cash</option>
                                                                         <option value="NEFT">NEFT</option>
+                                                                        <option value="RTGS">RTGS</option>
                                                                     </select>
                                                                 </td>
                                                                 <td id="4thfloorchequetd20per" style="display:none;">
@@ -1153,6 +1308,9 @@
                                                                 </td>
                                                                 <td id="4thfloornefttd20per" style="display:none;">
                                                                     <input value="{{ old('fourth_neftid20per') }}" type="text" placeholder="NEFT ID" class="form-control" name="fourth_neftid20per" />
+                                                                </td>
+                                                                <td id="4thfloorrtgstd20per" style="display:none;">
+                                                                    <input value="{{ old('fourth_rtgsid20per') }}" type="text" placeholder="RTGS No" class="form-control" name="fourth_rtgsid20per" />
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -1187,6 +1345,7 @@
                                                                         <option value="Cheque">Cheque</option>
                                                                         <option value="Cash">Cash</option>
                                                                         <option value="NEFT">NEFT</option>
+                                                                        <option value="RTGS">RTGS</option>
                                                                     </select>
                                                                 </td>
                                                                 <td id="5thfloorchequetd20per" style="display:none;">
@@ -1197,6 +1356,9 @@
                                                                 </td>
                                                                 <td id="5thfloornefttd20per" style="display:none;">
                                                                     <input value="{{ old('fifth_neftid20per') }}" type="text" placeholder="NEFT ID" class="form-control" name="fifth_neftid20per" />
+                                                                </td>
+                                                                <td id="5thfloorrtgstd20per" style="display:none;">
+                                                                    <input value="{{ old('fifth_rtgsid20per') }}" type="text" placeholder="RTGS No" class="form-control" name="fifth_rtgsid20per" />
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -1231,6 +1393,7 @@
                                                                         <option value="Cheque">Cheque</option>
                                                                         <option value="Cash">Cash</option>
                                                                         <option value="NEFT">NEFT</option>
+                                                                        <option value="RTGS">RTGS</option>
                                                                     </select>
                                                                 </td>
                                                                 <td id="handoverchequetd20per" style="display:none;">
@@ -1241,6 +1404,9 @@
                                                                 </td>
                                                                 <td id="handovernefttd20per" style="display:none;">
                                                                     <input value="{{ old('handover_neftid20per') }}" type="text" placeholder="NEFT ID" class="form-control" name="handover_neftid20per" />
+                                                                </td>
+                                                                <td id="handoverrtgstd20per" style="display:none;">
+                                                                    <input value="{{ old('handover_rtgsid20per') }}" type="text" placeholder="RTGS No" class="form-control" name="handover_rtgsid20per" />
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -1270,6 +1436,42 @@
 
 
 <script>
+
+     jQuery(document).ready(function() {
+        jQuery('.transaction').change(function() {
+            if (jQuery(this).val() === "Ownfund") {            
+                jQuery('#banktype').hide();
+                jQuery('#loan').hide();
+            } else if (jQuery(this).val() === "Bank") {          
+                jQuery('#banktype').show(); 
+                jQuery('#loan').show();           
+            } else {           
+                jQuery('#banktype').hide(); 
+                jQuery('#loan').hide();          
+            }
+        });
+    });
+
+    jQuery(document).ready(function() {
+        jQuery('.banks').change(function() {
+            if (jQuery(this).val() === "OTHERS") {            
+                jQuery('#bankname').show();
+            } else if (jQuery(this).val() === "SBI") {          
+                jQuery('#bankname').hide();            
+            } else if (jQuery(this).val() === "HDFC") {          
+                jQuery('#bankname').hide();            
+            } else if (jQuery(this).val() === "IOB") {          
+                jQuery('#bankname').hide();            
+            } else if (jQuery(this).val() === "LIC") {          
+                jQuery('#bankname').hide();            
+            } else if (jQuery(this).val() === "CANARA") {          
+                jQuery('#bankname').hide();            
+            } else {           
+                jQuery('#bankname').hide();           
+            }
+        });
+    });
+
     jQuery(document).ready(function() {
         jQuery('.payment').change(function() {
             if (jQuery(this).val() === "10") {
@@ -1297,15 +1499,23 @@
             if (jQuery(this).val() === "Cheque") {
                 jQuery('#onchequetd').show();
                 jQuery('#onnefttd').hide();
+                jQuery('#onrtgstd').hide();
                 jQuery('#oncashtd').hide();
             } else if (jQuery(this).val() === "NEFT") {
                 jQuery('#onchequetd').hide();
                 jQuery('#onnefttd').show();
                 jQuery('#oncashtd').hide();
+                jQuery('#onrtgstd').hide();
+            }  else if (jQuery(this).val() === "RTGS") {
+                jQuery('#onchequetd').hide();
+                jQuery('#onnefttd').hide();
+                jQuery('#oncashtd').hide();
+                jQuery('#onrtgstd').show();
             } else {
                 jQuery('#onchequetd').hide();
                 jQuery('#onnefttd').hide();
                 jQuery('#oncashtd').show();
+                jQuery('#onrtgstd').hide();
             }
         });
     });
@@ -1315,15 +1525,23 @@
             if (jQuery(this).val() === "Cheque") {
                 jQuery('#agreementschequetd').show();
                 jQuery('#agreementsnefttd').hide();
+                jQuery('#agreementsrtgstd').hide();
                 jQuery('#agreementscashtd').hide();
             } else if (jQuery(this).val() === "NEFT") {
                 jQuery('#agreementschequetd').hide();
                 jQuery('#agreementsnefttd').show();
                 jQuery('#agreementscashtd').hide();
+                jQuery('#agreementsrtgstd').hide();
+            } else if (jQuery(this).val() === "RTGS") {
+                jQuery('#agreementschequetd').hide();
+                jQuery('#agreementsnefttd').hide();
+                jQuery('#agreementscashtd').hide();
+                jQuery('#agreementsrtgstd').show();
             } else {
                 jQuery('#agreementschequetd').hide();
                 jQuery('#agreementsnefttd').hide();
                 jQuery('#agreementscashtd').show();
+                jQuery('#agreementsrtgstd').hide();
             }
         });
     });
@@ -1333,15 +1551,23 @@
             if (jQuery(this).val() === "Cheque") {
                 jQuery('#1stfloorchequetd').show();
                 jQuery('#1stfloornefttd').hide();
+                jQuery('#1stfloorrtgstd').hide();
                 jQuery('#1stfloorcashtd').hide();
             } else if (jQuery(this).val() === "NEFT") {
                 jQuery('#1stfloorchequetd').hide();
                 jQuery('#1stfloornefttd').show();
                 jQuery('#1stfloorcashtd').hide();
+                jQuery('#1stfloorrtgstd').hide();
+            } else if (jQuery(this).val() === "RTGS") {
+                jQuery('#1stfloorchequetd').hide();
+                jQuery('#1stfloornefttd').hide();
+                jQuery('#1stfloorcashtd').hide();
+                jQuery('#1stfloorrtgstd').show();
             } else {
                 jQuery('#1stfloorchequetd').hide();
                 jQuery('#1stfloornefttd').hide();
                 jQuery('#1stfloorcashtd').show();
+                jQuery('#1stfloorrtgstd').hide();
             }
         });
     });
@@ -1351,15 +1577,23 @@
             if (jQuery(this).val() === "Cheque") {
                 jQuery('#2ndfloorchequetd').show();
                 jQuery('#2ndfloornefttd').hide();
+                jQuery('#2ndfloorrtgstd').hide();
                 jQuery('#2ndfloorcashtd').hide();
             } else if (jQuery(this).val() === "NEFT") {
                 jQuery('#2ndfloorchequetd').hide();
                 jQuery('#2ndfloornefttd').show();
                 jQuery('#2ndfloorcashtd').hide();
+                jQuery('#2ndfloorrtgstd').hide();
+            } else if (jQuery(this).val() === "RTGS") {
+                jQuery('#2ndfloorchequetd').hide();
+                jQuery('#2ndfloornefttd').hide();
+                jQuery('#2ndfloorcashtd').hide();
+                jQuery('#2ndfloorrtgstd').show();
             } else {
                 jQuery('#2ndfloorchequetd').hide();
                 jQuery('#2ndfloornefttd').hide();
                 jQuery('#2ndfloorcashtd').show();
+                jQuery('#2ndfloorrtgstd').hide();
             }
         });
     });
@@ -1369,15 +1603,23 @@
             if (jQuery(this).val() === "Cheque") {
                 jQuery('#3rdfloorchequetd').show();
                 jQuery('#3rdfloornefttd').hide();
+                jQuery('#3rdfloorrtgstd').hide();
                 jQuery('#3rdfloorcashtd').hide();
             } else if (jQuery(this).val() === "NEFT") {
                 jQuery('#3rdfloorchequetd').hide();
                 jQuery('#3rdfloornefttd').show();
                 jQuery('#3rdfloorcashtd').hide();
+                jQuery('#3rdfloorrtgstd').hide();
+            } else if (jQuery(this).val() === "RTGS") {
+                jQuery('#3rdfloorchequetd').hide();
+                jQuery('#3rdfloornefttd').hide();
+                jQuery('#3rdfloorcashtd').hide();
+                jQuery('#3rdfloorrtgstd').show();
             } else {
                 jQuery('#3rdfloorchequetd').hide();
                 jQuery('#3rdfloornefttd').hide();
                 jQuery('#3rdfloorcashtd').show();
+                jQuery('#3rdfloorrtgstd').hide();
             }
         });
     });
@@ -1387,15 +1629,23 @@
             if (jQuery(this).val() === "Cheque") {
                 jQuery('#4thfloorchequetd').show();
                 jQuery('#4thfloornefttd').hide();
+                jQuery('#4thfloorrtgstd').hide();
                 jQuery('#4thfloorcashtd').hide();
             } else if (jQuery(this).val() === "NEFT") {
                 jQuery('#4thfloorchequetd').hide();
                 jQuery('#4thfloornefttd').show();
                 jQuery('#4thfloorcashtd').hide();
+                jQuery('#4thfloorrtgstd').hide();
+            } else if (jQuery(this).val() === "RTGS") {
+                jQuery('#4thfloorchequetd').hide();
+                jQuery('#4thfloornefttd').hide();
+                jQuery('#4thfloorcashtd').hide();
+                jQuery('#4thfloorrtgstd').show();
             } else {
                 jQuery('#4thfloorchequetd').hide();
                 jQuery('#4thfloornefttd').hide();
                 jQuery('#4thfloorcashtd').show();
+                jQuery('#4thfloorrtgstd').hide();
             }
         });
     });
@@ -1405,15 +1655,23 @@
             if (jQuery(this).val() === "Cheque") {
                 jQuery('#5thfloorchequetd').show();
                 jQuery('#5thfloornefttd').hide();
+                jQuery('#5thfloorrtgstd').hide();
                 jQuery('#5thfloorcashtd').hide();
             } else if (jQuery(this).val() === "NEFT") {
                 jQuery('#5thfloorchequetd').hide();
                 jQuery('#5thfloornefttd').show();
                 jQuery('#5thfloorcashtd').hide();
+                jQuery('#5thfloorrtgstd').hide();
+            } else if (jQuery(this).val() === "RTGS") {
+                jQuery('#5thfloorchequetd').hide();
+                jQuery('#5thfloornefttd').hide();
+                jQuery('#5thfloorcashtd').hide();
+                jQuery('#5thfloorrtgstd').show();
             } else {
                 jQuery('#5thfloorchequetd').hide();
                 jQuery('#5thfloornefttd').hide();
                 jQuery('#5thfloorcashtd').show();
+                jQuery('#5thfloorrtgstd').hide();
             }
         });
     });
@@ -1423,15 +1681,23 @@
             if (jQuery(this).val() === "Cheque") {
                 jQuery('#handoverchequetd').show();
                 jQuery('#handovernefttd').hide();
+                jQuery('#handoverrtgstd').hide();
                 jQuery('#handovercashtd').hide();
             } else if (jQuery(this).val() === "NEFT") {
                 jQuery('#handoverchequetd').hide();
                 jQuery('#handovernefttd').show();
                 jQuery('#handovercashtd').hide();
+                jQuery('#handoverrtgstd').hide();
+            } else if (jQuery(this).val() === "RTGS") {
+                jQuery('#handoverchequetd').hide();
+                jQuery('#handovernefttd').hide();
+                jQuery('#handovercashtd').hide();
+                jQuery('#handoverrtgstd').show();
             } else {
                 jQuery('#handoverchequetd').hide();
                 jQuery('#handovernefttd').hide();
                 jQuery('#handovercashtd').show();
+                jQuery('#handoverrtgstd').hide();
             }
         });
     });
@@ -1441,15 +1707,23 @@
             if (jQuery(this).val() === "Cheque") {
                 jQuery('#onchequetd15per').show();
                 jQuery('#onnefttd15per').hide();
+                jQuery('#onrtgstd15per').hide();
                 jQuery('#oncashtd15per').hide();
             } else if (jQuery(this).val() === "NEFT") {
                 jQuery('#onchequetd15per').hide();
                 jQuery('#onnefttd15per').show();
                 jQuery('#oncashtd15per').hide();
+                jQuery('#onrtgstd15per').hide();
+            } else if (jQuery(this).val() === "RTGS") {
+                jQuery('#onchequetd15per').hide();
+                jQuery('#onnefttd15per').hide();
+                jQuery('#oncashtd15per').hide();
+                jQuery('#onrtgstd15per').show();
             } else {
                 jQuery('#onchequetd15per').hide();
                 jQuery('#onnefttd15per').hide();
                 jQuery('#oncashtd15per').show();
+                jQuery('#onrtgstd15per').hide();
             }
         });
     });

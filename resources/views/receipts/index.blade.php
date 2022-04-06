@@ -73,6 +73,11 @@
                                             <th>Application Number</th>
                                             <th>Applicant Name</th>
                                             <th>Receipt Amount</th>
+                                            <?php
+                                            if($sessionadmin->adminname == "Admin"){
+                                            ?>
+                                            <th>Added By</th>
+                                            <?php } ?>
                                             <th class="text-center">Action</th>
                                         </tr>
                                     </thead>
@@ -97,7 +102,11 @@
                                                 <td>{{ $result->received }}</td>
                                                
                                                 <td>{{"Rs."}}{{ $result->final_amount }}</td>
-                                               
+                                                <?php
+                                            if($sessionadmin->adminname == "Admin"){        
+                                            ?>
+                                                <td>{{ $result->addedby }}</td>
+                                                <?php } ?>
                                                 <td class="text-center">
                                                     <div class="btn-group">
                                                         <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="View" href="{{ route("receipts.view", $result->receipt_id) }}">

@@ -65,6 +65,7 @@ class CostsController extends Controller
 
         ]);
         $data = new Cost();
+        $sessionadmin = Parent::checkadmin();
         $data->customer_id = $request->application_number;
         $names = Customer::where('customer_id', $request->application_number)->first();
         $data->application_number = $names->application_number;
@@ -105,6 +106,8 @@ class CostsController extends Controller
         $total = $gross_amount + $stamp +  $registration + $construction + $request->corpus_fund + $gst;
         $data->total_amount = $total;
         $data->created_date = date('Y-m-d H:i:s');
+        $data->addedby = $sessionadmin->username;
+        $data->status = "Active";
         $data->save();
         Session::flash('message', 'Cost Details Added!');
         Session::flash('alert-class', 'success');

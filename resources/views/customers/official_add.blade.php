@@ -204,6 +204,51 @@
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-md-5">
+                                                Customer Type<span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-7">
+                                                <select class="form-control customertype" name="customer_type">
+                                                <option value="">Select Customer Type</option>
+                                                    <option {{ old('customer_type')=="Direct"?"selected":"" }} value="Direct">Direct</option>
+                                                    <option {{ old('customer_type')=="Referedby"?"selected":"" }} value="Referedby">Refered By</option>
+                                                </select>
+                                                @error('customer_type')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" id="refered" style="display:none;">
+                                            <label class="col-md-5">
+                                                Name <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-7">
+                                                <input value="{{ old('refered_name') }}" type="text" autocomplete="off" class="form-control" name="refered_name" />
+                                                @error('refered_name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" id="refered1" style="display:none;">
+                                            <label class="col-md-5">
+                                             Mobile Number <span class="red">*</span>
+                                            </label>
+                                            <div class="col-md-7">
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <input value="{{ old('refered_phone_code') }}" type="tel" autocomplete="off" class="form-control" name="refered_phone_code" style="width:72%" maxlength="4" />
+                                                    </div>
+                                                    <div class="col-9">
+                                                        <input value="{{ old('refered_phone') }}" id="phone" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="10" autocomplete="off" class="form-control" name="refered_phone" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-5">
                                                 Phase<span class="red">*</span>
                                             </label>
                                             <div class="col-md-7">
@@ -352,6 +397,21 @@
     </div>
 </div>
 <script>
+      jQuery(document).ready(function() {
+        jQuery('.customertype').change(function() {
+            if (jQuery(this).val() === "Direct") {  
+                jQuery('#refered').hide();
+                jQuery('#refered1').hide();
+            } else if (jQuery(this).val() === "Referedby") {     
+                jQuery('#refered').show();
+                jQuery('#refered1').show();       
+            } else {       
+                jQuery('#refered').hide();
+                jQuery('#refered1').hide();      
+            }
+        });
+    });
+
     $(".m-select2").select2();
 
     $('#phase').change(function() {

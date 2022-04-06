@@ -53,6 +53,7 @@ class PaymentsController extends Controller
         $check = $this->validate($request, []);
 
         $data = new Payment();
+        $sessionadmin = Parent::checkadmin();
         $data->customer_id = $request->application_number;
         $names = Customer::where('customer_id', $request->application_number)->first();
         $data->application_number = $names->application_number;
@@ -326,7 +327,7 @@ class PaymentsController extends Controller
         $data->handover_paymenttype20per = $request->handover_paymenttype20per ? $request->handover_paymenttype20per : "-";
         $data->handover_chequenumber20per = ($request->handover_paymenttype20per == "Cheque") ? $request->handover_chequenumber20per : "-";
         $data->handover_neftid20per = ($request->handover_paymenttype20per == "NEFT") ? $request->handover_neftid20per : "-";
-
+        $data->addedby = $sessionadmin->username;
         $data->addmore = "0";
         $data->created_date = date('Y-m-d H:i:s');
         $data->save();
