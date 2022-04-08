@@ -100,12 +100,12 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group row"  style="display: none;" id="banktype">
+                                        <div class="form-group row" style="display: none;" id="banktype">
                                             <label class="col-md-5">
                                                  Bank Type <span class="red">*</span>
                                             </label>
                                             <div class="col-md-7">
-                                                <select class="form-control banks" name="transaction_type">
+                                                <select class="form-control banks" name="bank_type">
                                                     <option value="">--Select--</option>
                                                     <option value="SBI">SBI</option>
                                                     <option value="HDFC">HDFC</option>
@@ -114,7 +114,7 @@
                                                     <option value="CANARA">CANARA</option>
                                                     <option value="OTHERS">OTHERS</option>
                                                 </select>
-                                                @error('transaction_type')
+                                                @error('bank_type')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
@@ -141,8 +141,8 @@
                                                  Loan Sansaction Amount <span class="red">*</span>
                                             </label>
                                             <div class="col-md-7">
-                                            <input value="{{ old('bank_name') }}" type="text" autocomplete="off" class="form-control" name="bank_name" />
-                                                @error('bank_name')
+                                            <input value="{{ old('loan_amount') }}" type="number" autocomplete="off" class="form-control" name="loan_amount" />
+                                                @error('loan_amount')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
                                                 </span>
@@ -1494,6 +1494,7 @@
             }
         });
     });
+    
     jQuery(document).ready(function() {
         jQuery('.onbook').change(function() {
             if (jQuery(this).val() === "Cheque") {

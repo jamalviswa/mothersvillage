@@ -45,6 +45,17 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="form-group">    
+                            <select class="form-control" name="bank_type">
+                                @php
+                                $customers = App\Customer::where('status','Active')->orderby('applicant_name','asc')->get();
+                                @endphp
+                                <option value="">Select Applicant Name</option>
+                                @foreach($customers as $customer)
+                                <option @if(isset($_REQUEST['applicant_name']) && $_REQUEST['applicant_name']==$customer['applicant_name']) selected @endif value="{{ $customer['applicant_name'] }}">{{ $customer['applicant_name'] }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <div class="form-group">
                             <button class="btn btn-primary m-btn m-btn--air m-btn--custom" type="submit" name="search"><i class="fa fa-search"></i></button>
                             <?php if (isset($_REQUEST['search'])) { ?>
@@ -88,7 +99,14 @@
                                         foreach ($results as $result) {
                                             $customer = App\Customer::where('customer_id', $result['customer_id'])->first();
                                         ?>
-                                            <tr>
+                                         <?php
+                                                        if ($result->addmore == 1) {
+                                                            $addrow = "hide";
+                                                        } else {
+                                                            $addrow = "";
+                                                        }
+                                                        ?>
+                                            <tr class="<?php echo $addrow; ?>">
                                                 <td width="5%">{{ $i }}</td>
                                                 <td class="text-center">
                                                     @if(!empty($customer['photo']))

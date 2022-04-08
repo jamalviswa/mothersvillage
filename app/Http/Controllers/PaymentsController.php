@@ -63,6 +63,10 @@ class PaymentsController extends Controller
         $data->cost_id = $documents->cost_id;
         $data->gross_amount = $documents->gross_amount;
         $data->payment_schedule = $request->payment_schedule;
+        $data->transaction_type = $request->transaction_type;
+        $data->bank_type = ($request->transaction_type == "Bank") ? $request->bank_type : "-";
+        $data->bank_name = ($request->bank_type == "OTHERS") ? $request->bank_name : "-";
+        $data->loan_amount = $request->loan_amount;
 
         $onbook10per = round(($data->gross_amount * 10) / 100);
         $data->onbook10per = $onbook10per;
@@ -74,6 +78,7 @@ class PaymentsController extends Controller
         $data->onbook_paymenttype10per = $request->onbook_paymenttype10per ? $request->onbook_paymenttype10per : "-";
         $data->onbook_chequenumber10per = ($request->onbook_paymenttype10per == "Cheque") ? $request->onbook_chequenumber10per : "-";
         $data->onbook_neftid10per = ($request->onbook_paymenttype10per == "NEFT") ? $request->onbook_neftid10per : "-";
+        $data->onbook_rtgsid10per = ($request->onbook_paymenttype10per == "RTGS") ? $request->onbook_rtgsid10per : "-";
 
         $payments10per = round(($data->gross_amount * 40) / 100);
         $data->payments10per = $payments10per;
@@ -85,6 +90,7 @@ class PaymentsController extends Controller
         $data->payments_paymenttype10per = $request->payments_paymenttype10per ? $request->payments_paymenttype10per : "-";
         $data->payments_chequenumber10per = ($request->payments_paymenttype10per == "Cheque") ? $request->payments_chequenumber10per : "-";
         $data->payments_neftid10per = ($request->payments_paymenttype10per == "NEFT") ? $request->payments_neftid10per : "-";
+        $data->payments_rtgsid10per = ($request->payments_paymenttype10per == "RTGS") ? $request->payments_rtgsid10per : "-";
 
         $first10per = round(($data->gross_amount * 10) / 100);
         $data->first10per = $first10per;
@@ -96,6 +102,7 @@ class PaymentsController extends Controller
         $data->first_paymenttype10per = $request->first_paymenttype10per ? $request->first_paymenttype10per : "-";
         $data->first_chequenumber10per = ($request->first_paymenttype10per == "Cheque") ? $request->first_chequenumber10per : "-";
         $data->first_neftid10per = ($request->first_paymenttype10per == "NEFT") ? $request->first_neftid10per : "-";
+        $data->first_rtgsid10per = ($request->first_paymenttype10per == "RTGS") ? $request->first_rtgsid10per : "-";
 
         $second10per = round(($data->gross_amount * 10) / 100);
         $data->second10per = $second10per;
@@ -107,6 +114,7 @@ class PaymentsController extends Controller
         $data->second_paymenttype10per = $request->second_paymenttype10per ? $request->second_paymenttype10per : "-";
         $data->second_chequenumber10per = ($request->second_paymenttype10per == "Cheque") ? $request->second_chequenumber10per : "-";
         $data->second_neftid10per = ($request->second_paymenttype10per == "NEFT") ? $request->second_neftid10per : "-";
+        $data->second_rtgsid10per = ($request->second_paymenttype10per == "RTGS") ? $request->second_rtgsid10per : "-";
 
         $third10per = round(($data->gross_amount * 10) / 100);
         $data->third10per = $third10per;
@@ -118,6 +126,7 @@ class PaymentsController extends Controller
         $data->third_paymenttype10per = $request->third_paymenttype10per ? $request->third_paymenttype10per : "-";
         $data->third_chequenumber10per = ($request->third_paymenttype10per == "Cheque") ? $request->third_chequenumber10per : "-";
         $data->third_neftid10per = ($request->third_paymenttype10per == "NEFT") ? $request->third_neftid10per : "-";
+        $data->third_rtgsid10per = ($request->third_paymenttype10per == "RTGS") ? $request->third_rtgsid10per : "-";
 
         $fourth10per = round(($data->gross_amount * 10) / 100);
         $data->fourth10per = $fourth10per;
@@ -129,6 +138,7 @@ class PaymentsController extends Controller
         $data->fourth_paymenttype10per = $request->fourth_paymenttype10per ? $request->fourth_paymenttype10per : "-";
         $data->fourth_chequenumber10per = ($request->fourth_paymenttype10per == "Cheque") ? $request->fourth_chequenumber10per : "-";
         $data->fourth_neftid10per = ($request->fourth_paymenttype10per == "NEFT") ? $request->fourth_neftid10per : "-";
+        $data->fourth_rtgsid10per = ($request->fourth_paymenttype10per == "RTGS") ? $request->fourth_rtgsid10per : "-";
 
         $fifth10per = round(($data->gross_amount * 5) / 100);
         $data->fifth10per = $fifth10per;
@@ -140,6 +150,7 @@ class PaymentsController extends Controller
         $data->fifth_paymenttype10per = $request->fifth_paymenttype10per ? $request->fifth_paymenttype10per : "-";
         $data->fifth_chequenumber10per = ($request->fifth_paymenttype10per == "Cheque") ? $request->fifth_chequenumber10per : "-";
         $data->fifth_neftid10per = ($request->fifth_paymenttype10per == "NEFT") ? $request->fifth_neftid10per : "-";
+        $data->fifth_rtgsid10per = ($request->fifth_paymenttype10per == "RTGS") ? $request->fifth_rtgsid10per : "-";
 
         $handover10per = round(($data->gross_amount * 5) / 100);
         $data->handover10per = $handover10per;
@@ -151,6 +162,7 @@ class PaymentsController extends Controller
         $data->handover_paymenttype10per = $request->handover_paymenttype10per ? $request->handover_paymenttype10per : "-";
         $data->handover_chequenumber10per = ($request->handover_paymenttype10per == "Cheque") ? $request->handover_chequenumber10per : "-";
         $data->handover_neftid10per = ($request->handover_paymenttype10per == "NEFT") ? $request->handover_neftid10per : "-";
+        $data->handover_rtgsid10per = ($request->handover_paymenttype10per == "RTGS") ? $request->handover_rtgsid10per : "-";
 
         $onbook15per = round(($data->gross_amount * 15) / 100);
         $data->onbook15per = $onbook15per;
@@ -162,6 +174,7 @@ class PaymentsController extends Controller
         $data->onbook_paymenttype15per = $request->onbook_paymenttype15per ? $request->onbook_paymenttype15per : "-";
         $data->onbook_chequenumber15per = ($request->onbook_paymenttype15per == "Cheque") ? $request->onbook_chequenumber15per : "-";
         $data->onbook_neftid15per = ($request->onbook_paymenttype15per == "NEFT") ? $request->onbook_neftid15per : "-";
+        $data->onbook_rtgsid15per = ($request->onbook_paymenttype15per == "RTGS") ? $request->onbook_rtgsid15per : "-";
 
         $payments15per = round(($data->gross_amount * 40) / 100);
         $data->payments15per = $payments15per;
@@ -173,6 +186,7 @@ class PaymentsController extends Controller
         $data->payments_paymenttype15per = $request->payments_paymenttype15per ? $request->payments_paymenttype15per : "-";
         $data->payments_chequenumber15per = ($request->payments_paymenttype15per == "Cheque") ? $request->payments_chequenumber15per : "-";
         $data->payments_neftid15per = ($request->payments_paymenttype15per == "NEFT") ? $request->payments_neftid15per : "-";
+        $data->payments_rtgsid15per = ($request->payments_paymenttype15per == "RTGS") ? $request->payments_rtgsid15per : "-";
 
         $first15per = round(($data->gross_amount * 10) / 100);
         $data->first15per = $first15per;
@@ -184,6 +198,7 @@ class PaymentsController extends Controller
         $data->first_paymenttype15per = $request->first_paymenttype15per ? $request->first_paymenttype15per : "-";
         $data->first_chequenumber15per = ($request->first_paymenttype15per == "Cheque") ? $request->first_chequenumber15per : "-";
         $data->first_neftid15per = ($request->first_paymenttype15per == "NEFT") ? $request->first_neftid15per : "-";
+        $data->first_rtgsid15per = ($request->first_paymenttype15per == "RTGS") ? $request->first_rtgsid15per : "-";
 
         $second15per = round(($data->gross_amount * 10) / 100);
         $data->second15per = $second15per;
@@ -195,6 +210,7 @@ class PaymentsController extends Controller
         $data->second_paymenttype15per = $request->second_paymenttype15per ? $request->second_paymenttype15per : "-";
         $data->second_chequenumber15per = ($request->second_paymenttype15per == "Cheque") ? $request->second_chequenumber15per : "-";
         $data->second_neftid15per = ($request->second_paymenttype15per == "NEFT") ? $request->second_neftid15per : "-";
+        $data->second_rtgsid15per = ($request->second_paymenttype15per == "RTGS") ? $request->second_rtgsid15per : "-";
 
         $third15per = round(($data->gross_amount * 10) / 100);
         $data->third15per = $third15per;
@@ -206,6 +222,7 @@ class PaymentsController extends Controller
         $data->third_paymenttype15per = $request->third_paymenttype15per ? $request->third_paymenttype15per : "-";
         $data->third_chequenumber15per = ($request->third_paymenttype15per == "Cheque") ? $request->third_chequenumber15per : "-";
         $data->third_neftid15per = ($request->third_paymenttype15per == "NEFT") ? $request->third_neftid15per : "-";
+        $data->third_rtgsid15per = ($request->third_paymenttype15per == "RTGS") ? $request->third_rtgsid15per : "-";
 
         $fourth15per = round(($data->gross_amount * 5) / 100);
         $data->fourth15per = $fourth15per;
@@ -217,6 +234,7 @@ class PaymentsController extends Controller
         $data->fourth_paymenttype15per = $request->fourth_paymenttype15per ? $request->fourth_paymenttype15per : "-";
         $data->fourth_chequenumber15per = ($request->fourth_paymenttype15per == "Cheque") ? $request->fourth_chequenumber15per : "-";
         $data->fourth_neftid15per = ($request->fourth_paymenttype15per == "NEFT") ? $request->fourth_neftid15per : "-";
+        $data->fourth_rtgsid15per = ($request->fourth_paymenttype15per == "RTGS") ? $request->fourth_rtgsid15per : "-";
 
         $fifth15per = round(($data->gross_amount * 5) / 100);
         $data->fifth15per = $fifth15per;
@@ -228,6 +246,7 @@ class PaymentsController extends Controller
         $data->fifth_paymenttype15per = $request->fifth_paymenttype15per ? $request->fifth_paymenttype15per : "-";
         $data->fifth_chequenumber15per = ($request->fifth_paymenttype15per == "Cheque") ? $request->fifth_chequenumber15per : "-";
         $data->fifth_neftid15per = ($request->fifth_paymenttype15per == "NEFT") ? $request->fifth_neftid15per : "-";
+        $data->fifth_rtgsid15per = ($request->fifth_paymenttype15per == "RTGS") ? $request->fifth_rtgsid15per : "-";
 
         $handover15per = round(($data->gross_amount * 5) / 100);
         $data->handover15per = $handover15per;
@@ -239,6 +258,7 @@ class PaymentsController extends Controller
         $data->handover_paymenttype15per = $request->handover_paymenttype15per ? $request->handover_paymenttype15per : "-";
         $data->handover_chequenumber15per = ($request->handover_paymenttype15per == "Cheque") ? $request->handover_chequenumber15per : "-";
         $data->handover_neftid15per = ($request->handover_paymenttype15per == "NEFT") ? $request->handover_neftid15per : "-";
+        $data->handover_rtgsid15per = ($request->handover_paymenttype15per == "RTGS") ? $request->handover_rtgsid15per : "-";
 
         $onbook20per = round(($data->gross_amount * 20) / 100);
         $data->onbook20per = $onbook20per;
@@ -250,6 +270,7 @@ class PaymentsController extends Controller
         $data->onbook_paymenttype20per = $request->onbook_paymenttype20per ? $request->onbook_paymenttype20per : "-";
         $data->onbook_chequenumber20per = ($request->onbook_paymenttype20per == "Cheque") ? $request->onbook_chequenumber20per : "-";
         $data->onbook_neftid20per = ($request->onbook_paymenttype20per == "NEFT") ? $request->onbook_neftid20per : "-";
+        $data->onbook_rtgsid20per = ($request->onbook_paymenttype20per == "RTGS") ? $request->onbook_rtgsid20per : "-";
 
         $payments20per = round(($data->gross_amount * 40) / 100);
         $data->payments20per = $payments20per;
@@ -261,6 +282,7 @@ class PaymentsController extends Controller
         $data->payments_paymenttype20per = $request->payments_paymenttype20per ? $request->payments_paymenttype20per : "-";
         $data->payments_chequenumber20per = ($request->payments_paymenttype20per == "Cheque") ? $request->payments_chequenumber20per : "-";
         $data->payments_neftid20per = ($request->payments_paymenttype20per == "NEFT") ? $request->payments_neftid20per : "-";
+        $data->payments_rtgsid20per = ($request->payments_paymenttype20per == "RTGS") ? $request->payments_rtgsid20per : "-";
 
         $first20per = round(($data->gross_amount * 10) / 100);
         $data->first20per = $first20per;
@@ -272,6 +294,7 @@ class PaymentsController extends Controller
         $data->first_paymenttype20per = $request->first_paymenttype20per ? $request->first_paymenttype20per : "-";
         $data->first_chequenumber20per = ($request->first_paymenttype20per == "Cheque") ? $request->first_chequenumber20per : "-";
         $data->first_neftid20per = ($request->first_paymenttype20per == "NEFT") ? $request->first_neftid20per : "-";
+        $data->first_rtgsid20per = ($request->first_paymenttype20per == "RTGS") ? $request->first_rtgsid20per : "-";
 
         $second20per = round(($data->gross_amount * 10) / 100);
         $data->second20per = $second20per;
@@ -283,6 +306,7 @@ class PaymentsController extends Controller
         $data->second_paymenttype20per = $request->second_paymenttype20per ? $request->second_paymenttype20per : "-";
         $data->second_chequenumber20per = ($request->second_paymenttype20per == "Cheque") ? $request->second_chequenumber20per : "-";
         $data->second_neftid20per = ($request->second_paymenttype20per == "NEFT") ? $request->second_neftid20per : "-";
+        $data->second_rtgsid20per = ($request->second_paymenttype20per == "RTGS") ? $request->second_rtgsid20per : "-";
 
         $third20per = round(($data->gross_amount * 5) / 100);
         $data->third20per = $third20per;
@@ -294,6 +318,7 @@ class PaymentsController extends Controller
         $data->third_paymenttype20per = $request->third_paymenttype20per ? $request->third_paymenttype20per : "-";
         $data->third_chequenumber20per = ($request->third_paymenttype20per == "Cheque") ? $request->third_chequenumber20per : "-";
         $data->third_neftid20per = ($request->third_paymenttype20per == "NEFT") ? $request->third_neftid20per : "-";
+        $data->third_rtgsid20per = ($request->third_paymenttype20per == "RTGS") ? $request->third_rtgsid20per : "-";
 
         $fourth20per = round(($data->gross_amount * 5) / 100);
         $data->fourth20per = $fourth20per;
@@ -305,6 +330,7 @@ class PaymentsController extends Controller
         $data->fourth_paymenttype20per = $request->fourth_paymenttype20per ? $request->fourth_paymenttype20per : "-";
         $data->fourth_chequenumber20per = ($request->fourth_paymenttype20per == "Cheque") ? $request->fourth_chequenumber20per : "-";
         $data->fourth_neftid20per = ($request->fourth_paymenttype20per == "NEFT") ? $request->fourth_neftid20per : "-";
+        $data->fourth_rtgsid20per = ($request->fourth_paymenttype20per == "RTGS") ? $request->fourth_rtgsid20per : "-";
 
         $fifth20per = round(($data->gross_amount * 5) / 100);
         $data->fifth20per = $fifth20per;
@@ -316,6 +342,7 @@ class PaymentsController extends Controller
         $data->fifth_paymenttype20per = $request->fifth_paymenttype20per ? $request->fifth_paymenttype20per : "-";
         $data->fifth_chequenumber20per = ($request->fifth_paymenttype20per == "Cheque") ? $request->fifth_chequenumber20per : "-";
         $data->fifth_neftid20per = ($request->fifth_paymenttype20per == "NEFT") ? $request->fifth_neftid20per : "-";
+        $data->fifth_rtgsid20per = ($request->fifth_paymenttype20per == "RTGS") ? $request->fifth_rtgsid20per : "-";
 
         $handover20per = round(($data->gross_amount * 5) / 100);
         $data->handover20per = $handover20per;
@@ -327,6 +354,8 @@ class PaymentsController extends Controller
         $data->handover_paymenttype20per = $request->handover_paymenttype20per ? $request->handover_paymenttype20per : "-";
         $data->handover_chequenumber20per = ($request->handover_paymenttype20per == "Cheque") ? $request->handover_chequenumber20per : "-";
         $data->handover_neftid20per = ($request->handover_paymenttype20per == "NEFT") ? $request->handover_neftid20per : "-";
+        $data->handover_rtgsid20per = ($request->handover_paymenttype20per == "RTGS") ? $request->handover_rtgsid20per : "-";
+
         $data->addedby = $sessionadmin->username;
         $data->addmore = "0";
         $data->created_date = date('Y-m-d H:i:s');
@@ -346,6 +375,7 @@ class PaymentsController extends Controller
 
         $check = $this->validate($request, []);
         $data = new Payment();
+        $sessionadmin = Parent::checkadmin();
         $names = Payment::where('payment_id', $id)->first();
         $data->customer_id = $names->customer_id;
         $data->application_number = $names->application_number;
@@ -354,6 +384,10 @@ class PaymentsController extends Controller
         $data->gross_amount = $names->gross_amount;
         $data->cost_id = $names->cost_id;
         $data->payment_schedule = $names->payment_schedule;
+        $data->transaction_type = $names->transaction_type;
+        $data->bank_type = ($names->transaction_type == "Bank") ? $names->bank_type : "-";
+        $data->bank_name = ($names->bank_type == "OTHERS") ? $names->bank_name : "-";
+        $data->loan_amount = $names->loan_amount;
 
         $data->onbook10per = $names->onbook_balance10per;
         $data->onbook_received10per = $request->onbook_received10per ? $request->onbook_received10per : "0";
@@ -364,6 +398,7 @@ class PaymentsController extends Controller
         $data->onbook_paymenttype10per = $request->onbook_paymenttype10per ? $request->onbook_paymenttype10per : "-";
         $data->onbook_chequenumber10per = ($request->onbook_paymenttype10per == "Cheque") ? $request->onbook_chequenumber10per : "-";
         $data->onbook_neftid10per = ($request->onbook_paymenttype10per == "NEFT") ? $request->onbook_neftid10per : "-";
+        $data->onbook_rtgsid10per = ($request->onbook_paymenttype10per == "RTGS") ? $request->onbook_rtgsid10per : "-";
 
         $data->payments10per = $names->payments_balance10per;
         $data->payments_received10per = $request->payments_received10per ? $request->payments_received10per : "0";
@@ -374,6 +409,7 @@ class PaymentsController extends Controller
         $data->payments_paymenttype10per = $request->payments_paymenttype10per ? $request->payments_paymenttype10per : "-";
         $data->payments_chequenumber10per = ($request->payments_paymenttype10per == "Cheque") ? $request->payments_chequenumber10per : "-";
         $data->payments_neftid10per = ($request->payments_paymenttype10per == "NEFT") ? $request->payments_neftid10per : "-";
+        $data->payments_rtgsid10per = ($request->payments_paymenttype10per == "RTGS") ? $request->payments_rtgsid10per : "-";
 
         $data->first10per = $names->first_balance10per;
         $data->first_received10per = $request->first_received10per ? $request->first_received10per : "0";
@@ -384,6 +420,7 @@ class PaymentsController extends Controller
         $data->first_paymenttype10per = $request->first_paymenttype10per ? $request->first_paymenttype10per : "-";
         $data->first_chequenumber10per = ($request->first_paymenttype10per == "Cheque") ? $request->first_chequenumber10per : "-";
         $data->first_neftid10per = ($request->first_paymenttype10per == "NEFT") ? $request->first_neftid10per : "-";
+        $data->first_rtgsid10per = ($request->first_paymenttype10per == "RTGS") ? $request->first_rtgsid10per : "-";
 
         $data->second10per = $names->second_balance10per;
         $data->second_received10per = $request->second_received10per ? $request->second_received10per : "0";
@@ -394,6 +431,7 @@ class PaymentsController extends Controller
         $data->second_paymenttype10per = $request->second_paymenttype10per ? $request->second_paymenttype10per : "-";
         $data->second_chequenumber10per = ($request->second_paymenttype10per == "Cheque") ? $request->second_chequenumber10per : "-";
         $data->second_neftid10per = ($request->second_paymenttype10per == "NEFT") ? $request->second_neftid10per : "-";
+        $data->second_rtgsid10per = ($request->second_paymenttype10per == "RTGS") ? $request->second_rtgsid10per : "-";
 
         $data->third10per = $names->third_balance10per;
         $data->third_received10per = $request->third_received10per ? $request->third_received10per : "0";
@@ -404,6 +442,7 @@ class PaymentsController extends Controller
         $data->third_paymenttype10per = $request->third_paymenttype10per ? $request->third_paymenttype10per : "-";
         $data->third_chequenumber10per = ($request->third_paymenttype10per == "Cheque") ? $request->third_chequenumber10per : "-";
         $data->third_neftid10per = ($request->third_paymenttype10per == "NEFT") ? $request->third_neftid10per : "-";
+        $data->third_rtgsid10per = ($request->third_paymenttype10per == "RTGS") ? $request->third_rtgsid10per : "-";
 
         $data->fourth10per = $names->fourth_balance10per;
         $data->fourth_received10per = $request->fourth_received10per ? $request->fourth_received10per : "0";
@@ -414,6 +453,7 @@ class PaymentsController extends Controller
         $data->fourth_paymenttype10per = $request->fourth_paymenttype10per ? $request->fourth_paymenttype10per : "-";
         $data->fourth_chequenumber10per = ($request->fourth_paymenttype10per == "Cheque") ? $request->fourth_chequenumber10per : "-";
         $data->fourth_neftid10per = ($request->fourth_paymenttype10per == "NEFT") ? $request->fourth_neftid10per : "-";
+        $data->fourth_rtgsid10per = ($request->fourth_paymenttype10per == "RTGS") ? $request->fourth_rtgsid10per : "-";
 
         $data->fifth10per = $names->fifth_balance10per;
         $data->fifth_received10per = $request->fifth_received10per ? $request->fifth_received10per : "0";
@@ -424,6 +464,7 @@ class PaymentsController extends Controller
         $data->fifth_paymenttype10per = $request->fifth_paymenttype10per ? $request->fifth_paymenttype10per : "-";
         $data->fifth_chequenumber10per = ($request->fifth_paymenttype10per == "Cheque") ? $request->fifth_chequenumber10per : "-";
         $data->fifth_neftid10per = ($request->fifth_paymenttype10per == "NEFT") ? $request->fifth_neftid10per : "-";
+        $data->fifth_rtgsid10per = ($request->fifth_paymenttype10per == "RTGS") ? $request->fifth_rtgsid10per : "-";
 
         $data->handover10per = $names->handover_balance10per;
         $data->handover_received10per = $request->handover_received10per ? $request->handover_received10per : "0";
@@ -434,6 +475,7 @@ class PaymentsController extends Controller
         $data->handover_paymenttype10per = $request->handover_paymenttype10per ? $request->handover_paymenttype10per : "-";
         $data->handover_chequenumber10per = ($request->handover_paymenttype10per == "Cheque") ? $request->handover_chequenumber10per : "-";
         $data->handover_neftid10per = ($request->handover_paymenttype10per == "NEFT") ? $request->handover_neftid10per : "-";
+        $data->handover_rtgsid10per = ($request->handover_paymenttype10per == "RTGS") ? $request->handover_rtgsid10per : "-";
 
         $data->onbook15per = $names->onbook_balance15per;
         $data->onbook_received15per = $request->onbook_received15per ? $request->onbook_received15per : "0";
@@ -444,6 +486,7 @@ class PaymentsController extends Controller
         $data->onbook_paymenttype15per = $request->onbook_paymenttype15per ? $request->onbook_paymenttype15per : "-";
         $data->onbook_chequenumber15per = ($request->onbook_paymenttype15per == "Cheque") ? $request->onbook_chequenumber15per : "-";
         $data->onbook_neftid15per = ($request->onbook_paymenttype15per == "NEFT") ? $request->onbook_neftid15per : "-";
+        $data->onbook_rtgsid15per = ($request->onbook_paymenttype15per == "RTGS") ? $request->onbook_rtgsid15per : "-";
 
         $data->payments15per = $names->payments_balance15per;
         $data->payments_received15per = $request->payments_received15per ? $request->payments_received15per : "0";
@@ -454,6 +497,7 @@ class PaymentsController extends Controller
         $data->payments_paymenttype15per = $request->payments_paymenttype15per ? $request->payments_paymenttype15per : "-";
         $data->payments_chequenumber15per = ($request->payments_paymenttype15per == "Cheque") ? $request->payments_chequenumber15per : "-";
         $data->payments_neftid15per = ($request->payments_paymenttype15per == "NEFT") ? $request->payments_neftid15per : "-";
+        $data->payments_rtgsid15per = ($request->payments_paymenttype15per == "RTGS") ? $request->payments_rtgsid15per : "-";
 
         $data->first15per = $names->first_balance15per;
         $data->first_received15per = $request->first_received15per ? $request->first_received15per : "0";
@@ -464,6 +508,7 @@ class PaymentsController extends Controller
         $data->first_paymenttype15per = $request->first_paymenttype15per ? $request->first_paymenttype15per : "-";
         $data->first_chequenumber15per = ($request->first_paymenttype15per == "Cheque") ? $request->first_chequenumber15per : "-";
         $data->first_neftid15per = ($request->first_paymenttype15per == "NEFT") ? $request->first_neftid15per : "-";
+        $data->first_rtgsid15per = ($request->first_paymenttype15per == "RTGS") ? $request->first_rtgsid15per : "-";
 
         $data->second15per = $names->second_balance15per;
         $data->second_received15per = $request->second_received15per ? $request->second_received15per : "0";
@@ -474,6 +519,7 @@ class PaymentsController extends Controller
         $data->second_paymenttype15per = $request->second_paymenttype15per ? $request->second_paymenttype15per : "-";
         $data->second_chequenumber15per = ($request->second_paymenttype15per == "Cheque") ? $request->second_chequenumber15per : "-";
         $data->second_neftid15per = ($request->second_paymenttype15per == "NEFT") ? $request->second_neftid15per : "-";
+        $data->second_rtgsid15per = ($request->second_paymenttype15per == "RTGS") ? $request->second_rtgsid15per : "-";
 
         $data->third15per = $names->third_balance15per;
         $data->third_received15per = $request->third_received15per ? $request->third_received15per : "0";
@@ -484,6 +530,7 @@ class PaymentsController extends Controller
         $data->third_paymenttype15per = $request->third_paymenttype15per ? $request->third_paymenttype15per : "-";
         $data->third_chequenumber15per = ($request->third_paymenttype15per == "Cheque") ? $request->third_chequenumber15per : "-";
         $data->third_neftid15per = ($request->third_paymenttype15per == "NEFT") ? $request->third_neftid15per : "-";
+        $data->third_rtgsid15per = ($request->third_paymenttype15per == "RTGS") ? $request->third_rtgsid15per : "-";
 
         $data->fourth15per = $names->fourth_balance15per;
         $data->fourth_received15per = $request->fourth_received15per ? $request->fourth_received15per : "0";
@@ -494,6 +541,7 @@ class PaymentsController extends Controller
         $data->fourth_paymenttype15per = $request->fourth_paymenttype15per ? $request->fourth_paymenttype15per : "-";
         $data->fourth_chequenumber15per = ($request->fourth_paymenttype15per == "Cheque") ? $request->fourth_chequenumber15per : "-";
         $data->fourth_neftid15per = ($request->fourth_paymenttype15per == "NEFT") ? $request->fourth_neftid15per : "-";
+        $data->fourth_rtgsid15per = ($request->fourth_paymenttype15per == "RTGS") ? $request->fourth_rtgsid15per : "-";
 
         $data->fifth15per = $names->fifth_balance15per;
         $data->fifth_received15per = $request->fifth_received15per ? $request->fifth_received15per : "0";
@@ -504,6 +552,7 @@ class PaymentsController extends Controller
         $data->fifth_paymenttype15per = $request->fifth_paymenttype15per ? $request->fifth_paymenttype15per : "-";
         $data->fifth_chequenumber15per = ($request->fifth_paymenttype15per == "Cheque") ? $request->fifth_chequenumber15per : "-";
         $data->fifth_neftid15per = ($request->fifth_paymenttype15per == "NEFT") ? $request->fifth_neftid15per : "-";
+        $data->fifth_rtgsid15per = ($request->fifth_paymenttype15per == "RTGS") ? $request->fifth_rtgsid15per : "-";
 
         $data->handover15per = $names->handover_balance15per;
         $data->handover_received15per = $request->handover_received15per ? $request->handover_received15per : "0";
@@ -514,6 +563,7 @@ class PaymentsController extends Controller
         $data->handover_paymenttype15per = $request->handover_paymenttype15per ? $request->handover_paymenttype15per : "-";
         $data->handover_chequenumber15per = ($request->handover_paymenttype15per == "Cheque") ? $request->handover_chequenumber15per : "-";
         $data->handover_neftid15per = ($request->handover_paymenttype15per == "NEFT") ? $request->handover_neftid15per : "-";
+        $data->handover_rtgsid15per = ($request->handover_paymenttype15per == "RTGS") ? $request->handover_rtgsid15per : "-";
 
         $data->onbook20per = $names->onbook_balance20per;
         $data->onbook_received20per = $request->onbook_received20per ? $request->onbook_received20per : "0";
@@ -524,6 +574,7 @@ class PaymentsController extends Controller
         $data->onbook_paymenttype20per = $request->onbook_paymenttype20per ? $request->onbook_paymenttype20per : "-";
         $data->onbook_chequenumber20per = ($request->onbook_paymenttype20per == "Cheque") ? $request->onbook_chequenumber20per : "-";
         $data->onbook_neftid20per = ($request->onbook_paymenttype20per == "NEFT") ? $request->onbook_neftid20per : "-";
+        $data->onbook_rtgsid20per = ($request->onbook_paymenttype20per == "RTGS") ? $request->onbook_rtgsid20per : "-";
 
         $data->payments20per = $names->payments_balance20per;
         $data->payments_received20per = $request->payments_received20per ? $request->payments_received20per : "0";
@@ -534,6 +585,7 @@ class PaymentsController extends Controller
         $data->payments_paymenttype20per = $request->payments_paymenttype20per ? $request->payments_paymenttype20per : "-";
         $data->payments_chequenumber20per = ($request->payments_paymenttype20per == "Cheque") ? $request->payments_chequenumber20per : "-";
         $data->payments_neftid20per = ($request->payments_paymenttype20per == "NEFT") ? $request->payments_neftid20per : "-";
+        $data->payments_rtgsid20per = ($request->payments_paymenttype20per == "RTGS") ? $request->payments_rtgsid20per : "-";
 
         $data->first20per = $names->first_balance20per;
         $data->first_received20per = $request->first_received20per ? $request->first_received20per : "0";
@@ -544,6 +596,7 @@ class PaymentsController extends Controller
         $data->first_paymenttype20per = $request->first_paymenttype20per ? $request->first_paymenttype20per : "-";
         $data->first_chequenumber20per = ($request->first_paymenttype20per == "Cheque") ? $request->first_chequenumber20per : "-";
         $data->first_neftid20per = ($request->first_paymenttype20per == "NEFT") ? $request->first_neftid20per : "-";
+        $data->first_rtgsid20per = ($request->first_paymenttype20per == "RTGS") ? $request->first_rtgsid20per : "-";
 
         $data->second20per = $names->second_balance20per;
         $data->second_received20per = $request->second_received20per ? $request->second_received20per : "0";
@@ -554,6 +607,7 @@ class PaymentsController extends Controller
         $data->second_paymenttype20per = $request->second_paymenttype20per ? $request->second_paymenttype20per : "-";
         $data->second_chequenumber20per = ($request->second_paymenttype20per == "Cheque") ? $request->second_chequenumber20per : "-";
         $data->second_neftid20per = ($request->second_paymenttype20per == "NEFT") ? $request->second_neftid20per : "-";
+        $data->second_rtgsid20per = ($request->second_paymenttype20per == "RTGS") ? $request->second_rtgsid20per : "-";
 
         $data->third20per = $names->third_balance20per;
         $data->third_received20per = $request->third_received20per ? $request->third_received20per : "0";
@@ -564,6 +618,7 @@ class PaymentsController extends Controller
         $data->third_paymenttype20per = $request->third_paymenttype20per ? $request->third_paymenttype20per : "-";
         $data->third_chequenumber20per = ($request->third_paymenttype20per == "Cheque") ? $request->third_chequenumber20per : "-";
         $data->third_neftid20per = ($request->third_paymenttype20per == "NEFT") ? $request->third_neftid20per : "-";
+        $data->third_rtgsid20per = ($request->third_paymenttype20per == "RTGS") ? $request->third_rtgsid20per : "-";
 
         $data->fourth20per = $names->fourth_balance20per;
         $data->fourth_received20per = $request->fourth_received20per ? $request->fourth_received20per : "0";
@@ -574,6 +629,7 @@ class PaymentsController extends Controller
         $data->fourth_paymenttype20per = $request->fourth_paymenttype20per ? $request->fourth_paymenttype20per : "-";
         $data->fourth_chequenumber20per = ($request->fourth_paymenttype20per == "Cheque") ? $request->fourth_chequenumber20per : "-";
         $data->fourth_neftid20per = ($request->fourth_paymenttype20per == "NEFT") ? $request->fourth_neftid20per : "-";
+        $data->fourth_rtgsid20per = ($request->fourth_paymenttype20per == "RTGS") ? $request->fourth_rtgsid20per : "-";
 
         $data->fifth20per = $names->fifth_balance20per;
         $data->fifth_received20per = $request->fifth_received20per ? $request->fifth_received20per : "0";
@@ -584,6 +640,7 @@ class PaymentsController extends Controller
         $data->fifth_paymenttype20per = $request->fifth_paymenttype20per ? $request->fifth_paymenttype20per : "-";
         $data->fifth_chequenumber20per = ($request->fifth_paymenttype20per == "Cheque") ? $request->fifth_chequenumber20per : "-";
         $data->fifth_neftid20per = ($request->fifth_paymenttype20per == "NEFT") ? $request->fifth_neftid20per : "-";
+        $data->fifth_rtgsid20per = ($request->fifth_paymenttype20per == "RTGS") ? $request->fifth_rtgsid20per : "-";
 
         $data->handover20per = $names->handover_balance20per;
         $data->handover_received20per = $request->handover_received20per ? $request->handover_received20per : "0";
@@ -594,7 +651,9 @@ class PaymentsController extends Controller
         $data->handover_paymenttype20per = $request->handover_paymenttype20per ? $request->handover_paymenttype20per : "-";
         $data->handover_chequenumber20per = ($request->handover_paymenttype20per == "Cheque") ? $request->handover_chequenumber20per : "-";
         $data->handover_neftid20per = ($request->handover_paymenttype20per == "NEFT") ? $request->handover_neftid20per : "-";
+        $data->handover_rtgsid20per = ($request->handover_paymenttype20per == "RTGS") ? $request->handover_rtgsid20per : "-";
 
+        $data->addedby = $sessionadmin->username;
         $data->created_date = date('Y-m-d H:i:s');
         $data->save();
         $data = Payment::where('payment_id',$id)->update(['addmore'=>1]);
