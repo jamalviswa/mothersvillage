@@ -36,6 +36,12 @@ class PaymentsController extends Controller
                     $query->where('application_number', 'LIKE', "%$customer%");
                 });
             }
+            if (!empty($_REQUEST['bank_type'])) {
+                $customer = $_REQUEST['bank_type'];
+                $result->where(function ($query) use ($customer) {
+                    $query->where('bank_type', 'LIKE', "%$customer%");
+                });
+            }
 
         $result = $result->paginate(10);
 

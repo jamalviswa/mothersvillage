@@ -45,15 +45,15 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group">    
+                        <div class="form-group">
                             <select class="form-control" name="bank_type">
-                                @php
-                                $customers = App\Customer::where('status','Active')->orderby('applicant_name','asc')->get();
-                                @endphp
-                                <option value="">Select Applicant Name</option>
-                                @foreach($customers as $customer)
-                                <option @if(isset($_REQUEST['applicant_name']) && $_REQUEST['applicant_name']==$customer['applicant_name']) selected @endif value="{{ $customer['applicant_name'] }}">{{ $customer['applicant_name'] }}</option>
-                                @endforeach
+                            <option value="">--Select--</option>
+                                                    <option value="SBI">SBI</option>
+                                                    <option value="HDFC">HDFC</option>
+                                                    <option value="IOB">IOB</option>
+                                                    <option value="LIC">LIC</option>
+                                                    <option value="CANARA">CANARA</option>
+                                                    <option value="OTHERS">OTHERS</option>
                             </select>
                         </div>
                         <div class="form-group">
