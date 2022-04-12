@@ -76,19 +76,7 @@ $requestdatas = (!empty(old())) ? old() : $detail;
                                                 @enderror
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-5">
-                                                Name of the co-applicant
-                                            </label>
-                                            <div class="col-md-7">
-                                                <input value="{{ $requestdatas['co_applicant_name'] }}" type="text" placeholder="Enter Co-Applicant Name" style="text-transform: capitalize;" autocomplete="off" class="form-control" name="co_applicant_name" />
-                                                @error('co_applicant_name')
-                                                <span class="invalid-feedback" role="alert">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror
-                                            </div>
-                                        </div>
+                                       
 
                                         <div class="form-group row">
                                             <label class="col-md-5">
@@ -164,6 +152,35 @@ $requestdatas = (!empty(old())) ? old() : $detail;
                                             </div>
                                         </div>
 
+                                        <div class="form-group row">
+                                            <label class="col-md-5">
+                                            Alternative Mobile Number
+                                            </label>
+
+                                            <div class="col-md-7">
+
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <input value="{{ $requestdatas['phone_code'] }}" type="tel" autocomplete="off" class="form-control" name="phone_code" style="width:72%" maxlength="4" />
+                                                    </div>
+                                                    <div class="col-9">
+                                                        <input value="{{ $requestdatas['phone'] }}" id="phone" type="tel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="10" autocomplete="off" class="form-control" name="phone" />
+                                                    </div>
+                                                </div>
+
+                                                @error('phone_code')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                                @error('phone')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
                                        
 
                                         <div class="form-group row">
@@ -183,7 +200,7 @@ $requestdatas = (!empty(old())) ? old() : $detail;
 
                                         <div class="form-group row">
                                             <label class="col-md-5">
-                                                Occupation <span class="red">*</span>
+                                                Occupation 
                                             </label>
                                             <div class="col-md-7">
                                                 <input value="{{ $requestdatas['occupation'] }}" type="text" autocomplete="off" class="form-control" name="occupation" />
@@ -198,7 +215,7 @@ $requestdatas = (!empty(old())) ? old() : $detail;
 
                                         <div class="form-group row">
                                             <label class="col-md-5">
-                                                Total Years of Experience <span class="red">*</span>
+                                                Total Years of Experience 
                                             </label>
                                             <div class="col-md-7">
                                                 <input value="{{ $requestdatas['experience'] }}" type="text" autocomplete="off" class="form-control" name="experience" />
@@ -213,7 +230,21 @@ $requestdatas = (!empty(old())) ? old() : $detail;
 
                                         <div class="form-group row">
                                             <label class="col-md-5">
-                                                Residential Address <span class="red">*</span>
+                                            Residential/ Permanent Address 
+                                            </label>
+                                            <div class="col-md-7">
+                                                <textarea rows="4" class="form-control" name="address">{{ $requestdatas['address'] }}</textarea>
+                                                @error('address')
+                                                <span class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-5">
+                                            Correspondance/ Present Address 
                                             </label>
                                             <div class="col-md-7">
                                                 <textarea rows="4" class="form-control" name="address">{{ $requestdatas['address'] }}</textarea>

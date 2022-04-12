@@ -114,7 +114,7 @@
                                                     Rate per SQFT <span class="red">*</span>
                                                 </label>
                                                 <div class="col-md-4">
-                                                    <input value="{{ old('rate_sqft') }}" type="number" id="Text1" autocomplete="off" class="form-control" name="rate_sqft" />
+                                                    <input value="{{ old('rate_sqft') }}" type="text" id="Text1" autocomplete="off" class="form-control" name="rate_sqft" />
                                                     @error('rate_sqft')
                                                     <span class="invalid-feedback" role="alert">
                                                         {{ $message }}
@@ -156,7 +156,7 @@
                                                     Guideline Value<span class="red">*</span>
                                                 </label>
                                                 <div class="col-md-4">
-                                                    <input value="{{ old('guideline_value') }}" type="number" id="Text4" autocomplete="off" class="form-control" name="guideline_value" />
+                                                    <input value="{{ old('guideline_value') }}" type="text" id="Text4" autocomplete="off" class="form-control" name="guideline_value" />
                                                     @error('guideline_value')
                                                     <span class="invalid-feedback" role="alert">
                                                         {{ $message }}
@@ -198,7 +198,7 @@
                                                 Electricity charges
                                             </label>
                                             <div class="col-md-4">
-                                                <input value="{{ old('electricity_charges') }}" type="number" autocomplete="off" class="form-control" id="electricity" name="electricity_charges" />
+                                                <input value="{{ old('electricity_charges') }}" type="text" autocomplete="off" class="form-control" id="electricity" name="electricity_charges" />
                                                 @error('electricity_charges')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
@@ -211,7 +211,7 @@
                                                 Metro Water Supply
                                             </label>
                                             <div class="col-md-4">
-                                                <input value="{{ old('water_supply') }}" type="number" autocomplete="off" class="form-control" id="water" name="water_supply" />
+                                                <input value="{{ old('water_supply') }}" type="text" autocomplete="off" class="form-control" id="water" name="water_supply" />
                                                 @error('water_supply')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
@@ -224,7 +224,7 @@
                                                 Car Park
                                             </label>
                                             <div class="col-md-4">
-                                                <input value="{{ old('car_park') }}" type="number" autocomplete="off" class="form-control" id="car" name="car_park" />
+                                                <input value="{{ old('car_park') }}" type="text" autocomplete="off" class="form-control" id="car" name="car_park" />
                                                 @error('car_park')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
@@ -237,7 +237,7 @@
                                                 Amenities charges
                                             </label>
                                             <div class="col-md-4">
-                                                <input value="{{ old('amenities_charges') }}" type="number" autocomplete="off" class="form-control" id="amenities" name="amenities_charges" />
+                                                <input value="{{ old('amenities_charges') }}" type="text" autocomplete="off" class="form-control" id="amenities" name="amenities_charges" />
                                                 @error('amenities_charges')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
@@ -250,7 +250,7 @@
                                                 Maintenance Charges(To be decided )
                                             </label>
                                             <div class="col-md-4">
-                                                <input value="{{ old('maintenance') }}" type="number" autocomplete="off" id="maintenance" class="form-control" name="maintenance" />
+                                                <input value="{{ old('maintenance') }}" type="text" autocomplete="off" id="maintenance" class="form-control" name="maintenance" />
                                                 @error('maintenance')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
@@ -316,7 +316,7 @@
                                                 Corpus fund
                                             </label>
                                             <div class="col-md-4">
-                                                <input value="{{ old('corpus_fund')}}" type="number" id="corpus" autocomplete="off" class="form-control" name="corpus_fund" />
+                                                <input value="{{ old('corpus_fund')}}" type="text" id="corpus" autocomplete="off" class="form-control" name="corpus_fund" />
                                                 @error('corpus_fund')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
@@ -489,48 +489,43 @@
     $('#Text1, #Text2').on("paste keyup",
         function() {
             var result = parseFloat($("#Text1").val()) * parseFloat($("#Text2").val());
-            $("#txtresult").val((isNaN(result) ? '' : result));
+            $("#txtresult").val((isNaN(result) ? '' : result).toFixed(2));
         }
     );
     $('#Text3, #Text4').on("paste keyup",
         function() {
             var result = parseFloat($("#Text3").val()) * parseFloat($("#Text4").val());
-            $("#txt").val((isNaN(result) ? '' : result));
+            $("#txt").val((isNaN(result) ? '' : result).toFixed(2));
 
             var result = parseFloat($("#txtresult").val()) - parseFloat($("#txt").val());
-            $("#txtres").val((isNaN(result) ? '' : result));
+            $("#txtres").val((isNaN(result) ? '' : result).toFixed(2));
 
-            var results = ((parseFloat($("#txt").val()) * 7) / 100);
-            var result = Math.round(results);
-            $("#stamp").val((isNaN(result) ? '' : result));
+            var result = ((parseFloat($("#txt").val()) * 7) / 100);
+            $("#stamp").val((isNaN(result) ? '' : result).toFixed(2));
 
-            var results = ((parseFloat($("#txt").val()) * 4) / 100);
-            var result = Math.round(results);
-            $("#registration").val((isNaN(result) ? '' : result));
+            var result = ((parseFloat($("#txt").val()) * 4) / 100);
+            $("#registration").val((isNaN(result) ? '' : result).toFixed(2));
         }
     );
     $('#electricity, #car,#water,#amenities,#maintenance').on("paste keyup",
         function() {
             var result = parseFloat($("#txt").val()) + parseFloat($("#txtres").val()) + parseFloat($("#electricity").val()) + parseFloat($("#water").val()) + parseFloat($("#car").val()) + parseFloat($("#amenities").val()) + parseFloat($("#maintenance").val());
-            $("#result").val((isNaN(result) ? '' : result));
+            $("#result").val((isNaN(result) ? '' : result).toFixed(2));
 
-            var results = ((parseFloat($("#result").val()) * 1) / 100);
-            var result = Math.round(results);
-            $("#gst").val((isNaN(result) ? '' : result));
+            var result = ((parseFloat($("#result").val()) * 1) / 100);    
+            $("#gst").val((isNaN(result) ? '' : result).toFixed(2));
 
-            var agreement = (((parseFloat($("#txtres").val()) + parseFloat($("#electricity").val()) + parseFloat($("#water").val()) + parseFloat($("#car").val()) + parseFloat($("#amenities").val()) + parseFloat($("#maintenance").val())) * 2) / 100);
-            var agreements = Math.round(agreement);
-            $("#construction").val((isNaN(agreements) ? '' : agreements));
+            var agreements = (((parseFloat($("#txtres").val()) + parseFloat($("#electricity").val()) + parseFloat($("#water").val()) + parseFloat($("#car").val()) + parseFloat($("#amenities").val()) + parseFloat($("#maintenance").val())) * 2) / 100);   
+            $("#construction").val((isNaN(agreements) ? '' : agreements).toFixed(2));
 
-            var total = parseFloat($("#result").val()) + parseFloat($("#stamp").val()) + parseFloat($("#registration").val()) + parseFloat($("#construction").val()) + parseFloat($("#corpus").val()) + parseFloat($("#gst").val());
-            var totals = Math.round(total);
-            $("#total").val((isNaN(totals) ? '' : totals));
+            var totals = parseFloat($("#result").val()) + parseFloat($("#stamp").val()) + parseFloat($("#registration").val()) + parseFloat($("#construction").val()) + parseFloat($("#corpus").val()) + parseFloat($("#gst").val());
+            $("#total").val((isNaN(totals) ? '' : totals).toFixed(2));
         }
     );
     $('#corpus').on("paste keyup",
         function() {
             var total = parseFloat($("#result").val()) + parseFloat($("#stamp").val()) + parseFloat($("#registration").val()) + parseFloat($("#construction").val()) + parseFloat($("#corpus").val()) + parseFloat($("#gst").val());
-            $("#total").val((isNaN(total) ? '' : total));
+            $("#total").val((isNaN(total) ? '' : total).toFixed(2));
         }
     );
 </script>

@@ -56,16 +56,20 @@ class PaymentsController extends Controller
     }
     public function store(Request $request)
     {
-        $check = $this->validate($request, []);
+        $check = $this->validate($request, [
+            'payment_schedule' => ['required'],
+            'transaction_type' => ['required'],
+            'application_number' => ['required'],
+        ]);
 
         $data = new Payment();
         $sessionadmin = Parent::checkadmin();
         $data->customer_id = $request->application_number;
-        $names = Customer::where('customer_id', $request->application_number)->first();
+        $names = Customer::where('customer_id', $request->application_number)->where('status', 'Active')->first();
         $data->application_number = $names->application_number;
         $data->applicant_name = $names->applicant_name;
         $data->date_of_application = $names->date_of_application;
-        $documents = Cost::where('customer_id', $request->application_number)->first();
+        $documents = Cost::where('customer_id', $request->application_number)->where('status', 'Active')->first();
         $data->cost_id = $documents->cost_id;
         $data->gross_amount = $documents->gross_amount;
         $data->payment_schedule = $request->payment_schedule;
@@ -74,10 +78,12 @@ class PaymentsController extends Controller
         $data->bank_name = ($request->bank_type == "OTHERS") ? $request->bank_name : "-";
         $data->loan_amount = $request->loan_amount;
 
-        $onbook10per = round(($data->gross_amount * 10) / 100);
+        $onbook10pers = ($data->gross_amount * 10) / 100;
+        $onbook10per = number_format((float)$onbook10pers, 2, '.', '');
         $data->onbook10per = $onbook10per;
         $data->onbook_received10per = $request->onbook_received10per ? $request->onbook_received10per : "0";
-        $balance = $data->onbook10per - $data->onbook_received10per;
+        $balances = $data->onbook10per - $data->onbook_received10per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->onbook_balance10per = $balance;
         $data->onbook_paymentdate10per = $request->onbook_paymentdate10per ? $request->onbook_paymentdate10per : "-";
         $data->onbook_transactiontype10per = $request->onbook_transactiontype10per ? $request->onbook_transactiontype10per : "-";
@@ -86,10 +92,12 @@ class PaymentsController extends Controller
         $data->onbook_neftid10per = ($request->onbook_paymenttype10per == "NEFT") ? $request->onbook_neftid10per : "-";
         $data->onbook_rtgsid10per = ($request->onbook_paymenttype10per == "RTGS") ? $request->onbook_rtgsid10per : "-";
 
-        $payments10per = round(($data->gross_amount * 40) / 100);
+        $payments10pers = ($data->gross_amount * 40) / 100;
+        $payments10per = number_format((float)$payments10pers, 2, '.', '');
         $data->payments10per = $payments10per;
         $data->payments_received10per = $request->payments_received10per ? $request->payments_received10per : "0";
-        $balance = $data->payments10per - $data->payments_received10per;
+        $balances = $data->payments10per - $data->payments_received10per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->payments_balance10per = $balance;
         $data->payments_paymentdate10per = $request->payments_paymentdate10per ? $request->payments_paymentdate10per : "-";
         $data->payments_transactiontype10per = $request->payments_transactiontype10per ? $request->payments_transactiontype10per : "-";
@@ -98,10 +106,12 @@ class PaymentsController extends Controller
         $data->payments_neftid10per = ($request->payments_paymenttype10per == "NEFT") ? $request->payments_neftid10per : "-";
         $data->payments_rtgsid10per = ($request->payments_paymenttype10per == "RTGS") ? $request->payments_rtgsid10per : "-";
 
-        $first10per = round(($data->gross_amount * 10) / 100);
+        $first10pers = ($data->gross_amount * 10) / 100;
+        $first10per = number_format((float)$first10pers, 2, '.', '');
         $data->first10per = $first10per;
         $data->first_received10per = $request->first_received10per ? $request->first_received10per : "0";
-        $balance = $data->first10per - $data->first_received10per;
+        $balances = $data->first10per - $data->first_received10per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->first_balance10per = $balance;
         $data->first_paymentdate10per = $request->first_paymentdate10per ? $request->first_paymentdate10per : "-";
         $data->first_transactiontype10per = $request->first_transactiontype10per ? $request->first_transactiontype10per : "-";
@@ -110,10 +120,12 @@ class PaymentsController extends Controller
         $data->first_neftid10per = ($request->first_paymenttype10per == "NEFT") ? $request->first_neftid10per : "-";
         $data->first_rtgsid10per = ($request->first_paymenttype10per == "RTGS") ? $request->first_rtgsid10per : "-";
 
-        $second10per = round(($data->gross_amount * 10) / 100);
+        $second10pers = ($data->gross_amount * 10) / 100;
+        $second10per = number_format((float)$second10pers, 2, '.', '');
         $data->second10per = $second10per;
         $data->second_received10per = $request->second_received10per ? $request->second_received10per : "0";
-        $balance = $data->second10per - $data->second_received10per;
+        $balances = $data->second10per - $data->second_received10per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->second_balance10per = $balance;
         $data->second_paymentdate10per = $request->second_paymentdate10per ? $request->second_paymentdate10per : "-";
         $data->second_transactiontype10per = $request->second_transactiontype10per ? $request->second_transactiontype10per : "-";
@@ -122,10 +134,12 @@ class PaymentsController extends Controller
         $data->second_neftid10per = ($request->second_paymenttype10per == "NEFT") ? $request->second_neftid10per : "-";
         $data->second_rtgsid10per = ($request->second_paymenttype10per == "RTGS") ? $request->second_rtgsid10per : "-";
 
-        $third10per = round(($data->gross_amount * 10) / 100);
+        $third10pers = ($data->gross_amount * 10) / 100;
+        $third10per = number_format((float)$third10pers, 2, '.', '');
         $data->third10per = $third10per;
         $data->third_received10per = $request->third_received10per ? $request->third_received10per : "0";
-        $balance = $data->third10per - $data->third_received10per;
+        $balances = $data->third10per - $data->third_received10per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->third_balance10per = $balance;
         $data->third_paymentdate10per = $request->third_paymentdate10per ? $request->third_paymentdate10per : "-";
         $data->third_transactiontype10per = $request->third_transactiontype10per ? $request->third_transactiontype10per : "-";
@@ -134,10 +148,12 @@ class PaymentsController extends Controller
         $data->third_neftid10per = ($request->third_paymenttype10per == "NEFT") ? $request->third_neftid10per : "-";
         $data->third_rtgsid10per = ($request->third_paymenttype10per == "RTGS") ? $request->third_rtgsid10per : "-";
 
-        $fourth10per = round(($data->gross_amount * 10) / 100);
+        $fourth10pers = ($data->gross_amount * 10) / 100;
+        $fourth10per = number_format((float)$fourth10pers, 2, '.', '');
         $data->fourth10per = $fourth10per;
         $data->fourth_received10per = $request->fourth_received10per ? $request->fourth_received10per : "0";
-        $balance = $data->fourth10per - $data->fourth_received10per;
+        $balances = $data->fourth10per - $data->fourth_received10per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->fourth_balance10per = $balance;
         $data->fourth_paymentdate10per = $request->fourth_paymentdate10per ? $request->fourth_paymentdate10per : "-";
         $data->fourth_transactiontype10per = $request->fourth_transactiontype10per ? $request->fourth_transactiontype10per : "-";
@@ -146,10 +162,12 @@ class PaymentsController extends Controller
         $data->fourth_neftid10per = ($request->fourth_paymenttype10per == "NEFT") ? $request->fourth_neftid10per : "-";
         $data->fourth_rtgsid10per = ($request->fourth_paymenttype10per == "RTGS") ? $request->fourth_rtgsid10per : "-";
 
-        $fifth10per = round(($data->gross_amount * 5) / 100);
+        $fifth10pers = ($data->gross_amount * 5) / 100;
+        $fifth10per = number_format((float)$fifth10pers, 2, '.', '');
         $data->fifth10per = $fifth10per;
         $data->fifth_received10per = $request->fifth_received10per ? $request->fifth_received10per : "0";
-        $balance = $data->fifth10per - $data->fifth_received10per;
+        $balances = $data->fifth10per - $data->fifth_received10per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->fifth_balance10per = $balance;
         $data->fifth_paymentdate10per = $request->fifth_paymentdate10per ? $request->fifth_paymentdate10per : "-";
         $data->fifth_transactiontype10per = $request->fifth_transactiontype10per ? $request->fifth_transactiontype10per : "-";
@@ -158,10 +176,12 @@ class PaymentsController extends Controller
         $data->fifth_neftid10per = ($request->fifth_paymenttype10per == "NEFT") ? $request->fifth_neftid10per : "-";
         $data->fifth_rtgsid10per = ($request->fifth_paymenttype10per == "RTGS") ? $request->fifth_rtgsid10per : "-";
 
-        $handover10per = round(($data->gross_amount * 5) / 100);
+        $handover10pers = ($data->gross_amount * 5) / 100;
+        $handover10per = number_format((float)$handover10pers, 2, '.', '');
         $data->handover10per = $handover10per;
         $data->handover_received10per = $request->handover_received10per ? $request->handover_received10per : "0";
-        $balance = $data->handover10per - $data->handover_received10per;
+        $balances = $data->handover10per - $data->handover_received10per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->handover_balance10per = $balance;
         $data->handover_paymentdate10per = $request->handover_paymentdate10per ? $request->handover_paymentdate10per : "-";
         $data->handover_transactiontype10per = $request->handover_transactiontype10per ? $request->handover_transactiontype10per : "-";
@@ -170,10 +190,12 @@ class PaymentsController extends Controller
         $data->handover_neftid10per = ($request->handover_paymenttype10per == "NEFT") ? $request->handover_neftid10per : "-";
         $data->handover_rtgsid10per = ($request->handover_paymenttype10per == "RTGS") ? $request->handover_rtgsid10per : "-";
 
-        $onbook15per = round(($data->gross_amount * 15) / 100);
+        $onbook15pers = ($data->gross_amount * 15) / 100;
+        $onbook15per = number_format((float)$onbook15pers, 2, '.', '');
         $data->onbook15per = $onbook15per;
         $data->onbook_received15per = $request->onbook_received15per ? $request->onbook_received15per : "0";
-        $balance = $data->onbook15per - $data->onbook_received15per;
+        $balances = $data->onbook15per - $data->onbook_received15per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->onbook_balance15per = $balance;
         $data->onbook_paymentdate15per = $request->onbook_paymentdate15per ? $request->onbook_paymentdate15per : "-";
         $data->onbook_transactiontype15per = $request->onbook_transactiontype15per ? $request->onbook_transactiontype15per : "-";
@@ -182,10 +204,12 @@ class PaymentsController extends Controller
         $data->onbook_neftid15per = ($request->onbook_paymenttype15per == "NEFT") ? $request->onbook_neftid15per : "-";
         $data->onbook_rtgsid15per = ($request->onbook_paymenttype15per == "RTGS") ? $request->onbook_rtgsid15per : "-";
 
-        $payments15per = round(($data->gross_amount * 40) / 100);
+        $payments15pers = ($data->gross_amount * 40) / 100;
+        $payments15per = number_format((float)$payments15pers, 2, '.', '');
         $data->payments15per = $payments15per;
         $data->payments_received15per = $request->payments_received15per ? $request->payments_received15per : "0";
-        $balance = $data->payments15per - $data->payments_received15per;
+        $balances = $data->payments15per - $data->payments_received15per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->payments_balance15per = $balance;
         $data->payments_paymentdate15per = $request->payments_paymentdate15per ? $request->payments_paymentdate15per : "-";
         $data->payments_transactiontype15per = $request->payments_transactiontype15per ? $request->payments_transactiontype15per : "-";
@@ -194,10 +218,12 @@ class PaymentsController extends Controller
         $data->payments_neftid15per = ($request->payments_paymenttype15per == "NEFT") ? $request->payments_neftid15per : "-";
         $data->payments_rtgsid15per = ($request->payments_paymenttype15per == "RTGS") ? $request->payments_rtgsid15per : "-";
 
-        $first15per = round(($data->gross_amount * 10) / 100);
+        $first15pers = ($data->gross_amount * 10) / 100;
+        $first15per = number_format((float)$first15pers, 2, '.', '');
         $data->first15per = $first15per;
         $data->first_received15per = $request->first_received15per ? $request->first_received15per : "0";
-        $balance = $data->first15per - $data->first_received15per;
+        $balances = $data->first15per - $data->first_received15per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->first_balance15per = $balance;
         $data->first_paymentdate15per = $request->first_paymentdate15per ? $request->first_paymentdate15per : "-";
         $data->first_transactiontype15per = $request->first_transactiontype15per ? $request->first_transactiontype15per : "-";
@@ -206,10 +232,12 @@ class PaymentsController extends Controller
         $data->first_neftid15per = ($request->first_paymenttype15per == "NEFT") ? $request->first_neftid15per : "-";
         $data->first_rtgsid15per = ($request->first_paymenttype15per == "RTGS") ? $request->first_rtgsid15per : "-";
 
-        $second15per = round(($data->gross_amount * 10) / 100);
+        $second15pers = ($data->gross_amount * 10) / 100;
+        $second15per = number_format((float)$second15pers, 2, '.', '');
         $data->second15per = $second15per;
         $data->second_received15per = $request->second_received15per ? $request->second_received15per : "0";
-        $balance = $data->second15per - $data->second_received15per;
+        $balances = $data->second15per - $data->second_received15per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->second_balance15per = $balance;
         $data->second_paymentdate15per = $request->second_paymentdate15per ? $request->second_paymentdate15per : "-";
         $data->second_transactiontype15per = $request->second_transactiontype15per ? $request->second_transactiontype15per : "-";
@@ -218,10 +246,12 @@ class PaymentsController extends Controller
         $data->second_neftid15per = ($request->second_paymenttype15per == "NEFT") ? $request->second_neftid15per : "-";
         $data->second_rtgsid15per = ($request->second_paymenttype15per == "RTGS") ? $request->second_rtgsid15per : "-";
 
-        $third15per = round(($data->gross_amount * 10) / 100);
+        $third15pers = ($data->gross_amount * 10) / 100;
+        $third15per = number_format((float)$third15pers, 2, '.', '');
         $data->third15per = $third15per;
         $data->third_received15per = $request->third_received15per ? $request->third_received15per : "0";
-        $balance = $data->third15per - $data->third_received15per;
+        $balances = $data->third15per - $data->third_received15per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->third_balance15per = $balance;
         $data->third_paymentdate15per = $request->third_paymentdate15per ? $request->third_paymentdate15per : "-";
         $data->third_transactiontype15per = $request->third_transactiontype15per ? $request->third_transactiontype15per : "-";
@@ -230,10 +260,12 @@ class PaymentsController extends Controller
         $data->third_neftid15per = ($request->third_paymenttype15per == "NEFT") ? $request->third_neftid15per : "-";
         $data->third_rtgsid15per = ($request->third_paymenttype15per == "RTGS") ? $request->third_rtgsid15per : "-";
 
-        $fourth15per = round(($data->gross_amount * 5) / 100);
+        $fourth15pers = ($data->gross_amount * 5) / 100;
+        $fourth15per = number_format((float)$fourth15pers, 2, '.', '');
         $data->fourth15per = $fourth15per;
         $data->fourth_received15per = $request->fourth_received15per ? $request->fourth_received15per : "0";
-        $balance = $data->fourth15per - $data->fourth_received15per;
+        $balances = $data->fourth15per - $data->fourth_received15per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->fourth_balance15per = $balance;
         $data->fourth_paymentdate15per = $request->fourth_paymentdate15per ? $request->fourth_paymentdate15per : "-";
         $data->fourth_transactiontype15per = $request->fourth_transactiontype15per ? $request->fourth_transactiontype15per : "-";
@@ -242,10 +274,12 @@ class PaymentsController extends Controller
         $data->fourth_neftid15per = ($request->fourth_paymenttype15per == "NEFT") ? $request->fourth_neftid15per : "-";
         $data->fourth_rtgsid15per = ($request->fourth_paymenttype15per == "RTGS") ? $request->fourth_rtgsid15per : "-";
 
-        $fifth15per = round(($data->gross_amount * 5) / 100);
+        $fifth15pers = ($data->gross_amount * 5) / 100;
+        $fifth15per = number_format((float)$fifth15pers, 2, '.', '');
         $data->fifth15per = $fifth15per;
         $data->fifth_received15per = $request->fifth_received15per ? $request->fifth_received15per : "0";
-        $balance = $data->fifth15per - $data->fifth_received15per;
+        $balances = $data->fifth15per - $data->fifth_received15per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->fifth_balance15per = $balance;
         $data->fifth_paymentdate15per = $request->fifth_paymentdate15per ? $request->fifth_paymentdate15per : "-";
         $data->fifth_transactiontype15per = $request->fifth_transactiontype15per ? $request->fifth_transactiontype15per : "-";
@@ -254,10 +288,12 @@ class PaymentsController extends Controller
         $data->fifth_neftid15per = ($request->fifth_paymenttype15per == "NEFT") ? $request->fifth_neftid15per : "-";
         $data->fifth_rtgsid15per = ($request->fifth_paymenttype15per == "RTGS") ? $request->fifth_rtgsid15per : "-";
 
-        $handover15per = round(($data->gross_amount * 5) / 100);
+        $handover15pers = ($data->gross_amount * 5) / 100;
+        $handover15per = number_format((float)$handover15pers, 2, '.', '');
         $data->handover15per = $handover15per;
         $data->handover_received15per = $request->handover_received15per ? $request->handover_received15per : "0";
-        $balance = $data->handover15per - $data->handover_received15per;
+        $balances = $data->handover15per - $data->handover_received15per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->handover_balance15per = $balance;
         $data->handover_paymentdate15per = $request->handover_paymentdate15per ? $request->handover_paymentdate15per : "-";
         $data->handover_transactiontype15per = $request->handover_transactiontype15per ? $request->handover_transactiontype15per : "-";
@@ -266,10 +302,12 @@ class PaymentsController extends Controller
         $data->handover_neftid15per = ($request->handover_paymenttype15per == "NEFT") ? $request->handover_neftid15per : "-";
         $data->handover_rtgsid15per = ($request->handover_paymenttype15per == "RTGS") ? $request->handover_rtgsid15per : "-";
 
-        $onbook20per = round(($data->gross_amount * 20) / 100);
+        $onbook20pers = ($data->gross_amount * 20) / 100;
+        $onbook20per = number_format((float)$onbook20pers, 2, '.', '');
         $data->onbook20per = $onbook20per;
         $data->onbook_received20per = $request->onbook_received20per ? $request->onbook_received20per : "0";
-        $balance = $data->onbook20per - $data->onbook_received20per;
+        $balances = $data->onbook20per - $data->onbook_received20per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->onbook_balance20per = $balance;
         $data->onbook_paymentdate20per = $request->onbook_paymentdate20per ? $request->onbook_paymentdate20per : "-";
         $data->onbook_transactiontype20per = $request->onbook_transactiontype20per ? $request->onbook_transactiontype20per : "-";
@@ -278,10 +316,12 @@ class PaymentsController extends Controller
         $data->onbook_neftid20per = ($request->onbook_paymenttype20per == "NEFT") ? $request->onbook_neftid20per : "-";
         $data->onbook_rtgsid20per = ($request->onbook_paymenttype20per == "RTGS") ? $request->onbook_rtgsid20per : "-";
 
-        $payments20per = round(($data->gross_amount * 40) / 100);
+        $payments20pers = ($data->gross_amount * 40) / 100;
+        $payments20per = number_format((float)$payments20pers, 2, '.', '');
         $data->payments20per = $payments20per;
         $data->payments_received20per = $request->payments_received20per ? $request->payments_received20per : "0";
-        $balance = $data->payments20per - $data->payments_received20per;
+        $balances = $data->payments20per - $data->payments_received20per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->payments_balance20per = $balance;
         $data->payments_paymentdate20per = $request->payments_paymentdate20per ? $request->payments_paymentdate20per : "-";
         $data->payments_transactiontype20per = $request->payments_transactiontype20per ? $request->payments_transactiontype20per : "-";
@@ -290,10 +330,12 @@ class PaymentsController extends Controller
         $data->payments_neftid20per = ($request->payments_paymenttype20per == "NEFT") ? $request->payments_neftid20per : "-";
         $data->payments_rtgsid20per = ($request->payments_paymenttype20per == "RTGS") ? $request->payments_rtgsid20per : "-";
 
-        $first20per = round(($data->gross_amount * 10) / 100);
+        $first20pers = ($data->gross_amount * 10) / 100;
+        $first20per = number_format((float)$first20pers, 2, '.', '');
         $data->first20per = $first20per;
         $data->first_received20per = $request->first_received20per ? $request->first_received20per : "0";
-        $balance = $data->first20per - $data->first_received20per;
+        $balances = $data->first20per - $data->first_received20per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->first_balance20per = $balance;
         $data->first_paymentdate20per = $request->first_paymentdate20per ? $request->first_paymentdate20per : "-";
         $data->first_transactiontype20per = $request->first_transactiontype20per ? $request->first_transactiontype20per : "-";
@@ -302,10 +344,12 @@ class PaymentsController extends Controller
         $data->first_neftid20per = ($request->first_paymenttype20per == "NEFT") ? $request->first_neftid20per : "-";
         $data->first_rtgsid20per = ($request->first_paymenttype20per == "RTGS") ? $request->first_rtgsid20per : "-";
 
-        $second20per = round(($data->gross_amount * 10) / 100);
+        $second20pers = ($data->gross_amount * 10) / 100;
+        $second20per = number_format((float)$second20pers, 2, '.', '');
         $data->second20per = $second20per;
         $data->second_received20per = $request->second_received20per ? $request->second_received20per : "0";
-        $balance = $data->second20per - $data->second_received20per;
+        $balances = $data->second20per - $data->second_received20per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->second_balance20per = $balance;
         $data->second_paymentdate20per = $request->second_paymentdate20per ? $request->second_paymentdate20per : "-";
         $data->second_transactiontype20per = $request->second_transactiontype20per ? $request->second_transactiontype20per : "-";
@@ -314,10 +358,12 @@ class PaymentsController extends Controller
         $data->second_neftid20per = ($request->second_paymenttype20per == "NEFT") ? $request->second_neftid20per : "-";
         $data->second_rtgsid20per = ($request->second_paymenttype20per == "RTGS") ? $request->second_rtgsid20per : "-";
 
-        $third20per = round(($data->gross_amount * 5) / 100);
+        $third20pers = ($data->gross_amount * 5) / 100;
+        $third20per = number_format((float)$third20pers, 2, '.', '');
         $data->third20per = $third20per;
         $data->third_received20per = $request->third_received20per ? $request->third_received20per : "0";
-        $balance = $data->third20per - $data->third_received20per;
+        $balances = $data->third20per - $data->third_received20per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->third_balance20per = $balance;
         $data->third_paymentdate20per = $request->third_paymentdate20per ? $request->third_paymentdate20per : "-";
         $data->third_transactiontype20per = $request->third_transactiontype20per ? $request->third_transactiontype20per : "-";
@@ -326,10 +372,12 @@ class PaymentsController extends Controller
         $data->third_neftid20per = ($request->third_paymenttype20per == "NEFT") ? $request->third_neftid20per : "-";
         $data->third_rtgsid20per = ($request->third_paymenttype20per == "RTGS") ? $request->third_rtgsid20per : "-";
 
-        $fourth20per = round(($data->gross_amount * 5) / 100);
+        $fourth20pers = ($data->gross_amount * 5) / 100;
+        $fourth20per = number_format((float)$fourth20pers, 2, '.', '');
         $data->fourth20per = $fourth20per;
         $data->fourth_received20per = $request->fourth_received20per ? $request->fourth_received20per : "0";
-        $balance = $data->fourth20per - $data->fourth_received20per;
+        $balances = $data->fourth20per - $data->fourth_received20per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->fourth_balance20per = $balance;
         $data->fourth_paymentdate20per = $request->fourth_paymentdate20per ? $request->fourth_paymentdate20per : "-";
         $data->fourth_transactiontype20per = $request->fourth_transactiontype20per ? $request->fourth_transactiontype20per : "-";
@@ -338,10 +386,12 @@ class PaymentsController extends Controller
         $data->fourth_neftid20per = ($request->fourth_paymenttype20per == "NEFT") ? $request->fourth_neftid20per : "-";
         $data->fourth_rtgsid20per = ($request->fourth_paymenttype20per == "RTGS") ? $request->fourth_rtgsid20per : "-";
 
-        $fifth20per = round(($data->gross_amount * 5) / 100);
+        $fifth20pers = ($data->gross_amount * 5) / 100;
+        $fifth20per = number_format((float)$fifth20pers, 2, '.', '');
         $data->fifth20per = $fifth20per;
         $data->fifth_received20per = $request->fifth_received20per ? $request->fifth_received20per : "0";
-        $balance = $data->fifth20per - $data->fifth_received20per;
+        $balances = $data->fifth20per - $data->fifth_received20per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->fifth_balance20per = $balance;
         $data->fifth_paymentdate20per = $request->fifth_paymentdate20per ? $request->fifth_paymentdate20per : "-";
         $data->fifth_transactiontype20per = $request->fifth_transactiontype20per ? $request->fifth_transactiontype20per : "-";
@@ -350,10 +400,12 @@ class PaymentsController extends Controller
         $data->fifth_neftid20per = ($request->fifth_paymenttype20per == "NEFT") ? $request->fifth_neftid20per : "-";
         $data->fifth_rtgsid20per = ($request->fifth_paymenttype20per == "RTGS") ? $request->fifth_rtgsid20per : "-";
 
-        $handover20per = round(($data->gross_amount * 5) / 100);
+        $handover20pers = ($data->gross_amount * 5) / 100;
+        $handover20per = number_format((float)$handover20pers, 2, '.', '');
         $data->handover20per = $handover20per;
         $data->handover_received20per = $request->handover_received20per ? $request->handover_received20per : "0";
-        $balance = $data->handover20per - $data->handover_received20per;
+        $balances = $data->handover20per - $data->handover_received20per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->handover_balance20per = $balance;
         $data->handover_paymentdate20per = $request->handover_paymentdate20per ? $request->handover_paymentdate20per : "-";
         $data->handover_transactiontype20per = $request->handover_transactiontype20per ? $request->handover_transactiontype20per : "-";
@@ -379,7 +431,9 @@ class PaymentsController extends Controller
     public function update(Request $request, $id = null)
     {
 
-        $check = $this->validate($request, []);
+        $check = $this->validate($request, [
+            'transaction_type' => ['required'],
+        ]);
         $data = new Payment();
         $sessionadmin = Parent::checkadmin();
         $names = Payment::where('payment_id', $id)->first();
@@ -390,14 +444,15 @@ class PaymentsController extends Controller
         $data->gross_amount = $names->gross_amount;
         $data->cost_id = $names->cost_id;
         $data->payment_schedule = $names->payment_schedule;
-        $data->transaction_type = $names->transaction_type;
-        $data->bank_type = ($names->transaction_type == "Bank") ? $names->bank_type : "-";
-        $data->bank_name = ($names->bank_type == "OTHERS") ? $names->bank_name : "-";
-        $data->loan_amount = $names->loan_amount;
+        $data->transaction_type = $request->transaction_type;
+        $data->bank_type = ($request->transaction_type == "Bank") ? $request->bank_type : "-";
+        $data->bank_name = ($request->bank_type == "OTHERS") ? $request->bank_name : "-";
+        $data->loan_amount =  $request->loan_amount;
 
         $data->onbook10per = $names->onbook_balance10per;
         $data->onbook_received10per = $request->onbook_received10per ? $request->onbook_received10per : "0";
-        $balance = $data->onbook10per - $data->onbook_received10per;
+        $balances = $data->onbook10per - $data->onbook_received10per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->onbook_balance10per = $balance;
         $data->onbook_paymentdate10per = $request->onbook_paymentdate10per ? $request->onbook_paymentdate10per : "-";
         $data->onbook_transactiontype10per = $request->onbook_transactiontype10per ? $request->onbook_transactiontype10per : "-";
@@ -408,7 +463,8 @@ class PaymentsController extends Controller
 
         $data->payments10per = $names->payments_balance10per;
         $data->payments_received10per = $request->payments_received10per ? $request->payments_received10per : "0";
-        $balance = $data->payments10per - $data->payments_received10per;
+        $balances = $data->payments10per - $data->payments_received10per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->payments_balance10per = $balance;
         $data->payments_paymentdate10per = $request->payments_paymentdate10per ? $request->payments_paymentdate10per : "-";
         $data->payments_transactiontype10per = $request->payments_transactiontype10per ? $request->payments_transactiontype10per : "-";
@@ -419,7 +475,8 @@ class PaymentsController extends Controller
 
         $data->first10per = $names->first_balance10per;
         $data->first_received10per = $request->first_received10per ? $request->first_received10per : "0";
-        $balance = $data->first10per - $data->first_received10per;
+        $balances = $data->first10per - $data->first_received10per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->first_balance10per = $balance;
         $data->first_paymentdate10per = $request->first_paymentdate10per ? $request->first_paymentdate10per : "-";
         $data->first_transactiontype10per = $request->first_transactiontype10per ? $request->first_transactiontype10per : "-";
@@ -430,7 +487,8 @@ class PaymentsController extends Controller
 
         $data->second10per = $names->second_balance10per;
         $data->second_received10per = $request->second_received10per ? $request->second_received10per : "0";
-        $balance = $data->second10per - $data->second_received10per;
+        $balances = $data->second10per - $data->second_received10per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->second_balance10per = $balance;
         $data->second_paymentdate10per = $request->second_paymentdate10per ? $request->second_paymentdate10per : "-";
         $data->second_transactiontype10per = $request->second_transactiontype10per ? $request->second_transactiontype10per : "-";
@@ -441,7 +499,8 @@ class PaymentsController extends Controller
 
         $data->third10per = $names->third_balance10per;
         $data->third_received10per = $request->third_received10per ? $request->third_received10per : "0";
-        $balance = $data->third10per - $data->third_received10per;
+        $balances = $data->third10per - $data->third_received10per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->third_balance10per = $balance;
         $data->third_paymentdate10per = $request->third_paymentdate10per ? $request->third_paymentdate10per : "-";
         $data->third_transactiontype10per = $request->third_transactiontype10per ? $request->third_transactiontype10per : "-";
@@ -452,7 +511,8 @@ class PaymentsController extends Controller
 
         $data->fourth10per = $names->fourth_balance10per;
         $data->fourth_received10per = $request->fourth_received10per ? $request->fourth_received10per : "0";
-        $balance = $data->fourth10per - $data->fourth_received10per;
+        $balances = $data->fourth10per - $data->fourth_received10per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->fourth_balance10per = $balance;
         $data->fourth_paymentdate10per = $request->fourth_paymentdate10per ? $request->fourth_paymentdate10per : "-";
         $data->fourth_transactiontype10per = $request->fourth_transactiontype10per ? $request->fourth_transactiontype10per : "-";
@@ -463,7 +523,8 @@ class PaymentsController extends Controller
 
         $data->fifth10per = $names->fifth_balance10per;
         $data->fifth_received10per = $request->fifth_received10per ? $request->fifth_received10per : "0";
-        $balance = $data->fifth10per - $data->fifth_received10per;
+        $balances = $data->fifth10per - $data->fifth_received10per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->fifth_balance10per = $balance;
         $data->fifth_paymentdate10per = $request->fifth_paymentdate10per ? $request->fifth_paymentdate10per : "-";
         $data->fifth_transactiontype10per = $request->fifth_transactiontype10per ? $request->fifth_transactiontype10per : "-";
@@ -474,7 +535,8 @@ class PaymentsController extends Controller
 
         $data->handover10per = $names->handover_balance10per;
         $data->handover_received10per = $request->handover_received10per ? $request->handover_received10per : "0";
-        $balance = $data->handover10per - $data->handover_received10per;
+        $balances = $data->handover10per - $data->handover_received10per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->handover_balance10per = $balance;
         $data->handover_paymentdate10per = $request->handover_paymentdate10per ? $request->handover_paymentdate10per : "-";
         $data->handover_transactiontype10per = $request->handover_transactiontype10per ? $request->handover_transactiontype10per : "-";
@@ -485,7 +547,8 @@ class PaymentsController extends Controller
 
         $data->onbook15per = $names->onbook_balance15per;
         $data->onbook_received15per = $request->onbook_received15per ? $request->onbook_received15per : "0";
-        $balance = $data->onbook15per - $data->onbook_received15per;
+        $balances = $data->onbook15per - $data->onbook_received15per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->onbook_balance15per = $balance;
         $data->onbook_paymentdate15per = $request->onbook_paymentdate15per ? $request->onbook_paymentdate15per : "-";
         $data->onbook_transactiontype15per = $request->onbook_transactiontype15per ? $request->onbook_transactiontype15per : "-";
@@ -496,7 +559,8 @@ class PaymentsController extends Controller
 
         $data->payments15per = $names->payments_balance15per;
         $data->payments_received15per = $request->payments_received15per ? $request->payments_received15per : "0";
-        $balance = $data->payments15per - $data->payments_received15per;
+        $balances = $data->payments15per - $data->payments_received15per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->payments_balance15per = $balance;
         $data->payments_paymentdate15per = $request->payments_paymentdate15per ? $request->payments_paymentdate15per : "-";
         $data->payments_transactiontype15per = $request->payments_transactiontype15per ? $request->payments_transactiontype15per : "-";
@@ -507,7 +571,8 @@ class PaymentsController extends Controller
 
         $data->first15per = $names->first_balance15per;
         $data->first_received15per = $request->first_received15per ? $request->first_received15per : "0";
-        $balance = $data->first15per - $data->first_received15per;
+        $balances = $data->first15per - $data->first_received15per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->first_balance15per = $balance;
         $data->first_paymentdate15per = $request->first_paymentdate15per ? $request->first_paymentdate15per : "-";
         $data->first_transactiontype15per = $request->first_transactiontype15per ? $request->first_transactiontype15per : "-";
@@ -518,7 +583,8 @@ class PaymentsController extends Controller
 
         $data->second15per = $names->second_balance15per;
         $data->second_received15per = $request->second_received15per ? $request->second_received15per : "0";
-        $balance = $data->second15per - $data->second_received15per;
+        $balances = $data->second15per - $data->second_received15per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->second_balance15per = $balance;
         $data->second_paymentdate15per = $request->second_paymentdate15per ? $request->second_paymentdate15per : "-";
         $data->second_transactiontype15per = $request->second_transactiontype15per ? $request->second_transactiontype15per : "-";
@@ -529,7 +595,8 @@ class PaymentsController extends Controller
 
         $data->third15per = $names->third_balance15per;
         $data->third_received15per = $request->third_received15per ? $request->third_received15per : "0";
-        $balance = $data->third15per - $data->third_received15per;
+        $balances = $data->third15per - $data->third_received15per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->third_balance15per = $balance;
         $data->third_paymentdate15per = $request->third_paymentdate15per ? $request->third_paymentdate15per : "-";
         $data->third_transactiontype15per = $request->third_transactiontype15per ? $request->third_transactiontype15per : "-";
@@ -540,7 +607,8 @@ class PaymentsController extends Controller
 
         $data->fourth15per = $names->fourth_balance15per;
         $data->fourth_received15per = $request->fourth_received15per ? $request->fourth_received15per : "0";
-        $balance = $data->fourth15per - $data->fourth_received15per;
+        $balances = $data->fourth15per - $data->fourth_received15per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->fourth_balance15per = $balance;
         $data->fourth_paymentdate15per = $request->fourth_paymentdate15per ? $request->fourth_paymentdate15per : "-";
         $data->fourth_transactiontype15per = $request->fourth_transactiontype15per ? $request->fourth_transactiontype15per : "-";
@@ -551,7 +619,8 @@ class PaymentsController extends Controller
 
         $data->fifth15per = $names->fifth_balance15per;
         $data->fifth_received15per = $request->fifth_received15per ? $request->fifth_received15per : "0";
-        $balance = $data->fifth15per - $data->fifth_received15per;
+        $balances = $data->fifth15per - $data->fifth_received15per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->fifth_balance15per = $balance;
         $data->fifth_paymentdate15per = $request->fifth_paymentdate15per ? $request->fifth_paymentdate15per : "-";
         $data->fifth_transactiontype15per = $request->fifth_transactiontype15per ? $request->fifth_transactiontype15per : "-";
@@ -562,7 +631,8 @@ class PaymentsController extends Controller
 
         $data->handover15per = $names->handover_balance15per;
         $data->handover_received15per = $request->handover_received15per ? $request->handover_received15per : "0";
-        $balance = $data->handover15per - $data->handover_received15per;
+        $balances = $data->handover15per - $data->handover_received15per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->handover_balance15per = $balance;
         $data->handover_paymentdate15per = $request->handover_paymentdate15per ? $request->handover_paymentdate15per : "-";
         $data->handover_transactiontype15per = $request->handover_transactiontype15per ? $request->handover_transactiontype15per : "-";
@@ -573,7 +643,8 @@ class PaymentsController extends Controller
 
         $data->onbook20per = $names->onbook_balance20per;
         $data->onbook_received20per = $request->onbook_received20per ? $request->onbook_received20per : "0";
-        $balance = $data->onbook20per - $data->onbook_received20per;
+        $balances = $data->onbook20per - $data->onbook_received20per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->onbook_balance20per = $balance;
         $data->onbook_paymentdate20per = $request->onbook_paymentdate20per ? $request->onbook_paymentdate20per : "-";
         $data->onbook_transactiontype20per = $request->onbook_transactiontype20per ? $request->onbook_transactiontype20per : "-";
@@ -584,7 +655,8 @@ class PaymentsController extends Controller
 
         $data->payments20per = $names->payments_balance20per;
         $data->payments_received20per = $request->payments_received20per ? $request->payments_received20per : "0";
-        $balance = $data->payments20per - $data->payments_received20per;
+        $balances = $data->payments20per - $data->payments_received20per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->payments_balance20per = $balance;
         $data->payments_paymentdate20per = $request->payments_paymentdate20per ? $request->payments_paymentdate20per : "-";
         $data->payments_transactiontype20per = $request->payments_transactiontype20per ? $request->payments_transactiontype20per : "-";
@@ -595,7 +667,8 @@ class PaymentsController extends Controller
 
         $data->first20per = $names->first_balance20per;
         $data->first_received20per = $request->first_received20per ? $request->first_received20per : "0";
-        $balance = $data->first20per - $data->first_received20per;
+        $balances = $data->first20per - $data->first_received20per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->first_balance20per = $balance;
         $data->first_paymentdate20per = $request->first_paymentdate20per ? $request->first_paymentdate20per : "-";
         $data->first_transactiontype20per = $request->first_transactiontype20per ? $request->first_transactiontype20per : "-";
@@ -606,7 +679,8 @@ class PaymentsController extends Controller
 
         $data->second20per = $names->second_balance20per;
         $data->second_received20per = $request->second_received20per ? $request->second_received20per : "0";
-        $balance = $data->second20per - $data->second_received20per;
+        $balances = $data->second20per - $data->second_received20per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->second_balance20per = $balance;
         $data->second_paymentdate20per = $request->second_paymentdate20per ? $request->second_paymentdate20per : "-";
         $data->second_transactiontype20per = $request->second_transactiontype20per ? $request->second_transactiontype20per : "-";
@@ -617,7 +691,8 @@ class PaymentsController extends Controller
 
         $data->third20per = $names->third_balance20per;
         $data->third_received20per = $request->third_received20per ? $request->third_received20per : "0";
-        $balance = $data->third20per - $data->third_received20per;
+        $balances = $data->third20per - $data->third_received20per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->third_balance20per = $balance;
         $data->third_paymentdate20per = $request->third_paymentdate20per ? $request->third_paymentdate20per : "-";
         $data->third_transactiontype20per = $request->third_transactiontype20per ? $request->third_transactiontype20per : "-";
@@ -628,7 +703,8 @@ class PaymentsController extends Controller
 
         $data->fourth20per = $names->fourth_balance20per;
         $data->fourth_received20per = $request->fourth_received20per ? $request->fourth_received20per : "0";
-        $balance = $data->fourth20per - $data->fourth_received20per;
+        $balances = $data->fourth20per - $data->fourth_received20per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->fourth_balance20per = $balance;
         $data->fourth_paymentdate20per = $request->fourth_paymentdate20per ? $request->fourth_paymentdate20per : "-";
         $data->fourth_transactiontype20per = $request->fourth_transactiontype20per ? $request->fourth_transactiontype20per : "-";
@@ -639,7 +715,8 @@ class PaymentsController extends Controller
 
         $data->fifth20per = $names->fifth_balance20per;
         $data->fifth_received20per = $request->fifth_received20per ? $request->fifth_received20per : "0";
-        $balance = $data->fifth20per - $data->fifth_received20per;
+        $balances = $data->fifth20per - $data->fifth_received20per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->fifth_balance20per = $balance;
         $data->fifth_paymentdate20per = $request->fifth_paymentdate20per ? $request->fifth_paymentdate20per : "-";
         $data->fifth_transactiontype20per = $request->fifth_transactiontype20per ? $request->fifth_transactiontype20per : "-";
@@ -650,7 +727,8 @@ class PaymentsController extends Controller
 
         $data->handover20per = $names->handover_balance20per;
         $data->handover_received20per = $request->handover_received20per ? $request->handover_received20per : "0";
-        $balance = $data->handover20per - $data->handover_received20per;
+        $balances = $data->handover20per - $data->handover_received20per;
+        $balance = number_format((float)$balances, 2, '.', '');
         $data->handover_balance20per = $balance;
         $data->handover_paymentdate20per = $request->handover_paymentdate20per ? $request->handover_paymentdate20per : "-";
         $data->handover_transactiontype20per = $request->handover_transactiontype20per ? $request->handover_transactiontype20per : "-";
@@ -685,21 +763,21 @@ class PaymentsController extends Controller
     {
         if (!empty($_REQUEST['application_name'])) {
             $id = $_REQUEST['application_name'];
-            $names = Customer::where('customer_id', $id)->get();
+            $names = Customer::where('customer_id', $id)->where('status', 'Active')->get();
             foreach ($names as $name) {
                 echo '<input type="text" disabled class="form-control" name="applicant_name" value="' . $name->applicant_name . '"> ';
             }
             exit;
         } else  if (!empty($_REQUEST['application_date'])) {
             $id = $_REQUEST['application_date'];
-            $dates = Customer::where('customer_id', $id)->get();
+            $dates = Customer::where('customer_id', $id)->where('status', 'Active')->get();
             foreach ($dates as $date) {
                 echo ' <input type="text" disabled class="form-control" name="date_of_application" value="' . $date->date_of_application . '"> ';
             }
             exit;
         } else  if (!empty($_REQUEST['gross_amount'])) {
             $id = $_REQUEST['gross_amount'];
-            $dates = Cost::where('customer_id', $id)->get();
+            $dates = Cost::where('customer_id', $id)->where('status', 'Active')->get();
             foreach ($dates as $date) {
                 echo ' <input type="text" disabled class="form-control" id="purchase_price" name="gross_amount" value="' . $date->gross_amount . '"> ';
             }
@@ -710,7 +788,12 @@ class PaymentsController extends Controller
     public function view($id = null)
     {
         $sessionadmin = Parent::checkadmin();
-        $detail = Payment::where('payment_id', '=', $id)->first();
-        return view('payments/view', ['detail' => $detail]);
+        $detail = Payment::where('customer_id', '=', $id)->where('status','Active');
+       
+
+         $detail = $detail->paginate(10);
+
+        return view('payments/view', ['results' => $detail]);
     }
+   
 }

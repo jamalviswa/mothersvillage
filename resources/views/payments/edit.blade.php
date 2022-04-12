@@ -37,7 +37,7 @@
                                                 Application number<span class="red">*</span>
                                             </label>
                                             <div class="col-md-7">
-                                                <input value="{{ $requestdatas['application_number'] }}" disabled type="text" autocomplete="off" class="form-control" name="application_number" />
+                                                <input value="{{ $detail['application_number'] }}" disabled type="text" autocomplete="off" class="form-control" name="application_number" />
 
                                                 @error('application_number')
                                                 <span class="invalid-feedback" role="alert">
@@ -77,7 +77,11 @@
                                                  Transaction Type <span class="red">*</span>
                                             </label>
                                             <div class="col-md-7">
-                                            <input value="{{ $detail['transaction_type'] }}" type="text" disabled autocomplete="off" class="form-control" name="transaction_type" />
+                                                <select class="form-control transaction" name="transaction_type">
+                                                    <option value="">--Select--</option>
+                                                    <option {{ old('transaction_type')=="Ownfund"?"selected":"" }} value="Ownfund">Own Fund</option>
+                                                    <option {{ old('transaction_type')=="Bank"?"selected":"" }} value="Bank">Bank</option>
+                                                </select>
                                                 @error('transaction_type')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
@@ -85,13 +89,21 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                       
-                                        <div class="form-group row">
+
+                                        <div class="form-group row" style="display: none;" id="banktype">
                                             <label class="col-md-5">
-                                            Bank Type <span class="red">*</span>
+                                                 Bank Type <span class="red">*</span>
                                             </label>
                                             <div class="col-md-7">
-                                            <input value="{{ $detail['bank_type'] }}" type="text" disabled autocomplete="off" class="form-control" name="bank_type" />
+                                                <select class="form-control banks" name="bank_type">
+                                                    <option value="">--Select--</option>
+                                                    <option value="SBI">SBI</option>
+                                                    <option value="HDFC">HDFC</option>
+                                                    <option value="IOB">IOB</option>
+                                                    <option value="LIC">LIC</option>
+                                                    <option value="CANARA">CANARA</option>
+                                                    <option value="OTHERS">OTHERS</option>
+                                                </select>
                                                 @error('bank_type')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
@@ -99,12 +111,13 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+
+                                        <div class="form-group row"  style="display: none;" id="bankname">
                                             <label class="col-md-5">
-                                            Bank Name <span class="red">*</span>
+                                                 Bank Name <span class="red">*</span>
                                             </label>
                                             <div class="col-md-7">
-                                            <input value="{{ $detail['bank_name'] }}" type="text" disabled autocomplete="off" class="form-control" name="bank_name" />
+                                            <input value="{{ old('bank_name') }}" type="text" autocomplete="off" class="form-control" name="bank_name" />
                                                 @error('bank_name')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
@@ -112,12 +125,13 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+
+                                        <div class="form-group row"  style="display: none;" id="loan">
                                             <label class="col-md-5">
-                                            Loan Sansaction Amount <span class="red">*</span>
+                                                 Loan Sansaction Amount <span class="red">*</span>
                                             </label>
                                             <div class="col-md-7">
-                                            <input value="{{ $detail['loan_amount'] }}" type="text" disabled autocomplete="off" class="form-control" name="loan_amount" />
+                                            <input value="{{ old('loan_amount') }}" type="text" autocomplete="off" class="form-control" name="loan_amount" />
                                                 @error('loan_amount')
                                                 <span class="invalid-feedback" role="alert">
                                                     {{ $message }}
@@ -188,7 +202,7 @@
                                                                         <input value="{{ $detail['onbook_balance10per'] }}" class="form-control" type="text" disabled name="onbook10per" id="menu_price" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('onbook_received10per') }}" type="number" class="form-control" <?php echo  $ons; ?> id="recamount" name="onbook_received10per" />
+                                                                        <input value="{{ old('onbook_received10per') }}" type="text" class="form-control" <?php echo  $ons; ?> id="recamount" name="onbook_received10per" />
                                                                     </td>
                                                                     <td>
                                                                         <input value="{{ old('onbook_balance10per') }}" class="form-control" type="text" disabled name="onbook_balance10per" id="balamount" />
@@ -245,7 +259,7 @@
                                                                         <input value="{{  $detail['payments_balance10per'] }}" class="form-control" type="text" disabled name="payments10per" id="menu_price1" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('payments_received10per') }}" type="number" <?php echo  $pays; ?> class="form-control" name="payments_received10per" id="recamount1" />
+                                                                        <input value="{{ old('payments_received10per') }}" type="text" <?php echo  $pays; ?> class="form-control" name="payments_received10per" id="recamount1" />
                                                                     </td>
                                                                     <td>
                                                                         <input value="{{ old('payments_balance10per') }}" class="form-control" type="text" disabled name="payments_balance10per" id="balamount1" />
@@ -303,7 +317,7 @@
                                                                         <input value="{{ $detail['first_balance10per'] }}" class="form-control" type="text" disabled name="first10per" id="menu_price2" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('first_received10per') }}" type="number" class="form-control" <?php echo  $fir; ?> name="first_received10per" id="recamount2" />
+                                                                        <input value="{{ old('first_received10per') }}" type="text" class="form-control" <?php echo  $fir; ?> name="first_received10per" id="recamount2" />
                                                                     </td>
                                                                     <td>
                                                                         <input value="{{ old('first_balance10per') }}" class="form-control" type="text" disabled name="first_balance10per" id="balamount2" />
@@ -360,7 +374,7 @@
                                                                         <input value="{{ $detail['second_balance10per'] }}" class="form-control" type="text" disabled name="second10per" id="menu_price3" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('second_received10per') }}" type="number" class="form-control" <?php echo  $sec; ?> name="second_received10per" id="recamount3" />
+                                                                        <input value="{{ old('second_received10per') }}" type="text" class="form-control" <?php echo  $sec; ?> name="second_received10per" id="recamount3" />
                                                                     </td>
                                                                     <td>
                                                                         <input value="{{ old('second_balance10per') }}" class="form-control" type="text" disabled name="second_balance10per" id="balamount3" />
@@ -418,7 +432,7 @@
                                                                         <input value="{{ $detail['third_balance10per'] }}" class="form-control" type="text" disabled name="third10per" id="menu_price4" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('third_received10per') }}" type="number" <?php echo  $thi; ?> class="form-control" name="third_received10per" id="recamount4" />
+                                                                        <input value="{{ old('third_received10per') }}" type="text" <?php echo  $thi; ?> class="form-control" name="third_received10per" id="recamount4" />
                                                                     </td>
                                                                     <td>
                                                                         <input value="{{ old('third_balance10per') }}" class="form-control" type="text" disabled name="third_balance10per" id="balamount4" />
@@ -475,7 +489,7 @@
                                                                         <input value="{{ $detail['fourth_balance10per'] }}" class="form-control" type="text" disabled name="fourth10per" id="menu_price5" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('fourth_received10per') }}" type="number" <?php echo  $four; ?> class="form-control" name="fourth_received10per" id="recamount5" />
+                                                                        <input value="{{ old('fourth_received10per') }}" type="text" <?php echo  $four; ?> class="form-control" name="fourth_received10per" id="recamount5" />
                                                                     </td>
                                                                     <td>
                                                                         <input value="{{ old('fourth_balance10per') }}" class="form-control" type="text" disabled name="fourth_balance10per" id="balamount5" />
@@ -532,7 +546,7 @@
                                                                         <input value="{{ $detail['fifth_balance10per'] }}"  class="form-control" type="text" disabled name="fifth10per" id="menu_price6" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('fifth_received10per') }}" type="number" <?php echo  $fif; ?> class="form-control" name="fifth_received10per" id="recamount6" />
+                                                                        <input value="{{ old('fifth_received10per') }}" type="text" <?php echo  $fif; ?> class="form-control" name="fifth_received10per" id="recamount6" />
                                                                     </td>
                                                                     <td>
                                                                         <input value="{{ old('fifth_balance10per') }}" class="form-control" type="text" disabled name="fifth_balance10per" id="balamount6" />
@@ -589,7 +603,7 @@
                                                                         <input value="{{ $detail['handover_balance10per'] }}" class="form-control" type="text" disabled name="handover10per" id="menu_price7" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('handover_received10per') }}" type="number" <?php echo  $handov; ?> class="form-control" name="handover_received10per" id="recamount7" />
+                                                                        <input value="{{ old('handover_received10per') }}" type="text" <?php echo  $handov; ?> class="form-control" name="handover_received10per" id="recamount7" />
                                                                     </td>
                                                                     <td>
                                                                         <input value="{{ old('handover_balance10per') }}" class="form-control" type="text" disabled name="handover_balance10per" id="balamount7" />
@@ -678,7 +692,7 @@
                                                                         <input value="{{ $detail['onbook_balance15per'] }}" class="form-control" type="text" disabled name="onbook15per" id="menu_price15per" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('onbook_received15per') }}" type="number" <?php echo  $onbook1523; ?> class="form-control" id="recamount15per" name="onbook_received15per" />
+                                                                        <input value="{{ old('onbook_received15per') }}" type="text" <?php echo  $onbook1523; ?> class="form-control" id="recamount15per" name="onbook_received15per" />
                                                                     </td>
                                                                     <td>
                                                                         <input value="{{ old('onbook_balance15per') }}" class="form-control" type="text" disabled name="onbook_balance15per" id="balamount15per" />
@@ -735,7 +749,7 @@
                                                                         <input value="{{ $detail['payments_balance15per'] }}" class="form-control" type="text" disabled name="payments15per" id="menu_price115per" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('payments_received15per') }}" type="number" <?php echo  $payments1523; ?> class="form-control" name="payments_received15per" id="recamount115per" />
+                                                                        <input value="{{ old('payments_received15per') }}" type="text" <?php echo  $payments1523; ?> class="form-control" name="payments_received15per" id="recamount115per" />
                                                                     </td>
                                                                     <td>
                                                                         <input value="{{ old('payments_balance15per') }}" class="form-control" type="text" disabled name="payments_balance15per" id="balamount115per" />
@@ -792,7 +806,7 @@
                                                                         <input value="{{ $detail['first_balance15per'] }}" class="form-control" type="text" disabled name="first15per" id="menu_price215per" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('first_received15per') }}" type="number" <?php echo  $first1523; ?> class="form-control" name="first_received15per" id="recamount215per" />
+                                                                        <input value="{{ old('first_received15per') }}" type="text" <?php echo  $first1523; ?> class="form-control" name="first_received15per" id="recamount215per" />
                                                                     </td>
                                                                     <td>
                                                                         <input value="{{ old('first_balance15per') }}" class="form-control" type="text" disabled name="first_balance15per" id="balamount215per" />
@@ -849,7 +863,7 @@
                                                                         <input value="{{ $detail['second_balance15per'] }}" class="form-control" type="text" disabled name="second15per" id="menu_price315per" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('second_received15per') }}" type="number" <?php echo  $second1523; ?> class="form-control" name="second_received15per" id="recamount315per" />
+                                                                        <input value="{{ old('second_received15per') }}" type="text" <?php echo  $second1523; ?> class="form-control" name="second_received15per" id="recamount315per" />
                                                                     </td>
                                                                     <td>
                                                                         <input value="{{ old('second_balance15per') }}" class="form-control" type="text" disabled name="second_balance15per" id="balamount315per" />
@@ -906,7 +920,7 @@
                                                                         <input value="{{ $detail['third_balance15per'] }}" class="form-control" type="text" disabled name="third15per" id="menu_price415per" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('third_received15per') }}" type="number" <?php echo  $third1523; ?> class="form-control" name="third_received15per" id="recamount415per" />
+                                                                        <input value="{{ old('third_received15per') }}" type="text" <?php echo  $third1523; ?> class="form-control" name="third_received15per" id="recamount415per" />
                                                                     </td>
                                                                     <td>
                                                                         <input value="{{ old('third_balance15per') }}" class="form-control" type="text" disabled name="third_balance15per" id="balamount415per" />
@@ -963,7 +977,7 @@
                                                                         <input value="{{ $detail['fourth_balance15per'] }}" class="form-control" type="text" disabled name="fourth15per" id="menu_price515per" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('fourth_received15per') }}" type="number" <?php echo  $fourth1523; ?> class="form-control" name="fourth_received15per" id="recamount515per" />
+                                                                        <input value="{{ old('fourth_received15per') }}" type="text" <?php echo  $fourth1523; ?> class="form-control" name="fourth_received15per" id="recamount515per" />
                                                                     </td>
                                                                     <td>
                                                                         <input value="{{ old('fourth_balance15per') }}" class="form-control" type="text" disabled name="fourth_balance15per" id="balamount515per" />
@@ -1020,7 +1034,7 @@
                                                                         <input value="{{ $detail['fifth_balance15per'] }}" class="form-control" type="text" disabled name="fifth15per" id="menu_price615per" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('fifth_received15per') }}" type="number" <?php echo  $fifth1523; ?> class="form-control" name="fifth_received15per" id="recamount615per" />
+                                                                        <input value="{{ old('fifth_received15per') }}" type="text" <?php echo  $fifth1523; ?> class="form-control" name="fifth_received15per" id="recamount615per" />
                                                                     </td>
                                                                     <td>
                                                                         <input value="{{ old('fifth_balance15per') }}" class="form-control" type="text" disabled name="fifth_balance15per" id="balamount615per" />
@@ -1077,7 +1091,7 @@
                                                                         <input value="{{ $detail['handover_balance15per'] }}" class="form-control" type="text" disabled name="handover15per" id="menu_price715per" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('handover_received15per') }}" type="number" <?php echo  $handover1523; ?> class="form-control" name="handover_received15per" id="recamount715per" />
+                                                                        <input value="{{ old('handover_received15per') }}" type="text" <?php echo  $handover1523; ?> class="form-control" name="handover_received15per" id="recamount715per" />
                                                                     </td>
                                                                     <td>
                                                                         <input value="{{ old('handover_balance15per') }}" class="form-control" type="text" disabled name="handover_balance15per" id="balamount715per" />
@@ -1166,7 +1180,7 @@
                                                                         <input value="{{ $detail['onbook_balance20per'] }}" class="form-control" type="text" disabled name="onbook20per" id="menu_price20per" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('onbook_received20per') }}" <?php echo  $onbook2023; ?> type="number" class="form-control" id="recamount20per" name="onbook_received20per" />
+                                                                        <input value="{{ old('onbook_received20per') }}" <?php echo  $onbook2023; ?> autocomplete="off" type="text" class="form-control" id="recamount20per" name="onbook_received20per" />
                                                                     </td>
                                                                     <td>
                                                                         <input value="{{ old('onbook_balance20per') }}" class="form-control" type="text" disabled name="onbook_balance20per" id="balamount20per" />
@@ -1223,7 +1237,7 @@
                                                                         <input value="{{ $detail['payments_balance20per'] }}" class="form-control" type="text" disabled name="payments20per" id="menu_price120per" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('payments_received20per') }}" type="number" <?php echo  $payments2023; ?> class="form-control" name="payments_received20per" id="recamount120per" />
+                                                                        <input value="{{ old('payments_received20per') }}" type="text" autocomplete="off" <?php echo  $payments2023; ?> class="form-control" name="payments_received20per" id="recamount120per" />
                                                                     </td>
                                                                     <td>
                                                                         <input value="{{ old('payments_balance20per') }}" class="form-control" type="text" disabled name="payments_balance20per" id="balamount120per" />
@@ -1234,8 +1248,8 @@
                                                                     <td>
                                                                         <select class="form-control" <?php echo  $payments2023; ?> name="payments_transactiontype20per">
                                                                             <option value=''>--Select--</option>
-                                                                            <option value="Ownfund">OwnFund</option>
-                                                                            <option value="Bank">Bank</option>
+                                                                            <option {{ old('payments_transactiontype20per')=="Ownfund"?"selected":"" }} value="Ownfund">Own Fund</option>
+                                                                            <option {{ old('payments_transactiontype20per')=="Bank"?"selected":"" }} value="Bank">Bank</option>
                                                                         </select>
                                                                     </td>
                                                                     <td>
@@ -1280,7 +1294,7 @@
                                                                         <input value="{{ $detail['first_balance20per'] }}" class="form-control" type="text" disabled name="first20per" id="menu_price220per" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('first_received20per') }}" type="number" <?php echo  $first2023; ?> class="form-control" name="first_received20per" id="recamount220per" />
+                                                                        <input value="{{ old('first_received20per') }}" type="text" autocomplete="off" <?php echo  $first2023; ?> class="form-control" name="first_received20per" id="recamount220per" />
                                                                     </td>
                                                                     <td>
                                                                         <input value="{{ old('first_balance20per') }}" class="form-control" type="text" disabled name="first_balance20per" id="balamount220per" />
@@ -1337,7 +1351,7 @@
                                                                         <input value="{{ $detail['second_balance20per'] }}" class="form-control" type="text" disabled name="second20per" id="menu_price320per" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('second_received20per') }}" type="number" <?php echo  $second2023; ?> class="form-control" name="second_received20per" id="recamount320per" />
+                                                                        <input value="{{ old('second_received20per') }}" type="text" autocomplete="off" <?php echo  $second2023; ?> class="form-control" name="second_received20per" id="recamount320per" />
                                                                     </td>
                                                                     <td>
                                                                         <input value="{{ old('second_balance20per') }}" class="form-control" type="text" disabled name="second_balance20per" id="balamount320per" />
@@ -1394,7 +1408,7 @@
                                                                         <input value="{{ $detail['third_balance20per'] }}" class="form-control" type="text" disabled name="third20per" id="menu_price420per" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('third_received20per') }}" <?php echo  $third2023; ?> type="number" class="form-control" name="third_received20per" id="recamount420per" />
+                                                                        <input value="{{ old('third_received20per') }}" autocomplete="off" <?php echo  $third2023; ?> type="text" class="form-control" name="third_received20per" id="recamount420per" />
                                                                     </td>
                                                                     <td>
                                                                         <input value="{{ old('third_balance20per') }}" class="form-control" type="text" disabled name="third_balance20per" id="balamount420per" />
@@ -1451,7 +1465,7 @@
                                                                         <input value="{{ $detail['fourth_balance20per'] }}" class="form-control" type="text" disabled name="fourth20per" id="menu_price520per" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('fourth_received20per') }}" <?php echo  $fourth2023; ?> type="number" class="form-control" name="fourth_received20per" id="recamount520per" />
+                                                                        <input value="{{ old('fourth_received20per') }}" autocomplete="off" <?php echo  $fourth2023; ?> type="text" class="form-control" name="fourth_received20per" id="recamount520per" />
                                                                     </td>
                                                                     <td>
                                                                         <input value="{{ old('fourth_balance20per') }}" class="form-control" type="text" disabled name="fourth_balance20per" id="balamount520per" />
@@ -1508,7 +1522,7 @@
                                                                         <input value="{{ $detail['fifth_balance20per'] }}" class="form-control" type="text" disabled name="fifth20per" id="menu_price620per" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('fifth_received20per') }}" <?php echo  $fifth2023; ?> type="number" class="form-control" name="fifth_received20per" id="recamount620per" />
+                                                                        <input value="{{ old('fifth_received20per') }}" autocomplete="off" <?php echo  $fifth2023; ?> type="text" class="form-control" name="fifth_received20per" id="recamount620per" />
                                                                     </td>
                                                                     <td>
                                                                         <input value="{{ old('fifth_balance20per') }}" class="form-control" type="text" disabled name="fifth_balance20per" id="balamount620per" />
@@ -1565,7 +1579,7 @@
                                                                         <input value="{{ $detail['handover_balance20per'] }}" class="form-control" type="text" disabled name="handover20per" id="menu_price720per" />
                                                                     </td>
                                                                     <td>
-                                                                        <input value="{{ old('handover_received20per') }}" <?php echo  $handover2023; ?> type="number" class="form-control" name="handover_received20per" id="recamount720per" />
+                                                                        <input value="{{ old('handover_received20per') }}" autocomplete="off" <?php echo  $handover2023; ?> type="text" class="form-control" name="handover_received20per" id="recamount720per" />
                                                                     </td>
                                                                     <td>
                                                                         <input value="{{ old('handover_balance20per') }}" class="form-control" type="text" disabled name="handover_balance20per" id="balamount720per" />
@@ -1629,6 +1643,43 @@
 
 
 <script>
+
+jQuery(document).ready(function() {
+        jQuery('.transaction').change(function() {
+            if (jQuery(this).val() === "Ownfund") {            
+                jQuery('#banktype').hide();
+                jQuery('#loan').hide();
+                jQuery('#bankname').hide();
+            } else if (jQuery(this).val() === "Bank") {          
+                jQuery('#banktype').show(); 
+                jQuery('#loan').show();           
+            } else {           
+                jQuery('#banktype').hide(); 
+                jQuery('#loan').hide();    
+                jQuery('#bankname').hide();      
+            }
+        });
+    });
+
+    jQuery(document).ready(function() {
+        jQuery('.banks').change(function() {
+            if (jQuery(this).val() === "OTHERS") {            
+                jQuery('#bankname').show();
+            } else if (jQuery(this).val() === "SBI") {          
+                jQuery('#bankname').hide();            
+            } else if (jQuery(this).val() === "HDFC") {          
+                jQuery('#bankname').hide();            
+            } else if (jQuery(this).val() === "IOB") {          
+                jQuery('#bankname').hide();            
+            } else if (jQuery(this).val() === "LIC") {          
+                jQuery('#bankname').hide();            
+            } else if (jQuery(this).val() === "CANARA") {          
+                jQuery('#bankname').hide();            
+            } else {           
+                jQuery('#bankname').hide();           
+            }
+        });
+    });
 
    jQuery(document).ready(function() {
         jQuery('.onbook').change(function() {
@@ -2258,168 +2309,168 @@
     $('#recamount').on("paste keyup",
         function() {
             var result = parseFloat($("#menu_price").val()) - parseFloat($("#recamount").val());
-            $("#balamount").val((isNaN(result) ? '' : result));
+            $("#balamount").val((isNaN(result) ? '' : result).toFixed(2));
         }
     );
 
     $('#recamount1').on("paste keyup",
         function() {
             var result = parseFloat($("#menu_price1").val()) - parseFloat($("#recamount1").val());
-            $("#balamount1").val((isNaN(result) ? '' : result));
+            $("#balamount1").val((isNaN(result) ? '' : result).toFixed(2));
         }
     );
 
     $('#recamount2').on("paste keyup",
         function() {
             var result = parseFloat($("#menu_price2").val()) - parseFloat($("#recamount2").val());
-            $("#balamount2").val((isNaN(result) ? '' : result));
+            $("#balamount2").val((isNaN(result) ? '' : result).toFixed(2));
         }
     );
 
     $('#recamount3').on("paste keyup",
         function() {
             var result = parseFloat($("#menu_price3").val()) - parseFloat($("#recamount3").val());
-            $("#balamount3").val((isNaN(result) ? '' : result));
+            $("#balamount3").val((isNaN(result) ? '' : result).toFixed(2));
         }
     );
 
     $('#recamount4').on("paste keyup",
         function() {
             var result = parseFloat($("#menu_price4").val()) - parseFloat($("#recamount4").val());
-            $("#balamount4").val((isNaN(result) ? '' : result));
+            $("#balamount4").val((isNaN(result) ? '' : result).toFixed(2));
         }
     );
 
     $('#recamount5').on("paste keyup",
         function() {
             var result = parseFloat($("#menu_price5").val()) - parseFloat($("#recamount5").val());
-            $("#balamount5").val((isNaN(result) ? '' : result));
+            $("#balamount5").val((isNaN(result) ? '' : result).toFixed(2));
         }
     );
 
     $('#recamount6').on("paste keyup",
         function() {
             var result = parseFloat($("#menu_price6").val()) - parseFloat($("#recamount6").val());
-            $("#balamount6").val((isNaN(result) ? '' : result));
+            $("#balamount6").val((isNaN(result) ? '' : result).toFixed(2));
         }
     );
 
     $('#recamount7').on("paste keyup",
         function() {
             var result = parseFloat($("#menu_price7").val()) - parseFloat($("#recamount7").val());
-            $("#balamount7").val((isNaN(result) ? '' : result));
+            $("#balamount7").val((isNaN(result) ? '' : result).toFixed(2));
         }
     );
 
     $('#recamount15per').on("paste keyup",
         function() {
             var result = parseFloat($("#menu_price15per").val()) - parseFloat($("#recamount15per").val());
-            $("#balamount15per").val((isNaN(result) ? '' : result));
+            $("#balamount15per").val((isNaN(result) ? '' : result).toFixed(2));
         }
     );
 
     $('#recamount115per').on("paste keyup",
         function() {
             var result = parseFloat($("#menu_price115per").val()) - parseFloat($("#recamount115per").val());
-            $("#balamount115per").val((isNaN(result) ? '' : result));
+            $("#balamount115per").val((isNaN(result) ? '' : result).toFixed(2));
         }
     );
 
     $('#recamount215per').on("paste keyup",
         function() {
             var result = parseFloat($("#menu_price215per").val()) - parseFloat($("#recamount215per").val());
-            $("#balamount215per").val((isNaN(result) ? '' : result));
+            $("#balamount215per").val((isNaN(result) ? '' : result).toFixed(2));
         }
     );
 
     $('#recamount315per').on("paste keyup",
         function() {
             var result = parseFloat($("#menu_price315per").val()) - parseFloat($("#recamount315per").val());
-            $("#balamount315per").val((isNaN(result) ? '' : result));
+            $("#balamount315per").val((isNaN(result) ? '' : result).toFixed(2));
         }
     );
 
     $('#recamount415per').on("paste keyup",
         function() {
             var result = parseFloat($("#menu_price415per").val()) - parseFloat($("#recamount415per").val());
-            $("#balamount415per").val((isNaN(result) ? '' : result));
+            $("#balamount415per").val((isNaN(result) ? '' : result).toFixed(2));
         }
     );
 
     $('#recamount515per').on("paste keyup",
         function() {
             var result = parseFloat($("#menu_price515per").val()) - parseFloat($("#recamount515per").val());
-            $("#balamount515per").val((isNaN(result) ? '' : result));
+            $("#balamount515per").val((isNaN(result) ? '' : result).toFixed(2));
         }
     );
 
     $('#recamount615per').on("paste keyup",
         function() {
             var result = parseFloat($("#menu_price615per").val()) - parseFloat($("#recamount615per").val());
-            $("#balamount615per").val((isNaN(result) ? '' : result));
+            $("#balamount615per").val((isNaN(result) ? '' : result).toFixed(2));
         }
     );
 
     $('#recamount715per').on("paste keyup",
         function() {
             var result = parseFloat($("#menu_price715per").val()) - parseFloat($("#recamount715per").val());
-            $("#balamount715per").val((isNaN(result) ? '' : result));
+            $("#balamount715per").val((isNaN(result) ? '' : result).toFixed(2));
         }
     );
 
     $('#recamount20per').on("paste keyup",
         function() {
             var result = parseFloat($("#menu_price20per").val()) - parseFloat($("#recamount20per").val());
-            $("#balamount20per").val((isNaN(result) ? '' : result));
+            $("#balamount20per").val((isNaN(result) ? '' : result).toFixed(2));
         }
     );
 
     $('#recamount120per').on("paste keyup",
         function() {
             var result = parseFloat($("#menu_price120per").val()) - parseFloat($("#recamount120per").val());
-            $("#balamount120per").val((isNaN(result) ? '' : result));
+            $("#balamount120per").val((isNaN(result) ? '' : result).toFixed(2));
         }
     );
 
     $('#recamount220per').on("paste keyup",
         function() {
             var result = parseFloat($("#menu_price220per").val()) - parseFloat($("#recamount220per").val());
-            $("#balamount220per").val((isNaN(result) ? '' : result));
+            $("#balamount220per").val((isNaN(result) ? '' : result).toFixed(2));
         }
     );
 
     $('#recamount320per').on("paste keyup",
         function() {
             var result = parseFloat($("#menu_price320per").val()) - parseFloat($("#recamount320per").val());
-            $("#balamount320per").val((isNaN(result) ? '' : result));
+            $("#balamount320per").val((isNaN(result) ? '' : result).toFixed(2));
         }
     );
 
     $('#recamount420per').on("paste keyup",
         function() {
             var result = parseFloat($("#menu_price420per").val()) - parseFloat($("#recamount420per").val());
-            $("#balamount420per").val((isNaN(result) ? '' : result));
+            $("#balamount420per").val((isNaN(result) ? '' : result).toFixed(2));
         }
     );
 
     $('#recamount520per').on("paste keyup",
         function() {
             var result = parseFloat($("#menu_price520per").val()) - parseFloat($("#recamount520per").val());
-            $("#balamount520per").val((isNaN(result) ? '' : result));
+            $("#balamount520per").val((isNaN(result) ? '' : result).toFixed(2));
         }
     );
 
     $('#recamount620per').on("paste keyup",
         function() {
             var result = parseFloat($("#menu_price620per").val()) - parseFloat($("#recamount620per").val());
-            $("#balamount620per").val((isNaN(result) ? '' : result));
+            $("#balamount620per").val((isNaN(result) ? '' : result).toFixed(2));
         }
     );
 
     $('#recamount720per').on("paste keyup",
         function() {
             var result = parseFloat($("#menu_price720per").val()) - parseFloat($("#recamount720per").val());
-            $("#balamount720per").val((isNaN(result) ? '' : result));
+            $("#balamount720per").val((isNaN(result) ? '' : result).toFixed(2));
         }
     );
 </script>
