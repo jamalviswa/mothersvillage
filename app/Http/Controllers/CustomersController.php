@@ -81,6 +81,7 @@ class CustomersController extends Controller
             })],
         ]);
         $data = new Customer();
+        $sessionadmin = Parent::checkadmin();
         $data->applicant_name = $request->applicant_name;
         $data->application_number = $request->application_number;
         $data->date_of_application = $request->date_of_application;
@@ -106,6 +107,7 @@ class CustomersController extends Controller
         }
         $data->created_date = date('Y-m-d H:i:s');
         $data->status = "Active";
+        $data->addedby = $sessionadmin->username;
         $data->save();
         $last_id = $data->customer_id;
         if (!empty($request->son_school)) {
@@ -327,12 +329,14 @@ class CustomersController extends Controller
             'flattype' => ['required'],
             'flatnumber' => ['required'],
             'facing' => ['required'],
+            'customer_type' => ['required'],
             'salable_area' => ['required'],
             'plinth_area' => ['required'],
             'uds_area' => ['required'],
             'comn_area' => ['required'],
         ]);
         $data = new Document();
+        $sessionadmin = Parent::checkadmin();
         $data->customer_id = $request->application_number;
         $names = Customer::where('customer_id', $request->application_number)->first();
         $data->application_number = $names->application_number;
@@ -361,6 +365,11 @@ class CustomersController extends Controller
         $data->coaadhar_number = $request->coaadhar_number;
         $data->copan_number = $request->copan_number;
         $data->copassport_number = $request->copassport_number;
+        $data->customer_type = $request->customer_type;
+        $data->refered_name = ($request->customer_type == "Referedby") ? $request->refered_name : "-";
+        $data->refered_phone_code = ($request->customer_type == "Referedby") ? $request->refered_phone_code : "-";
+        $data->refered_phone = ($request->customer_type == "Referedby") ? $request->refered_phone : "-";
+        $data->addedby = $sessionadmin->username;
         if (!empty($request->file('aadhar'))) {
             $aadhar = $request->file('aadhar');
             $aadhar_struc = uniqid() . '.' . $aadhar->getClientOriginalExtension();

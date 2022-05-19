@@ -60,12 +60,10 @@
                                             <label class="col-md-1">
                                                 No
                                             </label>
-                                            <?php
-                                            $customer = App\Receipt::count();
-                                            $customers = $customer + 1;
-                                            ?>
+                                           
                                             <div class="col-md-2">
-                                                <?php echo $customers; ?>
+                                            <input value="{{old('receipt_no') }}" autocomplete="off" type="text" class="form-control" name="receipt_no" />
+                                              
                                             </div>
 
                                             <label class="col-md-1 offset-md-6">
@@ -86,7 +84,7 @@
                                             </label>
                                             <div class="col-md-3">
                                                 <select class="form-control m-select2" id="country" name="application_number">
-                                                    <option>Select Application Number</option>
+                                                    <option value="">Select Application Number</option>
                                                     <?php
                                                     $phases = App\Customer::where('status', 'Active')->get();
                                                     foreach ($phases as $phase) {
@@ -184,7 +182,7 @@
 
                                             <div class="col-md-3">
                                                 <div class="input-group"> <span class="input-group-text">₹</span>
-                                                    <input type="text" value="{{old('final_amount') }}" class="form-control" name="final_amount">
+                                                    <input type="text" value="{{old('final_amount') }}" class="form-control" autocomplete="off" name="final_amount">
 
                                                     @error('final_amount')
                                                     <span class="invalid-feedback" role="alert">

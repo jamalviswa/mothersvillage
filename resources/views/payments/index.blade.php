@@ -46,6 +46,17 @@
                             </select>
                         </div>
                         <div class="form-group">
+                            <select class="form-control" name="bank_type">
+                            <option value="">--Select--</option>
+                                                    <option value="SBI">SBI</option>
+                                                    <option value="HDFC">HDFC</option>
+                                                    <option value="IOB">IOB</option>
+                                                    <option value="LIC">LIC</option>
+                                                    <option value="CANARA">CANARA</option>
+                                                    <option value="OTHERS">OTHERS</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <button class="btn btn-primary m-btn m-btn--air m-btn--custom" type="submit" name="search"><i class="fa fa-search"></i></button>
                             <?php if (isset($_REQUEST['search'])) { ?>
                                 <a class="btn btn-danger m-btn m-btn--air m-btn--custom" href="{{route('payments.index')}}"><i class="fa fa-times"></i></a>
@@ -73,6 +84,11 @@
                                             <th>Application Date</th>
                                             <th>Gross Amount</th>
                                             <th>Payment Schedule</th>
+                                            <?php
+                                            if($sessionadmin->adminname == "Admin"){
+                                            ?>
+                                            <th>Added By</th>
+                                            <?php } ?>
                                             <th class="text-center">Action</th>
                                         </tr>
                                     </thead>
@@ -83,7 +99,14 @@
                                         foreach ($results as $result) {
                                             $customer = App\Customer::where('customer_id', $result['customer_id'])->first();
                                         ?>
-                                            <tr>
+                                         <?php
+                                                        if ($result->addmore == 1) {
+                                                            $addrow = "hide";
+                                                        } else {
+                                                            $addrow = "";
+                                                        }
+                                                        ?>
+                                            <tr class="<?php echo $addrow; ?>">
                                                 <td width="5%">{{ $i }}</td>
                                                 <td class="text-center">
                                                     @if(!empty($customer['photo']))
@@ -96,6 +119,11 @@
                                                 <td>{{ $result->date_of_application }}</td>
                                                 <td>{{"Rs. "}}{{ $result->gross_amount }}</td>
                                                 <td class="text-center">{{ $result->payment_schedule }}{{" %"}}</td>
+                                                <?php
+                                            if($sessionadmin->adminname == "Admin"){        
+                                            ?>
+                                                <td>{{ $result->addedby }}</td>
+                                                <?php } ?>
                                                 <td class="text-center">
                                                     <div class="btn-group">
                                                         
@@ -154,9 +182,9 @@
                                                         <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom <?php echo $add ?> <?php echo $pay ?>" title="Add more" href="{{ route("payments.edit", $result->payment_id) }}">
                                                             <i class="fa fa-plus-square"></i>
                                                         </a>
-                                                        <!-- <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="View" href="{{ route("payments.view", $result->payment_id) }}">
+                                                        <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="View" href="{{ route("payments.view", $result->customer_id) }}">
                                                             <i class="fa fa-eye"></i>
-                                                        </a> -->
+                                                        </a>
                                                         @if($sessionadmin->adminname == "Admin")
                                                         <a rel="tooltip" class="delete btn btn-secondary m-btn m-btn--air m-btn--custom" title="Delete" data-value="{{$result['cost_id']}}" href="{{ route('payments.delete',$result['cost_id']) }}">
                                                             <i class="fa fa-trash"></i>

@@ -78,6 +78,11 @@
                                             <th>Construction Cost</th>
                                             <th>Gross Amount</th>
                                             <th>Total Amount</th>
+                                            <?php
+                                            if($sessionadmin->adminname == "Admin"){
+                                            ?>
+                                            <th>Added By</th>
+                                            <?php } ?>
                                             <th class="text-center">Action</th>
                                         </tr>
                                     </thead>
@@ -106,6 +111,11 @@
                                                 <td class="text-center">{{"Rs. "}}{{ $result->construction_cost }}</td>
                                                 <td class="text-center">{{"Rs. "}}{{ $result->gross_amount }}</td>
                                                 <td class="text-center">{{"Rs. "}}{{ $result->total_amount }}</td>
+                                                <?php
+                                            if($sessionadmin->adminname == "Admin"){        
+                                            ?>
+                                                <td>{{ $result->addedby }}</td>
+                                                <?php } ?>
                                                 <td class="text-center">
                                                     <div class="btn-group">
                                                         <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="View" href="{{ route("costs.view", $result->cost_id) }}">

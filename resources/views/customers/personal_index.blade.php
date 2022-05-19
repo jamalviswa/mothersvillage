@@ -63,6 +63,11 @@
                                             <th>Gender</th>
                                             <th>Mobile Number</th>
                                             <th>email</th>
+                                            <?php
+                                            if($sessionadmin->adminname == "Admin"){
+                                            ?>
+                                            <th>Added By</th>
+                                            <?php } ?>
                                             <th class="text-center">Action</th>
                                         </tr>
                                     </thead>
@@ -70,6 +75,7 @@
                                         <?php
                                         $i = ($results->currentpage() - 1) * $results->perpage() + 1;
                                         foreach ($results as $result) {
+                                            
                                         ?>
                                             <tr>
                                                 <td width="5%">{{ $i }}</td>
@@ -87,15 +93,19 @@
                                                 <td>{{ $result->gender }}</td>
                                                 <td>{{ $result->phone }}</td>
                                                 <td>{{ $result->email }}</td>
-
+                                                <?php
+                                            if($sessionadmin->adminname == "Admin"){        
+                                            ?>
+                                                <td>{{ $result->addedby }}</td>
+                                                <?php } ?>
                                                 <td class="text-center">
                                                     <div class="btn-group">
                                                         <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="View" href="{{ route("customers.personal_view", $result->customer_id) }}">
                                                             <i class="fa fa-eye"></i>
                                                         </a>
-                                                        <!-- <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="Edit" href="{{ route("customers.personal_edit", $result->customer_id) }}">
+                                                        <a rel="tooltip" class="btn btn-secondary m-btn m-btn--air m-btn--custom" title="Edit" href="{{ route("customers.personal_edit", $result->customer_id) }}">
                                                             <i class="fa fa-pencil"></i>
-                                                        </a> -->
+                                                        </a>
                                                         @if($sessionadmin->adminname == "Admin")
                                                         <a rel="tooltip" class="delete btn btn-secondary m-btn m-btn--air m-btn--custom" title="Delete" data-value="{{$result['customer_id']}}" href="{{ route('customers.personal_delete',$result['customer_id']) }}">
                                                             <i class="fa fa-trash"></i>

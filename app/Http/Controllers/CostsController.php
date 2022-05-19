@@ -65,11 +65,12 @@ class CostsController extends Controller
 
         ]);
         $data = new Cost();
+        $sessionadmin = Parent::checkadmin();
         $data->customer_id = $request->application_number;
-        $names = Customer::where('customer_id', $request->application_number)->first();
+        $names = Customer::where('customer_id', $request->application_number)->where('status', 'Active')->first();
         $data->application_number = $names->application_number;
         $data->applicant_name = $names->applicant_name;
-        $documents = Document::where('customer_id', $request->application_number)->first();
+        $documents = Document::where('customer_id', $request->application_number)->where('status', 'Active')->first();
         $data->document_id = $documents->document_id;
         $data->sal_area = $documents->salable_area;
         $data->uds_area = $documents->uds_area;
@@ -79,32 +80,43 @@ class CostsController extends Controller
         $data->floor = $documents->floor;
         $data->facing = $documents->facing;
         $data->rate_sqft = $request->rate_sqft;
-        $salable_value = $request->rate_sqft * $documents->salable_area;
+        $salable_values = $request->rate_sqft * $documents->salable_area;
+        $salable_value = number_format((float)$salable_values, 2, '.', '');
         $data->salable_value = $salable_value;
         $data->guideline_value = $request->guideline_value;
-        $land_cost = $documents->uds_area * $request->guideline_value;
+        $land_costs = $documents->uds_area * $request->guideline_value;
+        $land_cost = number_format((float)$land_costs, 2, '.', '');
         $data->land_cost = $land_cost;
-        $construction_cost = $salable_value - $land_cost;
+        $construction_costs = $salable_value - $land_cost;
+        $construction_cost = number_format((float)$construction_costs, 2, '.', '');
         $data->construction_cost = $construction_cost;
         $data->electricity_charges = $request->electricity_charges;
         $data->water_supply = $request->water_supply;
         $data->car_park = $request->car_park;
         $data->amenities_charges = $request->amenities_charges;
         $data->maintenance = $request->maintenance;
-        $gross_amount = $land_cost + $construction_cost + $request->electricity_charges + $request->water_supply + $request->car_park + $request->amenities_charges + $request->maintenance;
+        $gross_amounts = $land_cost + $construction_cost + $request->electricity_charges + $request->water_supply + $request->car_park + $request->amenities_charges + $request->maintenance;
+        $gross_amount = number_format((float)$gross_amounts, 2, '.', '');
         $data->gross_amount = $gross_amount;
-        $stamp = round(($land_cost * 7) / 100);
+        $stamps = ($land_cost * 7) / 100;
+        $stamp = number_format((float)$stamps, 2, '.', '');
         $data->stamp = $stamp;
-        $registration = round(($land_cost * 4) / 100);
+        $registrations = ($land_cost * 4) / 100;
+        $registration = number_format((float)$registrations, 2, '.', '');
         $data->registration = $registration;
-        $construction = round((($construction_cost + $request->electricity_charges + $request->water_supply + $request->car_park + $request->amenities_charges + $request->maintenance) * 2) / 100);
+        $constructions = (($construction_cost + $request->electricity_charges + $request->water_supply + $request->car_park + $request->amenities_charges + $request->maintenance) * 2) / 100;
+        $construction = number_format((float)$constructions, 2, '.', '');
         $data->construction = $construction;
         $data->corpus_fund = $request->corpus_fund;
-        $gst = round(($gross_amount * 1) / 100);
+        $gsts = ($gross_amount * 1) / 100;
+        $gst = number_format((float)$gsts, 2, '.', '');
         $data->gst = $gst;
-        $total = $gross_amount + $stamp +  $registration + $construction + $request->corpus_fund + $gst;
+        $totals = $gross_amount + $stamp +  $registration + $construction + $request->corpus_fund + $gst;
+        $total = number_format((float)$totals, 2, '.', '');
         $data->total_amount = $total;
         $data->created_date = date('Y-m-d H:i:s');
+        $data->addedby = $sessionadmin->username;
+        $data->status = "Active";
         $data->save();
         Session::flash('message', 'Cost Details Added!');
         Session::flash('alert-class', 'success');
@@ -169,28 +181,28 @@ class CostsController extends Controller
     {
         if (!empty($_REQUEST['application_name'])) {
             $id = $_REQUEST['application_name'];
-            $names = Customer::where('customer_id', $id)->get();
+            $names = Customer::where('customer_id', $id)->where('status', 'Active')->get();
             foreach ($names as $name) {
                 echo '<input type="text" disabled class="form-control"  name="applicant_name" value="' . $name->applicant_name . '"> ';
             }
             exit;
         } else if (!empty($_REQUEST['salable_area'])) {
             $id = $_REQUEST['salable_area'];
-            $names = Document::where('customer_id', $id)->get();
+            $names = Document::where('customer_id', $id)->where('status', 'Active')->get();
             foreach ($names as $name) {
                 echo '<input type="text" disabled class="form-control" name="sal_area" id="Text2" value="' . $name->salable_area . '"> ';
             }
             exit;
         } else if (!empty($_REQUEST['uds_area'])) {
             $id = $_REQUEST['uds_area'];
-            $names = Document::where('customer_id', $id)->get();
+            $names = Document::where('customer_id', $id)->where('status', 'Active')->get();
             foreach ($names as $name) {
                 echo '<input type="text" disabled class="form-control" name="uds_area" id="Text3" value="' . $name->uds_area . '"> ';
             }
             exit;
         } else if (!empty($_REQUEST['block'])) {
             $id = $_REQUEST['block'];
-            $names = Document::where('customer_id', $id)->get();
+            $names = Document::where('customer_id', $id)->where('status', 'Active')->get();
             foreach ($names as $name) {
                 $block = Block::where('block_id', $name['block'])->first();
                 echo '<input type="text" disabled class="form-control" name="block"  value="' . $block->block_name . '"> ';
@@ -198,7 +210,7 @@ class CostsController extends Controller
             exit;
         } else if (!empty($_REQUEST['flatnumber'])) {
             $id = $_REQUEST['flatnumber'];
-            $names = Document::where('customer_id', $id)->get();
+            $names = Document::where('customer_id', $id)->where('status', 'Active')->get();
             foreach ($names as $name) {
                 $block = Flatnumber::where('flatnumber_id', $name['flatnumber'])->first();
                 echo '<input type="text" disabled class="form-control" name="flatnumber"  value="' . $block->flatnumber . '"> ';
@@ -206,7 +218,7 @@ class CostsController extends Controller
             exit;
         } else if (!empty($_REQUEST['flattype'])) {
             $id = $_REQUEST['flattype'];
-            $names = Document::where('customer_id', $id)->get();
+            $names = Document::where('customer_id', $id)->where('status', 'Active')->get();
             foreach ($names as $name) {
                 $block = Flattype::where('flattype_id', $name['flattype'])->first();
                 echo '<input type="text" disabled class="form-control" name="flattype"  value="' . $block->flattype . '"> ';
@@ -214,7 +226,7 @@ class CostsController extends Controller
             exit;
         } else if (!empty($_REQUEST['floor'])) {
             $id = $_REQUEST['floor'];
-            $names = Document::where('customer_id', $id)->get();
+            $names = Document::where('customer_id', $id)->where('status', 'Active')->get();
             foreach ($names as $name) {
                 $block = Floor::where('floor_id', $name['floor'])->first();
                 echo '<input type="text" disabled class="form-control" name="floor"  value="' . $block->floor_name . '"> ';
@@ -222,7 +234,7 @@ class CostsController extends Controller
             exit;
         } else if (!empty($_REQUEST['facing'])) {
             $id = $_REQUEST['facing'];
-            $names = Document::where('customer_id', $id)->get();
+            $names = Document::where('customer_id', $id)->where('status', 'Active')->get();
             foreach ($names as $name) {
                 echo '<input type="text" disabled class="form-control" name="facing"  value="' . $name->facing . '"> ';
             }

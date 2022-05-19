@@ -56,9 +56,8 @@ class ReceiptsController extends Controller
             'final_amount' => ['required'],
         ]);
         $data = new Receipt();
-        $receipts = Receipt::count();
-        $receipt = $receipts + 1;
-        $data->receipt_no = $receipt;
+        $sessionadmin = Parent::checkadmin();
+        $data->receipt_no = $request->receipt_no;
         $data->receipt_date = $request->receipt_date;
         $data->customer_id = $request->application_number;
         $names = Customer::where('customer_id', $request->application_number)->first();
@@ -73,6 +72,7 @@ class ReceiptsController extends Controller
         $data->final_amount = $request->final_amount;
         $data->status = "Active";
         $data->created_date = date('Y-m-d H:i:s');
+        $data->addedby = $sessionadmin->username;
         $data->save();
         Session::flash('message', 'Receipt Added!');
         Session::flash('alert-class', 'success');
